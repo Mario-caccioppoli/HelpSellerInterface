@@ -1,52 +1,32 @@
-  <p>The following is the example of Bootstrap 4 modal popup login form. </p>
-  
-      <!-- partial:index.partial.html -->
-<div class="container">
-  <button type="button" class="btn btn-info btn-round" style="padding:50px" data-toggle="modal" data-target="#loginModal">
-    Login
-  </button>  
-</div>
+<!-- Button trigger modal -->
 
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<button type="button" class="btn btn-primary account" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+  </svg>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header border-bottom-0">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Area Riservata</h3>
       </div>
       <div class="modal-body">
-        <div class="form-title text-center">
-          <h4>Login</h4>
-        </div>
-        <div class="d-flex flex-column text-center">
-          <form>
-            <div class="form-group">
-              <input type="email" class="form-control" id="email1"placeholder="Your email address...">
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" id="password1" placeholder="Your password...">
-            </div>
-            <button type="button" class="btn btn-info btn-block btn-round">Login</button>
-          </form>
-          
-          <div class="text-center text-muted delimiter">or use a social network</div>
-          <div class="d-flex justify-content-center social-buttons">
-            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
-              <i class="fab fa-twitter"></i>
-            </button>
-            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Facebook">
-              <i class="fab fa-facebook"></i>
-            </button>
-            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin">
-              <i class="fab fa-linkedin"></i>
-            </button>
-          </div>
-        </div>
+      <form action="" class="form-control">
+        <p><b>Username o E-mail</b></p>
+        <input type="text" class="form-control" name="username" placeholder="E-mail o Username" />
+        <br>
+        <p><b>Password     </b><a href="#"><em>(Dimenticata? Recuperala qui)</em></a></p>
+        <input type="text" class="form-control" name="password" placeholder="Password" />
+        <br>
+        <button type="submit" class="btn btn-primary btn-accesso" name="invio">Accedi</button>
+      </form>
+        <hr>
+        <p>Non possiedi un account Distributore? <a href="#">Registrati</a></p>
       </div>
     </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <div class="signup-section">Not a member yet? <a href="#a" class="text-info"> Sign Up</a>.</div>
-      </div>
   </div>
 </div>

@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
+import { SidebarAziendaComponent } from './components/sidebar-azienda/sidebar-azienda.component';
+import { SidebarDistributoreComponent } from './components/sidebar-distributore/sidebar-distributore.component';
+import { SiderbarAmministratoreComponent } from './components/siderbar-amministratore/siderbar-amministratore.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { LoginComponent } from './components/login/login.component';
     FooterComponent,
     LoginComponent,
     HeaderComponent,
-    SidebarComponent,
+    SidebarAziendaComponent,
+    SidebarDistributoreComponent,
+    SiderbarAmministratoreComponent,
   ],
   imports: [
     BrowserModule,

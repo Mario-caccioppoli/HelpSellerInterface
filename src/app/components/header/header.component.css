@@ -1,3 +1,26 @@
+.container-fluid {
+    background-color: rgba(255, 174, 0, 0.582);
+}
+
+.navbar-toggler {
+    padding: 0;
+    border: 1px solid transparent;
+    position: relative;
+    right: 37%;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:active,
+.navbar-toggler:focus {
+    padding: 0;
+    border: 1px solid transparent;
+    float: left;
+}
+
 .logo {
     width: 8%;
+}
+
+.navbar-brand {
+    color: orange;
 }

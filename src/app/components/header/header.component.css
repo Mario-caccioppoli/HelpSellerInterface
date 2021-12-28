@@ -7,6 +7,7 @@
     border: 1px solid transparent;
     position: relative;
     right: 37%;
+    box-shadow: none;
 }
 
 .navbar-toggler:hover,

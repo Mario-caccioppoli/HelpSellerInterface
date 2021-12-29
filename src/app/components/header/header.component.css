@@ -24,3 +24,36 @@
 .navbar-brand {
     color: orange;
 }
+
+.spacer {
+    height: 100px;
+    background-color: #d37e1e;
+    width: 100%;
+    padding: 0;
+}
+
+.hclass {
+    padding: 0;
+}
+
+.hs {
+    color: #fff;
+    font-weight: bold;
+}
+
+.centered {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+    --bs-gutter-x: 0;
+}
+
+.cnt {
+    padding: 0 25px;
+}

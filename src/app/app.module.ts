@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
-import { SidebarDistributoreComponent } from './components/sidebar-distributore/sidebar-distributore.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
@@ -14,7 +13,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     AppComponent,
     FooterComponent,
     LoginComponent,
-    SidebarDistributoreComponent,
     SidebarComponent,
   ],
   imports: [

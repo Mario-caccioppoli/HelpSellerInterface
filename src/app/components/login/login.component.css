@@ -1,5 +1,9 @@
 .account {
-    padding: 10px;
+    padding: 5px 10px;
+    display: block;
+    position: relative;
+    float: right;
+    margin-top: 0.7em;
 }
 
 .btn-accesso {
@@ -9,4 +13,13 @@
     padding: 10px 5px;
     text-align: center;
     margin-bottom: 10px;
+}
+
+.login {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    display: inline;
+    padding-left: 10px;
+    vertical-align: middle;
 }

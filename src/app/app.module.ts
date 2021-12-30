@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LogService } from './service/log.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { HeaderComponent } from './components/header/header.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [LogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

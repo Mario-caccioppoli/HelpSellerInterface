@@ -1,5 +1,8 @@
 .container-fluid{
-   
-    background-color: orange;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    background-color: rgba(255, 174, 0, 0.582);
     height: 50px;
 }

@@ -9,6 +9,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LogService } from './service/log.service';
+import { GestioneProdottiComponent } from './components/gestione-prodotti/gestione-prodotti.component';
+import { GestioneScontiComponent } from './components/gestione-sconti/gestione-sconti.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { LogService } from './service/log.service';
     LoginComponent,
     SidebarComponent,
     HeaderComponent,
+    GestioneProdottiComponent,
+    GestioneScontiComponent,
   ],
   imports: [
     BrowserModule,

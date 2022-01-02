@@ -1,0 +1,30 @@
+    table {
+        width: 50%;
+        align-content: center;
+        margin-left: 26%;
+    }
+    
+    tr {
+        text-align: center;
+    }
+    
+    input {
+        border: solid 1px;
+    }
+    
+    button {
+        margin-left: 15px;
+        border: none;
+        background-color: blue;
+        border-radius: 30% 30% 30% 30%;
+    }
+    
+    .lista {
+        border: 1px solid;
+    }
+    
+    .bottoneAggiungi {
+        margin-left: 46%;
+        border-radius: 0;
+        background-color: red;
+    }

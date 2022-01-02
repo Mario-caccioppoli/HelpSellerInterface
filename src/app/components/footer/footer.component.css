@@ -1,4 +1,9 @@
-.container-fluid{
-    color:gray;
-    height: 50px;
+.footer{
+    text-align: center;
+    background-color: rgb(255, 174, 0,0.582);
+    margin-top:0;
 }
+p{
+    font-size: 13px;
+}
+  

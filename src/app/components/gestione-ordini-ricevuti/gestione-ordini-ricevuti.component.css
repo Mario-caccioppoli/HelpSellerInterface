@@ -1,0 +1,35 @@
+.fleft {
+   display: block;
+   float: left; 
+}
+
+.centered {
+    text-align: center;
+}
+
+.mb50 {
+    margin-bottom: 50px;
+}
+
+.edit {
+    color: #d37e1e;
+    background-color: transparent;
+    box-shadow: none;
+    border: 0;
+}
+
+.edit:focus,
+.edit:active,
+.edit:hover {
+    box-shadow: none;
+}
+
+form.inl input {
+    margin: 15px 0;
+}
+
+#ricerca p {
+    font-weight: bold;
+    font-size: 18px;
+    color: #d37e1e;
+}

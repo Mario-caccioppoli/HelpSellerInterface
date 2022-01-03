@@ -1,35 +1,59 @@
-<table class="table table-borderless">
-    <tr class="table-light ">
-        <td class="table-light ">Codice</td>
-        <td class="table-light ">Nome</td>
-        <td class="table-light ">Azienda</td>
-    </tr>
-    <tr class="table-light ">
-        <td class="table-light "><input type="text " placeholder="Inserisci Codice "></td>
-        <td class="table-light "><input type="text " placeholder="Inserisci Nome "></td>
-        <td class="table-light "><input type="text " placeholder="Inserisci Azienda "></td>
-    </tr>
-</table>
+<div class="container">
+    <table class="table table-borderless">
+        <tr class="table-light ">
+            <td class="table-light ">Codice</td>
+            <td class="table-light ">Nome</td>
+            <td class="table-light ">Azienda</td>
+        </tr>
+        <tr class="table-light ">
+            <td class="table-light "><input type="text " placeholder="Inserisci Codice "></td>
+            <td class="table-light "><input type="text " placeholder="Inserisci Nome "></td>
+            <td class="table-light "><input type="text " placeholder="Inserisci Azienda "></td>
+        </tr>
+    </table>
 
-<br><br>
+    <br><br>
 
-<table class="table table-borderless">
-    <tr class="table-light ">
-        <td class="table-light ">Codice</td>
-        <td class="table-light ">Nome</td>
-        <td class="table-light ">Azienda</td>
-        <td class="table-light ">Prezzo</td>
-        <td class="table-light ">Azioni</td>
-    </tr>
-    <tr class="table-light lista">
-        <td class="table-light ">codice</td>
-        <td class="table-light ">nome</td>
-        <td class="table-light ">azienda</td>
-        <td class="table-light ">prezzo</td>
-        <td class="table-light "><button>Modifica</button><button>Elimina</button><button>ICONA</button></td>
-    </tr>
-</table>
+    <table class="table table-borderless">
+        <tr class="table-light ">
+            <td class="table-light ">Codice</td>
+            <td class="table-light ">Nome</td>
+            <td class="table-light ">Azienda</td>
+            <td class="table-light ">Prezzo</td>
+            <td class="table-light ">Azioni</td>
+        </tr>
+        <tr class="table-light lista">
+            <td class="table-light ">codice</td>
+            <td class="table-light ">nome</td>
+            <td class="table-light ">azienda</td>
+            <td class="table-light ">prezzo</td>
+            <td class="table-light "><button>Modifica</button><button>Elimina</button><button>ICONA</button></td>
+        </tr>
+    </table>
 
-<br><br>
+    <br><br>
 
-<button>Aggiungi Prodotto</button>
+    <button type="button" class="btn btn-primary bottoneAggiungi" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Aggiungi Prodotto
+      </button>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Aggiungi Prodotto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Tabella
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aggiungi</button>
+                <button type="button" class="btn btn-primary">Annulla</button>
+            </div>
+        </div>
+    </div>
+</div>

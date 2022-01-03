@@ -1,0 +1,40 @@
+table {
+    width: 100%;
+    align-content: center;
+    margin-left: 26%;
+}
+
+tr {
+    text-align: center;
+}
+
+input {
+    border: solid 1px;
+}
+
+button {
+    margin-left: 15px;
+    border: none;
+    background-color: orange;
+    border-radius: 30% 30% 30% 30%;
+    color: black;
+}
+
+.lista {
+    border: 1px solid;
+}
+
+.bottoneAggiungi {
+    margin-left: 46%;
+    border-radius: 0;
+    background-color: orange;
+}
+
+.btn-primary:focus {
+    box-shadow: none;
+}
+
+.btn:focus {
+    box-shadow: none;
+    color: black;
+}

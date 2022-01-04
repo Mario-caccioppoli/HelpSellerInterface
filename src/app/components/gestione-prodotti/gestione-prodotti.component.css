@@ -1,8 +1,3 @@
-table {
-    width: 50%;
-    /* align-content: center; */
-}
-
 tr {
     text-align: center;
 }
@@ -19,6 +14,15 @@ button {
     margin-left: 5px;
 }
 
+.pulsanti {
+    background-color: transparent;
+}
+
+.pulsanti i {
+    background-color: transparent;
+    color: orange;
+}
+
 .lista {
     border: 1px solid;
 }
@@ -30,4 +34,9 @@ button {
 .btn:focus {
     box-shadow: none;
     color: black;
+}
+
+.bottoneAggiungi {
+    position: relative;
+    right: 38%;
 }

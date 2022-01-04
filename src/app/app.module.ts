@@ -12,6 +12,10 @@ import { LogService } from './service/log.service';
 import { GestioneProdottiComponent } from './components/gestione-prodotti/gestione-prodotti.component';
 import { GestioneScontiComponent } from './components/gestione-sconti/gestione-sconti.component';
 import { GestioneOrdiniRicevutiComponent } from './components/gestione-ordini-ricevuti/gestione-ordini-ricevuti.component';
+import { VisualizzaAziendeComponent } from './components/visualizza-aziende/visualizza-aziende.component';
+import { VisualizzaProdottiComponent } from './components/visualizza-prodotti/visualizza-prodotti.component';
+import { PaginaAziendaComponent } from './components/pagina-azienda/pagina-azienda.component';
+import { SelezionaProdottiScontareComponent } from './components/seleziona-prodotti-scontare/seleziona-prodotti-scontare.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { GestioneOrdiniRicevutiComponent } from './components/gestione-ordini-ri
     GestioneProdottiComponent,
     GestioneScontiComponent,
     GestioneOrdiniRicevutiComponent,
+    VisualizzaAziendeComponent,
+    VisualizzaProdottiComponent,
+    PaginaAziendaComponent,
+    SelezionaProdottiScontareComponent,
   ],
   imports: [
     BrowserModule,

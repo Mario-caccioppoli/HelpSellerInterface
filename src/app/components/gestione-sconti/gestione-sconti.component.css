@@ -1,7 +1,6 @@
 table {
     width: 50%;
-    align-content: center;
-    margin-left: 26%;
+    /* align-content: center; */
 }
 
 tr {
@@ -13,18 +12,26 @@ input {
 }
 
 button {
-    margin-left: 15px;
+    /* margin-left: 15px; */
     border: none;
-    background-color: blue;
-    border-radius: 30% 30% 30% 30%;
+    background-color: orange;
+    color: black;
+    margin-left: 5px;
 }
 
 .lista {
     border: 1px solid;
 }
 
-.bottoneAggiungi {
-    margin-left: 46%;
-    border-radius: 0;
-    background-color: red;
+.btn-primary:focus {
+    box-shadow: none;
+}
+
+.btn:focus {
+    box-shadow: none;
+    color: black;
+}
+
+select {
+    border: solid 1px;
 }

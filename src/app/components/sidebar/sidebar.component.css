@@ -10,6 +10,6 @@ ul li a:hover {
     background-color: dimgrey;
 }
 
-.mt70 {
-    margin-top: 70px;
+.sidebar {
+    padding-left: 0;
 }

@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LogService } from './service/log.service';
 import { GestioneProdottiComponent } from './components/gestione-prodotti/gestione-prodotti.component';
 import { GestioneScontiComponent } from './components/gestione-sconti/gestione-sconti.component';
+import { GestioneOrdiniRicevutiComponent } from './components/gestione-ordini-ricevuti/gestione-ordini-ricevuti.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { GestioneScontiComponent } from './components/gestione-sconti/gestione-s
     HeaderComponent,
     GestioneProdottiComponent,
     GestioneScontiComponent,
+    GestioneOrdiniRicevutiComponent,
   ],
   imports: [
     BrowserModule,

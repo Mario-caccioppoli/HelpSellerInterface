@@ -1,5 +1,21 @@
 <app-header></app-header>
+<div id="corpo" class="row mt70">
+    <div class="col-lg-2 bg-dark">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-lg-10 cont-princ">
+        <app-gestione-ordini-ricevuti></app-gestione-ordini-ricevuti>
+    </div>
+</div>
+<router-outlet></router-outlet>
+<div id="foot" class="row">
+    <app-footer></app-footer>
+</div>
+
+
+
+<!-- <app-header></app-header>
 <app-sidebar></app-sidebar>
 <app-gestione-prodotti></app-gestione-prodotti>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer></app-footer> -->

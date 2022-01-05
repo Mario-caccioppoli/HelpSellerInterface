@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gestione-sconti.component.css']
 })
 export class GestioneScontiComponent implements OnInit {
+  filtroSelect: string;
+  selectFromModel: string;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    
   }
-
+  ngOnInit(): void {
+    
+  }
+  
+  
 }

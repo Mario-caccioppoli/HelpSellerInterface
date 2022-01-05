@@ -1,0 +1,42 @@
+tr {
+    text-align: center;
+}
+
+input {
+    border: solid 1px;
+}
+
+button {
+    /* margin-left: 15px; */
+    border: none;
+    background-color: orange;
+    color: black;
+    margin-left: 5px;
+}
+
+.pulsanti {
+    background-color: transparent;
+}
+
+.pulsanti i {
+    background-color: transparent;
+    color: orange;
+}
+
+.lista {
+    border: 1px solid;
+}
+
+.btn-primary:focus {
+    box-shadow: none;
+}
+
+.btn:focus {
+    box-shadow: none;
+    color: black;
+}
+
+.bottoneAggiungi {
+    position: relative;
+    right: 38%;
+}

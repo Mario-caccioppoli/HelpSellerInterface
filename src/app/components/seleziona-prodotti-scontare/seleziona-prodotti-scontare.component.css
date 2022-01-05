@@ -1,0 +1,30 @@
+.prodottiContainer {
+    border: solid 1px;
+    margin-left: 15px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.searchbarContainer {
+    margin-left: 5%;
+}
+
+.searchbarContainer button i {
+    background-color: none;
+    color: orange;
+}
+
+input[type='checkbox'] {
+    float: left;
+    zoom: 2;
+}
+
+input[type='checkbox']:checked {
+    background-color: #fd0404;
+    /* zoom: 3; */
+}

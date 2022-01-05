@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LogService } from './service/log.service';
+import { LogService } from './services/log.service';
 
 @Component({
   selector: 'app-root',

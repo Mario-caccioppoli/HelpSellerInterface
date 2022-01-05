@@ -1,9 +1,3 @@
-table {
-    width: 100%;
-    align-content: center;
-    margin-left: 26%;
-}
-
 tr {
     text-align: center;
 }
@@ -13,21 +7,24 @@ input {
 }
 
 button {
-    margin-left: 15px;
+    /* margin-left: 15px; */
     border: none;
     background-color: orange;
-    border-radius: 30% 30% 30% 30%;
     color: black;
+    margin-left: 5px;
+}
+
+.pulsanti {
+    background-color: transparent;
+}
+
+.pulsanti i {
+    background-color: transparent;
+    color: orange;
 }
 
 .lista {
     border: 1px solid;
-}
-
-.bottoneAggiungi {
-    margin-left: 46%;
-    border-radius: 0;
-    background-color: orange;
 }
 
 .btn-primary:focus {
@@ -37,4 +34,9 @@ button {
 .btn:focus {
     box-shadow: none;
     color: black;
+}
+
+.bottoneAggiungi {
+    position: relative;
+    right: 38%;
 }

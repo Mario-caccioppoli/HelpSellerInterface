@@ -8,7 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LogService } from './service/log.service';
+import { LogService } from './services/log.service';
 import { GestioneProdottiComponent } from './components/gestione-prodotti/gestione-prodotti.component';
 import { GestioneScontiComponent } from './components/gestione-sconti/gestione-sconti.component';
 import { GestioneOrdiniRicevutiComponent } from './components/gestione-ordini-ricevuti/gestione-ordini-ricevuti.component';

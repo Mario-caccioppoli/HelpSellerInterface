@@ -12,7 +12,7 @@ export class SelezionaProdottiScontareComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  cambiaColore(){
+  cambiaColore(item: any){
     this.coloreBordo=!this.coloreBordo;
     var bordo=document.getElementById("prodottiContainer");
     if(this.coloreBordo){

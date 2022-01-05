@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gestione-sconti.component.css']
 })
 export class GestioneScontiComponent implements OnInit {
-  filtroSelect: string;
-  selectFromModel: string;
+  filtroSelect: string='tutti';
+  selectFromModel: string='catalogo';
 
   constructor() {
     

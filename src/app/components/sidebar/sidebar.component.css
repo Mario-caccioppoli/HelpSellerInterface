@@ -9,3 +9,7 @@ ul li {
 ul li a:hover {
     background-color: dimgrey;
 }
+
+.sidebar {
+    padding-left: 0;
+}

@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="searchbarContainer"><input type="text" class="searchbar" placeholder="cerca azienda"><button><i class="fas fa-search"></i></button></div>
+    <div class="row">
+        <div *ngFor="let item of azienda" class="col">
+            <div class="aziendaContainer">
+                <img src="" alt="FOTO AZIENDA">
+                <p>{{item.email}}</p>
+            </div>
+        </div>
+    </div>
+</div>

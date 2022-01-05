@@ -1,0 +1,75 @@
+<table class="table table-borderless">
+    <tr class="table-light ">
+        <td class="table-light ">Codice</td>
+        <td class="table-light ">Nome</td>
+        <td class="table-light ">Azienda</td>
+    </tr>
+    <tr class="table-light ">
+        <td class="table-light "><input type="text " placeholder="Inserisci Codice "></td>
+        <td class="table-light "><input type="text " placeholder="Inserisci Nome "></td>
+        <td class="table-light "><input type="text " placeholder="Inserisci Azienda "></td>
+    </tr>
+</table>
+
+<br><br>
+
+<table class="table table-borderless">
+    <tr class="table-light ">
+        <td class="table-light ">Codice</td>
+        <td class="table-light ">Nome</td>
+        <td class="table-light ">Azienda</td>
+        <td class="table-light ">Prezzo</td>
+        <td class="table-light ">Azioni</td>
+    </tr>
+    <tr class="table-light lista">
+        <td class="table-light ">codice</td>
+        <td class="table-light ">nome</td>
+        <td class="table-light ">azienda</td>
+        <td class="table-light ">prezzo</td>
+        <td class="table-light "><button class="pulsanti"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button><button class="pulsanti" style="font-size: 30px;"><i class="fas fa-trash-alt"></i></button><button class="pulsanti"><i class="fas fa-sticky-note"></i></button></td>
+    </tr>
+</table>
+
+<br><br>
+
+<button type="button" class="btn btn-primary bottoneAggiungi" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Aggiungi Prodotto
+      </button>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Aggiungi Prodotto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <form class="form-control">
+                        <p><b>Inserisci immagine</b></p>
+                        <input type="file" class="form-control" name="file" />
+                        <br>
+                        <p><b>Nome Prodotto</b></p>
+                        <input type="text" name="nome" placeholder="inserisci nome prodotto"><br>
+                        <p><b>Descrizione Prodotto</b></p>
+                        <textarea name="textArea" id="" cols="30" rows="5"></textarea>
+                        <br>
+                        <p><b>Peso</b></p>
+                        <input type="text" name="peso" placeholder="inserisci peso"><br>
+                        <p><b>Volume</b></p>
+                        <input type="text" name="volume" placeholder="inserisci volume"><br>
+                        <p><b>Prezzo</b></p>
+                        <input type="text" name="prezzo" placeholder="inserisci prezzo"><br><br>
+                        <button type="submit" class="btn btn-primary btn-accesso" name="invio">Aggiungi Prodotto</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary">Aggiungi</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Annulla</button>
+                </div>
+            </div>
+        </div>
+    </div>

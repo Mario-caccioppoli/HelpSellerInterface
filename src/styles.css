@@ -1,3 +1,22 @@
+/* Fix modal incapsulamento */
 .modal-backdrop {
-    position: unset;
+    z-index: 1000;
+}
+
+/* Fix margini default BS 5.1*/
+.row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+}
+
+/* Fix sidebar & container*/
+
+.mt70 {
+    margin-top: 70px;
+}
+
+.cont-princ {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 0 30px;
 }

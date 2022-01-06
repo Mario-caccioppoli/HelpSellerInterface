@@ -6,7 +6,12 @@
     <tr class="table-light ">
         <td class="table-light"><input type="text" placeholder="Nome"></td>
         <td class="table-light">
-            <select name="filtro" id="filtroSelect" [(ngModel)]="filtroSelect" required><option value="tutti">Tutti</option><option value="catalogo">Catalogo</option><option value="quantita">Quantità</option></select></td>
+            <select name="filtro" id="filtroSelect" [(ngModel)]="filtroSelect" required>
+                <option value="tutti">Tutti</option>
+                <option value="catalogo">Catalogo</option>
+                <option value="quantita">Quantità</option>
+            </select>
+        </td>
     </tr>
 </table>
 
@@ -24,7 +29,9 @@
         <td class="table-light">Nome</td>
         <td class="table-light">Tipo</td>
         <td class="table-light">n° prodotti</td>
-        <td class="table-light"><button class="pulsanti"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button><button class="pulsanti" style="font-size: 30px;"><i class="fas fa-trash-alt"></i></button></td>
+        <td class="table-light"><button class="pulsanti"><i class="fa fa-edit fa-2x"
+                    aria-hidden="true"></i></button><button class="pulsanti" style="font-size: 30px;"><i
+                    class="fas fa-trash-alt"></i></button></td>
     </tr>
 </table>
 
@@ -32,7 +39,7 @@
 
 <button type="button " class="btn btn-primary bottoneSconto" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Aggiungi Sconto
-  </button>
+</button>
 
 
 
@@ -51,7 +58,10 @@
                         <p><b>Nome Sconto</b></p>
                         <input type="text " name="nome" placeholder="inserisci nome sconto"><br>
                         <p><b>tipo</b></p>
-                        <select name="tipo" [(ngModel)]="selectFromModel"><option value="catalogo">Catalogo</option><option value="quantita">Quantità</option></select>
+                        <select name="tipo" [(ngModel)]="selectFromModel">
+                            <option value="catalogo">Catalogo</option>
+                            <option value="quantita">Quantità</option>
+                        </select>
                         <br>
                         <!-- SCONTO QUANTITA -->
                         <p *ngIf="selectFromModel==='quantita'"><b>Quantità minima</b></p>
@@ -63,7 +73,8 @@
                         <input type="date" name="dataFine "><br>
                         <p><b>Percentuale</b></p>
                         <input type="text" name="volume" placeholder="inserisci percentuale"><br><br>
-                        <button type="submit " class="btn btn-primary btn-accesso " name="invio">Aggiungi Sconto</button>
+                        <button type="submit " class="btn btn-primary btn-accesso " name="invio">Aggiungi
+                            Sconto</button>
                     </form>
                 </div>
                 <div class="modal-footer">

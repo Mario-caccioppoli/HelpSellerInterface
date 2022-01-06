@@ -26,7 +26,9 @@ export class SelezionaProdottiScontareComponent implements OnInit {
      }
      else {
           for(let i=0;i<this.provaNumero.length;i++){
+            //this.provaNumero.find(item);
             if(this.provaNumero[i]===item){
+              bordo.style.borderColor='black';
               delete this.provaNumero[i];
               this.provaNumero=this.provaNumero.filter(n=>n) 
               console.log(this.provaNumero)

@@ -7,16 +7,19 @@ import { Azienda } from 'src/app/models/Azienda';
   styleUrls: ['./visualizza-aziende.component.css']
 })
 export class VisualizzaAziendeComponent implements OnInit {
-  azienda: Azienda[]=[]
+  azienda: Azienda[] = []
   constructor() { }
 
   ngOnInit(): void {
-    this.azienda.push({idAzienda:1 ,email:"francesdfadsfa",password: "string",
-    nomeAzienda: "string",
-    VATNumber: "string",
-    indirizzo: "string",
-    descrizione: "string",
-    logo: "string"})
+    this.azienda.push({
+      idAzienda: 1, email: "@helpseller.com",
+      password: "string",
+      nomeAzienda: "NOME AZIENDA",
+      VATNumber: "string",
+      indirizzo: "string",
+      descrizione: "string",
+      logo: "string"
+    })
   }
 
 }

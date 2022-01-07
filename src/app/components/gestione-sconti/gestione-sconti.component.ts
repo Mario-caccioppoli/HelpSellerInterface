@@ -16,5 +16,16 @@ export class GestioneScontiComponent implements OnInit {
     
   }
   
+  aggiungiSconto(form){
+
+  }
+
+  cancellaSconto(){
+
+  }
+
+  modificaSconto(form){
+
+  }
   
 }

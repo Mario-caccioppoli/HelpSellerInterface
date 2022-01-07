@@ -21,6 +21,7 @@ button {
 .pulsanti i {
     background-color: transparent;
     color: orange;
+    font-size: 30px;
 }
 
 .lista {
@@ -43,4 +44,11 @@ select {
 .bottoneSconto {
     position: relative;
     left: 38%;
+}
+
+.scrolla {
+    height: 300px;
+    padding: 3px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

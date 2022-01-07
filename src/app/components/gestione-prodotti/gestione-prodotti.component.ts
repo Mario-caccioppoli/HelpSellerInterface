@@ -12,8 +12,15 @@ export class GestioneProdottiComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  prendiDati(n){
-    this.nome=n.nome;
+  aggiungiProdotto(form){
+    this.nome=form.nome;
+  }
+  modificaProdotto(form){
+    
+  }
+
+  eliminaProdotto(){
+
   }
 
 }

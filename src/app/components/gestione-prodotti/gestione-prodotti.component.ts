@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gestione-prodotti.component.css']
 })
 export class GestioneProdottiComponent implements OnInit {
-
+  nome:String;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  aggiungiProdotto(form){
+    this.nome=form.nome;
+  }
+  modificaProdotto(form){
+    
+  }
+
+  eliminaProdotto(){
+
   }
 
 }

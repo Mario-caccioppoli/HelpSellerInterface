@@ -3,11 +3,12 @@ ul li a {
 }
 
 ul li {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 ul li a:hover {
     background-color: dimgrey;
+    background-size: 100%;
 }
 
 .sidebar {

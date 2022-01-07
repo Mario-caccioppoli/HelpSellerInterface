@@ -19,7 +19,7 @@ import { GestioneOrdiniDownloadComponent } from './components/gestione-ordini-do
 import { GestioneOrdiniUploadComponent } from './components/gestione-ordini-upload/gestione-ordini-upload.component';
 import { VisualizzaAziendeComponent } from './components/visualizza-aziende/visualizza-aziende.component';
 import { VisualizzaProdottiComponent } from './components/visualizza-prodotti/visualizza-prodotti.component';
-import { PaginaAziendaComponent } from './components/pagina-azienda/pagina-azienda.component';
+import { ProfiloAziendaComponent } from './components/profilo-azienda/profilo-azienda.component';
 import { SelezionaProdottiScontareComponent } from './components/seleziona-prodotti-scontare/seleziona-prodotti-scontare.component';
 import { GestordEffordCartComponent } from './components/gestione-ordini-effettua-ordine/gestord-efford-cart/gestord-efford-cart.component';
 
@@ -41,7 +41,7 @@ import { GestordEffordCartComponent } from './components/gestione-ordini-effettu
     GestioneOrdiniUploadComponent,
     VisualizzaAziendeComponent,
     VisualizzaProdottiComponent,
-    PaginaAziendaComponent,
+    ProfiloAziendaComponent,
     SelezionaProdottiScontareComponent,
     GestordEffordCartComponent,
   ],

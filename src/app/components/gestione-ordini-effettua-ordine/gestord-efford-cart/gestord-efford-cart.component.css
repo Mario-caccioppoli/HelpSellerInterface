@@ -72,28 +72,18 @@
     padding: 0 10px;
 }
 
-.navigazione {
-    display: inline-flex;
-}
-
-.navigazione a{
-    color: #d37e1e;
-}
-
 li.page-item {
     width: 60px;
 }
 
-.ordbutton {
-    max-width: 200px;
-    margin: 30px auto;
-    display: block;
-    text-align: center;
+.form-control label {
+    padding-bottom: 10px;
 }
 
-.onorder {
-    position: absolute;
-    left: 5px;
-    top: 10px;
-    z-index: 1500;
+.btn-cust {
+    width: 100%;
+}
+
+.dropdown-toggle.btn-cust {
+    max-width: 300px;
 }

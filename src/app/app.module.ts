@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +21,7 @@ import { VisualizzaAziendeComponent } from './components/visualizza-aziende/visu
 import { VisualizzaProdottiComponent } from './components/visualizza-prodotti/visualizza-prodotti.component';
 import { PaginaAziendaComponent } from './components/pagina-azienda/pagina-azienda.component';
 import { SelezionaProdottiScontareComponent } from './components/seleziona-prodotti-scontare/seleziona-prodotti-scontare.component';
+import { GestordEffordCartComponent } from './components/gestione-ordini-effettua-ordine/gestord-efford-cart/gestord-efford-cart.component';
 
 @NgModule({
   declarations: [
@@ -43,11 +43,12 @@ import { SelezionaProdottiScontareComponent } from './components/seleziona-prodo
     VisualizzaProdottiComponent,
     PaginaAziendaComponent,
     SelezionaProdottiScontareComponent,
+    GestordEffordCartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [LogService],
   bootstrap: [AppComponent]

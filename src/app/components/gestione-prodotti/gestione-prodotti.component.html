@@ -30,7 +30,7 @@
             <td class="table-light ">prezzo</td>
             <td class="table-light "><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaProdotto"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
                 <button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#eliminaProdotto"><i class="fas fa-trash-alt"></i></button>
-                <button type="button" class="btn btn-primary pulsanti"><i class="fas fa-sticky-note" ></i></button>
+                <!-- <button type="button" class="btn btn-primary pulsanti"><i class="fas fa-sticky-note" ></i></button> -->
             </td>
         </tr>
     </table>
@@ -76,7 +76,7 @@
                     <div class="modal-body">
                         <div class="modal-body">
                             <div class="modal-body">
-                                <p><b>Inserisci immagine</b></p>
+                                <p><b>Inserisci Immagine</b></p>
                                 <input type="file" class="form-control" name="file" />
                                 <br>
                                 <p><b>Nome Prodotto</b></p>
@@ -116,28 +116,28 @@
                     <div class="modal-body">
                         <div class="modal-body">
                             <div class="modal-body">
-                                <p><b>Inserisci immagine</b></p>
+                                <div><b>Inserisci Immagine</b></div>
                                 <input type="file" class="form-control" name="file" />
                                 <br>
-                                <p><b>Nome Prodotto</b></p>
-                                <input type="text" ngModel name="nome" placeholder="inserisci nome prodotto"><br>
-                                <p><b>Descrizione Prodotto</b></p>
-                                <textarea name="textArea" ngModel id=" " cols="30" rows="5"></textarea>
-                                <br>
-                                <p><b>Peso</b></p>
-                                <input type="text" name="peso" ngModel placeholder=" inserisci peso"><br>
-                                <p><b>Volume</b></p>
-                                <input type="text" name="volume" ngModel placeholder="inserisci volume"><br>
-                                <p><b>Prezzo</b></p>
-                                <input type="text" name="prezzo" ngModel placeholder="inserisci prezzo"><br><br>
+                                <div><b>Nome Prodotto</b></div>
+                                <input type="text" ngModel name="nome" placeholder="inserisci nome prodotto"><br><br>
+                                <div><b>Descrizione Prodotto</b></div>
+                                <textarea name="textArea " ngModel id=" " cols="30 " rows="5 "></textarea>
+                                <br><br>
+                                <div><b>Peso</b></div>
+                                <input type="text" name="peso" ngModel placeholder="inserisci peso "><br><br>
+                                <div><b>Volume</b></div>
+                                <input type="text" name="volume" ngModel placeholder="inserisci volume "><br><br>
+                                <div><b>Prezzo</b></div>
+                                <input type="text" name="prezzo" ngModel placeholder="inserisci prezzo "><br><br>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                <button type="submit" class="btn btn-primary">Aggiungi Prodotto</button>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="submit " class="btn btn-primary">Aggiungi Prodotto</button>
             </div>
         </div>
     </div>

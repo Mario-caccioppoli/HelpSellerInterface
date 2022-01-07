@@ -52,3 +52,20 @@ select {
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+.modal-body {
+    padding-top: 5px;
+}
+
+.pulsanti:hover {
+    background-color: #0d6efd;
+}
+
+.bottoneSconto:focus {
+    background-color: orange;
+    border-color: orange;
+}
+
+.bottoneSconto:hover {
+    background-color: #0d6efd
+}

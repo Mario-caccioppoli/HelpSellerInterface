@@ -2,11 +2,13 @@
     <div class="searchbarContainer"><input type="text" class="searchbar" placeholder="cerca azienda"><button><i class="fas fa-search"></i></button></div>
     <div class="row">
         <div *ngFor="let item of azienda" class="col">
-            <div class="aziendaContainer">
-                <img src="assets/icons/Logo.png" alt="FOTO AZIENDA">
-                <div>{{item.nomeAzienda}}</div>
-                <div>{{item.email}}</div>
-            </div>
+            <a routerLink="/profiloAzienda">
+                <div class="aziendaContainer">
+                    <img src="assets/icons/Logo.png" alt="FOTO AZIENDA">
+                    <div>{{item.nomeAzienda}}</div>
+                    <div>{{item.email}}</div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

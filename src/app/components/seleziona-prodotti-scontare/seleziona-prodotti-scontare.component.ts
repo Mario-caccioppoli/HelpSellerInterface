@@ -10,6 +10,7 @@ export class SelezionaProdottiScontareComponent implements OnInit {
   coloreBordo: boolean=false;
   checked: boolean=false;
   provaNumero: number[]=[];
+  filter: number[]=[];
   prodottiSelezionati: Prodotto[]=[];
 
   constructor() { }
@@ -21,20 +22,22 @@ export class SelezionaProdottiScontareComponent implements OnInit {
     const casellaCheck=document.getElementById("checkbox"+' '+item);
      if(event.target.checked){
        bordo.style.borderColor='orange';
+       console.log("inserisco "+item);
        this.provaNumero.push(item);
        console.log(this.provaNumero)
      }
      else {
-          for(let i=0;i<this.provaNumero.length;i++){
-            if(this.provaNumero[i]===item){
-              bordo.style.borderColor='black';
-              delete this.provaNumero[i];
-              this.provaNumero=this.provaNumero.filter(n=>n) 
-              console.log(this.provaNumero)
-            }
-          }
+            let x=this.provaNumero.find(x=> x==item);
+            console.log("tolgo oggetto trovato "+x);
+            bordo.style.borderColor='black';
+            if(x!==-1)
+            this.provaNumero.splice(this.provaNumero.indexOf(x),1);
+            console.log(this.provaNumero)
+          // for(let i=0;i<this.provaNumero.length;i++){
+          //   if(this.provaNumero[i]===item){
+              
+          //   }
+          // }
       }
-
-
   }
 }

@@ -48,3 +48,16 @@ button {
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+.modal-body {
+    padding-top: 5px;
+}
+
+.pulsanti:hover {
+    background-color: #0d6efd;
+}
+
+.bottoneAggiungi:focus {
+    background-color: orange;
+    border-color: orange;
+}

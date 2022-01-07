@@ -24,3 +24,15 @@
     object-fit: cover;
     width: 50%;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.aziendaContainer:hover {
+    border-color: orange;
+    color: orange;
+    transform: scale(1.1);
+    transition: 1.3s;
+}

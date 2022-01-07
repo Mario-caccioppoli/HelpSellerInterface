@@ -5,15 +5,10 @@
     </tr>
     <tr class="table-light ">
         <td class="table-light "><input type="text" placeholder="Nome"></td>
-        <td class="table-light "><input list="tipo" name="Tipo"></td>
+        <td class="table-light "><select name="filtro" id=""><option value="tutti">Tutti</option><option value="catalogo">Catalogo</option><option value="quantita">Quantità</option></select></td>
     </tr>
 </table>
 
-<datalist id="tipo">
-    <option value="Tutti"></option>
-    <option value="Catalogo">
-    <option value="Quantità">
-</datalist>
 
 <br><br>
 
@@ -28,10 +23,53 @@
         <td class="table-light ">Nome</td>
         <td class="table-light ">Tipo</td>
         <td class="table-light ">n° prodotti</td>
-        <td class="table-light "><button>Modifica</button><button>Elimina</button></td>
+        <td class="table-light "><button class="pulsanti"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button><button class="pulsanti" style="font-size: 30px;"><i class="fas fa-trash-alt"></i></button></td>
     </tr>
 </table>
 
 <br><br>
 
-<button class="bottoneAggiungi">Aggiungi Sconto</button>
+<button type="button" class="btn btn-primary bottoneSconto" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Aggiungi Sconto
+  </button>
+
+
+
+<!-- MODAL -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Aggiungi Sconto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <form class="form-control">
+                        <p><b>Nome Sconto</b></p>
+                        <input type="text" name="nome" placeholder="inserisci nome sconto"><br>
+                        <p><b>tipo</b></p>
+                        <select name="tipo" id=""><option value="catalogo">Catalogo</option><option value="quantita">Quantità</option></select>
+                        <br>
+                        <!-- SCONTO QUANTITA -->
+                        <p><b>Quantità minima</b></p>
+                        <input type="text" name="peso" placeholder="inserisci quantità minima"><br>
+                        <!-- SCONTO CATALOGO -->
+                        <p><b>Data Inizio</b></p>
+                        <input type="date" name="dataInizio"><br>
+                        <p><b>Data Fine</b></p>
+                        <input type="date" name="dataFine"><br>
+                        <!-- FINE DIFFERENZA -->
+                        <p><b>Percentuale</b></p>
+                        <input type="text " name="volume " placeholder="inserisci percentuale "><br>
+                        <button type="submit " class="btn btn-primary btn-accesso " name="invio ">Aggiungi Sconto</button>
+                    </form>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button " class="btn btn-secondary ">Aggiungi Sconto</button>
+                    <button type="button " class="btn btn-primary " data-bs-dismiss="modal">Annulla</button>
+                </div>
+            </div>
+        </div>
+    </div>

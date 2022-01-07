@@ -1,0 +1,12 @@
+.container {
+    text-align: center;
+}
+
+.paragrafo {
+    border: solid 2px;
+}
+
+button {
+    background-color: orange;
+    border: transparent;
+}

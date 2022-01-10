@@ -1,71 +1,83 @@
 <h2 style="text-align: center;"> Report Vendite</h2>
 <h3>Grafico vendite</h3>
-<div class="h-100 row align-items-center">  <app-grafico-a-linea></app-grafico-a-linea></div>
-<p>N° Prodotti venduti: </p>
-<p>Quantità totale di prodotti venduti: </p>
-<p>Totale spedizioni: </p>
+<div class="row align-items-center">  
+  <app-grafico-a-linea [barChartLabels] = "anni" [barChartData] = "datiAnnuali"></app-grafico-a-linea>
+</div>
+<p>N° Prodotti venduti: </p>{{nProdottiTotale}}
+<p>Quantità totale di prodotti venduti: </p>{{quantitaTotaleProdotti}}
+<p>Totale spedizioni: </p>{{totaleSpedizioni}}
 
 
-<div class="float-end"><p>Totale Incasso: </p></div>
+<div class="float-end"><p>Totale Incasso:</p> {{totaleIncasso}}</div>
 <br>
 <br>
 
 
 
-<div class="dropdown" style="text-align:center">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-      Scegli Anno
-    </a>
-    <select class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <option>2018</option>
-      <option>2019</option>
-      <option>2020</option>
-      <option>2021</option>
-      </select>
- 
+<div style="text-align: center;"> 
+  <select (change)="cambiaAnno($event)" class="custom-select">
+    <option value="" selected>Scegli Anno</option>
+    <option *ngFor="let item of anni">{{item}}</option>    
+</select>
+{{annoScelto}}
 </div>
 
+
+<div id="repotAnnuale" *ngIf="annoScelto!=null && annoScelto!='' ">
+
+
+  
 <h3>Grafico Vendite Annuo</h3>
-<div class="h-100 row align-items-center">  
-<app-grafico-a-barra></app-grafico-a-barra>
+<div class="row align-items-center">  
+<app-grafico-a-barra [barChartData] = "datiMensili" [barChartLabels]="mesi"></app-grafico-a-barra>
 </div>
-<p>N° Prodotti venduti: </p>
-<p>Quantità totale di prodotti venduti: </p>
-<p>Totale spedizioni: </p>
+<p>N° Prodotti venduti: </p>{{nProdottiTotaleAnno}}
+<p>Quantità totale di prodotti venduti: </p>{{quantitaTotaleProdottiAnno}}
+<p>Totale spedizioni: </p>{{totaleSpedizioniAnno}}
 
 
-<div class="float-end"><p>Totale Incasso: </p></div>
+<div class="float-end"><p>Totale Incasso: </p>{{totaleIncasso}}</div>
 <br>
 <br>
 
-<div class="dropdown"style="text-align:center">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Scegli mese
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li>Gennaio</li>
-      <li>Febbraio</li>
-      <li>Marzo</li>
-      <li>Aprile</li>
-      <li>Maggio</li>
-      <li>Giugno</li>
-      <li>Luglio</li>
-      <li>Agosto</li>
-      <li>Settembre</li>
-      <li>Ottobre</li>
-      <li>Novembre</li>
-      <li>Dicembre </li>
-    </ul>
-  </div>
+<div style="text-align: center;"> 
+  <select class="custom-select" (change)="cambiaMese($event)">
+    <option value=""selected>Scegli Mese</option>
+    
+      <option value="Gennaio">Gennaio </option>    
+      <option value="Febbraio"> Febbraio </option>
+      <option value="Marzo"> Marzo</option>
+      <option value="Aprile"> Aprile</option>
+      <option value="Maggio"> Maggio</option>
+      <option value="Giugno"> Giugno</option>
+      <option value="Luglio"> Luglio</option>
+      <option value="Agosto"> Agosto</option>
+      <option value="Settembre"> Settembre</option>
+      <option value="Ottobre"> Ottobre</option>
+      <option value="Novembre"> Novembre</option>
+      <option value="Dicembre"> Dicembre</option>
+  </select>
+
+  {{meseScelto}}
+</div>
+    
+
+      
+<div id="repotMensile" *ngIf="meseScelto!=null && meseScelto!=''">
+   
 
 <h3>Grafico Vendite Mensile</h3>
-<div class="h-100 row align-items-center">  
-<app-grafico-a-barra></app-grafico-a-barra>
+<div class="row align-items-center">  
+<app-grafico-a-barra [barChartData] = "datiMensili"  [barChartLabels]="giorni"></app-grafico-a-barra>
 </div>
-<p>N° Prodotti venduti: </p>
-<p>Quantità totale di prodotti venduti: </p>
-<p>Totale spedizioni: </p>
+<p>N° Prodotti venduti: </p>{{nProdottiTotaleMese}}
+<p>Quantità totale di prodotti venduti: </p>{{quantitaTotaleProdottiMese}}
+<p>Totale spedizioni: </p>{{totaleSpedizioniMese}}
 
 
-<div class="float-end"><p>Totale Incasso: </p></div>
+<div class="float-end"><p>Totale Incasso: </p>{{totaleIncassoMese}}</div>
 
+
+</div>
+
+</div>

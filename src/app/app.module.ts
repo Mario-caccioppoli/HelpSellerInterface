@@ -8,14 +8,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-<<<<<<< HEAD
-import { LogService } from './service/log.service';
+
 import { ChartsModule } from 'ng2-charts';
 import { GraficoABarraComponent } from './grafico-a-barra/grafico-a-barra.component';
 import { ReportMensileComponent } from './report-mensile/report-mensile.component';
 import { ReportAnnualeComponent } from './report-annuale/report-annuale.component';
 import { GraficoALineaComponent } from './grafico-a-linea/grafico-a-linea.component';
-=======
+
 import { LogService } from './services/log.service';
 import { GestioneProdottiComponent } from './components/gestione-prodotti/gestione-prodotti.component';
 import { GestioneScontiComponent } from './components/gestione-sconti/gestione-sconti.component';
@@ -24,7 +23,9 @@ import { VisualizzaAziendeComponent } from './components/visualizza-aziende/visu
 import { VisualizzaProdottiComponent } from './components/visualizza-prodotti/visualizza-prodotti.component';
 import { PaginaAziendaComponent } from './components/pagina-azienda/pagina-azienda.component';
 import { SelezionaProdottiScontareComponent } from './components/seleziona-prodotti-scontare/seleziona-prodotti-scontare.component';
->>>>>>> 026f4b280cd819be93c355a0ee4dcb73b1bd7b13
+import { ReportAmministratoreComponent } from './components/report-amministratore/report-amministratore.component';
+import { GestionePraticheTrasportoComponent } from './components/gestione-pratiche-trasporto/gestione-pratiche-trasporto.component';
+
 
 @NgModule({
   declarations: [
@@ -33,12 +34,12 @@ import { SelezionaProdottiScontareComponent } from './components/seleziona-prodo
     LoginComponent,
     SidebarComponent,
     HeaderComponent,
-<<<<<<< HEAD
+
     GraficoABarraComponent,
     ReportMensileComponent,
     ReportAnnualeComponent,
     GraficoALineaComponent,
-=======
+
     GestioneProdottiComponent,
     GestioneScontiComponent,
     GestioneOrdiniRicevutiComponent,
@@ -46,7 +47,9 @@ import { SelezionaProdottiScontareComponent } from './components/seleziona-prodo
     VisualizzaProdottiComponent,
     PaginaAziendaComponent,
     SelezionaProdottiScontareComponent,
->>>>>>> 026f4b280cd819be93c355a0ee4dcb73b1bd7b13
+    ReportAmministratoreComponent,
+    GestionePraticheTrasportoComponent,
+
   ],
   imports: [
     BrowserModule,

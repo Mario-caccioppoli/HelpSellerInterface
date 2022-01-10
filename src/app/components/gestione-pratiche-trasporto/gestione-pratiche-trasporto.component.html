@@ -9,27 +9,36 @@
   <br/>
 
   
-  <div *ngIf="tipoSpedizione=='Unica'">
+
+  <div  *ngIf="tipoSpedizione=='Unica'">
+   
     <h4 style="text-align: center;">Aggiungi Trasporto</h4>
     <form class="form-group">
+     
       <b>Via</b><br>
       <input type="text"class="form-control" name="via" [(ngModel)]="via" placeholder="Inserisci via">
       <br><br>
       <b>Civico</b><br>
       <input type="text"class="form-control" name="civico" [(ngModel)]="civico"placeholder="Inserisci via">
       <br><br>
+    
+   
       <b>Città</b><br>
       <input type="text" class="form-control"name="città" [(ngModel)]="citta" placeholder="Inserisci città">
       <br><br>
+      
       <b>Provincia</b><br>
       <input type="text" class="form-control" name="provincia" [(ngModel)]="provincia" placeholder="Inserisci provincia">
       <br><br>
+    
       <b>CAP</b><br>
       <input type="text"class="form-control" name="cap"  [(ngModel)]="cap" placeholder="Inserisci CAP"><br>
-      <br>
+      <br> 
+ 
       
-  </form>
     
+  </form>
+
 
   </div>
 
@@ -47,7 +56,7 @@
 
 
 
-
+<div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
@@ -79,6 +88,7 @@
       </tr>
     </tbody>
   </table>
+</div>
 <div class="d-flex justify-content-center">
   <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Aggiungi divisione</button>
 </div>
@@ -106,22 +116,22 @@
                  
                       <b>Via</b><br>
                       <input type="text" class="form-control" [(ngModel)]="via" name="via" placeholder="Inserisci via">
-                      <br><br>
+                      <br>
                       <b>Civico</b><br>
                       <input type="text" class="form-control" [(ngModel)]="civico"name="civico" placeholder="Inserisci via">
-                      <br><br>
+                      <br>
                       <b>Città</b><br>
                       <input type="text" class="form-control" [(ngModel)]="citta" name="città" placeholder="Inserisci città">
-                      <br><br>
+                      <br>
                       <b>Provincia</b><br>
                       <input type="text"  class="form-control" [(ngModel)]="provincia" name="provincia"  placeholder="Inserisci provincia">
-                      <br><br>
+                      <br>
                       <b>CAP</b><br>
                       <input type="text" class="form-control" [(ngModel)]="cap" name="cap"  placeholder="Inserisci CAP"><br>
-                      <br>
+
           
-                      <b>Quantità</b><br>
-                      <input type="number" name="cap"  class="form-control" [(ngModel)]="quantita" placeholder="Inserisci Quantità"><br>
+                      <b>Quantità</b> 
+                      <input type="number" name="cap"  class="form-control" [(ngModel)]="quantita" placeholder="Inserisci Quantità">
                       <br>
 
               

@@ -66,14 +66,16 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of divisioni; index as i">
-        <th scope="row">{{i}}</th>
+        <th scope="row">{{i+1}}</th>
         <td>{{item.getVia()}}</td>
         <td>{{item.getCivico()}}</td>
         <td>{{item.getCitta()}}</td>
         <td>{{item.getProvincia()}}</td>
         <td>{{item.getCAP()}}</td>
         <td>{{item.getQuantita()}}</td>
-        <td><button (click)= "eliminaDivisione(i)"></button></td>
+        
+         <td><button class="btn btn-primary" id="elimina" style="background-color: orange;" (click) ="eliminaDivisione(i)"> <i style="font-size: 15px;" class= "fas fa-trash-alt"  ></i></button></td>
+      
       </tr>
     </tbody>
   </table>
@@ -103,23 +105,23 @@
               <div class="modal-body">
                  
                       <b>Via</b><br>
-                      <input type="text" [(ngModel)]="via" name="via" placeholder="Inserisci via">
+                      <input type="text" class="form-control" [(ngModel)]="via" name="via" placeholder="Inserisci via">
                       <br><br>
                       <b>Civico</b><br>
-                      <input type="text" [(ngModel)]="civico"name="civico" placeholder="Inserisci via">
+                      <input type="text" class="form-control" [(ngModel)]="civico"name="civico" placeholder="Inserisci via">
                       <br><br>
                       <b>Città</b><br>
-                      <input type="text" [(ngModel)]="citta" name="città" placeholder="Inserisci città">
+                      <input type="text" class="form-control" [(ngModel)]="citta" name="città" placeholder="Inserisci città">
                       <br><br>
                       <b>Provincia</b><br>
-                      <input type="text"  [(ngModel)]="provincia" name="provincia"  placeholder="Inserisci provincia">
+                      <input type="text"  class="form-control" [(ngModel)]="provincia" name="provincia"  placeholder="Inserisci provincia">
                       <br><br>
                       <b>CAP</b><br>
-                      <input type="text" [(ngModel)]="cap" name="cap"  placeholder="Inserisci CAP"><br>
+                      <input type="text" class="form-control" [(ngModel)]="cap" name="cap"  placeholder="Inserisci CAP"><br>
                       <br>
           
                       <b>Quantità</b><br>
-                      <input type="number" name="cap"  [(ngModel)]="quantita" placeholder="Inserisci Quantità"><br>
+                      <input type="number" name="cap"  class="form-control" [(ngModel)]="quantita" placeholder="Inserisci Quantità"><br>
                       <br>
 
               

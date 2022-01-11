@@ -4,4 +4,6 @@ export interface Ordine{
     dataConsegna: Date;
     commento: string;
     stato: string;
+    idDistributore: number;
+    idOrdineProva: number;
 }

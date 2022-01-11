@@ -10,6 +10,11 @@
         width: 95%;
     }
     
+    .colonnaLogo {
+        background-color: grey;
+        padding-top: 2%;
+    }
+    
     .colonnaParagrafo {
         padding-top: 4%;
     }

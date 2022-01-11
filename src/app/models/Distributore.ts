@@ -8,4 +8,5 @@ export interface Distributore{
     VATNumber: string;
     telefono: number;
     indirizzoSede: string;
+    idOrdineProva: number;
 }

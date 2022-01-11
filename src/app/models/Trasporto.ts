@@ -4,4 +4,5 @@ export interface Trasporto{
     indirizzoConsegna: string;
     quantitaMinima: number;
     dataConsegna: Date;
+    idOrdine: number;
 }

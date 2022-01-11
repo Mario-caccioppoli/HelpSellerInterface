@@ -5,4 +5,5 @@ export interface Sconto{
     dataFine: Date;
     tipo: string;
     quantita: number;
+    idAzienda: number;
 }

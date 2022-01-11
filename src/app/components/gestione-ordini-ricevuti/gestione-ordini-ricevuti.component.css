@@ -11,6 +11,10 @@
     margin-bottom: 50px;
 }
 
+.pd20 {
+    padding: 0 20px;
+}
+
 .edit {
     color: #d37e1e;
     background-color: transparent;

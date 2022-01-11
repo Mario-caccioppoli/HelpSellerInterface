@@ -3,4 +3,6 @@ export interface Recensione{
     testo: string;
     voto: number;
     dataRecensione: Date;
+    idProdotto: number;
+    idDistributore: number;
 }

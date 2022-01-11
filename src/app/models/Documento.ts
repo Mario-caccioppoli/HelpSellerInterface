@@ -3,4 +3,5 @@ export interface Documento{
     titolo: string;
     autore: string;
     dataUpload: Date;
+    idOrdine: number;
 }

@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GestioneOrdiniDettagliOrdineComponent } from './components/gestione-ordini-dettagli-ordine/gestione-ordini-dettagli-ordine.component';
+import { GestioneOrdiniEffettuaOrdineComponent } from './components/gestione-ordini-effettua-ordine/gestione-ordini-effettua-ordine.component';
+import { GestioneOrdiniEffettuatiComponent } from './components/gestione-ordini-effettuati/gestione-ordini-effettuati.component';
 import { GestioneOrdiniRicevutiComponent } from './components/gestione-ordini-ricevuti/gestione-ordini-ricevuti.component';
 import { GestioneProdottiComponent } from './components/gestione-prodotti/gestione-prodotti.component';
 import { GestioneScontiComponent } from './components/gestione-sconti/gestione-sconti.component';
@@ -9,7 +12,8 @@ import { VisualizzaAziendeComponent } from './components/visualizza-aziende/visu
 import { VisualizzaProdottiComponent } from './components/visualizza-prodotti/visualizza-prodotti.component';
 
 
-const routes: Routes = [{
+const routes: Routes = [
+  {
     path:'gestioneOrdini',
     component:GestioneOrdiniRicevutiComponent},
   {
@@ -29,8 +33,19 @@ const routes: Routes = [{
     component:VisualizzaAziendeComponent},
   {
     path:'visualizzaProdotti',
-    component:VisualizzaProdottiComponent}
-  
+    component:VisualizzaProdottiComponent},
+  {
+    path:'visualizzaOrdini',
+    component:GestioneOrdiniEffettuatiComponent
+  },
+  {
+    path:'effettuaOrdine-TEST',
+    component:GestioneOrdiniEffettuaOrdineComponent
+  },
+  {
+    path:'dettagliOrdine-TEST',
+    component:GestioneOrdiniDettagliOrdineComponent
+  },
   ];
 
 @NgModule({

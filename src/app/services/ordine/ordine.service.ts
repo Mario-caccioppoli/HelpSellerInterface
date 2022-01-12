@@ -13,7 +13,7 @@ export class OrdineService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllOrdine(): Observable<Ordine[]> {
+  public getAllOrdine(idAzienda: number): Observable<Ordine[]> {
     return this.http.get<Ordine[]>(`${this.apiServerUrl}/all`);
   }
 

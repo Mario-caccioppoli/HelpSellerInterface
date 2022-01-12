@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LogService } from 'src/app/services/log.service';
-import { ProdottoServiceService } from 'src/app/services/prodotto/prodotto.service';
+import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 
 @Component({
   selector: 'app-visualizza-prodotti',
@@ -10,7 +10,7 @@ import { ProdottoServiceService } from 'src/app/services/prodotto/prodotto.servi
 export class VisualizzaProdottiComponent implements OnInit {
 
   fromBackEnd : any;
-  constructor(private prodottoService : ProdottoServiceService,private log : LogService) { }
+  constructor(private prodottoService : ProdottoService,private log : LogService) { }
 
   ngOnInit(): void {
     this.prodottoService.getProdottoByIdAzienda(1).subscribe(

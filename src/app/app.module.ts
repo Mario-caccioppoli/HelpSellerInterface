@@ -11,7 +11,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 
 import { ChartsModule } from 'ng2-charts';
-import { GraficoABarraComponent } from './grafico-a-barra/grafico-a-barra.component';
 import { ReportMensileComponent } from './report-mensile/report-mensile.component';
 import { ReportAnnualeComponent } from './report-annuale/report-annuale.component';
 import { GraficoALineaComponent } from './grafico-a-linea/grafico-a-linea.component';
@@ -33,6 +32,7 @@ import { SelezionaProdottiScontareComponent } from './components/seleziona-prodo
 import { GestordEffordCartComponent } from './components/gestione-ordini-effettua-ordine/gestord-efford-cart/gestord-efford-cart.component';
 import { ReportAmministratoreComponent } from './components/report-amministratore/report-amministratore.component';
 import { GestionePraticheTrasportoComponent } from './components/gestione-pratiche-trasporto/gestione-pratiche-trasporto.component';
+import { GraficoABarraComponent } from './grafico-a-barra/grafico-a-barra.component';
 
 
 @NgModule({
@@ -70,7 +70,7 @@ import { GestionePraticheTrasportoComponent } from './components/gestione-pratic
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
     HttpClientModule
   ],
   providers: [LogService],

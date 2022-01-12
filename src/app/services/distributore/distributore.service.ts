@@ -7,29 +7,29 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DistributoreServiceService {
+export class DistributoreService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiBaseUrl+"/distributore";
 
   constructor(private http: HttpClient) { }
 
   public getAllDistributore(): Observable<Distributore[]> {
-    return this.http.get<Distributore[]>(`${this.apiServerUrl}/distributore/all`);
+    return this.http.get<Distributore[]>(`${this.apiServerUrl}/all`);
   }
 
   public findById(DistributoreID : number): Observable<Distributore> {
-    return this.http.get<Distributore>(`${this.apiServerUrl}/distributore/findId/${DistributoreID}`);
+    return this.http.get<Distributore>(`${this.apiServerUrl}/findId/${DistributoreID}`);
   }
 
   public deleteDistributore(DistributoreId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/distributore/deleteId/${DistributoreId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${DistributoreId}`);
   }
 
   public insertDistributore(Distributore: Distributore): Observable<Distributore> {
-    return this.http.post<Distributore>(`${this.apiServerUrl}/distributore/insert`, Distributore);
+    return this.http.post<Distributore>(`${this.apiServerUrl}/insert`, Distributore);
   }
 
   public updateDistributore(Distributore: Distributore): Observable<Distributore> {
-    return this.http.put<Distributore>(`${this.apiServerUrl}/distributore/update`, Distributore);
+    return this.http.put<Distributore>(`${this.apiServerUrl}/update`, Distributore);
   }
 }

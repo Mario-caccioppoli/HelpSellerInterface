@@ -7,29 +7,29 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class TrasportoServiceService {
+export class TrasportoService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiBaseUrl+"/trasporto";
 
   constructor(private http: HttpClient) { }
 
   public getAllTrasporto(): Observable<Trasporto[]> {
-    return this.http.get<Trasporto[]>(`${this.apiServerUrl}/trasporto/all`);
+    return this.http.get<Trasporto[]>(`${this.apiServerUrl}/all`);
   }
 
   public findById(TrasportoID : number): Observable<Trasporto> {
-    return this.http.get<Trasporto>(`${this.apiServerUrl}/trasporto/findId/${TrasportoID}`);
+    return this.http.get<Trasporto>(`${this.apiServerUrl}/findId/${TrasportoID}`);
   }
 
   public deleteTrasporto(TrasportoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/trasporto/deleteId/${TrasportoId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${TrasportoId}`);
   }
 
   public insertTrasporto(Trasporto: Trasporto): Observable<Trasporto> {
-    return this.http.post<Trasporto>(`${this.apiServerUrl}/trasporto/insert`, Trasporto);
+    return this.http.post<Trasporto>(`${this.apiServerUrl}/insert`, Trasporto);
   }
 
   public updateTrasporto(Trasporto: Trasporto): Observable<Trasporto> {
-    return this.http.put<Trasporto>(`${this.apiServerUrl}/trasporto/update`, Trasporto);
+    return this.http.put<Trasporto>(`${this.apiServerUrl}/update`, Trasporto);
   }
 }

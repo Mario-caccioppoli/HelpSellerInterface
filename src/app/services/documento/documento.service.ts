@@ -7,29 +7,29 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DocumentoServiceService {
+export class DocumentoService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiBaseUrl+"/documento";
 
   constructor(private http: HttpClient) { }
 
   public getAllDocumento(): Observable<Documento[]> {
-    return this.http.get<Documento[]>(`${this.apiServerUrl}/documento/all`);
+    return this.http.get<Documento[]>(`${this.apiServerUrl}/all`);
   }
 
   public findById(DocumentoID : number): Observable<Documento> {
-    return this.http.get<Documento>(`${this.apiServerUrl}/documento/findId/${DocumentoID}`);
+    return this.http.get<Documento>(`${this.apiServerUrl}/findId/${DocumentoID}`);
   }
 
   public deleteDocumento(DocumentoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/documento/deleteId/${DocumentoId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${DocumentoId}`);
   }
 
   public insertDocumento(Documento: Documento): Observable<Documento> {
-    return this.http.post<Documento>(`${this.apiServerUrl}/documento/insert`, Documento);
+    return this.http.post<Documento>(`${this.apiServerUrl}/insert`, Documento);
   }
 
   public updateDocumento(Documento: Documento): Observable<Documento> {
-    return this.http.put<Documento>(`${this.apiServerUrl}/documento/update`, Documento);
+    return this.http.put<Documento>(`${this.apiServerUrl}/update`, Documento);
   }
 }

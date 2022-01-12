@@ -7,29 +7,29 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class OrdineProdottoServiceService {
+export class OrdineProdottoService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiBaseUrl+"/ordineprodotto";
 
   constructor(private http: HttpClient) { }
 
   public getAllOrdineProdotto(): Observable<OrdineProdotto[]> {
-    return this.http.get<OrdineProdotto[]>(`${this.apiServerUrl}/ordineprodotto/all`);
+    return this.http.get<OrdineProdotto[]>(`${this.apiServerUrl}/all`);
   }
 
   public findById(OrdineProdottoID : number): Observable<OrdineProdotto> {
-    return this.http.get<OrdineProdotto>(`${this.apiServerUrl}/ordineprodotto/findId/${OrdineProdottoID}`);
+    return this.http.get<OrdineProdotto>(`${this.apiServerUrl}/findId/${OrdineProdottoID}`);
   }
 
   public deleteOrdineProdotto(OrdineProdottoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/ordineprodotto/deleteId/${OrdineProdottoId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${OrdineProdottoId}`);
   }
 
   public insertOrdineProdotto(OrdineProdotto: OrdineProdotto): Observable<OrdineProdotto> {
-    return this.http.post<OrdineProdotto>(`${this.apiServerUrl}/ordineprodotto/insert`, OrdineProdotto);
+    return this.http.post<OrdineProdotto>(`${this.apiServerUrl}/insert`, OrdineProdotto);
   }
 
   public updateOrdineProdotto(OrdineProdotto: OrdineProdotto): Observable<OrdineProdotto> {
-    return this.http.put<OrdineProdotto>(`${this.apiServerUrl}/ordineprodotto/update`, OrdineProdotto);
+    return this.http.put<OrdineProdotto>(`${this.apiServerUrl}/update`, OrdineProdotto);
   }
 }

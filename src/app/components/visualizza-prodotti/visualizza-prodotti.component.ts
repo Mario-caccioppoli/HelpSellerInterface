@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LogService } from 'src/app/services/log.service';
-import { ProdottoServiceService } from 'src/app/services/prodotto-service.service';
+import { ProdottoServiceService } from 'src/app/services/prodotto/prodotto.service';
 
 @Component({
   selector: 'app-visualizza-prodotti',

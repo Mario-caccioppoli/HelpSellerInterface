@@ -7,29 +7,29 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AziendaServiceService {
+export class AziendaService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiBaseUrl+"/azienda";
 
   constructor(private http: HttpClient) { }
 
   public getAllAzienda(): Observable<Azienda[]> {
-    return this.http.get<Azienda[]>(`${this.apiServerUrl}/azienda/all`);
+    return this.http.get<Azienda[]>(`${this.apiServerUrl}/all`);
   }
 
   public findById(AziendaID : number): Observable<Azienda> {
-    return this.http.get<Azienda>(`${this.apiServerUrl}/azienda/findId/${AziendaID}`);
+    return this.http.get<Azienda>(`${this.apiServerUrl}/findId/${AziendaID}`);
   }
 
   public deleteAzienda(AziendaId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/azienda/deleteId/${AziendaId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${AziendaId}`);
   }
 
   public insertAzienda(Azienda: Azienda): Observable<Azienda> {
-    return this.http.post<Azienda>(`${this.apiServerUrl}/azienda/insert`, Azienda);
+    return this.http.post<Azienda>(`${this.apiServerUrl}/insert`, Azienda);
   }
 
   public updateAzienda(Azienda: Azienda): Observable<Azienda> {
-    return this.http.put<Azienda>(`${this.apiServerUrl}/azienda/update`, Azienda);
+    return this.http.put<Azienda>(`${this.apiServerUrl}/update`, Azienda);
   }
 }

@@ -7,29 +7,29 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class OrdineServiceService {
+export class OrdineService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiBaseUrl+"/ordine";
 
   constructor(private http: HttpClient) { }
 
   public getAllOrdine(): Observable<Ordine[]> {
-    return this.http.get<Ordine[]>(`${this.apiServerUrl}/ordine/all`);
+    return this.http.get<Ordine[]>(`${this.apiServerUrl}/all`);
   }
 
   public findById(OrdineID : number): Observable<Ordine> {
-    return this.http.get<Ordine>(`${this.apiServerUrl}/ordine/findId/${OrdineID}`);
+    return this.http.get<Ordine>(`${this.apiServerUrl}/findId/${OrdineID}`);
   }
 
   public deleteOrdine(OrdineId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/ordine/deleteId/${OrdineId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${OrdineId}`);
   }
 
   public insertOrdine(Ordine: Ordine): Observable<Ordine> {
-    return this.http.post<Ordine>(`${this.apiServerUrl}/ordine/insert`, Ordine);
+    return this.http.post<Ordine>(`${this.apiServerUrl}/insert`, Ordine);
   }
 
   public updateOrdine(Ordine: Ordine): Observable<Ordine> {
-    return this.http.put<Ordine>(`${this.apiServerUrl}/ordine/update`, Ordine);
+    return this.http.put<Ordine>(`${this.apiServerUrl}/update`, Ordine);
   }
 }

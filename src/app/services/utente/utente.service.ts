@@ -7,29 +7,29 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UtenteServiceService {
+export class UtenteService {
 
-  private apiServerUrl = environment.apiBaseUrl;
+  private apiServerUrl = environment.apiBaseUrl+"/user";
 
   constructor(private http: HttpClient) { }
 
   public getAllUtente(): Observable<Utente[]> {
-    return this.http.get<Utente[]>(`${this.apiServerUrl}/user/all`);
+    return this.http.get<Utente[]>(`${this.apiServerUrl}/all`);
   }
 
   public findById(UtenteID : number): Observable<Utente> {
-    return this.http.get<Utente>(`${this.apiServerUrl}/user/findId/${UtenteID}`);
+    return this.http.get<Utente>(`${this.apiServerUrl}/findId/${UtenteID}`);
   }
 
   public deleteUtente(UtenteId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/user/deleteId/${UtenteId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${UtenteId}`);
   }
 
   public insertUtente(Utente: Utente): Observable<Utente> {
-    return this.http.post<Utente>(`${this.apiServerUrl}/user/insert`, Utente);
+    return this.http.post<Utente>(`${this.apiServerUrl}/insert`, Utente);
   }
 
   public updateUtente(Utente: Utente): Observable<Utente> {
-    return this.http.put<Utente>(`${this.apiServerUrl}/user/update`, Utente);
+    return this.http.put<Utente>(`${this.apiServerUrl}/update`, Utente);
   }
 }

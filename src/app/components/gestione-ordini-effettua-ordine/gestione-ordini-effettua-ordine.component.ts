@@ -12,4 +12,34 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  startCart() { //avvia il carrello e i checkbox sul click Effettua Ordine
+    let element = document.getElementsByClassName("hide") as HTMLCollectionOf<HTMLElement>;
+    for (var i=0; i < element.length; i++) {
+      element[i].style.display = 'block';
+    }
+    
+    let nascondi = document.getElementsByClassName("show") as HTMLCollectionOf<HTMLElement>;
+    for (var k=0; k < nascondi.length; k++) {
+      nascondi[k].style.display = 'none';
+    }
+  }
+
+  exitCart() {  //annulla la procedura di acquisto
+    let element = document.getElementsByClassName("hide") as HTMLCollectionOf<HTMLElement>;
+    for (var i=0; i < element.length; i++) {
+      element[i].style.removeProperty('display');
+    }
+
+    let btns = document.getElementsByClassName("show") as HTMLCollectionOf<HTMLElement>;
+    for (var i=0; i < element.length; i++) {
+      btns[i].style.removeProperty('display');
+    }
+  } 
+
+  showCart() { //mostra il riepilogo pre-ordine
+    let precart = document.getElementById('step1');
+    let cart = document.getElementById('step2');
+    precart.style.display = "none";
+    cart.style.display = "block";
+  }
 }

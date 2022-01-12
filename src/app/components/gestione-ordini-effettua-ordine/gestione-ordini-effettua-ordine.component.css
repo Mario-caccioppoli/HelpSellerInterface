@@ -85,8 +85,8 @@ li.page-item {
 }
 
 .ordbutton {
-    max-width: 200px;
-    margin: 30px auto;
+    max-width: 400px;
+    margin: 20px auto;
     display: block;
     text-align: center;
 }
@@ -95,5 +95,23 @@ li.page-item {
     position: absolute;
     left: 5px;
     top: 10px;
-    z-index: 1500;
+    z-index: 5;
 }
+
+.prevnext {
+    max-width: 500px;
+    margin: 30px auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.ngy {display: block;}
+.ngno {display: none;}

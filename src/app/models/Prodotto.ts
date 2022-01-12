@@ -8,4 +8,5 @@ export interface Prodotto{
     quantitaMinima: number;
     peso: number;
     volume: number;
+    idAzienda: number;
 }

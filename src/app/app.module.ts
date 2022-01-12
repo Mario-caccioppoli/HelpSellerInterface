@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
+
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -69,6 +71,7 @@ import { GestionePraticheTrasportoComponent } from './components/gestione-pratic
     AppRoutingModule,
     FormsModule,
     ChartsModule
+    HttpClientModule
   ],
   providers: [LogService],
   bootstrap: [AppComponent]

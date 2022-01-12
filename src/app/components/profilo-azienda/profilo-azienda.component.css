@@ -10,6 +10,7 @@
     }
     
     .colonnaLogo {
+        width: 20%;
         background-color: grey;
         padding-top: 2%;
     }
@@ -29,8 +30,7 @@
     }
     
     .scroll {
-        height: 300px;
+        height: 400px;
         overflow: scroll;
-        overflow-y: hidden;
         overflow-x: hidden;
     }

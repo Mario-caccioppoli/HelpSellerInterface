@@ -3,4 +3,5 @@ export interface OrdineProdotto{
     idProdotto: number
     quantita: number
     prezzoUnitario: number
+    prezzo: number;
 }

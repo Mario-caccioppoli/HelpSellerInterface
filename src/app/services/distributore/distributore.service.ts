@@ -14,7 +14,7 @@ export class DistributoreService {
   constructor(private http: HttpClient) { }
 
   public getAllDistributore(): Observable<Distributore[]> {
-    return this.http.get<Distributore[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<Distributore[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(DistributoreID : number): Observable<Distributore> {

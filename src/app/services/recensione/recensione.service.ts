@@ -14,7 +14,7 @@ export class RecensioneService {
   constructor(private http: HttpClient) { }
 
   public getAllRecensione(): Observable<Recensione[]> {
-    return this.http.get<Recensione[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<Recensione[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(RecensioneID : number): Observable<Recensione> {

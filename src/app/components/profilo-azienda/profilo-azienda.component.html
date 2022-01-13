@@ -1,16 +1,17 @@
-<div class="col-lg-4 containerGenerale scroll">
-    <h4 class="titolo">NOME AZIENDA</h4><br>
-    <div class="container">
+<div class="col-lg-4 containerGenerale">
+    <h4 class="titolo">{{azienda.nomeAzienda}}</h4><br>
+    <div class="container scroll">
         <div class="row">
             <div class="col-sm-3 colonnaLogo">
                 <img src="assets/icons/Logo.png" alt="">
             </div>
             <div class="col-lg-9 colonnaParagrafo">
-                <textarea class="paragrafo" rows="7" cols="40" readonly>INFORMAZIONI AZIENDA</textarea>
-                <a routerLink="/visualizzaProdotti"><button>Visualizza Prodotti</button></a>
+                <textarea class="paragrafo" rows="7" cols="15" readonly>{{azienda.descrizione}}</textarea>
+                <a [routerLink]="['/visualizzaProdotti', azienda.id]"><button>Visualizza Prodotti</button></a>
             </div>
         </div>
     </div><br><br>
-    <!-- TOGLIERE ROUTERLINK -->
+    <!-- METTERE ID IN ROUTERLINK [routerLink]=[" '/visualizzaProdotti' , Prodotto.id "]
+        E CONFIGURARLO NEL APP ROUTING /:id -->
 
 </div>

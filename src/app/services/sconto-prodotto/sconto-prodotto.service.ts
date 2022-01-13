@@ -14,7 +14,7 @@ export class ScontoProdottoService {
   constructor(private http: HttpClient) { }
 
   public getAllScontoProdotto(): Observable<ScontoProdotto[]> {
-    return this.http.get<ScontoProdotto[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<ScontoProdotto[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(ScontoProdottoID : number): Observable<ScontoProdotto> {

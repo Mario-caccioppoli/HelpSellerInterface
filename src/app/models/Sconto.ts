@@ -1,5 +1,5 @@
 export interface Sconto{
-    idSconto: number;
+    id: number;
     percentuale: number;
     dataInizio: Date;
     dataFine: Date;

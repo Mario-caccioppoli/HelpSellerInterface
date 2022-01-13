@@ -14,7 +14,7 @@ export class AziendaService {
   constructor(private http: HttpClient) { }
 
   public getAllAzienda(): Observable<Azienda[]> {
-    return this.http.get<Azienda[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<Azienda[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(AziendaID : number): Observable<Azienda> {
@@ -31,5 +31,8 @@ export class AziendaService {
 
   public updateAzienda(Azienda: Azienda): Observable<Azienda> {
     return this.http.put<Azienda>(`${this.apiServerUrl}/update`, Azienda);
+  }
+  public findAziendaByName(nomeAzienda: string): Observable<Azienda>{
+    return this.http.get<Azienda>(`${this.apiServerUrl}/findAziendaByName/${nomeAzienda}`);
   }
 }

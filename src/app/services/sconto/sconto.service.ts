@@ -14,7 +14,7 @@ export class ScontoService {
   constructor(private http: HttpClient) { }
 
   public getAllSconto(): Observable<Sconto[]> {
-    return this.http.get<Sconto[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<Sconto[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(ScontoID : number): Observable<Sconto> {

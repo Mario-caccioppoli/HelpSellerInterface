@@ -1,61 +1,32 @@
- 
   <h3>Spedizione</h3>
-
-
   <input type="radio" class="form-check-input" name="tipoSpedizione"  value = "Unica" (click)="setValue('Unica')"/> Unica
   <br/>
-
   <input type="radio"class="form-check-input" name="tipoSpedizione"  value = "Multipla" (click)="setValue('Multipla')"/> Multipla <br/>
   <br/>
-
-  
-
-  <div  *ngIf="tipoSpedizione=='Unica'">
-   
+  <div *ngIf="tipoSpedizione=='Unica'">
     <h4 style="text-align: center;">Aggiungi Trasporto</h4>
     <form class="form-group">
-     
       <b>Via</b><br>
       <input type="text"class="form-control" name="via" [(ngModel)]="via" placeholder="Inserisci via">
       <br><br>
       <b>Civico</b><br>
-      <input type="text"class="form-control" name="civico" [(ngModel)]="civico"placeholder="Inserisci via">
-      <br><br>
-    
-   
+      <input type="text"class="form-control" name="civico" [(ngModel)]="civico" placeholder="Inserisci via">
+      <br><br>  
       <b>Città</b><br>
       <input type="text" class="form-control"name="città" [(ngModel)]="citta" placeholder="Inserisci città">
       <br><br>
-      
       <b>Provincia</b><br>
       <input type="text" class="form-control" name="provincia" [(ngModel)]="provincia" placeholder="Inserisci provincia">
       <br><br>
-    
       <b>CAP</b><br>
       <input type="text"class="form-control" name="cap"  [(ngModel)]="cap" placeholder="Inserisci CAP"><br>
       <br> 
- 
-      
-    
   </form>
-
-
   </div>
 
-
-
   <div *ngIf="tipoSpedizione=='Multipla'">
-   
-   
     <div>
-
-
-
     </div>
-
-
-
-
 <div class="table-responsive">
   <table class="table">
     <thead>
@@ -68,9 +39,6 @@
         <th scope="col">CAP</th>
         <th scope="col">Quantità</th>
         <th>Azione</th>
-        
-        
-
       </tr>
     </thead>
     <tbody>
@@ -82,9 +50,7 @@
         <td>{{item.getProvincia()}}</td>
         <td>{{item.getCAP()}}</td>
         <td>{{item.getQuantita()}}</td>
-        
          <td><button class="btn btn-primary" id="elimina" style="background-color: orange;" (click) ="eliminaDivisione(i)"> <i style="font-size: 15px;" class= "fas fa-trash-alt"  ></i></button></td>
-      
       </tr>
     </tbody>
   </table>
@@ -95,15 +61,10 @@
 </div>
 <br>
 <br>
-
 <br>
-
   <div class="float-end">
     <button class="btn btn-primary" >Aggiungi trasporto e concludi ordine</button>
   </div>
-
-
-
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
@@ -127,15 +88,10 @@
                       <input type="text"  class="form-control" [(ngModel)]="provincia" name="provincia"  placeholder="Inserisci provincia">
                       <br>
                       <b>CAP</b><br>
-                      <input type="text" class="form-control" [(ngModel)]="cap" name="cap"  placeholder="Inserisci CAP"><br>
-
-          
+                      <input type="text" class="form-control" [(ngModel)]="cap" name="cap"  placeholder="Inserisci CAP"><br>  
                       <b>Quantità</b> 
                       <input type="number" name="cap"  class="form-control" [(ngModel)]="quantita" placeholder="Inserisci Quantità">
                       <br>
-
-              
-                  
               </div>
               <div class="modal-footer ">
                   <button type="button " class="btn btn-secondary " (click)= "aggiungiDivisione()">Aggiungi Divisione</button>
@@ -144,5 +100,3 @@
           </div>
       </div>
   </div>
-
-

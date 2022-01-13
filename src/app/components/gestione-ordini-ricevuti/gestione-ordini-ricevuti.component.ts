@@ -10,24 +10,25 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 })
 export class GestioneOrdiniRicevutiComponent implements OnInit {
 
-  ordtest: Ordine[];
+  allOrdine: Ordine[];
+
   constructor(private prod: OrdineService, private log: LogService) {  }
 
   ngOnInit(): void {
-    this.ottieniptest();
+    this.listaOrdini();
   }
 
-  ottieniptest() {
-    this.prod.getAllOrdine(0).subscribe(
-      (resp) => {
-        this.log.Debug(GestioneOrdiniRicevutiComponent.name, "debugtest", [resp]);
-        this.ordtest = resp as Ordine[];
-      }, 
-        
-      (error) => {
-        this.log.Error(GestioneOrdiniRicevutiComponent.name, "errore", [error]);
-      }
-    )
-  }
+  listaOrdini() {
+      this.prod.getAllOrdine().subscribe(
+        (success) => {
+          this.log.Debug(GestioneOrdiniRicevutiComponent.name, "ok", [success]);
+          this.allOrdine = success as Ordine[];
+        }, 
+          
+        (error) => {
+          this.log.Error(GestioneOrdiniRicevutiComponent.name, "errore", [error]);
+        }
+      )
+  } //end func
 
 }

@@ -5,12 +5,12 @@
         <div class="col-lg-12 mb50">
             <h5><b>Prodotti ordinati</b></h5>
             <div class="row eqi-container">
-                <div class="col-lg-3 product">
-                    <img class="img-product" src="assets/img/gillette.jpg" />
+                <div class="col-lg-3 product" *ngFor='let prodotto of singleProdotto'>
+                    <img class="img-product" src="assets/img/gillette.jpg" />{{prodotto.immagine}}
                     <div class="downspec">
-                    <p class="bold">Gillette® "Mak 3" 5pz.</p>
-                    <p class="bold">€ 12</p>
-                    <p><b>Quantità:</b> 60</p>
+                    <p class="bold">Gillette® "Mak 3" 5pz.</p>{{prodotto.nomeProdotto}}
+                    <p class="bold">€ 12</p>{{prodotto.prezzo}}
+                    <p><b>Quantità:</b> 60</p>{{prodotto.quantita}}
                     </div>
                 </div>
                 <div class="col-lg-3 product">
@@ -73,23 +73,6 @@
                 </div>
             </div>
         </div>
-        <nav aria-label="Navigazione" class="navigazione">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
           <hr>
         <div class="row mb50 mt20">
             <div class="col-lg-6">

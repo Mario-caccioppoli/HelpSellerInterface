@@ -1,5 +1,5 @@
 export interface Ordine{
-    idOrdine: number;
+    id: number;
     dataOrdinazione: Date;
     dataConsegna: Date;
     commento: string;

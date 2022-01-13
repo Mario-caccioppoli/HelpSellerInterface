@@ -14,7 +14,7 @@ export class OrdineProdottoService {
   constructor(private http: HttpClient) { }
 
   public getAllOrdineProdotto(): Observable<OrdineProdotto[]> {
-    return this.http.get<OrdineProdotto[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<OrdineProdotto[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(OrdineProdottoID : number): Observable<OrdineProdotto> {

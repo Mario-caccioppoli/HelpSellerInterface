@@ -36,3 +36,9 @@ a {
     transform: scale(1.1);
     transition: 1.3s;
 }
+
+.scroll {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 500px;
+}

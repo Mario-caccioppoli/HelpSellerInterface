@@ -14,20 +14,20 @@ export class AmministratoreService {
   constructor(private http: HttpClient) { }
 
   public getAllAmministratore(): Observable<Amministratore[]> {
-    return this.http.get<Amministratore[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<Amministratore[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(amministratoreID : number): Observable<Amministratore> {
     return this.http.get<Amministratore>(`${this.apiServerUrl}/findId/${amministratoreID}`);
   }
 
-  public deleteAmministratore(amministratoreId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${amministratoreId}`);
-  }
+  // public deleteAmministratore(amministratoreId: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${amministratoreId}`);
+  // }
 
-  public insertAmministratore(amministratore: Amministratore): Observable<Amministratore> {
-    return this.http.post<Amministratore>(`${this.apiServerUrl}/insert`, amministratore);
-  }
+  // public insertAmministratore(amministratore: Amministratore): Observable<Amministratore> {
+  //   return this.http.post<Amministratore>(`${this.apiServerUrl}/insert`, amministratore);
+  // }
 
   public updateAmministratore(amministratore: Amministratore): Observable<Amministratore> {
     return this.http.put<Amministratore>(`${this.apiServerUrl}/update`, amministratore);

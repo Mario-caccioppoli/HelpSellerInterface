@@ -26,6 +26,10 @@ const routes: Routes = [
     path:'profiloAzienda',
     component:ProfiloAziendaComponent},
   {
+    path:'profiloAzienda/:id',
+    component:ProfiloAziendaComponent
+                                     },
+  {
     path:'selezionaProdottiScontare',
     component:SelezionaProdottiScontareComponent},
   {
@@ -46,6 +50,10 @@ const routes: Routes = [
     path:'dettagliOrdine-TEST',
     component:GestioneOrdiniDettagliOrdineComponent
   },
+  {
+    path:'visualizzaProdotti/:id',
+    component:VisualizzaProdottiComponent}
+  
   ];
 
 @NgModule({

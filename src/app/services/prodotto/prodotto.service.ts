@@ -14,7 +14,7 @@ export class ProdottoService {
   constructor(private http: HttpClient) { }
 
   public getAllProdotto(): Observable<Prodotto[]> {
-    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(ProdottoID : number): Observable<Prodotto> {

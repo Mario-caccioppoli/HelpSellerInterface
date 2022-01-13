@@ -23,11 +23,11 @@
             <td class="table-light ">Prezzo</td>
             <td class="table-light ">Azioni</td>
         </tr>
-        <tr class="table-light lista">
-            <td class="table-light ">codice</td>
-            <td class="table-light ">nome</td>
-            <td class="table-light ">azienda</td>
-            <td class="table-light ">prezzo</td>
+        <tr class="table-light lista" *ngFor="let prodotto of prodotti">
+            <td class="table-light ">{{prodotto.id}}</td>
+            <td class="table-light ">{{prodotto.nomeProdotto}}</td>
+            <td class="table-light ">{{prodotto.idAzienda}}</td>
+            <td class="table-light ">{{prodotto.prezzo}} €</td>
             <td class="table-light "><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaProdotto"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
                 <button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#eliminaProdotto"><i class="fas fa-trash-alt"></i></button>
                 <!-- <button type="button" class="btn btn-primary pulsanti"><i class="fas fa-sticky-note" ></i></button> -->
@@ -67,12 +67,13 @@
 <div class="modal fade" id="modificaProdotto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modifica Prodotto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form-control" #modelModificaProdotto="ngForm" (ngSubmit)="modificaProdotto(modelModificaProdotto.value)">
+            <form class="form-control" #modelModificaProdotto="ngForm" (ngSubmit)="modificaProdotto(modelModificaProdotto.value)">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modifica Prodotto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
                     <div class="modal-body">
                         <div class="modal-body">
                             <div class="modal-body">
@@ -82,8 +83,10 @@
                                 <p><b>Nome Prodotto</b></p>
                                 <input type="text" ngModel name="nome" placeholder="inserisci nome prodotto"><br>
                                 <p><b>Descrizione Prodotto</b></p>
-                                <textarea name="textArea" ngModel id=" " cols="30" rows="5"></textarea>
+                                <textarea name="descrizione" ngModel id=" " cols="30" rows="5"></textarea>
                                 <br>
+                                <div><b>Quantità</b></div>
+                                <input type="text" name="quantita" ngModel placeholder="inserisci quantita "><br><br>
                                 <p><b>Peso</b></p>
                                 <input type="text" name="peso" ngModel placeholder=" inserisci peso"><br>
                                 <p><b>Volume</b></p>
@@ -93,12 +96,12 @@
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                <button type="submit" class="btn btn-primary">Modifica</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="submit" class="btn btn-primary">Modifica</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -107,12 +110,13 @@
 <div class="modal fade" id="aggiungiProdotto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Aggiungi Prodotto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form-control" #modelAggiungiProdotto="ngForm" (ngSubmit)="aggiungiProdotto(modelAggiungiProdotto.value)">
+            <form class="form-control" #modelAggiungiProdotto="ngForm" (ngSubmit)="aggiungiProdotto(modelAggiungiProdotto.value)">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Aggiungi Prodotto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
                     <div class="modal-body">
                         <div class="modal-body">
                             <div class="modal-body">
@@ -124,6 +128,8 @@
                                 <div><b>Descrizione Prodotto</b></div>
                                 <textarea name="textArea " ngModel id=" " cols="30 " rows="5 "></textarea>
                                 <br><br>
+                                <div><b>Quantità</b></div>
+                                <input type="text" name="quantita" ngModel placeholder="inserisci quantita "><br><br>
                                 <div><b>Peso</b></div>
                                 <input type="text" name="peso" ngModel placeholder="inserisci peso "><br><br>
                                 <div><b>Volume</b></div>
@@ -133,12 +139,13 @@
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer ">
-                <button type="button " class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                <button type="submit " class="btn btn-primary">Aggiungi Prodotto</button>
-            </div>
+
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="submit" class="btn btn-primary">Aggiungi Prodotto</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

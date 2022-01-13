@@ -2,13 +2,13 @@
     <div class="container">
         <div class="searchbarContainer"><input type="text" class="searchbar" placeholder="cerca prodotto"><button><i class="fas fa-search"></i></button></div>
         <div class="row">
-            <div *ngFor="let item of fromBackEnd" class="col">
+            <div *ngFor="let prodotto of prodotti" class="col">
                 <a href="">
                     <div class="prodottiContainer">
                         <img src="assets/icons/Logo.png" alt="FOTO PRODOTTO">
-                        <div>{{item.nomeProdotto}}</div>
-                        <div>{{item.descrizione}}</div>
-                        <div>{{item.prezzo}}</div>
+                        <div>{{prodotto.nomeProdotto}}</div>
+                        <div>{{prodotto.descrizione}}</div>
+                        <div>{{prodotto.prezzo}} €</div>
                     </div>
                 </a>
             </div>

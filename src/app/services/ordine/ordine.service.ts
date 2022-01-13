@@ -14,7 +14,7 @@ export class OrdineService {
   constructor(private http: HttpClient) { }
 
   public getAllOrdine(): Observable<Ordine[]> {
-    return this.http.get<Ordine[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<Ordine[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(OrdineID : number): Observable<Ordine> {

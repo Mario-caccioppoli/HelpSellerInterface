@@ -1,5 +1,5 @@
 export interface Amministratore{
-    idAmministratore: number;
+    id: number;
     username: string;
     email: string;
     password: string;

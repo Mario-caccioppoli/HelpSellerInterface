@@ -22,6 +22,10 @@ const routes: Routes = [{
     path:'profiloAzienda',
     component:ProfiloAziendaComponent},
   {
+    path:'profiloAzienda/:id',
+    component:ProfiloAziendaComponent
+                                     },
+  {
     path:'selezionaProdottiScontare',
     component:SelezionaProdottiScontareComponent},
   {
@@ -29,6 +33,9 @@ const routes: Routes = [{
     component:VisualizzaAziendeComponent},
   {
     path:'visualizzaProdotti',
+    component:VisualizzaProdottiComponent},
+  {
+    path:'visualizzaProdotti/:id',
     component:VisualizzaProdottiComponent}
   
   ];

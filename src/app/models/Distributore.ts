@@ -1,11 +1,11 @@
 export interface Distributore{
-    idDistributore: number;
+    id: number;
     username: string;
     email: string;
     password: string;
     nome: string;
     cognome: string;
-    VATNumber: string;
+    vat: string;
     telefono: number;
     indirizzoSede: string;
     idOrdineProva: number;

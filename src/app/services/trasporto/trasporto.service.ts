@@ -14,7 +14,7 @@ export class TrasportoService {
   constructor(private http: HttpClient) { }
 
   public getAllTrasporto(): Observable<Trasporto[]> {
-    return this.http.get<Trasporto[]>(`${this.apiServerUrl}/all`);
+    return this.http.get<Trasporto[]>(`${this.apiServerUrl}/findAll`);
   }
 
   public findById(TrasportoID : number): Observable<Trasporto> {

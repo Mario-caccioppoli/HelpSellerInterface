@@ -1,0 +1,83 @@
+<h2 style="text-align: center;"> Report Vendite</h2>
+<h3>Grafico vendite</h3>
+<div class="row align-items-center">  
+  <app-grafico-a-linea [barChartLabels] = "anni" [barChartData] = "datiAnnuali"></app-grafico-a-linea>
+</div>
+<p>N° Prodotti venduti: </p>{{nProdottiTotale}}
+<p>Quantità totale di prodotti venduti: </p>{{quantitaTotaleProdotti}}
+<p>Totale spedizioni: </p>{{totaleSpedizioni}}
+
+
+<div class="float-end"><p>Totale Incasso:</p> {{totaleIncasso}}</div>
+<br>
+<br>
+
+
+
+<div style="text-align: center;"> 
+  <select (change)="cambiaAnno($event)" class="custom-select">
+    <option value="" selected>Scegli Anno</option>
+    <option *ngFor="let item of anni">{{item}}</option>    
+</select>
+{{annoScelto}}
+</div>
+
+
+<div id="repotAnnuale" *ngIf="annoScelto!=null && annoScelto!='' ">
+
+
+  
+<h3>Grafico Vendite Annuo</h3>
+<div class="row align-items-center">  
+<app-grafico-a-barra [barChartData] = "datiMensili" [barChartLabels]="mesi"></app-grafico-a-barra>
+</div>
+<p>N° Prodotti venduti: </p>{{nProdottiTotaleAnno}}
+<p>Quantità totale di prodotti venduti: </p>{{quantitaTotaleProdottiAnno}}
+<p>Totale spedizioni: </p>{{totaleSpedizioniAnno}}
+
+
+<div class="float-end"><p>Totale Incasso: </p>{{totaleIncasso}}</div>
+<br>
+<br>
+
+<div style="text-align: center;"> 
+  <select class="custom-select" (change)="cambiaMese($event)">
+    <option value=""selected>Scegli Mese</option>
+    
+      <option value="Gennaio">Gennaio </option>    
+      <option value="Febbraio"> Febbraio </option>
+      <option value="Marzo"> Marzo</option>
+      <option value="Aprile"> Aprile</option>
+      <option value="Maggio"> Maggio</option>
+      <option value="Giugno"> Giugno</option>
+      <option value="Luglio"> Luglio</option>
+      <option value="Agosto"> Agosto</option>
+      <option value="Settembre"> Settembre</option>
+      <option value="Ottobre"> Ottobre</option>
+      <option value="Novembre"> Novembre</option>
+      <option value="Dicembre"> Dicembre</option>
+  </select>
+
+  {{meseScelto}}
+</div>
+    
+
+      
+<div id="repotMensile" *ngIf="meseScelto!=null && meseScelto!=''">
+   
+
+<h3>Grafico Vendite Mensile</h3>
+<div class="row align-items-center">  
+<app-grafico-a-barra [barChartData] = "datiMensili"  [barChartLabels]="giorni"></app-grafico-a-barra>
+</div>
+<p>N° Prodotti venduti: </p>{{nProdottiTotaleMese}}
+<p>Quantità totale di prodotti venduti: </p>{{quantitaTotaleProdottiMese}}
+<p>Totale spedizioni: </p>{{totaleSpedizioniMese}}
+
+
+<div class="float-end"><p>Totale Incasso: </p>{{totaleIncassoMese}}</div>
+
+
+</div>
+
+</div>

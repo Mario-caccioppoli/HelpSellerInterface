@@ -32,11 +32,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row"><p>#12345</p></th>
-                      <td><p>21/12/2012</p></td>
-                      <td><p>EndWorldMaya</p></td>
-                      <td><p>2012</p></td>
+                    <tr *ngFor='let ordine of allOrdine'>
+                      <th scope="row"># <p>{{ordine.id}}</p></th>
+                      <td><p>{{ordine.dataOrdinazione}}</p></td>
+                      <td><p>{{ordine.idDistributore}}</p></td>
+                      <td><p>manca il prezzo</p></td>
                       <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
                     </tr>
                     <tr>

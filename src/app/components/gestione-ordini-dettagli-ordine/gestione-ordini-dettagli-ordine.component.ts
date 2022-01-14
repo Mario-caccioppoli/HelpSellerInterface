@@ -5,13 +5,9 @@ import { OrdineProdotto } from 'src/app/models/OrdineProdotto';
 import { OrdineProdottoService } from 'src/app/services/ordine-prodotto/ordine-prodotto.service';
 
 import { Prodotto } from 'src/app/models/Prodotto';
-import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 
 import { Distributore } from 'src/app/models/Distributore';
 import { DistributoreService } from 'src/app/services/distributore/distributore.service';
-
-import { Ordine } from 'src/app/models/Ordine';
-import { OrdineService } from 'src/app/services/ordine/ordine.service';
 
 @Component({
   selector: 'app-gestione-ordini-dettagli-ordine',
@@ -20,37 +16,38 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 })
 export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
 
-  allOrdine: Ordine[];
   allDistributore: Distributore[];
-  ordine: Ordine;
   distributore: Distributore;
+  ordineprodotto: OrdineProdotto;
+  prodotto: Prodotto;
 
-  constructor(private prod: OrdineService, private log: LogService) { }
+  constructor(private os?: OrdineProdottoService, private ds?: DistributoreService, private log?: LogService) { }
 
   ngOnInit(): void {
-    this.riepilogoOrdine();
+   this.riepilogoOrdine();
+   this.getAcquirente();
+   this.getNotaRiepilogo();
   }
 
  riepilogoOrdine() {
-      this.prod.getAllOrdinebyAzienda(this.ordine.id).subscribe(
+      this.os.findById(this.ordineprodotto.idOrdine).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-
-          this.singleOrdine = success as Ordine[];
+          this.ordineprodotto = success as OrdineProdotto;
         }, 
           
         (error) => {
           this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
         }
       )
-    } //end for
+    }
 
-  infoAcquirente() {
-    this.distributore.id.subscribe(
+  getAcquirente() {
+    this.ds.findById(0).subscribe(
       (success) => {
         this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
 
-        this.singleProd = success as Prodotto[];
+        this.distributore = success as Distributore;
       }, 
         
       (error) => {
@@ -59,12 +56,16 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     )
   }
 
-  infoOrdine() {
-    this.prod.getProdottiByOrdine(0).subscribe(
+  getNotaRiepilogo() {
+    this.os.findById(this.ordineprodotto.idOrdine).subscribe(
       (success) => {
-        this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-
-        this.singleProd = success as Prodotto[];
+        this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);alert('jhhh');
+        var arrProdotti = this.os.getAllOrdineProdotto(); //get all prodotti
+        var totale = 0;
+        for(var i in arrProdotti) {
+          totale = totale + this.ordineprodotto.prodotto.prezzo[i];
+        }
+        this.ordineprodotto = success as OrdineProdotto;
       }, 
         
       (error) => {
@@ -72,5 +73,5 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
       }
     )
   }
-*/
 }
+

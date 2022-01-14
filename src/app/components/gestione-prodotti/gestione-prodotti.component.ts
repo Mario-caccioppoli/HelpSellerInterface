@@ -33,16 +33,19 @@ export class GestioneProdottiComponent implements OnInit {
   }
   aggiungiProdotto(form){
     this.prodotto={
-      id:null,
+      id:15,
       nomeProdotto: form.nome,
       prezzo: form.prezzo,
       descrizione: form.descrizione,
       quantita: form.quantita,
       immagine: "capocchia",
-      quantitaMinima:null,
+      quantitaMinima:50,
       peso: form.peso,
       volume: form.volume,
-      idAzienda: 1};
+      idAzienda: 100};
+
+      console.log(this.prodotto);
+      
       this.prodottoService.insertProdotto(this.prodotto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
@@ -65,6 +68,8 @@ export class GestioneProdottiComponent implements OnInit {
       peso: form.peso,
       volume: form.volume,
       idAzienda: 1};
+
+      console.log(this.prodotto);
 
       this.prodottoService.insertProdotto(this.prodotto).subscribe(
         (resp)=>{

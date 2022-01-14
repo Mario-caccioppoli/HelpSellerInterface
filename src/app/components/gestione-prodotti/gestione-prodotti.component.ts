@@ -45,7 +45,7 @@ export class GestioneProdottiComponent implements OnInit {
       idAzienda: 100};
 
       console.log(this.prodotto);
-      
+
       this.prodottoService.insertProdotto(this.prodotto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);

@@ -17,6 +17,14 @@ export class OrdineService {
     return this.http.get<Ordine[]>(`${this.apiServerUrl}/findAll`);
   }
 
+  public getAllOrdinebyDistributore(idDistributore: number): Observable<Ordine[]> {
+    return this.http.get<Ordine[]>(`${this.apiServerUrl}/findOrdiniByDistributore/${idDistributore}`);
+  }
+
+  public getAllOrdinebyAzienda(idAzienda: number): Observable<Ordine[]> {
+    return this.http.get<Ordine[]>(`${this.apiServerUrl}/findOrdiniByAzienda/${idAzienda}`);
+  }
+
   public findById(OrdineID : number): Observable<Ordine> {
     return this.http.get<Ordine>(`${this.apiServerUrl}/findId/${OrdineID}`);
   }

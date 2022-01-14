@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Distributore } from 'src/app/models/Distributore';
 import { Ordine } from 'src/app/models/Ordine';
 import { LogService } from 'src/app/services/log.service';
 import { OrdineService } from 'src/app/services/ordine/ordine.service';
@@ -11,6 +12,7 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 export class GestioneOrdiniEffettuatiComponent implements OnInit {
 
   singleOrdine: Ordine[];
+  distributore: Distributore;
 
   constructor(private prod: OrdineService, private log: LogService) { }
 
@@ -19,9 +21,7 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
   }
 
   listaOrdini() {
-    var x = this.prod.getAllOrdine.length;
-    for (var count = 0; count <= x; count++) {
-      this.prod.getAllOrdine().subscribe(
+      this.prod.getAllOrdinebyDistributore(this.distributore.id).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniEffettuatiComponent.name, "ok", [success]);
           this.singleOrdine = success as Ordine[];
@@ -31,7 +31,6 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
           this.log.Error(GestioneOrdiniEffettuatiComponent.name, "errore", [error]);
         }
       )
-    } //end for
   } //end func
 
 }

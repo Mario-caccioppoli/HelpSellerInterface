@@ -20,23 +20,23 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 })
 export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
 
-  singleProd: OrdineProdotto[];
-  singleDistributore: Distributore[];
-  singleOrd: OrdineService;
+  allOrdine: Ordine[];
+  allDistributore: Distributore[];
+  ordine: Ordine;
+  distributore: Distributore;
 
-  constructor(private prod: ProdottoService, private log: LogService) { }
+  constructor(private prod: OrdineService, private log: LogService) { }
 
   ngOnInit(): void {
-    //this.riepilogoOrdine();
+    this.riepilogoOrdine();
   }
 
- /*  riepilogoOrdine() {
-   var i = this.singleOrd.getAllOrdine(0)
-      this.prod.getProdottiByOrdine(this.singleOrd.findId(i)).subscribe(
+ riepilogoOrdine() {
+      this.prod.getAllOrdinebyAzienda(this.ordine.id).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
 
-          this.singleProd = success as OrdineProdotto[];
+          this.singleOrdine = success as Ordine[];
         }, 
           
         (error) => {
@@ -44,9 +44,9 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
         }
       )
     } //end for
-/*
+
   infoAcquirente() {
-    this.prod.getProdottiByOrdine(0).subscribe(
+    this.distributore.id.subscribe(
       (success) => {
         this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
 

@@ -1,7 +1,8 @@
+import { Prodotto } from "./Prodotto";
+
 export interface OrdineProdotto{
     idOrdine: number
-    idProdotto: number
-    quantita: number
+    quantitaOrdine: number
     prezzoUnitario: number
-    prezzo: number;
+    prodotto: Prodotto;
 }

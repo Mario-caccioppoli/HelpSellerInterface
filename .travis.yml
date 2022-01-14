@@ -3,14 +3,7 @@ sudo: required
 
 language: node_js
 node_js:
-  - '14'
-
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+  - '14.17.3'
 
 cache:
   directories:
@@ -20,4 +13,4 @@ install:
   - npm install
 
 script:
-  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+  - npm build --prod

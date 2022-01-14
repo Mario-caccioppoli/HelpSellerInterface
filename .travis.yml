@@ -7,7 +7,7 @@ branches:
   only:
   - master
 before_script:
-  - npm install -g @angular/cli@9.1.15
+ - npm install -g @angular/cli
   script:
 - ng lint
 - ng build --prod 

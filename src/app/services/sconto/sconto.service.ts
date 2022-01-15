@@ -16,7 +16,12 @@ export class ScontoService {
   public getAllSconto(): Observable<Sconto[]> {
     return this.http.get<Sconto[]>(`${this.apiServerUrl}/findAll`);
   }
-
+  public getAllScontoByAzienda(id: number): Observable<Sconto[]>{
+    return this.http.get<Sconto[]>(`${this.apiServerUrl}/findScontiByAzienda/${id}`)
+  }
+  public getAllScontoByTipo(tipo: string): Observable<Sconto[]>{
+    return this.http.get<Sconto[]>(`${this.apiServerUrl}/findScontiByTipo/${tipo}`)
+  }
   public findById(ScontoID : number): Observable<Sconto> {
     return this.http.get<Sconto>(`${this.apiServerUrl}/findId/${ScontoID}`);
   }

@@ -36,6 +36,34 @@ export class GestioneScontiComponent implements OnInit {
       }
     )
   }
+  getAllScontiByAzienda(){
+    this.scontoService.getAllScontoByAzienda(this.idAzienda).subscribe(
+      (resp)=>{
+        this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
+        this.sconti = resp as Sconto[];
+        console.log(resp)
+      },
+      (error)=>{
+        this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
+      }
+    )
+  }
+  getAllScontiByTipo(){
+    if(this.filtroSelect=='tutti'){
+      this.getAllSconti()
+    }
+    else{
+    this.scontoService.getAllScontoByTipo(this.filtroSelect).subscribe(
+      (resp)=>{
+        this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
+        this.sconti = resp as Sconto[];
+        console.log(resp)
+      },
+      (error)=>{
+        this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
+      }
+    )}
+  }
   
   aggiungiSconto(form){
     this.sconto={
@@ -82,8 +110,16 @@ export class GestioneScontiComponent implements OnInit {
       )
   }
 
-  cancellaSconto(){
-    
+  cancellaSconto(id){
+    this.scontoService.deleteSconto(id).subscribe(
+      (resp)=>{
+        this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
+        //this.prodotto = resp as Prodotto;
+      },
+      (error)=>{
+        this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
+      }
+    )
 
   }
   

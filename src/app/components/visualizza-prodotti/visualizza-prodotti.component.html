@@ -1,6 +1,6 @@
 <div class="scroll">
     <div class="container">
-        <div class="searchbarContainer"><input type="text" class="searchbar" placeholder="cerca prodotto"><button><i class="fas fa-search"></i></button></div>
+        <div class="searchbarContainer"><input type="text" class="searchbar" [(ngModel)]="ricercaProdottoByNome" (keyup)="ricercaConSidebar()" placeholder="cerca prodotto"><button><i class="fas fa-search"></i></button></div>
         <div class="row">
             <div *ngFor="let prodotto of prodotti" class="col">
                 <a href="">

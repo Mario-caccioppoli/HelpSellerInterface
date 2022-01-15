@@ -6,7 +6,7 @@
     <tr class="table-light ">
         <td class="table-light"><input type="text" placeholder="Nome"></td>
         <td class="table-light">
-            <select name="filtro" id="filtroSelect" [(ngModel)]="filtroSelect" required>
+            <select name="filtro" id="filtroSelect" [(ngModel)]="filtroSelect" (change)="getAllScontiByTipo()">
                 <option value="tutti">Tutti</option>
                 <option value="catalogo">Catalogo</option>
                 <option value="quantita">Quantità</option>
@@ -21,13 +21,13 @@
 <div class="scrolla">
     <table class="table table-borderless">
         <tr class="table-light">
-            <td class="table-light">ID Sconto</td>
+            <td class="table-light">Nome Prodotto</td>
             <td class="table-light">Tipo</td>
             <td class="table-light">n° prodotti</td>
             <td class="table-light">Azioni</td>
         </tr>
         <tr class="table-light lista" *ngFor="let sconto of sconti">
-            <td class="table-light">{{sconto.id}}</td>
+            <td class="table-light">Nome Prodotto</td>
             <td class="table-light">{{sconto.tipo}}</td>
             <td class="table-light">{{sconto.quantita}}</td>
             <td class="table-light"><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaSconto"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
@@ -49,7 +49,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                <button type="button" (click)="cancellaSconto()" class="btn btn-primary">Cancella</button>
+                <button type="button" (click)="cancellaSconto(sconto.id)" class="btn btn-primary">Cancella</button>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
                 <div class="modal-body">
                     <div class="modal-body">
                         <div class="modal-body">
-                            <p><b>Nome Sconto</b></p>
+                            <p><b>Nome Prodotto</b></p>
                             <input type="text " name="nome" ngModel placeholder="inserisci nome sconto"><br>
                             <p><b>tipo</b></p>
                             <select name="tipo" [(ngModel)]="selectFromModel">
@@ -124,7 +124,7 @@
                 <div class="modal-body">
                     <div class="modal-body">
                         <div class="modal-body">
-                            <p><b>Nome Sconto</b></p>
+                            <p><b>Nome Prodotto</b></p>
                             <input type="text " name="nome" ngModel placeholder="inserisci nome sconto"><br>
                             <p><b>tipo</b></p>
                             <select name="tipo" [(ngModel)]="selectFromModel">

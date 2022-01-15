@@ -12,6 +12,7 @@ export class GestioneProdottiComponent implements OnInit {
   prodotti:Prodotto[];
   prodotto: Prodotto;
   idAzienda: number;
+  idProdottoEliminare: number;
 
   constructor(private prodottoService: ProdottoService,private log: LogService ) { }
 
@@ -38,7 +39,7 @@ export class GestioneProdottiComponent implements OnInit {
       prezzo: form.prezzo,
       descrizione: form.descrizione,
       quantita: form.quantita,
-      immagine: "capocchia",
+      immagine: "immagine",
       quantitaMinima:50,
       peso: form.peso,
       volume: form.volume,
@@ -63,7 +64,7 @@ export class GestioneProdottiComponent implements OnInit {
       prezzo: form.prezzo,
       descrizione: form.descrizione,
       quantita: form.quantita,
-      immagine: "capocchia",
+      immagine: "immagine",
       quantitaMinima:null,
       peso: form.peso,
       volume: form.volume,
@@ -82,11 +83,16 @@ export class GestioneProdottiComponent implements OnInit {
       )
   }
 
-  eliminaProdotto(){
-    this.prodottoService.deleteProdotto(this.idAzienda).subscribe(
+  eliminaProdotto(id){
+    console.log(id);
+    this.prodottoService.deleteProdotto(id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
-        //this.prodotto = resp as Prodotto;
+        // this.prodotto = resp as Prodotto;
+        // this.prodotti.splice(id,1)
+        // window.alert("PRODOTTO ELIMINATO")
+        let x=document.getElementById("eliminaProdotto").click()
+        this.getAllProdotti();
       },
       (error)=>{
         this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);

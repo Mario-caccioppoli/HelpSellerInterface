@@ -29,18 +29,20 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
    this.getNotaRiepilogo();
   }
 
- riepilogoOrdine() {
+  riepilogoOrdine() {
+    if (this.ordineprodotto != undefined) {
       this.os.findById(this.ordineprodotto.idOrdine).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
           this.ordineprodotto = success as OrdineProdotto;
-        }, 
-          
+        },
+
         (error) => {
           this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
         }
       )
     }
+  }
 
   getAcquirente() {
     this.ds.findById(0).subscribe(
@@ -48,8 +50,8 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
         this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
 
         this.distributore = success as Distributore;
-      }, 
-        
+      },
+
       (error) => {
         this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
       }
@@ -57,21 +59,24 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
   }
 
   getNotaRiepilogo() {
-    this.os.findById(this.ordineprodotto.idOrdine).subscribe(
-      (success) => {
-        this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);alert('jhhh');
-        var arrProdotti = this.os.getAllOrdineProdotto(); //get all prodotti
-        var totale = 0;
-        for(var i in arrProdotti) {
-          totale = totale + this.ordineprodotto.prodotto.prezzo[i];
+    if(this.ordineprodotto != undefined)
+    {
+      this.os.findById(this.ordineprodotto.idOrdine).subscribe(
+        (success) => {
+          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);alert('jhhh');
+          var arrProdotti = this.os.getAllOrdineProdotto(); //get all prodotti
+          var totale = 0;
+          for(var i in arrProdotti) {
+            totale = totale + this.ordineprodotto.prodotto.prezzo[i];
+          }
+          this.ordineprodotto = success as OrdineProdotto;
+        },
+
+        (error) => {
+          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
         }
-        this.ordineprodotto = success as OrdineProdotto;
-      }, 
-        
-      (error) => {
-        this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
-      }
-    )
+      )
+    }
   }
 }
 

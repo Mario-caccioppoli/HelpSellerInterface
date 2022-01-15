@@ -22,16 +22,17 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
   }
 
   listaOrdini() {
+    if (this.azienda != undefined) {
       this.prod.getAllOrdinebyAzienda(this.azienda.id).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniRicevutiComponent.name, "ok", [success]);
           this.allOrdine = success as Ordine[];
-        }, 
-          
+        },
+
         (error) => {
           this.log.Error(GestioneOrdiniRicevutiComponent.name, "errore", [error]);
         }
       )
-  } //end func
-
+    } //end func
+  }
 }

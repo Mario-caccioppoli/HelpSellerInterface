@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 
 import { FooterComponent } from './components/footer/footer.component';
@@ -33,6 +32,7 @@ import { GestordEffordCartComponent } from './components/gestione-ordini-effettu
 import { ReportAmministratoreComponent } from './components/report-amministratore/report-amministratore.component';
 import { GestionePraticheTrasportoComponent } from './components/gestione-pratiche-trasporto/gestione-pratiche-trasporto.component';
 import { GraficoABarraComponent } from './grafico-a-barra/grafico-a-barra.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -47,7 +47,6 @@ import { GraficoABarraComponent } from './grafico-a-barra/grafico-a-barra.compon
     ReportMensileComponent,
     ReportAnnualeComponent,
     GraficoALineaComponent,
-
     GestioneProdottiComponent,
     GestioneScontiComponent,
     GestioneOrdiniRicevutiComponent,
@@ -64,12 +63,11 @@ import { GraficoABarraComponent } from './grafico-a-barra/grafico-a-barra.compon
     GestordEffordCartComponent,
     ReportAmministratoreComponent,
     GestionePraticheTrasportoComponent,
-
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     ChartsModule,
     HttpClientModule
   ],

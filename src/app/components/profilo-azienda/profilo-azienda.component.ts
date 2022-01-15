@@ -19,25 +19,28 @@ export class ProfiloAziendaComponent implements OnInit {
       this.prendiIdDalRouter();
       this.getProfiloAziendaById();
     }
-  
-  prendiIdDalRouter(){
-    this.route.paramMap.subscribe( params =>
-      this.idAzienda = +params.get('id')
-      )
 
+  prendiIdDalRouter() {
+    if (this.route.paramMap != undefined && this.route.paramMap != null) {
+      this.route.paramMap.subscribe(params =>
+        this.idAzienda = 5
+      )
+    }
   }
 
 
   getProfiloAziendaById(){
-    this.aziendaService.findById(this.idAzienda).subscribe(
-      (resp)=>{
-        this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
-        this.azienda=resp as Azienda;
-      },
-      (error)=>{
-        this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
-      }
-    )
+    if(this.azienda != undefined)
+    {
+      this.aziendaService.findById(this.idAzienda).subscribe(
+        (resp)=>{
+          this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
+          this.azienda=resp as Azienda;
+        },
+        (error)=>{
+          this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
+        }
+      )
+    }
   }
-
 }

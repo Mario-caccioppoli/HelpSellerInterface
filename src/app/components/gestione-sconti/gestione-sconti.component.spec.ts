@@ -1,4 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { LogService } from 'src/app/services/log.service';
+import { ScontoService } from 'src/app/services/sconto/sconto.service';
 
 import { GestioneScontiComponent } from './gestione-sconti.component';
 
@@ -8,7 +12,9 @@ describe('GestioneScontiComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestioneScontiComponent ]
+      declarations: [ GestioneScontiComponent ],
+      imports : [HttpClientModule,FormsModule],
+      providers : [ScontoService,LogService]
     })
     .compileComponents();
   }));

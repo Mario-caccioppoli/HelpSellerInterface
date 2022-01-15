@@ -1,32 +1,48 @@
-    .containerGenerale {
-        padding-top: 2%;
+    .centered {
         text-align: center;
-        width: 100%;
+    }
+
+    .left {
+        text-align: left;
     }
     
     .paragrafo {
-        border: solid 2px;
-        width: 95%;
+        border: 1px solid #cecece;
+        padding: 10px;
+        margin: 25px;
+        word-break: break-word;
+    }
+
+    .m25 {
+        margin: 25px;
+    }
+
+    .w100 {
+        width: 100%;
+        margin-top: 25px;
     }
     
-    .colonnaLogo {
-        width: 20%;
-        background-color: grey;
-        padding-top: 2%;
+    .img-circle {
+        width: 100%;
+        border-radius: 50%;
+        background-color: white;
+        border: 3px solid gray;
+        padding: 10px;
     }
-    
-    .colonnaParagrafo {
-        padding-top: 4%;
+
+    .pd30 {
+        padding: 30px;
     }
-    
-    img {
-        width: 60%;
-        border-radius: 100%;
+
+    .intro {
+        background-color: #ffc964;
+        padding: 30px;
+        margin: -25px 30px -25px -30px;
+        clear: both;
     }
-    
-    button {
-        background-color: orange;
-        border: transparent;
+
+    .fullheight {
+        height: 100%;
     }
     
     .scroll {

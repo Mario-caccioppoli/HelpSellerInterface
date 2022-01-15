@@ -5,9 +5,12 @@ import { OrdineProdotto } from 'src/app/models/OrdineProdotto';
 import { OrdineProdottoService } from 'src/app/services/ordine-prodotto/ordine-prodotto.service';
 
 import { Prodotto } from 'src/app/models/Prodotto';
+import { Ordine } from 'src/app/models/Ordine';
 
 import { Distributore } from 'src/app/models/Distributore';
 import { DistributoreService } from 'src/app/services/distributore/distributore.service';
+import { HttpClient } from '@angular/common/http';
+import { Azienda } from 'src/app/models/Azienda';
 
 @Component({
   selector: 'app-gestione-ordini-dettagli-ordine',
@@ -18,23 +21,28 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
 
   allDistributore: Distributore[];
   distributore: Distributore;
-  ordineprodotto: OrdineProdotto;
+  azienda: Azienda;
+  ordineProdotto: OrdineProdotto;
+  ordineProdottoArr: OrdineProdotto[];
   prodotto: Prodotto;
+  ordine: Ordine;
 
-  constructor(private os?: OrdineProdottoService, private ds?: DistributoreService, private log?: LogService) { }
+  constructor(private os: OrdineProdottoService, private ds: DistributoreService, private log: LogService) { }
 
   ngOnInit(): void {
-   this.riepilogoOrdine();
-   this.getAcquirente();
+   this.getProdottiOrdine();
+   this.getInfoOrdine();
    this.getNotaRiepilogo();
+   this.documentiFunction();
   }
 
-  riepilogoOrdine() {
-    if (this.ordineprodotto != undefined) {
-      this.os.findById(this.ordineprodotto.idOrdine).subscribe(
+  getProdottiOrdine() {
+    if(this.ordineProdotto != undefined)
+    {
+      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-          this.ordineprodotto = success as OrdineProdotto;
+          this.ordineProdotto = success as OrdineProdotto;
         },
 
         (error) => {
@@ -44,32 +52,30 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     }
   }
 
-  getAcquirente() {
-    this.ds.findById(0).subscribe(
-      (success) => {
-        this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
+  getInfoOrdine() {
+    if(this.ordineProdotto != undefined)
+    {
+      this.ds.findById(this.ordineProdotto.idOrdine).subscribe(
+        (success) => {
+          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
 
-        this.distributore = success as Distributore;
-      },
+          this.distributore = success as Distributore;
+        },
 
-      (error) => {
-        this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
-      }
-    )
+        (error) => {
+          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
+        }
+      )
+    }
   }
 
   getNotaRiepilogo() {
-    if(this.ordineprodotto != undefined)
+    if(this.ordineProdotto != undefined)
     {
-      this.os.findById(this.ordineprodotto.idOrdine).subscribe(
+      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
         (success) => {
-          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);alert('jhhh');
-          var arrProdotti = this.os.getAllOrdineProdotto(); //get all prodotti
-          var totale = 0;
-          for(var i in arrProdotti) {
-            totale = totale + this.ordineprodotto.prodotto.prezzo[i];
-          }
-          this.ordineprodotto = success as OrdineProdotto;
+          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
+          this.ordineProdotto = success as OrdineProdotto;
         },
 
         (error) => {
@@ -78,5 +84,94 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
       )
     }
   }
+
+  getAllOrdineQuantity() {
+    if(this.ordine != undefined)
+    {
+      this.os.findDettagliOrdine(this.ordine.id).subscribe(
+        (success) => {
+          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
+
+          var arrProdotti: OrdineProdotto[];
+          var quantitaTotale = 0;
+
+          arrProdotti.forEach( orderProduct => {
+            quantitaTotale += orderProduct.quantitaOrdine;
+          });
+
+          this.ordineProdottoArr = success as OrdineProdotto[];
+        },
+
+        (error) => {
+          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
+        }
+      )
+    }
+  }
+
+  documentiFunction() { //todo
+    if(this.ordineProdotto != undefined)
+    {
+      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
+        (success) => {
+          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
+
+          this.ordineProdotto = success as OrdineProdotto;
+        },
+
+        (error) => {
+          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
+        }
+      )
+    }
+  }
+
+  getAllOrdinePrice() {
+    if(this.ordine != undefined)
+    {
+      this.os.findDettagliOrdine(this.ordine.id).subscribe(
+        (success) => {
+          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
+
+          var arrProdotti: OrdineProdotto[];
+          var quantitaTotale = 0;
+
+          arrProdotti.forEach( orderProduct => {
+            quantitaTotale += orderProduct.prezzoUnitario;
+          });
+
+          this.ordineProdottoArr = success as OrdineProdotto[];
+        },
+
+        (error) => {
+          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
+        }
+      )
+    }
+  }
+
+  getVatOrdine() {
+    if(this.ordineProdotto != undefined)
+    {
+      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
+        (success) => {
+          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
+
+          var vatD = this.distributore.vat;
+          var vatA= this.azienda.vat;
+
+          this.ordineProdotto = success as OrdineProdotto;
+        },
+
+        (error) => {
+          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
+        }
+      )
+    }
+  }
+
+
+        // var vat = this.os.getVatOrdinePerc(ordnumber); aggiungere funzionalità
+        // var prezzoTotale = prezzoImponibile * vat/100;
 }
 

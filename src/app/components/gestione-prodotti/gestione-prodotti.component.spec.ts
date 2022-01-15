@@ -1,4 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { LogService } from 'src/app/services/log.service';
+import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 
 import { GestioneProdottiComponent } from './gestione-prodotti.component';
 
@@ -8,7 +12,9 @@ describe('GestioneProdottiComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestioneProdottiComponent ]
+      declarations: [ GestioneProdottiComponent],
+      imports : [HttpClientModule,FormsModule],
+      providers : [ProdottoService,LogService]
     })
     .compileComponents();
   }));

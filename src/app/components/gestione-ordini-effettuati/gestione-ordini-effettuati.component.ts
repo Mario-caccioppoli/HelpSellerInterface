@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Local } from 'protractor/built/driverProviders';
 import { Distributore } from 'src/app/models/Distributore';
 import { Ordine } from 'src/app/models/Ordine';
 import { LogService } from 'src/app/services/log.service';
@@ -17,7 +18,11 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
   constructor(private prod: OrdineService, private log: LogService) { }
 
   ngOnInit(): void {
-    this.listaOrdini();
+    //this.distributore =  JSON.parse(localStorage.getItem("IDutente")) as Distributore;
+    if(this.distributore != undefined)
+    {
+      this.listaOrdini();
+    }
   }
 
   listaOrdini() {
@@ -25,8 +30,8 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
         (success) => {
           this.log.Debug(GestioneOrdiniEffettuatiComponent.name, "ok", [success]);
           this.singleOrdine = success as Ordine[];
-        }, 
-          
+        },
+
         (error) => {
           this.log.Error(GestioneOrdiniEffettuatiComponent.name, "errore", [error]);
         }

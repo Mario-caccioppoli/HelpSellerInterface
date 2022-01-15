@@ -5,8 +5,8 @@
         <br>
         <p>x amministratore</p>
         <button class="btn btn-secondary w100"><a [routerLink]="['/']">Indietro</a></button>
-        <button class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Modifica</a></button>
-        <button class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button>
+        <button  *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Modifica</a></button>
+        <button  *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button>
     </div>
     <div class="col-lg-9 centered">
         <h2 class="titolo centered"><!--{{azienda.nomeAzienda}}--> Nome Azienda</h2><br>
@@ -19,7 +19,7 @@
             <p class="paragrafo left">asdasdasdad lorem ipsum a cas</p>
             <h5 class="m25 left"><b><!--{{azienda.descrizione}}-->Descrizione</b></h5>
             <p class="paragrafo left">asdasdasdad lorem ipsum a uardat</p>
-            <button class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Visualizza Prodotti</a></button>
+            <button  *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Visualizza Prodotti</a></button>
         </div>
     </div>
 </div>

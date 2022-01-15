@@ -8,6 +8,7 @@ import { GestioneProdottiComponent } from './components/gestione-prodotti/gestio
 import { GestioneScontiComponent } from './components/gestione-sconti/gestione-sconti.component';
 import { ProfiloAziendaComponent } from './components/profilo-azienda/profilo-azienda.component';
 import { SelezionaProdottiScontareComponent } from './components/seleziona-prodotti-scontare/seleziona-prodotti-scontare.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { VisualizzaAziendeComponent } from './components/visualizza-aziende/visualizza-aziende.component';
 import { VisualizzaProdottiComponent } from './components/visualizza-prodotti/visualizza-prodotti.component';
 
@@ -52,7 +53,8 @@ const routes: Routes = [
   },
   {
     path:'visualizzaProdotti/:id',
-    component:VisualizzaProdottiComponent}
+    component:VisualizzaProdottiComponent
+  },
   
   ];
 

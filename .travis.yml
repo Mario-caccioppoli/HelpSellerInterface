@@ -4,6 +4,10 @@ sudo: required
 language: node_js
 node_js:
   - '14.17.3'
+  
+branches:
+ only:
+  - main
 
 cache:
   directories:

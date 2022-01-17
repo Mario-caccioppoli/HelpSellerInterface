@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-gestione-ordini-effettua-ordine',
@@ -17,6 +17,12 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     for (var i=0; i < element.length; i++) {
       element[i].style.display = 'block';
     }
+
+    var max = <HTMLInputElement>document.querySelector('input[max="qtmax"]');
+    max.setAttribute("max", '1');
+
+    var field = <HTMLInputElement>document.querySelector('input[value="qtval"]');
+    field.value = '0' ;
     
     let nascondi = document.getElementsByClassName("show") as HTMLCollectionOf<HTMLElement>;
     for (var k=0; k < nascondi.length; k++) {
@@ -25,6 +31,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
   }
 
   exitCart() {  //annulla la procedura di acquisto
+    
     let element = document.getElementsByClassName("hide") as HTMLCollectionOf<HTMLElement>;
     for (var i=0; i < element.length; i++) {
       element[i].style.removeProperty('display');
@@ -42,4 +49,39 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     precart.style.display = "none";
     cart.style.display = "block";
   }
+  
+  enableQty () {
+    let element = document.getElementsByClassName("qty") as HTMLCollectionOf<HTMLElement>;
+    for (var i=0; i < element.length; i++) {
+      element[i].removeAttribute('disabled');
+    }
+
+  }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////                         //////////////////////////////////////
+////////////////////////////////////// Richiedi campioni prova //////////////////////////////////////
+//////////////////////////////////////                         //////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  startSample() { 
+    var element = document.getElementsByClassName("hide") as HTMLCollectionOf<HTMLElement>;
+    for (var i=0; i < element.length; i++) {
+      element[i].style.display = 'block';
+    }
+
+    var max = <HTMLInputElement>document.querySelector('input[max="qtmax"]');
+    max.setAttribute("max", '1');
+
+    var field = <HTMLInputElement>document.querySelector('input[value="qtval"]');
+    field.value = '0' ;
+    
+    let nascondi = document.getElementsByClassName("show") as HTMLCollectionOf<HTMLElement>;
+    for (var k=0; k < nascondi.length; k++) {
+      nascondi[k].style.display = 'none';
+    }
+  }
+
+
+
 }

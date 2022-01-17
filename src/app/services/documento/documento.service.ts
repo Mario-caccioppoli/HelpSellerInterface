@@ -14,7 +14,11 @@ export class DocumentoService {
   constructor(private http: HttpClient) { }
 
   public getAllDocumento(): Observable<Documento[]> {
-    return this.http.get<Documento[]>(`${this.apiServerUrl}/findAll`);
+    return this.http.get<Documento[]>(`${this.apiServerUrl}/findAll/`);
+  }
+
+  public getDocumentiByIdOrder(OrdineID: number): Observable<Documento[]> {
+    return this.http.get<Documento[]>(`${this.apiServerUrl}/findDocumentiByOrdine/${OrdineID}`);
   }
 
   public findById(DocumentoID : number): Observable<Documento> {

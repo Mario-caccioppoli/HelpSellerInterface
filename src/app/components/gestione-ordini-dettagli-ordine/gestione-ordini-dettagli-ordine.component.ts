@@ -3,7 +3,6 @@ import { LogService } from 'src/app/services/log.service';
 
 import { OrdineProdotto } from 'src/app/models/OrdineProdotto';
 import { OrdineProdottoService } from 'src/app/services/ordine-prodotto/ordine-prodotto.service';
-
 import { Prodotto } from 'src/app/models/Prodotto';
 import { Ordine } from 'src/app/models/Ordine';
 
@@ -24,8 +23,11 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
   azienda: Azienda;
   ordineProdotto: OrdineProdotto;
   ordineProdottoArr: OrdineProdotto[];
-  prodotto: Prodotto;
   ordine: Ordine;
+
+  quantitaTotale: number = 0;
+  priceImponibile: number = 0;
+  priceTotale: number = 0;
 
   constructor(private os: OrdineProdottoService, private ds: DistributoreService, private log: LogService) { }
 
@@ -33,7 +35,6 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
    this.getProdottiOrdine();
    this.getInfoOrdine();
    this.getNotaRiepilogo();
-   this.documentiFunction();
   }
 
   getProdottiOrdine() {
@@ -93,51 +94,9 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
           this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
 
           var arrProdotti: OrdineProdotto[];
-          var quantitaTotale = 0;
 
           arrProdotti.forEach( orderProduct => {
-            quantitaTotale += orderProduct.quantitaOrdine;
-          });
-
-          this.ordineProdottoArr = success as OrdineProdotto[];
-        },
-
-        (error) => {
-          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
-        }
-      )
-    }
-  }
-
-  documentiFunction() { //todo
-    if(this.ordineProdotto != undefined)
-    {
-      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
-        (success) => {
-          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-
-          this.ordineProdotto = success as OrdineProdotto;
-        },
-
-        (error) => {
-          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
-        }
-      )
-    }
-  }
-
-  getAllOrdinePrice() {
-    if(this.ordine != undefined)
-    {
-      this.os.findDettagliOrdine(this.ordine.id).subscribe(
-        (success) => {
-          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-
-          var arrProdotti: OrdineProdotto[];
-          var quantitaTotale = 0;
-
-          arrProdotti.forEach( orderProduct => {
-            quantitaTotale += orderProduct.prezzoUnitario;
+            this.quantitaTotale += orderProduct.quantitaOrdine;
           });
 
           this.ordineProdottoArr = success as OrdineProdotto[];
@@ -158,7 +117,8 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
           this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
 
           var vatD = this.distributore.vat;
-          var vatA= this.azienda.vat;
+          var vatA = this.azienda.vat;
+          var vat: number = 0;
 
           this.ordineProdotto = success as OrdineProdotto;
         },
@@ -170,6 +130,34 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     }
   }
 
+  getAllOrdinePrice() {
+    if(this.ordine != undefined)
+    {
+      this.os.findDettagliOrdine(this.ordine.id).subscribe(
+        (success) => {
+          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
+
+          var arrProdotti: OrdineProdotto[];
+
+          arrProdotti.forEach( orderProduct => {
+            this.priceImponibile += orderProduct.prezzoUnitario;
+          });
+
+          var vatPerc = this.getVatOrdine();
+
+        //  var priceTotale = priceImponibile * vatPerc/100;
+
+          this.ordineProdottoArr = success as OrdineProdotto[];
+        },
+
+        (error) => {
+          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
+        }
+      )
+    }
+  }
+
+  
 
         // var vat = this.os.getVatOrdinePerc(ordnumber); aggiungere funzionalità
         // var prezzoTotale = prezzoImponibile * vat/100;

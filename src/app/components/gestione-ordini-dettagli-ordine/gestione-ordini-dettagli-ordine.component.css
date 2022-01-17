@@ -83,3 +83,8 @@
 li.page-item {
     width: 60px;
 }
+
+.dispx4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}

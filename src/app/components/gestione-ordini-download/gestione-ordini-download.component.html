@@ -1,15 +1,16 @@
 <div class="row document">
-    <div class="col-lg-3">
+    <div class="col-lg-auto" *ngFor='let doc of documentoArray'>
         <button class="btn btn-primary"><i class="fa fa-download fa-3x" aria-hidden="true"></i>
-        <p><br>Documento di Trasporto</p>
+            {{doc.id}}
+        <p><br>{{doc.titolo}}</p>
         </button>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-auto">
         <button class="btn btn-primary"><i class="fa fa-download fa-3x" aria-hidden="true"></i>
         <p><br>Garanzia di consegna</p>
         </button>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-auto">
         <button class="btn btn-primary"><i class="fa fa-download fa-3x" aria-hidden="true"></i>
         <p><br>Norme Anti SARS-COV19</p>
         </button>

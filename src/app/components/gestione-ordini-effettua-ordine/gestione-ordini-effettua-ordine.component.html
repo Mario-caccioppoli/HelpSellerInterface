@@ -9,8 +9,8 @@
             <div class="row eqi-container">
                 <div class="col-lg-3 product">
                     <div class="form-check form-check-inline onorder hide">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="99999" name="quantity" value="0" title="Qt" size="4" inputmode="numeric">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" (onchange)="enableQty()">
+                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="qtmax" name="quantity" value="qtval" title="Qt" size="4" inputmode="numeric" disabled>
                     </div>
                     <img class="img-product" src="assets/img/gillette.jpg" />
                     <div class="downspec">
@@ -22,7 +22,7 @@
                 <div class="col-lg-3 product">
                     <div class="form-check form-check-inline onorder hide">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="99999" name="quantity" value="0" title="Qt" size="4" inputmode="numeric">
+                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="qtmax" name="quantity" value="qtval" title="Qt" size="4" inputmode="numeric">
                     </div>
                     <img class="img-product" src="assets/img/dixan.jpg" />
                     <div class="downspec">
@@ -34,7 +34,7 @@
                 <div class="col-lg-3 product">
                     <div class="form-check form-check-inline onorder hide">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="99999" name="quantity" value="0" title="Qt" size="4" inputmode="numeric">
+                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="qtmax" name="quantity" value="qtval" title="Qt" size="4" inputmode="numeric">
                     </div>
                     <img class="img-product" src="assets/img/proraso.jpg" />
                     <div class="downspec">
@@ -46,7 +46,7 @@
                 <div class="col-lg-3 product">
                     <div class="form-check form-check-inline onorder hide">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="99999" name="quantity" value="0" title="Qt" size="4" inputmode="numeric">
+                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="qtmax" name="quantity" value="qtval" title="Qt" size="4" inputmode="numeric">
                     </div>
                     <img class="img-product" src="assets/img/dixan.jpg" />
                     <div class="downspec">
@@ -60,7 +60,7 @@
                 <div class="col-lg-3 product">
                     <div class="form-check form-check-inline onorder hide">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="99999" name="quantity" value="0" title="Qt" size="4" inputmode="numeric">
+                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="qtmax" name="quantity" value="qtval" title="Qt" size="4" inputmode="numeric">
                     </div>
                     <img class="img-product" src="assets/img/dixan.jpg" />
                     <div class="downspec">
@@ -72,7 +72,7 @@
                 <div class="col-lg-3 product">
                     <div class="form-check form-check-inline onorder hide">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="99999" name="quantity" value="0" title="Qt" size="4" inputmode="numeric">
+                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="qtmax" name="quantity" value="qtval" title="Qt" size="4" inputmode="numeric">
                     </div>
                     <img class="img-product" src="assets/img/proraso.jpg" />
                     <div class="downspec">
@@ -84,7 +84,7 @@
                 <div class="col-lg-3 product">
                     <div class="form-check form-check-inline onorder hide">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="99999" name="quantity" value="0" title="Qt" size="4" inputmode="numeric">
+                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="qtmax" name="quantity" value="qtval" title="Qt" size="4" inputmode="numeric">
                     </div>
                     <img class="img-product" src="assets/img/dixan.jpg" />
                     <div class="downspec">
@@ -96,7 +96,7 @@
                 <div class="col-lg-3 product">
                     <div class="form-check form-check-inline onorder hide">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="99999" name="quantity" value="0" title="Qt" size="4" inputmode="numeric">
+                        <input type="number" id="qtaprod" class="input-text qty" step="1" min="0" max="qtmax" name="quantity" value="qtval" title="Qt" size="4" inputmode="numeric">
                     </div>
                     <img class="img-product" src="assets/img/gillette.jpg" />
                     <div class="downspec">
@@ -110,7 +110,7 @@
         <div class="row show">
             <button class="btn btn-primary ordbutton" (click)="startCart()">Effettua un ordine</button>
             <p style="margin:0"><b>oppure</b></p>
-            <button class="btn btn-primary ordbutton" (click)="startCart()">Richiedi un campione prova gratuito</button>
+            <button class="btn btn-primary ordbutton" (click)="startSample()">Richiedi un campione prova gratuito</button>
         </div>
         <div class="row">
             <button class="btn btn-secondary prevnext hide" (click)="exitCart()">Annulla</button>

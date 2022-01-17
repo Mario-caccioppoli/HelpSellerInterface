@@ -1,4 +1,7 @@
+import { Prodotto } from "./Prodotto";
+import { Sconto } from "./Sconto";
+
 export interface ScontoProdotto{
-    idSconto: number;
-    idProdotto: number;
+    prodotto: Prodotto;
+    sconto: Sconto;
 }

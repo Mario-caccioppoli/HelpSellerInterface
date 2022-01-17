@@ -1,3 +1,6 @@
+import { Ordine } from "./Ordine";
+import { Prodotto } from "./Prodotto";
+
 export interface Azienda{
     id: number;
     email: string;
@@ -7,4 +10,6 @@ export interface Azienda{
     indirizzo: string;
     descrizione: string;
     logo: string;
+    prodotti: Prodotto[];
+    ordini: Ordine[];
 }

@@ -9,7 +9,9 @@ import { LogService } from 'src/app/services/log.service';
   styleUrls: ['./visualizza-aziende.component.css']
 })
 export class VisualizzaAziendeComponent implements OnInit {
-  aziende: Azienda[]
+  aziende: Azienda[];
+  prove: Azienda[];
+  ricercaAziendaByNome: string;
   constructor(private aziendaService: AziendaService, private log: LogService) { }
 
   ngOnInit(): void {
@@ -28,5 +30,23 @@ export class VisualizzaAziendeComponent implements OnInit {
     )
 
   }
+  ricercaConSidebar(form){
+    if(form.searchbar==''){
+      this.getAllAziende()
+    }
+    else{
+    this.aziendaService.findAziendeByName(form.searchbar).subscribe(
+      (resp)=>{
+        this.log.Debug(VisualizzaAziendeComponent.name,"chiamata a back-end",resp);
+        this.aziende = resp as Azienda[];
+        console.log(resp)
+      },
+      (error)=>{
+        this.log.Error(VisualizzaAziendeComponent.name,"chiamata a back-end",[error]);
+      }
+    )
+    }
+  }
+
 
 }

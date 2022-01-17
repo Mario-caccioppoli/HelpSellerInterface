@@ -12,6 +12,7 @@ import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 export class VisualizzaProdottiComponent implements OnInit {
   idAzienda: number;
   prodotti : Prodotto[];
+  ricercaProdottoByNome: any;
   constructor(private prodottoService : ProdottoService,private route: ActivatedRoute,private log : LogService) { }
 
   ngOnInit(): void {
@@ -52,6 +53,26 @@ export class VisualizzaProdottiComponent implements OnInit {
         this.log.Error(VisualizzaProdottiComponent.name,"chiamata a back-end",[error]);
       }
     )
+  }
+
+  ricercaConSidebar(form){
+    if(form.searchbar==''){
+      this.getProdottiByIdAzienda();
+    }
+    else{
+    console.log(this.idAzienda)
+    console.log(form.searchbar)
+    this.prodottoService.findProdottiByNomeInAzienda(form.searchbar,this.idAzienda).subscribe(
+      (resp)=>{
+        this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",resp);
+        this.prodotti = resp as Prodotto[];
+        console.log(resp)
+      },
+      (error)=>{
+        this.log.Error(VisualizzaProdottiComponent.name,"chiamata a back-end",[error]);
+      }
+    )
+    }
   }
 
 }

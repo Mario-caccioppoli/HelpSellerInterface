@@ -1,3 +1,5 @@
+import { Documento } from "./Documento";
+
 export interface Ordine{
     id: number;
     dataOrdinazione: Date;
@@ -6,4 +8,6 @@ export interface Ordine{
     stato: string;
     idDistributore: number;
     idOrdineProva: number;
+    documento: Documento;
+    prezzoTotale: number;
 }

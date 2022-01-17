@@ -1,3 +1,5 @@
+import { Prodotto } from "./Prodotto";
+
 export interface Sconto{
     id: number;
     percentuale: number;
@@ -6,4 +8,5 @@ export interface Sconto{
     tipo: string;
     quantita: number;
     idAzienda: number;
+    prodotti: Prodotto[];
 }

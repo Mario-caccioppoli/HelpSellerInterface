@@ -1,3 +1,4 @@
+import { parseI18nMeta } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Azienda } from 'src/app/models/Azienda';
@@ -21,11 +22,12 @@ export class ProfiloAziendaComponent implements OnInit {
     }
 
   prendiIdDalRouter() {
-    if (this.route.paramMap != undefined && this.route.paramMap != null) {
-      this.route.paramMap.subscribe(params =>
-        this.idAzienda = 5
+    //if (this.route.paramMap != undefined && this.route.paramMap != null) {
+      this.route.paramMap.subscribe(params =>{
+        this.idAzienda = Number(params.get('id'));//5
+        }
       )
-    }
+    //}
   }
 
 

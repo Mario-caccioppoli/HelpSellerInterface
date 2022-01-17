@@ -22,7 +22,8 @@
             <p class="paragrafo left">asdasdasdad lorem ipsum a cas</p>
             <h5 class="m25 left"><b><!--{{azienda.descrizione}}-->Descrizione</b></h5>
             <p class="paragrafo left">asdasdasdad lorem ipsum a uardat</p>
-            <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Visualizza Prodotti</a></button>
+            <button class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', idAzienda]">Visualizza Prodotti</a></button>
+            <!-- <div>*ngIf="azienda != undefined && azienda.id != undefined"</div> -->
         </div>
     </div>
 </div>

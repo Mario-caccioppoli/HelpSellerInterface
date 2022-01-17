@@ -1,3 +1,5 @@
+import { Ordine } from "./Ordine";
+
 export interface Distributore{
     id: number;
     username: string;
@@ -9,4 +11,5 @@ export interface Distributore{
     telefono: number;
     indirizzoSede: string;
     idOrdineProva: number;
+    ordini: Ordine[];
 }

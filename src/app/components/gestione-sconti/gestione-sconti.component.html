@@ -4,7 +4,7 @@
         <td class="table-light">Tipo</td>
     </tr>
     <tr class="table-light ">
-        <td class="table-light"><input type="text" placeholder="Nome"></td>
+        <td class="table-light"><input type="text" [(ngModel)]="filtroNome" (change)="findProdottiScontati()" placeholder="Nome Prodotto"></td>
         <td class="table-light">
             <select name="filtro" id="filtroSelect" [(ngModel)]="filtroSelect" (change)="getAllScontiByTipo()">
                 <option value="tutti">Tutti</option>
@@ -26,8 +26,9 @@
             <td class="table-light">n° prodotti</td>
             <td class="table-light">Azioni</td>
         </tr>
+        <div *ngFor="let prodotto of prodotti">{{prodotto.nomeProdotto}}</div>
         <tr class="table-light lista" *ngFor="let sconto of sconti">
-            <td class="table-light">Nome Prodotto</td>
+            <td class=" table-light">Nome prodotto</td>
             <td class="table-light">{{sconto.tipo}}</td>
             <td class="table-light">{{sconto.quantita}}</td>
             <td class="table-light"><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaSconto"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
@@ -37,19 +38,19 @@
 </div>
 
 <!-- MODAL_TRASH -->
-<div class="modal fade" id="trash" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ATTENZIONE !</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade " id="trash " tabindex="-1 " aria-labelledby="exampleModalLabel " aria-hidden="true ">
+    <div class="modal-dialog ">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="exampleModalLabel ">ATTENZIONE !</h5>
+                <button type="button " class="btn-close " data-bs-dismiss="modal " aria-label="Close "></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body ">
                 VUOI CANCELLARE LO SCONTO ?
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                <button type="button" (click)="cancellaSconto(sconto.id)" class="btn btn-primary">Cancella</button>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary " data-bs-dismiss="modal ">Annulla</button>
+                <button type="button " (click)="cancellaSconto(sconto.id) " class="btn btn-primary ">Cancella</button>
             </div>
         </div>
     </div>
@@ -68,7 +69,7 @@
 <div class="modal fade" id="modificaSconto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="form-control" #modelModificaSconto="ngForm" (ngSubmit)="modificaSconto(modelModificaSconto.value)">
+            <form class="form-control" #modelModificaSconto="ngForm" (ngSubmit)="modificaSconto(modelModificaSconto.value) ">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modifica Sconto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -77,9 +78,9 @@
                     <div class="modal-body">
                         <div class="modal-body">
                             <p><b>Nome Prodotto</b></p>
-                            <input type="text " name="nome" ngModel placeholder="inserisci nome sconto"><br>
+                            <input type="text" name="nome" ngModel placeholder="inserisci nome sconto "><br>
                             <p><b>tipo</b></p>
-                            <select name="tipo" [(ngModel)]="selectFromModel">
+                            <select name="tipo" [(ngModel)]="selectFromModel ">
                                 <option value="catalogo">Catalogo</option>
                                 <option value="quantita">Quantità</option>
                             </select>
@@ -93,7 +94,7 @@
                             <p><b>Data Fine</b></p>
                             <input type="date" ngModel name="dataFine"><br>
                             <p><b>Percentuale</b></p>
-                            <input type="text" ngModel name="percentuale" placeholder="inserisci percentuale"><br><br>
+                            <input type="text" ngModel name="percentuale" placeholder="inserisci percentuale "><br><br>
                         </div>
                     </div>
                 </div>
@@ -116,7 +117,7 @@
 <div class="modal fade" id="aggiungiSconto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="form-control" #modelAggiungiSconto="ngForm" (ngSubmit)="aggiungiSconto(modelAggiungiSconto.value)">
+            <form class="form-control" #modelAggiungiSconto="ngForm" (ngSubmit)="aggiungiSconto(modelAggiungiSconto.value) ">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Aggiungi Sconto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -125,9 +126,9 @@
                     <div class="modal-body">
                         <div class="modal-body">
                             <p><b>Nome Prodotto</b></p>
-                            <input type="text " name="nome" ngModel placeholder="inserisci nome sconto"><br>
+                            <input type="text" name="nome" ngModel placeholder="inserisci nome sconto"><br>
                             <p><b>tipo</b></p>
-                            <select name="tipo" [(ngModel)]="selectFromModel">
+                            <select name="tipo" [(ngModel)]="selectFromModel ">
                                 <option value="catalogo">Catalogo</option>
                                 <option value="quantita">Quantità</option>
                             </select>
@@ -139,9 +140,9 @@
                             <p><b>Data Inizio</b></p>
                             <input type="date" ngModel name="dataInizio"><br>
                             <p><b>Data Fine</b></p>
-                            <input type="date" ngModel name="dataFine"><br>
+                            <input type="date " ngModel name="dataFine"><br>
                             <p><b>Percentuale</b></p>
-                            <input type="text" ngModel name="percentuale" placeholder="inserisci percentuale"><br><br>
+                            <input type="text " ngModel name="percentuale" placeholder="inserisci percentuale"><br><br>
                         </div>
                     </div>
                 </div>

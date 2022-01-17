@@ -55,13 +55,14 @@ export class VisualizzaProdottiComponent implements OnInit {
     )
   }
 
-  ricercaConSidebar(){
-    if(this.ricercaProdottoByNome==null){
-      this.getAllProdotti();
+  ricercaConSidebar(form){
+    if(form.searchbar==''){
+      this.getProdottiByIdAzienda();
     }
     else{
-    console.log(this.ricercaProdottoByNome)
-    this.prodottoService.getProdottiByNomeInAzienda(this.ricercaProdottoByNome,this.idAzienda).subscribe(
+    console.log(this.idAzienda)
+    console.log(form.searchbar)
+    this.prodottoService.findProdottiByNomeInAzienda(form.searchbar,this.idAzienda).subscribe(
       (resp)=>{
         this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",resp);
         this.prodotti = resp as Prodotto[];

@@ -1,11 +1,15 @@
 <div class="scroll">
     <div class="container">
-        <div class="searchbarContainer"><input type="text" class="searchbar" [(ngModel)]="ricercaProdottoByNome" (keyup)="ricercaConSidebar()" placeholder="cerca prodotto"><button><i class="fas fa-search"></i></button></div>
-        <div class="row">
-            <div *ngFor="let prodotto of prodotti" class="col">
-                <a href="">
-                    <div class="prodottiContainer">
-                        <img src="assets/icons/Logo.png" alt="FOTO PRODOTTO">
+        <form #form="ngForm" (ngSubmit)="ricercaConSidebar(form.value)">
+            <div class="searchbarContainer">
+                <input type="text" class="searchbar" id="searchbar" name="searchbar" ngModel placeholder="cerca prodotto "><button type="submit"><i class="fas fa-search "></i></button>
+            </div>
+        </form>
+        <div class="row ">
+            <div *ngFor="let prodotto of prodotti " class="col ">
+                <a href=" ">
+                    <div class="prodottiContainer ">
+                        <img src="assets/icons/Logo.png " alt="FOTO PRODOTTO ">
                         <div>{{prodotto.nomeProdotto}}</div>
                         <div>{{prodotto.descrizione}}</div>
                         <div>{{prodotto.prezzo}} €</div>

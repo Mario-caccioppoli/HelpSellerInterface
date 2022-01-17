@@ -1,7 +1,7 @@
 <div class="container scroll">
-    <!-- <form #searchbar="ngForm" (ngSubmit)="ricercaConSidebar(searchbar.value)"> -->
-    <div class="searchbarContainer"><input type="text" name="searchbar" [(ngModel)]="ricercaAziendaByNome" (keyup)="ricercaConSidebar()" class="searchbar" placeholder="cerca azienda"><button type="submit"><i class="fas fa-search"></i></button></div>
-    <!-- </form> -->
+    <form #searchbar="ngForm" (ngSubmit)="ricercaConSidebar(searchbar.value)">
+        <div class="searchbarContainer"><input type="text" id="searchbar" name="searchbar" ngModel class="searchbar" placeholder="cerca azienda"><button type="submit"><i class="fas fa-search"></i></button></div>
+    </form>
     <div class="row">
         <div *ngFor="let azienda of aziende" class="col">
             <a [routerLink]="['/profiloAzienda' ,azienda.id] ">

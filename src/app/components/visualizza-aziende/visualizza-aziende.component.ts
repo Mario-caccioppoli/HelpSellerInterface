@@ -30,13 +30,12 @@ export class VisualizzaAziendeComponent implements OnInit {
     )
 
   }
-  ricercaConSidebar(){
-    if(this.ricercaAziendaByNome==null){
-      this.getAllAziende();
+  ricercaConSidebar(form){
+    if(form.searchbar==''){
+      this.getAllAziende()
     }
     else{
-    console.log(this.ricercaAziendaByNome)
-    this.aziendaService.findAziendeByName(this.ricercaAziendaByNome).subscribe(
+    this.aziendaService.findAziendeByName(form.searchbar).subscribe(
       (resp)=>{
         this.log.Debug(VisualizzaAziendeComponent.name,"chiamata a back-end",resp);
         this.aziende = resp as Azienda[];
@@ -48,5 +47,6 @@ export class VisualizzaAziendeComponent implements OnInit {
     )
     }
   }
+
 
 }

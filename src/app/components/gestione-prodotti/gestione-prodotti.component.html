@@ -2,12 +2,10 @@
     <tr class="table-light ">
         <td class="table-light ">Codice</td>
         <td class="table-light ">Nome</td>
-        <td class="table-light ">Azienda</td>
     </tr>
     <tr class="table-light ">
-        <td class="table-light "><input type="text " placeholder="Inserisci Codice "></td>
-        <td class="table-light "><input type="text " placeholder="Inserisci Nome "></td>
-        <td class="table-light "><input type="text " placeholder="Inserisci Azienda "></td>
+        <td class="table-light"><input type="text" id="filtroCodice" [(ngModel)]="filtroCodice" (ngModelChange)="changeCodice()" placeholder="Inserisci Codice "></td>
+        <td class="table-light"><input type="text" id="filtroNome" [(ngModel)]="filtroNome" (ngModelChange)="changeNome()" placeholder="Inserisci Nome "></td>
     </tr>
 </table>
 
@@ -19,14 +17,12 @@
         <tr class="table-light ">
             <td class="table-light ">Codice</td>
             <td class="table-light ">Nome</td>
-            <td class="table-light ">Azienda</td>
             <td class="table-light ">Prezzo</td>
             <td class="table-light ">Azioni</td>
         </tr>
         <tr class="table-light lista" *ngFor="let prodotto of prodotti">
             <td class="table-light ">{{prodotto.id}}</td>
             <td class="table-light ">{{prodotto.nomeProdotto}}</td>
-            <td class="table-light ">{{prodotto.idAzienda}}</td>
             <td class="table-light ">{{prodotto.prezzo}} €</td>
             <td class="table-light "><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaProdotto"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
                 <button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#eliminaProdotto" (click)="this.idProdottoEliminare=prodotto.id"><i class="fas fa-trash-alt"></i></button>

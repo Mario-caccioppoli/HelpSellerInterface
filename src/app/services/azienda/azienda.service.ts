@@ -33,6 +33,9 @@ export class AziendaService {
     return this.http.put<Azienda>(`${this.apiServerUrl}/update`, Azienda);
   }
   public findAziendeByName(nomeAzienda: string): Observable<Azienda[]>{
-    return this.http.get<Azienda[]>(`${this.apiServerUrl}/findAziendeByNome/${nomeAzienda}`);
+    return this.http.get<Azienda[]>(`${this.apiServerUrl}/findAziendaByNome/${nomeAzienda}`);
+  }
+  public findAziendaByProdotto(id: number) : Observable<Azienda>{
+    return this.http.get<Azienda>(`${this.apiServerUrl}/findAziendaByProdotto/${id}`)
   }
 }

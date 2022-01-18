@@ -30,6 +30,6 @@ export class DistributoreService {
   }
 
   public updateDistributore(Distributore: Distributore): Observable<Distributore> {
-    return this.http.put<Distributore>(`${this.apiServerUrl}/update`, Distributore);
+    return this.http.post<Distributore>(`${this.apiServerUrl}/update`, Distributore);
   }
 }

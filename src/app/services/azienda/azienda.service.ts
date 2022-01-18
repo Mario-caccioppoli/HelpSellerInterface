@@ -30,7 +30,7 @@ export class AziendaService {
   }
 
   public updateAzienda(Azienda: Azienda): Observable<Azienda> {
-    return this.http.put<Azienda>(`${this.apiServerUrl}/update`, Azienda);
+    return this.http.post<Azienda>(`${this.apiServerUrl}/update`, Azienda);
   }
   public findAziendeByName(nomeAzienda: string): Observable<Azienda[]>{
     return this.http.get<Azienda[]>(`${this.apiServerUrl}/findAziendaByNome/${nomeAzienda}`);

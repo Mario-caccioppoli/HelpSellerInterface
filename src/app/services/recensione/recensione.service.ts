@@ -30,6 +30,6 @@ export class RecensioneService {
   }
 
   public updateRecensione(Recensione: Recensione): Observable<Recensione> {
-    return this.http.put<Recensione>(`${this.apiServerUrl}/update`, Recensione);
+    return this.http.post<Recensione>(`${this.apiServerUrl}/update`, Recensione);
   }
 }

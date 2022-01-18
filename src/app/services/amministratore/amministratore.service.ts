@@ -30,7 +30,7 @@ export class AmministratoreService {
   // }
 
   public updateAmministratore(amministratore: Amministratore): Observable<Amministratore> {
-    return this.http.put<Amministratore>(`${this.apiServerUrl}/update`, amministratore);
+    return this.http.post<Amministratore>(`${this.apiServerUrl}/update`, amministratore);
   }
   
   

@@ -39,6 +39,6 @@ export class OrdineService {
   }
 
   public updateOrdine(Ordine: Ordine): Observable<Ordine> {
-    return this.http.put<Ordine>(`${this.apiServerUrl}/update`, Ordine);
+    return this.http.post<Ordine>(`${this.apiServerUrl}/update`, Ordine);
   }
 }

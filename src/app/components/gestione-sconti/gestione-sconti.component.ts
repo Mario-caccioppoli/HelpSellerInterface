@@ -22,6 +22,8 @@ export class GestioneScontiComponent implements OnInit {
   prodotto: Prodotto;
   prodotti: Prodotto[];
   idAzienda:number;
+  idScontoDaModificare:number;
+  idScontoDaEliminare:number;
 
   constructor(private scontoService: ScontoService,private scontoProdottoService: ScontoProdottoService
     ,private prodottoService: ProdottoService, private log: LogService) {
@@ -87,7 +89,7 @@ export class GestioneScontiComponent implements OnInit {
       this.getAllScontiByAzienda()
     }
     else{
-    this.scontoService.getAllScontoByTipo(this.filtroSelect).subscribe(
+    this.scontoService.getAllScontoByTipoAndIdAzienda(this.filtroSelect,3).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
         this.sconti = resp as Sconto[];
@@ -100,22 +102,21 @@ export class GestioneScontiComponent implements OnInit {
   }
   
   aggiungiSconto(form){
-    this.sconto={
-      id:null,
+    var newSconto = {
       nomeSconto:form.nome,
       percentuale: form.percentuale,
       dataInizio: form.dataInizio,
       dataFine: form.dataFine,
       tipo: this.selectFromModel,
-      quantita: form.quantita,
-      idAzienda: 1,
-      prodotti: null
-    };
-    
-      this.scontoService.insertSconto(this.sconto).subscribe(
+      idAzienda: 3
+    }
+
+      this.scontoService.insertSconto(newSconto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
-          //this.prodotto = resp as Prodotto;
+          let model=document.getElementById("aggiungiSconto").click();
+          this.sconto = resp as Sconto;
+          this.getAllScontiByAzienda()
         },
         (error)=>{
           this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
@@ -125,22 +126,24 @@ export class GestioneScontiComponent implements OnInit {
 
 
   modificaSconto(form){
+    console.log("id sconto "+this.idScontoDaModificare)
     this.sconto={
-      id:null,
+      id:this.idScontoDaModificare,
       nomeSconto:form.nome,
       percentuale: form.percentuale,
       dataInizio: form.dataInizio,
       dataFine: form.dataFine,
       tipo: this.selectFromModel,
       quantita: form.quantita,
-      idAzienda: 1,
-      prodotti: null
+      idAzienda: 3,
     };
     
       this.scontoService.updateSconto(this.sconto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
-          //this.prodotto = resp as Prodotto;
+          let model=document.getElementById("modificaSconto").click();
+          this.sconto = resp as Sconto;
+          this.getAllScontiByAzienda()
         },
         (error)=>{
           this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
@@ -149,6 +152,7 @@ export class GestioneScontiComponent implements OnInit {
   }
 
   cancellaSconto(id){
+    console.log(this.idScontoDaEliminare)
     this.scontoService.deleteSconto(id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
@@ -164,17 +168,21 @@ export class GestioneScontiComponent implements OnInit {
     )
 
   }
-   findProdottiScontati(){
-       console.log(this.filtroNome)
-       this.scontoProdottoService.findProdottiScontatiAzienda(this.filtroNome,this.idAzienda).subscribe(
+   findByNomeSconto(){//prendere id azienda dalla login
+    if(this.filtroNome==''){
+      this.getAllScontiByAzienda()
+    }
+    else{
+       this.scontoService.findScontiByNomeInAzienda(this.filtroNome,3).subscribe(
          (resp)=>{
            this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
-           //this.prodotti = resp as Prodotto[];
+           this.sconti = resp as Sconto[];
          },
          (error)=>{
            this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
          }
        )
+     }
    }
   
 }

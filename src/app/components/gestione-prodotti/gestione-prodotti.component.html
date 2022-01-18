@@ -1,9 +1,9 @@
 <table class="table table-borderless">
-    <tr class="table-light ">
-        <td class="table-light ">Codice</td>
-        <td class="table-light ">Nome</td>
+    <tr class="table-light">
+        <td class="table-light">Codice</td>
+        <td class="table-light">Nome</td>
     </tr>
-    <tr class="table-light ">
+    <tr class="table-light">
         <td class="table-light"><input type="text" id="filtroCodice" [(ngModel)]="filtroCodice" (ngModelChange)="changeCodice()" placeholder="Inserisci Codice "></td>
         <td class="table-light"><input type="text" id="filtroNome" [(ngModel)]="filtroNome" (ngModelChange)="changeNome()" placeholder="Inserisci Nome "></td>
     </tr>
@@ -14,17 +14,17 @@
 
 <div class="scrolla">
     <table class="table table-borderless">
-        <tr class="table-light ">
-            <td class="table-light ">Codice</td>
-            <td class="table-light ">Nome</td>
-            <td class="table-light ">Prezzo</td>
-            <td class="table-light ">Azioni</td>
+        <tr class="table-light">
+            <td class="table-light">Codice</td>
+            <td class="table-light">Nome</td>
+            <td class="table-light">Prezzo</td>
+            <td class="table-light">Azioni</td>
         </tr>
         <tr class="table-light lista" *ngFor="let prodotto of prodotti">
-            <td class="table-light ">{{prodotto.id}}</td>
-            <td class="table-light ">{{prodotto.nomeProdotto}}</td>
-            <td class="table-light ">{{prodotto.prezzo}} €</td>
-            <td class="table-light "><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaProdotto"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
+            <td class="table-light">{{prodotto.id}}</td>
+            <td class="table-light">{{prodotto.nomeProdotto}}</td>
+            <td class="table-light">{{prodotto.prezzo}} €</td>
+            <td class="table-light"><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaProdotto" (click)="this.idProdottoDaModificare=prodotto.id"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
                 <button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#eliminaProdotto" (click)="this.idProdottoEliminare=prodotto.id"><i class="fas fa-trash-alt"></i></button>
                 <!-- <button type="button" class="btn btn-primary pulsanti"><i class="fas fa-sticky-note" ></i></button> -->
             </td>
@@ -82,20 +82,20 @@
                                 <textarea name="descrizione" ngModel id=" " cols="30" rows="5"></textarea>
                                 <br>
                                 <div><b>Quantità</b></div>
-                                <input type="text" name="quantita" ngModel placeholder="inserisci quantita "><br><br>
+                                <input type="number" name="quantita" ngModel placeholder="inserisci quantita "><br><br>
                                 <p><b>Peso</b></p>
-                                <input type="text" name="peso" ngModel placeholder=" inserisci peso"><br>
+                                <input type="number" name="peso" ngModel placeholder=" inserisci peso"><br>
                                 <p><b>Volume</b></p>
-                                <input type="text" name="volume" ngModel placeholder="inserisci volume"><br>
+                                <input type="number" name="volume" ngModel placeholder="inserisci volume"><br>
                                 <p><b>Prezzo</b></p>
-                                <input type="text" name="prezzo" ngModel placeholder="inserisci prezzo"><br><br>
+                                <input type="number" name="prezzo" ngModel placeholder="inserisci prezzo"><br><br>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <button type="submit" class="btn btn-primary">Modifica</button>
+                    <button type="submit" class="btn btn-primary" (click)="modificaProdotto(this.idProdottoDaModificare)">Modifica</button>
                 </div>
             </form>
         </div>
@@ -125,19 +125,19 @@
                                 <textarea name="descrizione" ngModel id=" " cols="30 " rows="5 "></textarea>
                                 <br><br>
                                 <div><b>Quantità</b></div>
-                                <input type="text" name="quantita" ngModel placeholder="inserisci quantita "><br><br>
+                                <input type="number" name="quantita" ngModel placeholder="inserisci quantita "><br><br>
                                 <div><b>Peso</b></div>
-                                <input type="text" name="peso" ngModel placeholder="inserisci peso "><br><br>
+                                <input type="number" name="peso" ngModel placeholder="inserisci peso "><br><br>
                                 <div><b>Volume</b></div>
-                                <input type="text" name="volume" ngModel placeholder="inserisci volume "><br><br>
+                                <input type="number" name="volume" ngModel placeholder="inserisci volume "><br><br>
                                 <div><b>Prezzo</b></div>
-                                <input type="text" name="prezzo" ngModel placeholder="inserisci prezzo "><br><br>
+                                <input type="number" name="prezzo" ngModel placeholder="inserisci prezzo "><br><br>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="modal-footer ">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
                     <button type="submit" class="btn btn-primary">Aggiungi Prodotto</button>
                 </div>

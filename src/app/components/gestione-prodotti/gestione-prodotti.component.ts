@@ -15,9 +15,12 @@ export class GestioneProdottiComponent implements OnInit {
   prodotto: Prodotto;
   azienda: Azienda;
   idAzienda: number;
-  idProdottoEliminare: number;
+  
   filtroCodice: string;
   filtroNome: string;
+
+  idProdottoDaModificare:number;
+  idProdottoEliminare: number;
 
   constructor(private prodottoService: ProdottoService,private aziendaService: AziendaService ,private log: LogService ) { }
 
@@ -48,17 +51,17 @@ export class GestioneProdottiComponent implements OnInit {
   }
   aggiungiProdotto(form){
     this.prodotto={
-      id:15,
       nomeProdotto: form.nome,
       prezzo: form.prezzo,
       descrizione: form.descrizione,
       quantita: form.quantita,
       immagine: "immagine",
-      quantitaMinima:null,
+      quantitaMinima:99,
       peso: form.peso,
       volume: form.volume,
       idAzienda: 1,
-      recensioni:null}; //prendere id azienda
+      }; //prendere id azienda
+
 
       console.log(this.prodotto);
 
@@ -67,6 +70,7 @@ export class GestioneProdottiComponent implements OnInit {
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
           this.prodotto = resp as Prodotto;
           let model=document.getElementById("aggiungiProdotto").click();
+          this.getProdottiByIdAzienda()
         },
         (error)=>{
           this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
@@ -75,7 +79,7 @@ export class GestioneProdottiComponent implements OnInit {
   }
   modificaProdotto(form){
     this.prodotto={
-      id:null,
+      id:this.idProdottoDaModificare,
       nomeProdotto: form.nome,
       prezzo: form.prezzo,
       descrizione: form.descrizione,
@@ -84,15 +88,15 @@ export class GestioneProdottiComponent implements OnInit {
       quantitaMinima:null,
       peso: form.peso,
       volume: form.volume,
-      idAzienda: 1,
-      recensioni: null};//prendere id azienda
-      console.log(this.prodotto);
+      idAzienda: 1
+      };//prendere id azienda
 
-      this.prodottoService.insertProdotto(this.prodotto).subscribe(
+      this.prodottoService.updateProdotto(this.prodotto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
           this.prodotto = resp as Prodotto;
           let model=document.getElementById("modificaProdotto").click();
+          this.getProdottiByIdAzienda()
         },
         (error)=>{
           this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
@@ -138,7 +142,7 @@ export class GestioneProdottiComponent implements OnInit {
 
   changeNome(){
     if(this.filtroNome==''){
-      //this.getProdottiByIdAzienda()
+      this.getProdottiByIdAzienda()
     }
     else{
     //non arriva this.idAzienda lo prendiamo dall'user session

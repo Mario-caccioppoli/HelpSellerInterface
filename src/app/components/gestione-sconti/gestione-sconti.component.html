@@ -21,14 +21,13 @@
 <div class="scrolla">
     <table class="table table-borderless">
         <tr class="table-light">
-            <td class="table-light">Nome Prodotto</td>
+            <td class="table-light">Nome Sconto</td>
             <td class="table-light">Tipo</td>
             <td class="table-light">n° prodotti</td>
             <td class="table-light">Azioni</td>
         </tr>
-        <div *ngFor="let prodotto of prodotti">{{prodotto.nomeProdotto}}</div>
-        <tr class="table-light lista" *ngFor="let sconto of sconti">
-            <td class=" table-light">Nome prodotto</td>
+        <tr class="table-light lista" *ngFor="let sconto of sconti;let i=index">
+            <td class=" table-light">{{sconto.nomeSconto}}</td>
             <td class="table-light">{{sconto.tipo}}</td>
             <td class="table-light">{{sconto.quantita}}</td>
             <td class="table-light"><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaSconto"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
@@ -77,7 +76,7 @@
                 <div class="modal-body">
                     <div class="modal-body">
                         <div class="modal-body">
-                            <p><b>Nome Prodotto</b></p>
+                            <p><b>Nome Sconto</b></p>
                             <input type="text" name="nome" ngModel placeholder="inserisci nome sconto "><br>
                             <p><b>tipo</b></p>
                             <select name="tipo" [(ngModel)]="selectFromModel ">
@@ -125,7 +124,7 @@
                 <div class="modal-body">
                     <div class="modal-body">
                         <div class="modal-body">
-                            <p><b>Nome Prodotto</b></p>
+                            <p><b>Nome Sconto</b></p>
                             <input type="text" name="nome" ngModel placeholder="inserisci nome sconto"><br>
                             <p><b>tipo</b></p>
                             <select name="tipo" [(ngModel)]="selectFromModel ">

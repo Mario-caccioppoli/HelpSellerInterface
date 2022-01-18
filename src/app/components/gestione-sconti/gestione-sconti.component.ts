@@ -29,7 +29,7 @@ export class GestioneScontiComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    this.getAllSconti()
+    this.getAllScontiByAzienda()
 
   }
 
@@ -44,7 +44,7 @@ export class GestioneScontiComponent implements OnInit {
       }
     )
     //this id.sconto find all prodotti scontati by id azienda 
-    this.prodottoService.findProdottiBySconto(this.sconto.id).subscribe(
+    this.prodottoService.findProdottiBySconto(4).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
@@ -59,7 +59,7 @@ export class GestioneScontiComponent implements OnInit {
 
   getAllScontiByAzienda(){
     //non prende id.azienda find all prodotti scontati by id azienda
-    this.scontoService.getAllScontoByAzienda(3).subscribe(
+    this.scontoService.findScontiByAzienda(3).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
         this.sconti = resp as Sconto[];
@@ -70,20 +70,21 @@ export class GestioneScontiComponent implements OnInit {
       }
     )
     //this id.azienda non trova id se lo prende dall'utente la sessione
-    this.prodottoService.findProdottiBySconto(4).subscribe(
-      (resp)=>{
-        this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
-        this.prodotti = resp as Prodotto[];
-        console.log(resp)
-      },
-      (error)=>{
-        this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
-      }
-    )
+    // this.prodottoService.findProdottiBySconto(4).subscribe(
+    //   (resp)=>{
+    //     this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
+    //     this.prodotti = resp as Prodotto[];
+    //     console.log(resp)
+    //   },
+    //   (error)=>{
+    //     this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
+    //   }
+    // )
   }
   getAllScontiByTipo(){
+    console.log(this.filtroSelect)
     if(this.filtroSelect=='tutti'){
-      this.getAllSconti()
+      this.getAllScontiByAzienda()
     }
     else{
     this.scontoService.getAllScontoByTipo(this.filtroSelect).subscribe(
@@ -101,6 +102,7 @@ export class GestioneScontiComponent implements OnInit {
   aggiungiSconto(form){
     this.sconto={
       id:null,
+      nomeSconto:form.nome,
       percentuale: form.percentuale,
       dataInizio: form.dataInizio,
       dataFine: form.dataFine,
@@ -125,6 +127,7 @@ export class GestioneScontiComponent implements OnInit {
   modificaSconto(form){
     this.sconto={
       id:null,
+      nomeSconto:form.nome,
       percentuale: form.percentuale,
       dataInizio: form.dataInizio,
       dataFine: form.dataFine,

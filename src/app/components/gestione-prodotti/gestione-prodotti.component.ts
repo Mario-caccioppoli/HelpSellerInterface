@@ -118,6 +118,7 @@ export class GestioneProdottiComponent implements OnInit {
   }
   
   changeCodice(){
+    console.log(this.filtroCodice)
     if(this.filtroCodice==''){
       this.getProdottiByIdAzienda()
     }

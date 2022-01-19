@@ -10,8 +10,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 
 import { ChartsModule } from 'ng2-charts';
-import { ReportMensileComponent } from './report-mensile/report-mensile.component';
-import { ReportAnnualeComponent } from './report-annuale/report-annuale.component';
 import { GraficoALineaComponent } from './grafico-a-linea/grafico-a-linea.component';
 
 import { LogService } from './services/log.service';
@@ -44,8 +42,6 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
 
     GraficoABarraComponent,
-    ReportMensileComponent,
-    ReportAnnualeComponent,
     GraficoALineaComponent,
     GestioneProdottiComponent,
     GestioneScontiComponent,

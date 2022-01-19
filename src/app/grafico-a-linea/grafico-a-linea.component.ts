@@ -14,7 +14,9 @@ export class GraficoALineaComponent implements OnInit {
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
+    
   };
+  
 
   @Input() barChartLabels : string[];
 
@@ -22,7 +24,7 @@ export class GraficoALineaComponent implements OnInit {
   public barChartLegend = true;
 
   
-@Input() barChartData : any;
+  @Input() barChartData : any;
 
 
   ngOnInit(): void {

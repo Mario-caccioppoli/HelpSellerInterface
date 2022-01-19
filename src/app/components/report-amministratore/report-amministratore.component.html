@@ -1,8 +1,7 @@
 <h2 style="text-align: center;"> Report Vendite Gruppo Unilever</h2>
 <h3>Grafico vendite totale</h3>
-<div class="row align-items-center">  
-
-  <app-grafico-a-linea [barChartLabels] = "anni" [barChartData] = "datiAnnuali"></app-grafico-a-linea>
+<div class="row align-items-center">
+    <app-grafico-a-linea [barChartLabels]="anni" [barChartData]="datiAnnualiTotali"></app-grafico-a-linea>
 </div>
 <p>N° Prodotti venduti: </p>
 <p>Quantità totale di prodotti venduti: </p>
@@ -10,52 +9,55 @@
 
 
 
-<div class="float-end"><p>Totale Incasso: </p></div>
+<div class="float-start">
+    <p>Totale Incasso: </p>
+</div>
 <br>
 <br>
 
 
 
-<div style="text-align: center;"> 
-  <select class="custom-select" (change)="cambiaAnno($event)">
+<div style="text-align: center;">
+    <select class="custom-select" (change)="cambiaAnno($event)">
     <option value= "" selected>Scegli anno</option>
     <option *ngFor="let item of anni">{{item}}</option>    
 </select>
 </div>
 
-<div id = "reportAzienda" *ngIf="annoScelto!=null && annoScelto!='' ">
+<div id="reportAzienda" *ngIf="annoScelto!=null && annoScelto!='' ">
 
-<h3>Grafico Vendite Totale Annuo</h3>
-<div class="row align-items-center">  
-<app-grafico-a-barra [barChartLabels] = "mesi"[barChartData] = "datiMensili"></app-grafico-a-barra>
-</div>
-<p>N° Prodotti venduti: </p>
-<p>Quantità totale di prodotti venduti: </p>
-<p>Totale spedizioni: </p>
-<p>Azienda con più vendite totali: </p>
-<p>Azienda con meno vendite totali: </p>
-<p>Azienda con incremento vendite più alto: </p>
-<p>Incremento: </p>
-<p>Azienda con decremento vendite più alto: </p>
-<p>Decremento: </p>
-<div class="float-end"><p>Totale Incasso: </p></div>
-<br>
-<br>
+    <h3>Grafico Vendite Totale Annuo</h3>
+    <div class="row align-items-center">
+        <app-grafico-a-barra [barChartLabels]="mesi" [barChartData]="datiMensiliTotali"></app-grafico-a-barra>
+    </div>
+    <p>N° Prodotti venduti: </p>
+    <p>Quantità totale di prodotti venduti: </p>
+    <p>Totale spedizioni: </p>
+    <p>Azienda con più vendite totali: </p>
+    <p>Azienda con meno vendite totali: </p>
+    <p>Azienda con incremento vendite più alto: </p>
+    <p>Incremento: </p>
+    <p>Azienda con decremento vendite più alto: </p>
+    <p>Decremento: </p>
+    <div class="float-start">
+        <p>Totale Incasso: </p>
+    </div>
+    <br>
+    <br>
 </div>
 
-<h2 style="text-align: center;"> Report Vendite Singola Azienda</h2>    
-<div style="text-align: center;"> 
-  <select class="custom-select"  class="col" (change)="cambiaAzienda($event)">
+<h2 style="text-align: center;"> Report Vendite Singola Azienda</h2>
+<div style="text-align: center;">
+    <select class="custom-select" class="col" (change)="getReportAziendaByMesi($event)">
     <option value="" selected>Scegli Azienda</option>
-      <option *ngFor="let item of azienda">{{item}}</option>    
+      <option *ngFor="let item of aziende">{{item.nomeAzienda}}</option>    
       
   </select>
 
 </div>
 
 
-<div id = "reportAzienda" *ngIf="aziendaScelta!=null && aziendaScelta!='' ">
+<div id="reportAzienda" *ngIf="aziendaScelta!=null && aziendaScelta!='' ">
 
-<app-report-annuale></app-report-annuale>
 
 </div>

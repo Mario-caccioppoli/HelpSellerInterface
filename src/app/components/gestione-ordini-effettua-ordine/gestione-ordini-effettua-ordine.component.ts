@@ -4,7 +4,6 @@ import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 
 import { LogService } from 'src/app/services/log.service';
 import { ActivatedRoute } from '@angular/router';
-import { OrdineService } from 'src/app/services/ordine/ordine.service';
 import { Ordine } from 'src/app/models/Ordine';
 @Component({
   selector: 'app-gestione-ordini-effettua-ordine',
@@ -13,13 +12,13 @@ import { Ordine } from 'src/app/models/Ordine';
 })
 export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 
-  constructor(private prodottoService : ProdottoService, private route: ActivatedRoute, private os: OrdineService, private log: LogService) { }
+  constructor(private prodottoService : ProdottoService, private route: ActivatedRoute, private log: LogService) { }
 
   idAzienda: number;
   prodotti : Prodotto[];
   ricercaProdottoByNome: any;
   ordine: Ordine;
-
+  product: Prodotto;
 
   ngOnInit(): void {
     this.prendiIdAziendaDalRouter()
@@ -148,22 +147,13 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     }
   }
 
-  getProdottiCart(){
-    this.os.avviaCarrello().subscribe(
+  initializeCart(){
+
+    this.prodottoService.getAllProdotto().subscribe(
       (resp)=>{
         this.log.Debug(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[resp]);
 
-        sessionStorage.setItem('key', 'value');
-        // Get saved data from sessionStorage
-        let data = sessionStorage.getItem('key');
-        // Remove saved data from sessionStorage
-        sessionStorage.removeItem('key');
-        // Remove all saved data from sessionStorage
-        sessionStorage.clear();
-
-
-
-
+        this.aggiungiAlCarrello(this.prodotti);
 
         this.prodotti = resp as Prodotto[];
       },
@@ -173,19 +163,43 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     )
   }
 
-  concludiOrdine() {
-    this.os.effettuaOrdine(this.prodotti).subscribe(
-      (resp)=>{
-        this.log.Debug(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[resp]);
+  aggiungiAlCarrello(prodotti: Prodotto[]) {
+    let local_storage;
+    let itemsInCart = []
+    
+    if(localStorage.getItem('cart')  == (null || undefined)){
+      local_storage =[];
+      console.log("LocalStorage vuoto",JSON.parse(localStorage.getItem('cart')));
+      itemsInCart.push(prodotti);
 
+      localStorage.setItem('cart', JSON.stringify(itemsInCart));
+      console.log('Inserito: ', itemsInCart);
+    }
+    else
+    {
+      local_storage = JSON.parse(localStorage.getItem('cart'));
+      console.log("LocalStorage non vuoto",JSON.parse(localStorage.getItem('cart')));
+      for(var i in local_storage)
+      {
+        console.log(local_storage[i].prodotti.prodotto.id);
+        if(this.product.id == local_storage[i].prodotti.prodotto.id)
+        {
+          local_storage[i].quantity += 1;
+          console.log("Quantita prodotto "+i+" : "+ local_storage[i].quantita);
+          console.log('Gia inserito, id ', i); 
+          this.product=null;
+          break;  
+        }
+    }
+    if(this.product){
+      itemsInCart.push(this.product);
+    }
+    local_storage.forEach(function (prodotto){
+      itemsInCart.push(prodotto);
+    })
+    localStorage.setItem('cart', JSON.stringify(itemsInCart));
 
-        this.ordine = resp as Ordine;
-      },
-      (error)=>{
-        this.log.Error(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-
+    }
   }
 
 }

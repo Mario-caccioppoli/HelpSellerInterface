@@ -42,10 +42,6 @@ export class OrdineService {
   public updateOrdine(Ordine: Ordine): Observable<Ordine> {
     return this.http.put<Ordine>(`${this.apiServerUrl}/update`, Ordine);
   }
-
-  public avviaCarrello(): Observable<Prodotto[]> {
-    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/cart`);
-  }
   
   public effettuaOrdine(Prodotti: Prodotto[]): Observable<Ordine> {
     return this.http.post<Ordine>(`${this.apiServerUrl}/success`, Prodotti);

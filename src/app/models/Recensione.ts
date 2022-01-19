@@ -1,6 +1,8 @@
 export interface Recensione{
-    idRecensione: number;
+    id: number;
     testo: string;
     voto: number;
-    dataRecensione: Date;
+    data: Date;
+    idProdotto: number;
+    idDistributore: number;
 }

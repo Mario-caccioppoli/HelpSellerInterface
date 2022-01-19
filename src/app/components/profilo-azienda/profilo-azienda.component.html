@@ -1,0 +1,29 @@
+<div class="row fullheight">
+    <div class="col-lg-3 centered pd30 intro">
+        <img class="img-circle" src="assets/icons/Logo.png" alt="">
+        <br>
+        <br>
+        <p>x amministratore</p>
+        <button class="btn btn-secondary w100"><a [routerLink]="['/']">Indietro</a></button>
+        <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Modifica</a></button>
+        <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button>
+    </div>
+    <div class="col-lg-9 centered">
+        <h2 class="titolo centered">
+            <!--{{azienda.nomeAzienda}}-->
+        </h2><br>
+        <div class="container scroll">
+            <h5 class="m25 left"><b>Nome (o Brand)</b></h5>
+            <p class="paragrafo left">
+                <!--{{azienda.nomeAzienda}}-->asdasdasdad lorem ipsum o nom</p>
+            <h5 class="m25 left"><b>Ragione Sociale</b></h5>
+            <p class="paragrafo left">asdasdasdad lorem ipsum a fattur</p>
+            <h5 class="m25 left"><b>Indirizzo</b></h5>
+            <p class="paragrafo left">asdasdasdad lorem ipsum a cas</p>
+            <h5 class="m25 left"><b><!--{{azienda.descrizione}}-->Descrizione</b></h5>
+            <p class="paragrafo left">asdasdasdad lorem ipsum a uardat</p>
+            <button class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', idAzienda]">Visualizza Prodotti</a></button>
+            <!-- <div>*ngIf="azienda != undefined && azienda.id != undefined"</div> -->
+        </div>
+    </div>
+</div>

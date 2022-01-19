@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginaAziendaComponent } from './pagina-azienda.component';
+import { GestordEffordCartComponent } from './gestord-efford-cart.component';
 
-describe('PaginaAziendaComponent', () => {
-  let component: PaginaAziendaComponent;
-  let fixture: ComponentFixture<PaginaAziendaComponent>;
+describe('GestordEffordCartComponent', () => {
+  let component: GestordEffordCartComponent;
+  let fixture: ComponentFixture<GestordEffordCartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaginaAziendaComponent ]
+      declarations: [ GestordEffordCartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaginaAziendaComponent);
+    fixture = TestBed.createComponent(GestordEffordCartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,7 @@
 export interface Documento{
-    idDocumento: number;
+    id: number;
     titolo: string;
     autore: string;
-    dataUpload: Date;
+    data: Date;
+    idOrdine: number;
 }

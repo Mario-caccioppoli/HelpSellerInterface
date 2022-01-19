@@ -4,17 +4,17 @@
         <div class="col-lg-12 mb50">
           <form id="ricerca" class="form form-control inl">
             <div class="row">
-              <div class="col-lg-4">
+              <div class="col-lg-4 pd20">
               <label><p>Nome</p></label>
               <input type="search" class="form-control" placeholder="Inserisci codice..." aria-label="Search">
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-4 pd20">
               <label><p>Data</p></label>
               <input type="search" class="form-control" placeholder="Inserisci data..." aria-label="Search">
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-4 pd20">
               <label><p>Distributore</p></label>
-              <input type="search" class="form-control" placeholder="Inserisci azienda..." aria-label="Search">
+              <input type="search" class="form-control" placeholder="Inserisci distributore..." aria-label="Search">
               </div>
             </div>
           </form>         
@@ -32,11 +32,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row"><p>#12345</p></th>
-                      <td><p>21/12/2012</p></td>
-                      <td><p>EndWorldMaya</p></td>
-                      <td><p>2012</p></td>
+                    <tr *ngFor='let ordine of allOrdine'>
+                      <th scope="row"># <p>{{ordine.id}}</p></th>
+                      <td><p>{{ordine.dataOrdinazione}}</p></td>
+                      <td><p>{{ordine.idDistributore}}</p></td>
+                      <td><p>manca il prezzo</p></td>
                       <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
                     </tr>
                     <tr>
@@ -44,14 +44,14 @@
                       <td><p></p></td>
                       <td><p></p></td>
                       <td><p></p></td>
-                      <td><p></p></td>
+                      <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
                     </tr>
                     <tr>
                       <th scope="row">#<p></p></th>
                       <td><p></p></td>
                       <td><p></p></td>
                       <td><p></p></td>
-                      <td><p></p></td>
+                      <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
                     </tr>
                   </tbody>
                 </table>

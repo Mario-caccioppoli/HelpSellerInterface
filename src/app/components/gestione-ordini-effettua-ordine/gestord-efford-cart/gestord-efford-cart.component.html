@@ -1,0 +1,61 @@
+<div id="gest-ord-cart" class="container row">
+    <div class="col-lg-12 centered fleft">
+        <h2>Riepilogo pre-ordine</h2>
+        <h4 class="mb50">Ordine n. #12345</h4>
+        <div class="col-lg-12 mb50">
+            <h5><b>Prodotti selezionati</b></h5>
+            <div class="row eqi-container">
+                <div class="col-lg-3 product">
+                    <img class="img-product" src="assets/img/gillette.jpg" />
+                    <div class="downspec">
+                    <p class="bold">Gillette® "Mak 3" 5pz.</p>
+                    <p class="bold">€ 12</p>
+                    <p><b>Quantità:</b> 60</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 product">
+                    <img class="img-product" src="assets/img/dixan.jpg" />
+                    <div class="downspec">
+                    <p class="bold">Dixan® Detergente liquido 950ml</p>
+                    <p class="bold">€ 17</p>
+                    <p><b>Quantità:</b> 90</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 product">
+                    <img class="img-product" src="assets/img/proraso.jpg" />
+                    <div class="downspec">
+                    <p class="bold">Proraso® Schiuma Uomo 250ml</p>
+                    <p class="bold">€ 9</p>
+                    <p><b>Quantità:</b> 35</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 product">
+                    <img class="img-product" src="assets/img/dixan.jpg" />
+                    <div class="downspec">
+                    <p class="bold">Dixan® Detergente liquido 950ml</p>
+                    <p class="bold">€ 17</p>
+                    <p><b>Quantità:</b> 90</p>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success btn-cust" (click)="modcart()">Modifica ordine</button>
+        </div>
+          <hr>
+        <div class="row mb50 mt20">
+            <div class="col-lg-6">
+                <h4>Informazioni sull'ordine</h4>
+                <p><b>Quantità totale (in Pz.):</b> 999</p>
+                <p><b>Imponibile:</b> € 4238,08</p>
+                <p><b>Costi aggiuntivi:</b> € 105</p>
+                <p><b>VAT (19% - GER):</b> € 250</p>
+                <p><b>TOTALE ORDINE:</b> € 4610</p>
+            </div>
+            <div class="col-lg-6">
+              <form class="form-inline form-control">
+                <app-gestione-pratiche-trasporto></app-gestione-pratiche-trasporto>
+              </form>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-secondary btn-cust" (click)="uscita()">Annulla</button>
+    </div> <!-- col-lg-12-->
+</div><!-- id -->

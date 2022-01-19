@@ -21,6 +21,7 @@ button {
 .pulsanti i {
     background-color: transparent;
     color: orange;
+    font-size: 30px;
 }
 
 .lista {
@@ -38,5 +39,25 @@ button {
 
 .bottoneAggiungi {
     position: relative;
-    right: 38%;
+    left: 38%;
+}
+
+.scrolla {
+    height: 300px;
+    padding: 3px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.modal-body {
+    padding-top: 5px;
+}
+
+.pulsanti:hover {
+    background-color: #0d6efd;
+}
+
+.bottoneAggiungi:focus {
+    background-color: orange;
+    border-color: orange;
 }

@@ -79,7 +79,7 @@
                 <h4>Informazioni sull'ordine</h4>
                 <p><b>Acquirente:</b> {{distributore.nome}} {{distributore.cognome}} - {{distributore.vat}}</p>
                 <p><b>Data acquisto:</b> {{ordine.dataOrdinazione}}</p>
-                <p><b>Quantità totale (in Pz.):</b> {{this.getAllOrdineQuantity()}}</p>
+                <p><b>Quantità totale (in Pz.):</b> {{this.quantitaTotale}}</p>
             </div>
             <div class="col-lg-6">
                 <h4>Gestione Pratiche Trasporto</h4>
@@ -97,10 +97,8 @@
             </div>
             <div class="col-lg-6">
                 <h4>Riepilogo</h4>
-                <p>Totale articoli: {{this.getAllOrdineQuantity()}}</p>
-                <p>Prezzo imponibile: {{this.priceImponibile}}</p>
-                <p>VAT: {{this.getVatOrdine()}}</p>
-                <p>TOTALE: € {{this.getAllOrdinePrice()}}</p>
+                <p>Totale articoli: {{this.quantitaTotale}}</p>
+                <p>TOTALE: € {{this.price}}</p>
             </div>
         </div> <!-- row -->
     </div> <!-- col-lg-12-->

@@ -26,8 +26,7 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
   ordine: Ordine;
 
   quantitaTotale: number = 0;
-  priceImponibile: number = 0;
-  priceTotale: number = 0;
+  price: number = 0;
 
   constructor(private os: OrdineProdottoService, private ds: DistributoreService, private log: LogService) { }
 
@@ -109,27 +108,6 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     }
   }
 
-  getVatOrdine() {
-    if(this.ordineProdotto != undefined)
-    {
-      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
-        (success) => {
-          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-
-          var vatD = this.distributore.vat;
-          var vatA = this.azienda.vat;
-          var vat: number = 0;
-
-          this.ordineProdotto = success as OrdineProdotto;
-        },
-
-        (error) => {
-          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
-        }
-      )
-    }
-  }
-
   getAllOrdinePrice() {
     if(this.ordine != undefined)
     {
@@ -140,12 +118,8 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
           var arrProdotti: OrdineProdotto[];
 
           arrProdotti.forEach( orderProduct => {
-            this.priceImponibile += orderProduct.prezzoUnitario;
+            this.price += orderProduct.prezzoUnitario;
           });
-
-          var vatPerc = this.getVatOrdine();
-
-        //  var priceTotale = priceImponibile * vatPerc/100;
 
           this.ordineProdottoArr = success as OrdineProdotto[];
         },
@@ -157,9 +131,5 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     }
   }
 
-  
-
-        // var vat = this.os.getVatOrdinePerc(ordnumber); aggiungere funzionalità
-        // var prezzoTotale = prezzoImponibile * vat/100;
 }
 

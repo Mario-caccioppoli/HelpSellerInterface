@@ -22,4 +22,14 @@ export class GestordEffordCartComponent implements OnInit {
     precart.style.removeProperty("display");
     cart.style.removeProperty("display");
   }
+
+
+  calculatePrice() {
+    
+  }
+
+  calculatePieces() {
+
+  }
+
 }

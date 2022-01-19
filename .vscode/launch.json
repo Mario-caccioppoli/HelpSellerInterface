@@ -6,7 +6,14 @@
     "configurations": [
         
         {
-            "type": "pwa-chrome",
+            "type": "firefox",
+            "request": "attach",
+            "name": "Attach"
+        },
+
+        
+        {
+            "type": "pwa-firefox",
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:4200",

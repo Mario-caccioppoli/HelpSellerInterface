@@ -6,11 +6,14 @@ import { GestioneOrdiniEffettuatiComponent } from './components/gestione-ordini-
 import { GestioneOrdiniRicevutiComponent } from './components/gestione-ordini-ricevuti/gestione-ordini-ricevuti.component';
 import { GestioneProdottiComponent } from './components/gestione-prodotti/gestione-prodotti.component';
 import { GestioneScontiComponent } from './components/gestione-sconti/gestione-sconti.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 import { ProfiloAziendaComponent } from './components/profilo-azienda/profilo-azienda.component';
+import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
 import { SelezionaProdottiScontareComponent } from './components/seleziona-prodotti-scontare/seleziona-prodotti-scontare.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { VisualizzaAziendeComponent } from './components/visualizza-aziende/visualizza-aziende.component';
 import { VisualizzaProdottiComponent } from './components/visualizza-prodotti/visualizza-prodotti.component';
+import { RegistrazioneAziendaComponent } from './components/registrazione-azienda/registrazione-azienda.component';
 
 
 const routes: Routes = [
@@ -54,6 +57,18 @@ const routes: Routes = [
   {
     path:'visualizzaProdotti/:id',
     component:VisualizzaProdottiComponent
+  },
+  {
+    path:'',
+    component:HomepageComponent
+  },
+  {
+    path:'registrazione',
+    component:RegistrazioneComponent
+  },
+  {
+    path:'registrazioneAzienda',
+    component:RegistrazioneAziendaComponent
   },
   
   ];

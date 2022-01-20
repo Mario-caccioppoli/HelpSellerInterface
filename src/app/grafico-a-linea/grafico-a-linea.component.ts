@@ -30,6 +30,12 @@ export class GraficoALineaComponent implements OnInit {
   ngOnInit(): void {
     
   }
- 
+  
+  public colors = [
+    { backgroundColor:"orange" },
+    { backgroundColor:"orange" },
+    { backgroundColor:"orange" },
+    { backgroundColor:"orange" }
+  ];
 
 }

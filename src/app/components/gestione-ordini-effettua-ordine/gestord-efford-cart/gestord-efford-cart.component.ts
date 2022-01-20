@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GestioneOrdiniCampioneComponent } from '../../gestione-ordini-campione/gestione-ordini-campione.component';
 import { GestioneOrdiniEffettuaOrdineComponent } from '../gestione-ordini-effettua-ordine.component';
+import { Prodotto } from 'src/app/models/Prodotto';
+import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 
 @Component({
   selector: 'app-gestord-efford-cart',
@@ -10,7 +12,11 @@ import { GestioneOrdiniEffettuaOrdineComponent } from '../gestione-ordini-effett
 export class GestordEffordCartComponent implements OnInit {
 
   ngOnInit() {
+
+    this.getCarrello();
   }
+
+  prodotto: Prodotto;
 
   uscita() {  //annulla la procedura di acquisto
     location.reload();
@@ -22,4 +28,18 @@ export class GestordEffordCartComponent implements OnInit {
     precart.style.removeProperty("display");
     cart.style.removeProperty("display");
   }
+
+
+  deleteItem(prodotto){
+
+    let domItem = document.getElementById(`cart-item-`+ prodotto.id);
+    sessionStorage.removeItem('domItem');
+
+  }
+
+  getCarrello() {
+    let data = sessionStorage.getItem('cart');
+    return data;
+  }
+
 }

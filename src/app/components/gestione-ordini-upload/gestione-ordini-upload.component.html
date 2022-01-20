@@ -1,4 +1,6 @@
-<div class="input-group mrg">
-    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Carica">
-    <button class="btn btn-primary" type="button" id="inputGroupFileAddon04">Aggiungi</button>
-</div>
+<form #uploadFile="ngForm" (ngSubmit)="documentoUploadFunction(uploadFile.value)">
+    <div class="input-group mrg">
+        <input type="file" class="form-control" id="" aria-label="Carica" name="upload" ngModel>
+        <button class="btn btn-primary" type="button">Aggiungi</button>
+    </div>
+</form>

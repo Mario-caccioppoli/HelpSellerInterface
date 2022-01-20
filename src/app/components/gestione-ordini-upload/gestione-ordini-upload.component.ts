@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Documento } from 'src/app/models/Documento';
+import { OrdineProdotto } from 'src/app/models/OrdineProdotto';
+import { DocumentoService } from 'src/app/services/documento/documento.service';
+import { LogService } from 'src/app/services/log.service';
 
 @Component({
   selector: 'app-gestione-ordini-upload',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestioneOrdiniUploadComponent implements OnInit {
 
-  constructor() { }
+  documento: Documento;
+  ordineProdotto: OrdineProdotto;
+
+  constructor(private docs: DocumentoService, private log: LogService) { }
 
   ngOnInit(): void {
+  }
+
+  documentoUploadFunction(form) {
+    if(this.documento != undefined)
+    {
+      this.docs.insertDocumento(form.upload).subscribe(
+        (success) => {
+          this.log.Debug(GestioneOrdiniUploadComponent.name, "ok", [success]);
+
+          this.documento = success as Documento;
+        },
+
+        (error) => {
+          this.log.Error(GestioneOrdiniUploadComponent.name, "errore", [error]);
+        }
+      )
+    }
   }
 
 }

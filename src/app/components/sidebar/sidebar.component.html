@@ -5,11 +5,11 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <br>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" [routerLink]="['/']">Home</a>
                     </li>
                     <!-- Amministratore di piattaforma -->
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="">Registra Azienda</a>
+                        <a class="nav-link" routerLink="/registrazioneAzienda">Registra Azienda</a>
                     </li>
                     <!-- Azienda -->
                     <li class="nav-item">
@@ -42,6 +42,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/dettagliOrdine-TEST">Dettagli ordine TEST</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/registrazione">Registrazione distributore</a>
                     </li>
                 </ul>
                 <hr>

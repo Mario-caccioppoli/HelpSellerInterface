@@ -1,31 +1,78 @@
-<button type="button" class="btn btn-primary account" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+<!-- <button type="button" class="btn btn-primary account" data-bs-toggle="modal" data-bs-target="#login" *ngIf="this.currentUserSubject.next(null); else logoutmodal"> -->
+  <button type="button" class="btn btn-primary account" data-bs-toggle="modal" data-bs-target="#login">
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
   </svg>
-  <p class="login">Login</p>
 </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Login -->
+
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Area Riservata</h3>
+        <h3 class="modal-title" id="loginLabel">Area Riservata</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="" class="form-control">
-        <p><b>Username o E-mail</b></p>
-        <input type="text" class="form-control" name="username" placeholder="E-mail o Username" />
+      <form class="form-control" #loginform="ngForm" (ngSubmit)="login(loginform)">
+        <p><b>Username</b></p>
+        <input type="text" class="form-control" ngModel name="username" placeholder="Username" />
         <br>
-        <p><b>Password     </b><a href="#"><em>(Dimenticata? Recuperala qui)</em></a></p>
-        <input type="text" class="form-control" name="password" placeholder="Password" />
+        <p><b>Password     </b><a href="#recover" data-bs-toggle="modal" data-bs-target="#recover"><em>(Dimenticata? Recuperala qui)</em></a></p>
+        <input type="text" class="form-control" ngModel name="password" placeholder="Password" />
+        <br>
+        <p><b>Tipologia Account     </b><a href="#recover" data-bs-toggle="modal" data-bs-target="#logout"><em>(Test Logout)</em></a></p>
+        <input type="checkbox" class="form-control" ngModel name="tipo" />
         <br>
         <button type="submit" class="btn btn-primary btn-accesso" name="invio">Accedi</button>
       </form>
         <hr>
-        <p>Non possiedi un account Distributore? <a href="#">Registrati</a></p>
+        <p>Non possiedi un account Distributore? <a [routerLink]="['/registrazione']">Registrati</a></p>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Recupero Password -->
+
+<div class="modal fade" id="recover" tabindex="-1" aria-labelledby="recoverLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="recoverLabel">Recupero Password</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form class="form-control" #recuperoform="ngForm" (ngSubmit)="recupero(recuperoform)">
+        <p><b>E-mail</b></p>
+        <input type="text" class="form-control" ngModel name="username" placeholder="E-mail di registrazione" />
+        <br>
+        <button type="submit" class="btn btn-primary btn-accesso" name="invio">Recupera Password</button>
+      </form>
+        <hr>
+        <p>Non possiedi un account Distributore? <a target="_parent" [routerLink]="['/registrazione']">Registrati</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Logout 
+
+<ng-template #logoutmodal>-->
+<div class="modal fade" id="logout" tabindex="-1" aria-labelledby="logoutLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="logoutLabel">Vuoi davvero uscire?</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <button type="submit" class="btn btn-primary btn-accesso" name="invio" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </ng-template> -->

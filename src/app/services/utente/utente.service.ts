@@ -17,6 +17,14 @@ export class UtenteService {
     return this.http.get<Utente[]>(`${this.apiServerUrl}/all`);
   }
 
+  public loginUtente(username: string, password: string): Observable<Utente> {
+    return this.http.post<Utente>(`${this.apiServerUrl}/users/authenticate`, { username, password });
+  }
+
+  public recuperoUtente(email: string): Observable<Utente> {
+    return this.http.post<Utente>(`${this.apiServerUrl}/recupero-password`, { email });
+  }
+
   public findById(UtenteID : number): Observable<Utente> {
     return this.http.get<Utente>(`${this.apiServerUrl}/findId/${UtenteID}`);
   }

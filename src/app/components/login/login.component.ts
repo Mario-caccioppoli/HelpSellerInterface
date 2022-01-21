@@ -34,10 +34,6 @@ export class LoginComponent implements OnInit {
   public currentUser: Observable<Utente>;
 
   myStorage=window.localStorage;
-  
-
-  constructor() { }
-
 
   ngOnInit(): void {
 
@@ -121,11 +117,6 @@ export class LoginComponent implements OnInit {
       )
     }
 
-  }
-
-
-  login(){
-    
   }
   
 

@@ -24,12 +24,14 @@
         <p><b>Password     </b><a href="#recover" data-bs-toggle="modal" data-bs-target="#recover"><em>(Dimenticata? Recuperala qui)</em></a></p>
         <input type="text" class="form-control" ngModel name="password" placeholder="Password" />
         <br>
-        <p><b>Tipologia Account     </b><a href="#recover" data-bs-toggle="modal" data-bs-target="#logout"><em>(Test Logout)</em></a></p>
-        <select id="tipo" name="tipo" value="">
+        <label for="tipo"><b>Tipologia Account:  </b></label>
+        <select id="tipo" name="tipo" ngModel>
+          <option value="" disabled hidden selected></option>
           <option value="amministratore">Amministratore</option>
-          <option value="azienda">Azienda<option>
+          <option value="azienda">Azienda</option>
           <option value="distributore">Distributore</option>
         </select>
+        <p><a href="#recover" data-bs-toggle="modal" data-bs-target="#logout"><em>(Test Logout)</em></a></p>
         <br>
         <button type="submit" class="btn btn-primary btn-accesso" name="invio">Accedi</button>
       </form>

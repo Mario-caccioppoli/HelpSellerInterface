@@ -1,4 +1,6 @@
 import { Documento } from "./Documento";
+import { OrdineProdotto } from "./OrdineProdotto";
+import { Prodotto } from "./Prodotto";
 
 export interface Ordine{
     id: number;
@@ -7,7 +9,7 @@ export interface Ordine{
     commento: string;
     stato: string;
     idDistributore: number;
-    idOrdineProva: number;
     documento: Documento;
     prezzoTotale: number;
+    ordineProdotti:OrdineProdotto[];
 }

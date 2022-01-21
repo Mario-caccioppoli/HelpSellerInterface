@@ -16,11 +16,14 @@ export class ScontoService {
   public getAllSconto(): Observable<Sconto[]> {
     return this.http.get<Sconto[]>(`${this.apiServerUrl}/findAll`);
   }
-  public getAllScontoByAzienda(id: number): Observable<Sconto[]>{
+  public findScontiByAzienda(id: number): Observable<Sconto[]>{
     return this.http.get<Sconto[]>(`${this.apiServerUrl}/findScontiByAzienda/${id}`)
   }
   public getAllScontoByTipo(tipo: string): Observable<Sconto[]>{
     return this.http.get<Sconto[]>(`${this.apiServerUrl}/findScontiByTipo/${tipo}`)
+  }
+  public getAllScontoByTipoAndIdAzienda(tipo: string, idAzienda: number): Observable<Sconto[]>{
+    return this.http.get<Sconto[]>(`${this.apiServerUrl}/findScontiAziendaByTipo/${tipo}/${idAzienda}`)
   }
   public findById(ScontoID : number): Observable<Sconto> {
     return this.http.get<Sconto>(`${this.apiServerUrl}/findId/${ScontoID}`);
@@ -35,6 +38,9 @@ export class ScontoService {
   }
 
   public updateSconto(Sconto: Sconto): Observable<Sconto> {
-    return this.http.put<Sconto>(`${this.apiServerUrl}/update`, Sconto);
+    return this.http.post<Sconto>(`${this.apiServerUrl}/update`, Sconto);
+  }
+  public findScontiByNomeInAzienda(nome:string, idAzienda:number): Observable<Sconto[]>{
+    return this.http.get<Sconto[]>(`${this.apiServerUrl}/findScontiByNomeInAzienda/${nome}/${idAzienda}`);
   }
 }

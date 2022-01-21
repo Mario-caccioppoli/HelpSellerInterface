@@ -10,8 +10,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 
 import { ChartsModule } from 'ng2-charts';
-import { ReportMensileComponent } from './report-mensile/report-mensile.component';
-import { ReportAnnualeComponent } from './report-annuale/report-annuale.component';
 import { GraficoALineaComponent } from './grafico-a-linea/grafico-a-linea.component';
 
 import { LogService } from './services/log.service';
@@ -33,10 +31,14 @@ import { ReportAmministratoreComponent } from './components/report-amministrator
 import { GestionePraticheTrasportoComponent } from './components/gestione-pratiche-trasporto/gestione-pratiche-trasporto.component';
 import { GraficoABarraComponent } from './grafico-a-barra/grafico-a-barra.component';
 import { FormsModule } from '@angular/forms';
+
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { RegistrazioneAziendaComponent } from './components/registrazione-azienda/registrazione-azienda.component';
 import { VisualizzaDettagliProdottoComponent } from './components/visualizza-dettagli-prodotto/visualizza-dettagli-prodotto.component';
+
+import { GraficoALineaAziendaComponent } from './components/grafico-a-linea-azienda/grafico-a-linea-azienda.component';
+import { GraficoABarraAziendaComponent } from './components/grafico-a-barra-azienda/grafico-a-barra-azienda.component';
 
 
 @NgModule({
@@ -48,8 +50,6 @@ import { VisualizzaDettagliProdottoComponent } from './components/visualizza-det
     HeaderComponent,
 
     GraficoABarraComponent,
-    ReportMensileComponent,
-    ReportAnnualeComponent,
     GraficoALineaComponent,
     GestioneProdottiComponent,
     GestioneScontiComponent,
@@ -67,10 +67,15 @@ import { VisualizzaDettagliProdottoComponent } from './components/visualizza-det
     GestordEffordCartComponent,
     ReportAmministratoreComponent,
     GestionePraticheTrasportoComponent,
+
     RegistrazioneComponent,
     HomepageComponent,
     RegistrazioneAziendaComponent,
     VisualizzaDettagliProdottoComponent,
+
+    GraficoALineaAziendaComponent,
+    GraficoABarraAziendaComponent,
+
   ],
   imports: [
     FormsModule,

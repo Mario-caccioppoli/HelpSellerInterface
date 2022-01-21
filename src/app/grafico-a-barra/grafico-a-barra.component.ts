@@ -1,5 +1,9 @@
+import { ThrowStmt } from '@angular/compiler';
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Z_ERRNO } from 'zlib';
+import { OrdineProdottoService } from '../services/ordine-prodotto/ordine-prodotto.service';
 
 @Component({
   selector: 'app-grafico-a-barra',
@@ -8,24 +12,70 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GraficoABarraComponent implements OnInit {
 
+  @Input()
+  barChartLabels : string[]=[];
+  
+  @Input()
+  barChartData : number[]=[]; 
 
-
-  constructor() { }
-
-    barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
-
- @Input() barChartLabels : any;
+  
+  dataForGraphs:any[]=[];
   barChartType = 'bar';
   barChartLegend = true;
-  @Input() barChartData : any; 
-    
+  barChartOptions: any; 
 
+
+  constructor(private ordineProdottoService: OrdineProdottoService) { }
 
   ngOnInit(): void {
+
+    
+    this.PrendiAnno(2022)
   }
-  
+
+  PrendiAnno(val){
+    this.ordineProdottoService.findReportMensileGruppo(Number(val)).subscribe(
+      (resp)=>{
+        this.barChartData = resp;
+        this.updateGraph();
+      },
+      (error)=>{
+
+      }
+    )
+  }
+
+
+  updateGraph()
+  {
+    this.dataForGraphs=[{
+      label:"incassi",
+      data:this.barChartData,
+      options:{
+        scales:{
+          y:{
+            beginAtZero: true
+          }
+        }
+      },
+    }];
+
+    this.barChartOptions={
+      scales:{
+        yAxes:[{
+          ticks:{
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  }
+
+  public colors = [
+    { backgroundColor:"orange" },
+    { backgroundColor:"green" },
+    { backgroundColor:"blue" },
+    { backgroundColor:"yellow" }
+  ];
 
 }

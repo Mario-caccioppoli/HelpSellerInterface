@@ -38,6 +38,6 @@ export class UtenteService {
   }
 
   public updateUtente(Utente: Utente): Observable<Utente> {
-    return this.http.put<Utente>(`${this.apiServerUrl}/update`, Utente);
+    return this.http.post<Utente>(`${this.apiServerUrl}/update`, Utente);
   }
 }

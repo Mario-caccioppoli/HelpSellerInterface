@@ -2,7 +2,7 @@ import { Recensione } from "./Recensione";
 import { Sconto } from "./Sconto";
 
 export interface Prodotto{
-    id: number;
+    id?: number;
     nomeProdotto: string;
     prezzo: number;
     descrizione: string;
@@ -12,6 +12,6 @@ export interface Prodotto{
     peso: number;
     volume: number;
     idAzienda: number;
-    recensioni: Recensione[];
+    recensioni?: Recensione[];
     sconti?: Sconto[];
 }

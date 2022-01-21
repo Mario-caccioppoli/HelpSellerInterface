@@ -8,42 +8,42 @@
                 <div class="col-lg-3 product" *ngFor="let prod of prodotto">
                     {{prod.immagine}}
                     <div class="downspec">
-                    <p class="bold">{{prod.nomeProdotto}}</p>
-                    <p class="bold">€ {{prod.prezzo}}</p>
-                    <p><b>Quantità:</b> {{prod.quantita}}</p>
+                        <p class="bold">{{prod.nomeProdotto}}</p>
+                        <p class="bold">€ {{prod.prezzo}}</p>
+                        <p><b>Quantità:</b> {{prod.quantita}}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 product">
                     <img class="img-product" src="assets/img/dixan.jpg" />
                     <div class="downspec">
-                    <p class="bold">Dixan® Detergente liquido 950ml</p>
-                    <p class="bold">€ 17</p>
-                    <p><b>Quantità:</b> 90</p>
+                        <p class="bold">Dixan® Detergente liquido 950ml</p>
+                        <p class="bold">€ 17</p>
+                        <p><b>Quantità:</b> 90</p>
                     </div>
                 </div>
                 <div class="col-lg-3 product">
                     <img class="img-product" src="assets/img/proraso.jpg" />
                     <div class="downspec">
-                    <p class="bold">Proraso® Schiuma Uomo 250ml</p>
-                    <p class="bold">€ 9</p>
-                    <p><b>Quantità:</b> 35</p>
+                        <p class="bold">Proraso® Schiuma Uomo 250ml</p>
+                        <p class="bold">€ 9</p>
+                        <p><b>Quantità:</b> 35</p>
                     </div>
                 </div>
                 <div class="col-lg-3 product">
                     <img class="img-product" src="assets/img/dixan.jpg" />
                     <div class="downspec">
-                    <p class="bold">Dixan® Detergente liquido 950ml</p>
-                    <p class="bold">€ 17</p>
-                    <p><b>Quantità:</b> 90</p>
+                        <p class="bold">Dixan® Detergente liquido 950ml</p>
+                        <p class="bold">€ 17</p>
+                        <p><b>Quantità:</b> 90</p>
                     </div>
                 </div>
             </div>
             <div>
-                <button type="button" class="btn btn-success btn-cust" (click)="deleteItem()">Rimuovi articolo</button>
+                <button type="button" class="btn btn-success btn-cust" (click)="deleteItem(this)">Rimuovi articolo</button>
             </div>
             <button type="button" class="btn btn-success btn-cust" (click)="modcart()">Modifica ordine</button>
         </div>
-          <hr>
+        <hr>
         <div class="row mb50 mt20">
             <div class="col-lg-6">
                 <h4>Informazioni sull'ordine</h4>
@@ -51,11 +51,13 @@
                 <p><b>TOTALE ORDINE:</b> € 4610</p>
             </div>
             <div class="col-lg-6">
-              <form class="form-inline form-control">
-                <app-gestione-pratiche-trasporto></app-gestione-pratiche-trasporto>
-              </form>
+                <form class="form-inline form-control">
+                    <app-gestione-pratiche-trasporto></app-gestione-pratiche-trasporto>
+                </form>
             </div>
         </div>
         <button type="submit" class="btn btn-secondary btn-cust" (click)="uscita()">Annulla</button>
-    </div> <!-- col-lg-12-->
-</div><!-- id -->
+    </div>
+    <!-- col-lg-12-->
+</div>
+<!-- id -->

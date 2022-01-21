@@ -1,5 +1,7 @@
+import { ThrowStmt } from '@angular/compiler';
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Z_ERRNO } from 'zlib';
 import { OrdineProdottoService } from '../services/ordine-prodotto/ordine-prodotto.service';
 
@@ -26,20 +28,26 @@ export class GraficoABarraComponent implements OnInit {
   constructor(private ordineProdottoService: OrdineProdottoService) { }
 
   ngOnInit(): void {
-    // this.ordineProdottoService.findReportMensileGruppo(2022).subscribe(
-    //   (resp)=>{
-    //     this.barChartData = resp;
-    //     this.updateGraph();
-    //   },
-    //   (error)=>{
 
-    //   }
-    // )
     
+    this.PrendiAnno(2022)
   }
+
+  PrendiAnno(val){
+    this.ordineProdottoService.findReportMensileGruppo(Number(val)).subscribe(
+      (resp)=>{
+        this.barChartData = resp;
+        this.updateGraph();
+      },
+      (error)=>{
+
+      }
+    )
+  }
+
+
   updateGraph()
   {
-    console.log("chiamato update graph")
     this.dataForGraphs=[{
       label:"incassi",
       data:this.barChartData,

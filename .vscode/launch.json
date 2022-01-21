@@ -4,16 +4,12 @@
     // Per altre informazioni, visitare: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
-        {
-            "type": "firefox",
-            "request": "attach",
-            "name": "Attach"
-        },
 
         
+    
+        
         {
-            "type": "pwa-firefox",
+            "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:4200",

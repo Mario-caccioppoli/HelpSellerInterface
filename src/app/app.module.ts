@@ -31,6 +31,8 @@ import { ReportAmministratoreComponent } from './components/report-amministrator
 import { GestionePraticheTrasportoComponent } from './components/gestione-pratiche-trasporto/gestione-pratiche-trasporto.component';
 import { GraficoABarraComponent } from './grafico-a-barra/grafico-a-barra.component';
 import { FormsModule } from '@angular/forms';
+import { GraficoALineaAziendaComponent } from './components/grafico-a-linea-azienda/grafico-a-linea-azienda.component';
+import { GraficoABarraAziendaComponent } from './components/grafico-a-barra-azienda/grafico-a-barra-azienda.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { FormsModule } from '@angular/forms';
     GestordEffordCartComponent,
     ReportAmministratoreComponent,
     GestionePraticheTrasportoComponent,
+    GraficoALineaAziendaComponent,
+    GraficoABarraAziendaComponent,
   ],
   imports: [
     FormsModule,

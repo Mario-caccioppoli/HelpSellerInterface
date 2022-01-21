@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { observable } from 'rxjs';
 import { GraficoABarraComponent } from 'src/app/grafico-a-barra/grafico-a-barra.component';
 import { Azienda } from 'src/app/models/Azienda';
@@ -40,16 +40,13 @@ export class ReportAmministratoreComponent implements OnInit {
   datiAnnualiTotaliDB_IDAzienda:any[];
   datiAnnualiTotaliByMeseDB:number[] = [];
 
-  datiAnnualiTotaliByAzienda = [{ data: [50,80,70,80,73,70,90], label:"incassi"}];
-  datiMensiliTotaliByAzienda = [{ data: [50,80,70,90,60,70,80], label:"incassi"}];
 
 
+@ViewChild("graficoABarra") graficoABarra! : GraficoABarraComponent;
 
-@ViewChild(GraficoABarraComponent) graficoABarra! : GraficoABarraComponent;
+@ViewChild("graficoABarraAzienda") graficoABarraAzienda! : GraficoABarraAziendaComponent;
 
-@ViewChild(GraficoABarraAziendaComponent) graficoABarraAzienda! : GraficoABarraAziendaComponent;
-
-@ViewChild(GraficoALineaAziendaComponent) graficoALineaAzienda! : GraficoALineaAziendaComponent;
+@ViewChild("graficoALineaAzienda") graficoALineaAzienda! : GraficoALineaAziendaComponent;
 
   datiAnnualiOrdini: Ordine[];
   aziendaScelta : string;
@@ -60,7 +57,7 @@ export class ReportAmministratoreComponent implements OnInit {
     ngAfterViewInit(): void {
       //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
       //Add 'implements AfterViewInit' to the class.
-      this.graficoABarra.updateGraph();
+      //this.graficoABarra.updateGraph();
     }
   ngOnInit(): void {
     this.getAllAzienda()
@@ -160,7 +157,12 @@ export class ReportAmministratoreComponent implements OnInit {
     this.ordineProdottoService.findReportAnnualeAzienda(2016,3).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp);  
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        } 
       },
       (error)=>{
         //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
@@ -170,7 +172,12 @@ export class ReportAmministratoreComponent implements OnInit {
     this.ordineProdottoService.findReportAnnualeAzienda(2017,3).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
       },
       (error)=>{
        // this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
@@ -180,7 +187,12 @@ export class ReportAmministratoreComponent implements OnInit {
     this.ordineProdottoService.findReportAnnualeAzienda(2018,3).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
       },
       (error)=>{
         //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
@@ -190,7 +202,12 @@ export class ReportAmministratoreComponent implements OnInit {
     this.ordineProdottoService.findReportAnnualeAzienda(2019,3).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
       },
       (error)=>{
         //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
@@ -200,7 +217,12 @@ export class ReportAmministratoreComponent implements OnInit {
     this.ordineProdottoService.findReportAnnualeAzienda(2020,3).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
       },
       (error)=>{
         //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
@@ -210,7 +232,12 @@ export class ReportAmministratoreComponent implements OnInit {
     this.ordineProdottoService.findReportAnnualeAzienda(2021,3).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
       },
       (error)=>{
         //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
@@ -220,8 +247,12 @@ export class ReportAmministratoreComponent implements OnInit {
     this.ordineProdottoService.findReportAnnualeAzienda(2022,3).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
-        
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
       },
       (error)=>{
         //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
@@ -235,6 +266,7 @@ export class ReportAmministratoreComponent implements OnInit {
 
   findReportTotaleByAnno(event : any){
     this.annoScelto=event.target.value;
+    this.graficoABarra;
     this.graficoABarra.PrendiAnno(this.annoScelto)
   }
 

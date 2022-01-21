@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
   myStorage=window.localStorage;
   
 
-  constructor() { }
 
 
   ngOnInit(): void {
@@ -69,6 +68,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentUser', JSON.stringify(authdata));
           this.currentUserSubject.next(this.utente);
           this.router.navigate(['/']);
+          
           
           this.utente = success as Utente;
         },
@@ -124,9 +124,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login(){
-    
-  }
   
 
 }

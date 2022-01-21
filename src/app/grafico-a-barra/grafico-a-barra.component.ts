@@ -33,7 +33,7 @@ export class GraficoABarraComponent implements OnInit {
     this.PrendiAnno(2022)
   }
 
-  PrendiAnno(val){
+  public PrendiAnno(val){
     this.ordineProdottoService.findReportMensileGruppo(Number(val)).subscribe(
       (resp)=>{
         this.barChartData = resp;

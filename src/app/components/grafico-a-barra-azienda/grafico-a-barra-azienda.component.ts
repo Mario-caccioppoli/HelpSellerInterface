@@ -24,10 +24,10 @@ export class GraficoABarraAziendaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.PrendiAnno(Number)
+    this.PrendiAnno()
   }
 
-  PrendiAnno(num){
+  PrendiAnno(){
     this.ordineProdottoService.findReportAnnualeAzienda(2016,1).subscribe(
       (resp)=>{
         this.barChartDataBarraAzienda.push(resp);

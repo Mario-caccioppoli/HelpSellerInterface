@@ -17,8 +17,8 @@ export class UtenteService {
     return this.http.get<Utente[]>(`${this.apiServerUrl}/all`);
   }
 
-  public loginUtente(username: string, password: string): Observable<Utente> {
-    return this.http.post<Utente>(`${this.apiServerUrl}/users/authenticate`, { username, password });
+  public loginUtente(Utente: Utente): Observable<Utente> {
+    return this.http.post<Utente>(`${this.apiServerUrl}/login`, Utente);
   }
 
   public recuperoUtente(email: string): Observable<Utente> {

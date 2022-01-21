@@ -48,10 +48,10 @@ export class LoginComponent implements OnInit {
     if(this.utente != undefined)
     {
       this.utente = {
-        username: form.username,
+        username: null,
         password: form.password,
         id: null,
-        email:null,
+        email:form.email,
         tipo: form.tipo,
         vat: null,
         indirizzo: null,
@@ -61,11 +61,11 @@ export class LoginComponent implements OnInit {
         telefono: null,
         logo: null        
       };
-      this.us.loginUtente(this.utente.username, this.utente.password).subscribe(
+      this.us.loginUtente(this.utente).subscribe(
         (success) => {
           this.log.Debug(LoginComponent.name, "ok", [success]);
 
-          let authdata = window.btoa(this.utente.username + ':' + this.utente.password + ':' + this.utente.tipo);
+          let authdata = this.utente;
           localStorage.setItem('currentUser', JSON.stringify(authdata));
           this.currentUserSubject.next(this.utente);
           this.router.navigate(['/']);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Prodotto } from 'src/app/models/Prodotto';
 import { Sconto } from 'src/app/models/Sconto';
 import { ScontoProdotto } from 'src/app/models/ScontoProdotto';
+import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
 import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 import { ScontoProdottoService } from 'src/app/services/sconto-prodotto/sconto-prodotto.service';
@@ -29,10 +30,10 @@ export class GestioneScontiComponent implements OnInit {
     ,private prodottoService: ProdottoService, private log: LogService) {
     
   }
+  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   ngOnInit(): void {
 
     this.getAllScontiByAzienda()
-
   }
 
   getAllSconti(){
@@ -61,7 +62,7 @@ export class GestioneScontiComponent implements OnInit {
 
   getAllScontiByAzienda(){
     //non prende id.azienda find all prodotti scontati by id azienda
-    this.scontoService.findScontiByAzienda(3).subscribe(
+    this.scontoService.findScontiByAzienda(this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
         this.sconti = resp as Sconto[];
@@ -89,7 +90,7 @@ export class GestioneScontiComponent implements OnInit {
       this.getAllScontiByAzienda()
     }
     else{
-    this.scontoService.getAllScontoByTipoAndIdAzienda(this.filtroSelect,3).subscribe(
+    this.scontoService.getAllScontoByTipoAndIdAzienda(this.filtroSelect,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
         this.sconti = resp as Sconto[];
@@ -173,7 +174,7 @@ export class GestioneScontiComponent implements OnInit {
       this.getAllScontiByAzienda()
     }
     else{
-       this.scontoService.findScontiByNomeInAzienda(this.filtroNome,3).subscribe(
+       this.scontoService.findScontiByNomeInAzienda(this.filtroNome,this.currentUser.id).subscribe(
          (resp)=>{
            this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
            this.sconti = resp as Sconto[];

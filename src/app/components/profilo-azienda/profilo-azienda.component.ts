@@ -2,6 +2,7 @@ import { parseI18nMeta } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Azienda } from 'src/app/models/Azienda';
+import { Utente } from 'src/app/models/Utente';
 import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { LogService } from 'src/app/services/log.service';
 
@@ -16,9 +17,11 @@ export class ProfiloAziendaComponent implements OnInit {
 
   constructor(private aziendaService: AziendaService,private route:ActivatedRoute,private log : LogService) { }
 
+  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   ngOnInit(): void {
       this.prendiIdDalRouter();
       this.getProfiloAziendaById();
+      console.log("dddd "+this.currentUser.nome)
     }
 
   prendiIdDalRouter() {

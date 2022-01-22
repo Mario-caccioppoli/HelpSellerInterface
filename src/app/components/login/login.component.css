@@ -26,3 +26,7 @@ p.login {
     margin: 0;
     padding: 2px;
 }
+
+#datiLoggato {
+    float: right;
+}

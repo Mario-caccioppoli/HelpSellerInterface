@@ -5,7 +5,7 @@ import { TemplateDefinitionBuilder } from '@angular/compiler/src/render3/view/te
 import { Component, OnInit } from '@angular/core';
 
 import { EmailValidator } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
@@ -24,13 +24,13 @@ export class LoginComponent implements OnInit {
   
 
 
-  constructor(private us: UtenteService, private log: LogService) {
+  constructor(private us: UtenteService, private log: LogService, private router: Router) {
 
   }
 
   utente: Utente; 
   currentUser:Utente;
-  router: Router;
+  
 
 
   myStorage=window.localStorage;
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
           this.myStorage.setItem('currentUser',JSON.stringify(this.utente));
           document.getElementById("login").click()
           this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
-          
+          window.location.reload()
         },
 
         (error) => {
@@ -92,6 +92,8 @@ export class LoginComponent implements OnInit {
     document.getElementById("logout").click()
     if(this.myStorage.getItem('currentUser')==null){
       this.currentUser=null;
+      window.location.reload()
+      this.router.navigateByUrl('')
     }
     else{
     console.log(" sessione logout "+this.myStorage.getItem('currentUser') +" storage "+this.currentUser.nome)
@@ -100,7 +102,17 @@ export class LoginComponent implements OnInit {
 
 
   recuperaPassword(form){
-
+    this.us.recuperoPassword(form.email).subscribe(
+      (resp)=>{
+        this.log.Debug(LoginComponent.name, "errore", [resp]);
+        console.log("interp "+resp)
+        document.getElementById("recover").click()
+        window.alert("EMAIL INVIATA")
+      },
+      (error)=>{
+        this.log.Error(LoginComponent.name, "errore", [error]);
+      }
+    )
   }
 
 }

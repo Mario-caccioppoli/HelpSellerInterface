@@ -22,7 +22,7 @@ export class UtenteService {
   }
 
   public recuperoPassword(email: string): Observable<Number> {
-    return this.http.post<Number>(`${this.apiServerUrl}/recuperoPassword`,email);
+    return this.http.post<number>(`${this.apiServerUrl}/recuperoPassword/${email}`,email);
   }
 
   public findById(UtenteID : number): Observable<Utente> {
@@ -40,4 +40,5 @@ export class UtenteService {
   public updateUtente(Utente: Utente): Observable<Utente> {
     return this.http.post<Utente>(`${this.apiServerUrl}/update`, Utente);
   }
+
 }

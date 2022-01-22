@@ -4,6 +4,7 @@ import { GraficoABarraComponent } from 'src/app/grafico-a-barra/grafico-a-barra.
 import { Azienda } from 'src/app/models/Azienda';
 import { Ordine } from 'src/app/models/Ordine';
 import { OrdineProdotto } from 'src/app/models/OrdineProdotto';
+import { Utente } from 'src/app/models/Utente';
 import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { LogService } from 'src/app/services/log.service';
 import { OrdineProdottoService } from 'src/app/services/ordine-prodotto/ordine-prodotto.service';
@@ -51,6 +52,9 @@ export class ReportAmministratoreComponent implements OnInit {
   datiAnnualiOrdini: Ordine[];
   aziendaScelta : string;
   annoScelto : string;
+
+  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
+
   constructor(private aziendaService: AziendaService,private ordineProdottoService: OrdineProdottoService ,
     private ordineService: OrdineService, private log: LogService) { }
 
@@ -154,7 +158,7 @@ export class ReportAmministratoreComponent implements OnInit {
 
   getReportTotaleByAnnoIdAzienda(){
     this.datiAnnualiDB_IDAzienda=[];
-    this.ordineProdottoService.findReportAnnualeAzienda(2016,3).subscribe(
+    this.ordineProdottoService.findReportAnnualeAzienda(2016,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
         if(resp==undefined){
@@ -169,7 +173,7 @@ export class ReportAmministratoreComponent implements OnInit {
         this.datiAnnualiDB_IDAzienda.push(0)
       }
     )
-    this.ordineProdottoService.findReportAnnualeAzienda(2017,3).subscribe(
+    this.ordineProdottoService.findReportAnnualeAzienda(2017,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
         if(resp==undefined){
@@ -184,7 +188,7 @@ export class ReportAmministratoreComponent implements OnInit {
         this.datiAnnualiDB_IDAzienda.push(0)
       }
     )
-    this.ordineProdottoService.findReportAnnualeAzienda(2018,3).subscribe(
+    this.ordineProdottoService.findReportAnnualeAzienda(2018,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
         if(resp==undefined){
@@ -199,7 +203,7 @@ export class ReportAmministratoreComponent implements OnInit {
         this.datiAnnualiDB_IDAzienda.push(0)
       }
     )
-    this.ordineProdottoService.findReportAnnualeAzienda(2019,3).subscribe(
+    this.ordineProdottoService.findReportAnnualeAzienda(2019,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
         if(resp==undefined){
@@ -214,7 +218,7 @@ export class ReportAmministratoreComponent implements OnInit {
         this.datiAnnualiDB_IDAzienda.push(0)
       }
     )
-    this.ordineProdottoService.findReportAnnualeAzienda(2020,3).subscribe(
+    this.ordineProdottoService.findReportAnnualeAzienda(2020,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
         if(resp==undefined){
@@ -229,7 +233,7 @@ export class ReportAmministratoreComponent implements OnInit {
         this.datiAnnualiDB_IDAzienda.push(0)
       }
     )
-    this.ordineProdottoService.findReportAnnualeAzienda(2021,3).subscribe(
+    this.ordineProdottoService.findReportAnnualeAzienda(2021,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
         if(resp==undefined){
@@ -244,7 +248,7 @@ export class ReportAmministratoreComponent implements OnInit {
         this.datiAnnualiDB_IDAzienda.push(0)
       }
     )
-    this.ordineProdottoService.findReportAnnualeAzienda(2022,3).subscribe(
+    this.ordineProdottoService.findReportAnnualeAzienda(2022,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
         if(resp==undefined){

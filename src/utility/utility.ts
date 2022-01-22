@@ -1,8 +1,8 @@
 import { analyzeAndValidateNgModules } from "@angular/compiler";
+import { Utente } from "src/app/models/Utente";
 import { Md5 } from "ts-md5";
 
 export class utility{
-
 
     static criptaPassword(password : string) : any {
         const md5=new Md5;
@@ -20,5 +20,7 @@ export class utility{
             return false;
         }
     }
+    
+
     
 }

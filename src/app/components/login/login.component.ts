@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-import { EmailValidator } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
 import { UtenteService } from 'src/app/services/utente/utente.service';
-
-import { environment } from 'src/environments/environment';
 import { utility } from 'src/utility/utility';
 
 
@@ -18,17 +13,12 @@ import { utility } from 'src/utility/utility';
 })
 export class LoginComponent implements OnInit {
   
-
-
   constructor(private us: UtenteService, private log: LogService) {
-
   }
 
   utente: Utente; 
   currentUser:Utente;
   router: Router;
-
-
   myStorage=window.localStorage;
 
 
@@ -40,7 +30,6 @@ export class LoginComponent implements OnInit {
       this.currentUser=null;
     }
   }
-
 
   public login(form) {
       let passwordHash=utility.criptaPassword(form.password)
@@ -76,9 +65,6 @@ export class LoginComponent implements OnInit {
       )
   }
 
-
-  
-  
   logout() {
     this.myStorage.removeItem('currentUser');
     document.getElementById("logout").click()
@@ -91,12 +77,7 @@ export class LoginComponent implements OnInit {
   }
 
   recuperaPassword() {
-    
+
   }
-
-
-
-
-
 
 } //commit

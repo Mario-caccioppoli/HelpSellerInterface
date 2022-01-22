@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
 
   
   
-  logoutFunc() {
+  logout() {
     this.myStorage.removeItem('currentUser');
     document.getElementById("logout").click()
     if(this.myStorage.getItem('currentUser')==null){

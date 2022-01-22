@@ -1,9 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { identifierModuleUrl } from '@angular/compiler';
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
-import { TemplateDefinitionBuilder } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
-import { EmailValidator } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Utente } from 'src/app/models/Utente';
@@ -30,42 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public login(form) {
-    if(this.utente != undefined)
-    {
-      this.utente = {
-        username: null,
-        password: form.password,
-        id: null,
-        email:form.email,
-        tipo: form.tipo,
-        vat: null,
-        indirizzo: null,
-        descrizione: null,
-        nome: null,
-        cognome: null,
-        telefono: null,
-        logo: null        
-      };
-      this.us.loginUtente(this.utente).subscribe(
-        (success) => {
-          this.log.Debug(LoginComponent.name, "ok", [success]);
 
-          let authdata = this.utente;
-          localStorage.setItem('currentUser', JSON.stringify(authdata));
-          this.currentUserSubject.next(this.utente);
-          this.router.navigate(['/']);
-          
-          this.utente = success as Utente;
-        },
-
-        (error) => {
-          this.log.Error(LoginComponent.name, "errore", [error]);
-        }
-      )
-    }
-
-  }
 
   public get currentUserValue(): Utente {
     return this.currentUserSubject.value;
@@ -92,7 +52,7 @@ export class LoginComponent implements OnInit {
         nome: null,
         cognome: null,
         telefono: null,
-        logo: null        
+        logo: null,
       };
       this.us.recuperoUtente(this.utente.email).subscribe(
         (success) => {

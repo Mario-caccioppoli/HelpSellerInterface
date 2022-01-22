@@ -29,7 +29,7 @@
 
         <h3>Grafico Vendite Totale Annuo</h3>
         <div class="row align-items-center ">
-            <app-grafico-a-barra id="graficoABarre" [barChartLabels]="mesi" [barChartData]="datiAnnualiTotaliByMeseDB">
+            <app-grafico-a-barra #graficoABarra [barChartLabels]="mesi" [barChartData]="datiAnnualiTotaliByMeseDB">
             </app-grafico-a-barra>
         </div>
         <p>N° Prodotti venduti: </p>
@@ -64,7 +64,7 @@
     <div id="reportAzienda " *ngIf="aziendaScelta!=null && aziendaScelta!=''">
         <h3>Grafico Vendite Totale Annuo</h3>
         <div class="row align-items-center ">
-            <app-grafico-a-linea-azienda [barChartLabelsLineaAzienda]="anni" [barChartDataLineaAzienda]="datiAnnualiTotaliDB_IDAzienda"></app-grafico-a-linea-azienda>
+            <app-grafico-a-linea-azienda #graficoALineaAzienda [barChartLabelsLineaAzienda]="anni" [barChartDataLineaAzienda]="datiAnnualiTotaliDB_IDAzienda"></app-grafico-a-linea-azienda>
         </div>
         <p>N° Prodotti venduti: </p>
         <p>Quantità totale di prodotti venduti: </p>
@@ -88,8 +88,8 @@
 
 <div class="aziendaReport ">
     <h1>Report Totale Annuali</h1>
-    <app-grafico-a-linea-azienda [barChartLabelsLineaAzienda]="anni" [barChartDataLineaAzienda]="datiAnnualiTotali"></app-grafico-a-linea-azienda>
+    <app-grafico-a-linea-azienda #graficoALineaAzienda [barChartLabelsLineaAzienda]="anni" [barChartDataLineaAzienda]="datiAnnualiTotaliDB_IDAzienda"></app-grafico-a-linea-azienda>
     <h1>Grafico vendite totale annuo</h1>
-    <app-grafico-a-barra-azienda [barChartLabelsBarraAzienda]="mesi" [barChartDataBarraAzienda]="datiMensiliTotali"></app-grafico-a-barra-azienda>
+    <app-grafico-a-barra-azienda #graficoABarraAzienda [barChartLabelsBarraAzienda]="mesi" [barChartDataBarraAzienda]="datiMensiliTotali"></app-grafico-a-barra-azienda>
 
 </div>

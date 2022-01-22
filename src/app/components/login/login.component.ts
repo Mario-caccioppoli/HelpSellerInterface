@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
 
 
   public login(form) {
-    //if(this.utente != undefined)
       let passwordHash=utility.criptaPassword(form.password)
 
       const fromHTML = {email: form.email, password: form.password, tipo: form.tipo};
@@ -75,7 +74,7 @@ export class LoginComponent implements OnInit {
           this.log.Error(LoginComponent.name, "errore", [error]);
         }
       )
-    //}
+  }
 
 
   
@@ -89,6 +88,10 @@ export class LoginComponent implements OnInit {
     else{
     console.log(" sessione logout "+this.myStorage.getItem('currentUser') +" storage "+this.currentUser.nome)
     }
+  }
+
+  recuperaPassword() {
+    
   }
 
 

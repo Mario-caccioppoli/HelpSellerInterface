@@ -34,8 +34,6 @@ export class LoginComponent implements OnInit {
 
 
   myStorage=window.localStorage;
-  
-
 
 
   ngOnInit(): void {
@@ -99,8 +97,10 @@ export class LoginComponent implements OnInit {
   }
 
 
+
   recuperaPassword(form){
 
   }
 
-}
+
+} //commit

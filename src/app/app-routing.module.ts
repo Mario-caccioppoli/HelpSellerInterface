@@ -8,7 +8,9 @@ import { GestioneProdottiComponent } from './components/gestione-prodotti/gestio
 import { GestioneScontiComponent } from './components/gestione-sconti/gestione-sconti.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { ProfiloAziendaComponent } from './components/profilo-azienda/profilo-azienda.component';
+
 import { RegistrazioneComponent } from './components/registrazione/registrazione.component';
+import { ReportAmministratoreComponent } from './components/report-amministratore/report-amministratore.component';
 import { SelezionaProdottiScontareComponent } from './components/seleziona-prodotti-scontare/seleziona-prodotti-scontare.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { VisualizzaAziendeComponent } from './components/visualizza-aziende/visualizza-aziende.component';
@@ -32,6 +34,10 @@ const routes: Routes = [
   {
     path:'profiloAzienda/:id',
     component:ProfiloAziendaComponent
+                                     },
+  {
+    path:'gestioneVendite',
+    component:ReportAmministratoreComponent
                                      },
   {
     path:'selezionaProdottiScontare',

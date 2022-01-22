@@ -34,6 +34,6 @@ export class DocumentoService {
   }
 
   public updateDocumento(Documento: Documento): Observable<Documento> {
-    return this.http.put<Documento>(`${this.apiServerUrl}/update`, Documento);
+    return this.http.post<Documento>(`${this.apiServerUrl}/update`, Documento);
   }
 }

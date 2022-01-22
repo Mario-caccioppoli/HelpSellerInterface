@@ -17,12 +17,12 @@ export class UtenteService {
     return this.http.get<Utente[]>(`${this.apiServerUrl}/all`);
   }
 
-  public loginUtente(Utente: Utente): Observable<Utente> {
-    return this.http.post<Utente>(`${this.apiServerUrl}/login`, Utente);
+  public loginUtente(stringa: string): Observable<Utente> {
+    return this.http.post<Utente>(`${this.apiServerUrl}/login`, stringa);
   }
 
-  public recuperoUtente(email: string): Observable<Utente> {
-    return this.http.post<Utente>(`${this.apiServerUrl}/recupero-password`, { email });
+  public recuperoPassword(email: string): Observable<Number> {
+    return this.http.post<Number>(`${this.apiServerUrl}/recuperoPassword`,email);
   }
 
   public findById(UtenteID : number): Observable<Utente> {
@@ -38,6 +38,6 @@ export class UtenteService {
   }
 
   public updateUtente(Utente: Utente): Observable<Utente> {
-    return this.http.put<Utente>(`${this.apiServerUrl}/update`, Utente);
+    return this.http.post<Utente>(`${this.apiServerUrl}/update`, Utente);
   }
 }

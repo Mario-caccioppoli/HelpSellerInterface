@@ -1,11 +1,4 @@
-
-    <div class="container">
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType">
+<div class="container">
+    <canvas baseChart [datasets]="dataForGraphs" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" [colors]="colors">
       </canvas>
-    </div>
-
+</div>

@@ -30,7 +30,7 @@ export class ProdottoService {
   }
 
   public updateProdotto(Prodotto: Prodotto): Observable<Prodotto> {
-    return this.http.put<Prodotto>(`${this.apiServerUrl}/update`, Prodotto);
+    return this.http.post<Prodotto>(`${this.apiServerUrl}/update`, Prodotto);
   }
 
   public getProdottoByIdAzienda(idAzienda : number): Observable<Prodotto[]> {

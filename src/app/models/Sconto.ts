@@ -1,12 +1,13 @@
 import { Prodotto } from "./Prodotto";
 
 export interface Sconto{
-    id: number;
+    id?: number;
+    nomeSconto:string;
     percentuale: number;
     dataInizio: Date;
     dataFine: Date;
     tipo: string;
-    quantita: number;
+    quantita?: number;
     idAzienda: number;
-    prodotti: Prodotto[];
+    prodotti?: Prodotto[];
 }

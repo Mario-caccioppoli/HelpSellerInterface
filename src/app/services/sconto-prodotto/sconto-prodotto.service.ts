@@ -30,7 +30,7 @@ export class ScontoProdottoService {
   }
 
   public updateScontoProdotto(ScontoProdotto: ScontoProdotto): Observable<ScontoProdotto> {
-    return this.http.put<ScontoProdotto>(`${this.apiServerUrl}/update`, ScontoProdotto);
+    return this.http.post<ScontoProdotto>(`${this.apiServerUrl}/update`, ScontoProdotto);
   }
   public findProdottiScontatiAzienda(nomeProdotto: string, idAzienda: number): Observable<ScontoProdotto[]>{
     return this.http.get<ScontoProdotto[]>(`${this.apiServerUrl}/findProdottiScontatiAzienda/${nomeProdotto}/${idAzienda}`);

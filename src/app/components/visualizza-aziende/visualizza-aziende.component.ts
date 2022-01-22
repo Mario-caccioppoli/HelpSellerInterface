@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Azienda } from 'src/app/models/Azienda';
+import { Utente } from 'src/app/models/Utente';
 import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { LogService } from 'src/app/services/log.service';
 
@@ -14,6 +15,8 @@ export class VisualizzaAziendeComponent implements OnInit {
   ricercaAziendaByNome: string;
   constructor(private aziendaService: AziendaService, private log: LogService) { }
 
+  
+  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   ngOnInit(): void {
     this.getAllAziende()
   }

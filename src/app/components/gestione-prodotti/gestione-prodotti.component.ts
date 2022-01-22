@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Azienda } from 'src/app/models/Azienda';
 import { Prodotto } from 'src/app/models/Prodotto';
+import { Utente } from 'src/app/models/Utente';
 import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { LogService } from 'src/app/services/log.service';
 import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
@@ -24,13 +25,15 @@ export class GestioneProdottiComponent implements OnInit {
 
   constructor(private prodottoService: ProdottoService,private aziendaService: AziendaService ,private log: LogService ) { }
 
+  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
+  
   ngOnInit(): void {
 
     this.getProdottiByIdAzienda()
 
   }
   getProdottiByIdAzienda(){
-    this.prodottoService.getProdottoByIdAzienda(1).subscribe(
+    this.prodottoService.getProdottoByIdAzienda(this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
@@ -128,7 +131,7 @@ export class GestioneProdottiComponent implements OnInit {
     }
     else{
     //non arriva this.idAzienda lo prendiamo dall'user session
-    this.prodottoService.findProdottiByIdInAzienda(Number(this.filtroCodice),1).subscribe(
+    this.prodottoService.findProdottiByIdInAzienda(Number(this.filtroCodice),this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
@@ -146,7 +149,7 @@ export class GestioneProdottiComponent implements OnInit {
     }
     else{
     //non arriva this.idAzienda lo prendiamo dall'user session
-    this.prodottoService.findProdottiByNomeInAzienda(this.filtroNome,1).subscribe(
+    this.prodottoService.findProdottiByNomeInAzienda(this.filtroNome,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];

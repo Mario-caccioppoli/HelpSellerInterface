@@ -76,6 +76,10 @@ const routes: Routes = [
     path:'registrazioneAzienda',
     component:RegistrazioneAziendaComponent
   },
+  {
+    path:'sidebar',
+    component:SidebarComponent
+  }
   
   ];
 

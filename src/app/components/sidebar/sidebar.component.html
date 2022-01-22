@@ -8,39 +8,40 @@
                         <a class="nav-link" [routerLink]="['/']">Home</a>
                     </li>
                     <!-- Amministratore di piattaforma -->
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/registrazioneAzienda">Registra Azienda</a>
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Amministratore'">
+                        <a class=" nav-link" routerLink="/registrazioneAzienda">Registra Azienda</a>
                     </li>
                     <!-- Azienda -->
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda' || currentUser.tipo=='Distributore'">
                         <a class="nav-link" routerLink="/profiloAzienda">Profilo</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/gestioneSconti">Gestione Sconti</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/gestioneOrdini">Gestione Ordini</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/gestioneProdotti">Gestione Prodotti</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda' || currentUser.tipo=='Amministratore'">
                         <a class="nav-link" routerLink="/gestioneVendite">Gestione Vendite</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/gestioneRecensioni">Gestione Recensioni</a>
                     </li>
-                    <!-- Distributore --><hr>
-                    <li class="nav-item">
+                    <!-- Distributore -->
+                    <hr>
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Distributore' || currentUser.tipo=='Amministratore'">
                         <a class="nav-link" routerLink="/visualizzaAziende">Aziende</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/visualizzaOrdini">Ordini</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/effettuaOrdine-TEST">Effettua ordine TEST</a>
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Distributore'">
+                        <a class="nav-link " routerLink="/effettuaOrdine-TEST">Effettua ordine TEST</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/dettagliOrdine-TEST">Dettagli ordine TEST</a>
                     </li>
                     <li class="nav-item">

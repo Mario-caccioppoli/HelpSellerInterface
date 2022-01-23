@@ -1,17 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { identifierModuleUrl } from '@angular/compiler';
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
-import { TemplateDefinitionBuilder } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
-
-import { EmailValidator } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Router, RouterLink } from '@angular/router';
 import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
 import { UtenteService } from 'src/app/services/utente/utente.service';
-
-import { environment } from 'src/environments/environment';
 import { utility } from 'src/utility/utility';
 
 
@@ -22,32 +13,24 @@ import { utility } from 'src/utility/utility';
 })
 export class LoginComponent implements OnInit {
   
-
-
   constructor(private us: UtenteService, private log: LogService, private router: Router) {
-
   }
 
   utente: Utente; 
   currentUser:Utente;
-  
-
-
   myStorage=window.localStorage;
 
 
   ngOnInit(): void {
-    if(this.myStorage.getItem('currentUser')!=null){
-      this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
+    if(this.myStorage.getItem('currentUser')==null){
+      this.currentUser=null;
     }
     else{
-      this.currentUser=null;
+      this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
     }
   }
 
-
   public login(form) {
-    //if(this.utente != undefined)
       let passwordHash=utility.criptaPassword(form.password)
 
       const fromHTML = {email: form.email, password: passwordHash, tipo: form.tipo};
@@ -59,7 +42,7 @@ export class LoginComponent implements OnInit {
             id: success.id,
             username: success.username,
             email: success.email,
-            password: success.password,
+            password: passwordHash,
             tipo: success.tipo,
             vat: success.vat,
             indirizzo: success.indirizzo,
@@ -72,7 +55,7 @@ export class LoginComponent implements OnInit {
           this.myStorage.setItem('currentUser',JSON.stringify(this.utente));
           document.getElementById("login").click()
           this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
-          window.location.reload()
+          this.router.navigate(['/']);         
         },
 
         (error) => {
@@ -80,26 +63,19 @@ export class LoginComponent implements OnInit {
           window.alert("DATI NON CORRETTI, RIPROVA")
         }
       )
-    //}
-
   }
 
-  
-  
-  public logout() {
+  logout() {
     this.myStorage.removeItem('currentUser');
     document.getElementById("logout").click()
     if(this.myStorage.getItem('currentUser')==null){
       this.currentUser=null;
-      window.location.reload()
-      this.router.navigateByUrl('')
+      this.router.navigate(['/']); 
     }
     else{
     console.log(" sessione logout "+this.myStorage.getItem('currentUser') +" storage "+this.currentUser.nome)
     }
   }
-
-
 
   recuperaPassword(form){
     this.us.recuperoPassword(form.email).subscribe(
@@ -152,3 +128,5 @@ export class LoginComponent implements OnInit {
 
 
 } 
+} 
+

@@ -7,10 +7,6 @@
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/']">Home</a>
                     </li>
-                    <!-- Amministratore di piattaforma -->
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Amministratore'">
-                        <a class=" nav-link" routerLink="/registrazioneAzienda">Registra Azienda</a>
-                    </li>
                     <!-- Azienda -->
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/profiloAzienda">Profilo</a>
@@ -45,7 +41,7 @@
                         <a class="nav-link" routerLink="/dettagliOrdine-TEST">Dettagli ordine TEST</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/registrazione">Registrazione distributore</a>
+                        <a class="nav-link" routerLink="/registrazione">Registrazione</a>
                     </li>
                 </ul>
                 <hr>

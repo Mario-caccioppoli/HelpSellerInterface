@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Utente } from 'src/app/models/Utente';
 import { environment } from 'src/environments/environment';
+import { Distributore } from 'src/app/models/Distributore';
+import { Azienda } from 'src/app/models/Azienda';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class UtenteService {
 
   private apiServerUrl = environment.apiBaseUrl+"/user";
+  private apiServerUrlReg = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -33,8 +36,12 @@ export class UtenteService {
     return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${UtenteId}`);
   }
 
-  public insertUtente(Utente: Utente): Observable<Utente> {
-    return this.http.post<Utente>(`${this.apiServerUrl}/insert`, Utente);
+  public insertUtenteDistributore(Distributore: Distributore): Observable<Utente> {
+    return this.http.post<Utente>(`${this.apiServerUrlReg}/distributore/insert`, Distributore);
+  }
+
+  public insertUtenteAzienda(Azienda: Azienda): Observable<Utente> {
+    return this.http.post<Utente>(`${this.apiServerUrlReg}/azienda/insert`, Azienda);
   }
 
   public updateUtente(Utente: Utente): Observable<Utente> {

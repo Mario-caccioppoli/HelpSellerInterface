@@ -9,6 +9,6 @@ export interface Utente{
     descrizione: string;
     nome: string;
     cognome: string;
-    telefono: string;
+    telefono: number;
     logo: string;
 }

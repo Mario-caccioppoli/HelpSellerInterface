@@ -27,6 +27,16 @@ p.login {
     padding: 2px;
 }
 
-#datiLoggato {
-    float: right;
+.lbw {
+    text-align: right;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.nc {
+    width: 100%;
+    max-width: 70px;
 }

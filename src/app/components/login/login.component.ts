@@ -124,9 +124,6 @@ export class LoginComponent implements OnInit {
           window.alert("DATI NON CORRETTI, RIPROVA")
         }
       )
-  }
-
-
-} 
+  } 
 } 
 

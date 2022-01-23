@@ -13,21 +13,20 @@ import { utility } from 'src/utility/utility';
 })
 export class LoginComponent implements OnInit {
   
-  constructor(private us: UtenteService, private log: LogService) {
+  constructor(private us: UtenteService, private log: LogService, private router: Router) {
   }
 
   utente: Utente; 
   currentUser:Utente;
-  router: Router;
   myStorage=window.localStorage;
 
 
   ngOnInit(): void {
-    if(this.myStorage.getItem('currentUser')!=null){
-      this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
+    if(this.myStorage.getItem('currentUser')==null){
+      this.currentUser=null;
     }
     else{
-      this.currentUser=null;
+      this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
     }
   }
 
@@ -43,7 +42,7 @@ export class LoginComponent implements OnInit {
             id: success.id,
             username: success.username,
             email: success.email,
-            password: success.password,
+            password: passwordHash,
             tipo: success.tipo,
             vat: success.vat,
             indirizzo: success.indirizzo,
@@ -56,7 +55,7 @@ export class LoginComponent implements OnInit {
           this.myStorage.setItem('currentUser',JSON.stringify(this.utente));
           document.getElementById("login").click()
           this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
-          
+          this.router.navigate(['/']);         
         },
 
         (error) => {
@@ -70,6 +69,7 @@ export class LoginComponent implements OnInit {
     document.getElementById("logout").click()
     if(this.myStorage.getItem('currentUser')==null){
       this.currentUser=null;
+      this.router.navigate(['/']); 
     }
     else{
     console.log(" sessione logout "+this.myStorage.getItem('currentUser') +" storage "+this.currentUser.nome)
@@ -80,4 +80,4 @@ export class LoginComponent implements OnInit {
 
   }
 
-} //commit
+} 

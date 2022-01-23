@@ -15,7 +15,6 @@ import { SelezionaProdottiScontareComponent } from './components/seleziona-prodo
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { VisualizzaAziendeComponent } from './components/visualizza-aziende/visualizza-aziende.component';
 import { VisualizzaProdottiComponent } from './components/visualizza-prodotti/visualizza-prodotti.component';
-import { RegistrazioneAziendaComponent } from './components/registrazione-azienda/registrazione-azienda.component';
 
 
 const routes: Routes = [
@@ -71,10 +70,6 @@ const routes: Routes = [
   {
     path:'registrazione',
     component:RegistrazioneComponent
-  },
-  {
-    path:'registrazioneAzienda',
-    component:RegistrazioneAziendaComponent
   },
   
   ];

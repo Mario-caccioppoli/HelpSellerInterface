@@ -26,3 +26,17 @@ p.login {
     margin: 0;
     padding: 2px;
 }
+
+.lbw {
+    text-align: right;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.nc {
+    width: 100%;
+    max-width: 70px;
+}

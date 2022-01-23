@@ -6,6 +6,7 @@
             <br>
             <p>Pannello</p>
             <button class="btn btn-secondary w100"><a [routerLink]="['/']">Indietro</a></button>
+            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
             <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
             <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
         </div>
@@ -13,14 +14,18 @@
             <h2 class="titolo centered">{{currentUser?.nome}} {{currentUser?.cognome}}
             </h2><br>
             <div class="container scroll">
-                <h5 class="m25 left"><b>Nome (o Brand)</b></h5>
-                <p class="paragrafo left">{{currentUser?.nome}}</p>
-                <h5 class="m25 left"><b>Telefono</b></h5>
-                <p class="paragrafo left">{{currentUser.telefono}}</p>
-                <h5 class="m25 left"><b>Indirizzo</b></h5>
-                <p class="paragrafo left">{{currentUser.indirizzo}}</p>
-                <h5 class="m25 left"><b>Descrizione</b></h5>
-                <p class="paragrafo left">{{currentUser.descrizione}}</p>
+                <h5 class="m25 left" *ngIf="currentUser.tipo=='Amministratore'"><b>Username</b></h5>
+                <p class="paragrafo left" *ngIf="currentUser.tipo=='Amministratore'">{{currentUser?.username}}</p>
+                <h5 class="m25 left" *ngIf="currentUser.tipo=='Amministratore'"><b>Email</b></h5>
+                <p class="paragrafo left" *ngIf="currentUser.tipo=='Amministratore'">{{currentUser?.email}}</p>
+                <h5 class="m25 left" *ngIf="currentUser.tipo!='Amministratore'"><b>Nome (o Brand)</b></h5>
+                <p class="paragrafo left" *ngIf="currentUser.tipo!='Amministratore'">{{currentUser?.nome}}</p>
+                <h5 class="m25 left" *ngIf="currentUser.tipo!='Azienda' && currentUser.tipo!='Amministratore'"><b>Telefono</b></h5>
+                <p class="paragrafo left" *ngIf="currentUser.tipo!='Azienda' && currentUser.tipo!='Amministratore'">{{currentUser.telefono}}</p>
+                <h5 class="m25 left" *ngIf="currentUser.tipo!='Amministratore'"><b>Indirizzo</b></h5>
+                <p class="paragrafo left" *ngIf="currentUser.tipo!='Amministratore'">{{currentUser.indirizzo}}</p>
+                <h5 class="m25 left" *ngIf="currentUser.tipo!='Amministratore'"><b>Descrizione</b></h5>
+                <p class="paragrafo left" *ngIf="currentUser.tipo!='Amministratore'">{{currentUser.descrizione}}</p>
             </div>
         </div>
     </div>
@@ -36,8 +41,8 @@
             <br>
             <p>Pannello</p>
             <button class="btn btn-secondary w100"><a [routerLink]="['/']">Indietro</a></button>
-            <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Modifica</a></button>
-            <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button>
+
+            <!-- <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button> -->
         </div>
         <div class="col-lg-9 centered">
             <h2 class="titolo centered">{{azienda.nomeAzienda}}
@@ -77,7 +82,7 @@
                         <div class="modal-body">
                             <div class="modal-body">
                                 <div><b>Nuova Password</b></div>
-                                <input type="text" class="form-control" name="password" />
+                                <input type="text" ngModel class="form-control" name="password" />
                             </div>
                         </div>
                     </div>
@@ -96,27 +101,40 @@
 <div class="modal fade" id="modificaAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="form-control" #modificaPassword="ngForm" (ngSubmit)="newPassword(modificaPassword.value)">
+            <form class="form-control" #modificaAC="ngForm" (ngSubmit)="modificaAccount(modificaAC.value)">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modifica Account</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <div class="modal-body">
                         <div class="modal-body">
                             <div class="modal-body">
-                                <div><b>Nuova Nome</b></div>
-                                <input type="text" class="form-control" name="nome" /><br>
-                                <div><b>Nuova Nome</b></div>
-                                <input type="text" class="form-control" name="nome" />
+                                <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo nome</b></div>
+                                <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="nome" /><br>
+                                <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo cognome</b></div>
+                                <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="cognome" /><br>
+                                <div *ngIf="currentUser.tipo!='Azienda'"><b>Nuovo username</b></div>
+                                <input *ngIf="currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="username" /><br>
+                                <div *ngIf="currentUser.tipo=='Azienda'"><b>Nuovo Nome Azienda</b></div>
+                                <input *ngIf="currentUser.tipo=='Azienda'" type="text" class="form-control" ngModel name="nome" /><br>
+                                <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo indirizzo</b></div>
+                                <input *ngIf="currentUser.tipo!='Amministratore'" type="text" class="form-control" ngModel name="indirizzo" /><br>
+                                <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'"><b>Nuova descrizione</b></div>
+                                <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'" type="text" class="form-control" ngModel name="descrizione" /><br>
+                                <div><b>Nuova email</b></div>
+                                <input type="text" class="form-control" ngModel name="email" /><br>
+                                <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo vat number</b></div>
+                                <input *ngIf="currentUser.tipo!='Amministratore'" type="text" maxlength="12" class="form-control" ngModel name="vat" /><br>
+                                <div *ngIf="currentUser.tipo=='Distributore'"><b>Nuovo numero telefono</b></div>
+                                <input *ngIf="currentUser.tipo=='Distributore'" type="text" maxlength="10" class="form-control" ngModel name="telefono" /><br>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <button type="submit" class="btn btn-primary">INVIA NUOVA PASSWORD</button>
+                    <button type="submit" class="btn btn-primary">MODIFICA ACCOUNT</button>
                 </div>
             </form>
         </div>

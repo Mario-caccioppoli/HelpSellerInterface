@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     //if(this.utente != undefined)
       let passwordHash=utility.criptaPassword(form.password)
 
-      const fromHTML = {email: form.email, password: form.password, tipo: form.tipo};
+      const fromHTML = {email: form.email, password: passwordHash, tipo: form.tipo};
       const toBackend = JSON.stringify(fromHTML);
       this.us.loginUtente(toBackend).subscribe(
         (success) => {
@@ -77,6 +77,7 @@ export class LoginComponent implements OnInit {
 
         (error) => {
           this.log.Error(LoginComponent.name, "errore", [error]);
+          window.alert("DATI NON CORRETTI, RIPROVA")
         }
       )
     //}
@@ -114,5 +115,40 @@ export class LoginComponent implements OnInit {
     )
   }
 
+  loginRecupero(form){
+    console.log(form.email+" "+form.tipo)
+    const fromHTML = {email: form.email, password: form.password , tipo: form.tipo};
+      const toBackend = JSON.stringify(fromHTML);
+      this.us.loginUtente(toBackend).subscribe(
+        (success) => {
+          this.log.Debug(LoginComponent.name, "ok", [success]);
+          this.utente={
+            id: success.id,
+            username: success.username,
+            email: success.email,
+            password: success.password,
+            tipo: success.tipo,
+            vat: success.vat,
+            indirizzo: success.indirizzo,
+            descrizione: success.descrizione,
+            nome: success.nome,
+            cognome: success.cognome,
+            telefono: success.telefono,
+            logo: success.logo
+          }
+          console.log("arriva "+form.email+form.password+form.tipo)
+          this.myStorage.setItem('currentUser',JSON.stringify(this.utente));
+          document.getElementById("login").click()
+          this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
+          window.location.reload()
+        },
 
-} //commit
+        (error) => {
+          this.log.Error(LoginComponent.name, "errore", [error]);
+          window.alert("DATI NON CORRETTI, RIPROVA")
+        }
+      )
+  }
+
+
+} 

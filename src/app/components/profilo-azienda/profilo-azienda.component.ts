@@ -64,16 +64,19 @@ export class ProfiloAziendaComponent implements OnInit {
       this.amministratore={
         id:this.currentUser.id,
         email:this.currentUser.email,
-        password:utility.criptaPassword(form.password),
+        password:utility.criptaPassword(password),
         username:this.currentUser.username
       }
       this.amministratoreService.updateAmministratore(this.amministratore).subscribe(
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
-          this.amministratore=resp as Amministratore;
-          console.log(this.amministratore)
+          this.currentUser.password=this.amministratore.password;
+          localStorage.removeItem('currentUser');
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
           document.getElementById("modificaPassword").click()
           window.alert("PASSWORD MODIFICATA")
+          window.location.reload();
+
         },
         (error)=>{
           this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
@@ -88,7 +91,7 @@ export class ProfiloAziendaComponent implements OnInit {
         indirizzo:this.currentUser.indirizzo,
         logo:this.currentUser.logo,
         nomeAzienda:this.currentUser.nome,
-        password:utility.criptaPassword(form.password),
+        password:utility.criptaPassword(password),
         ordini:null,
         prodotti:null,
         vat:this.currentUser.vat
@@ -96,10 +99,12 @@ export class ProfiloAziendaComponent implements OnInit {
       this.aziendaService.updateAzienda(this.azienda).subscribe(
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
-          this.azienda=resp as Azienda;
-          console.log(this.distributore)
+          this.currentUser.password=this.azienda.password
+          localStorage.removeItem('currentUser');
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
           document.getElementById("modificaPassword").click()
           window.alert("PASSWORD MODIFICATA")
+          window.location.reload();
         },
         (error)=>{
           this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
@@ -116,17 +121,19 @@ export class ProfiloAziendaComponent implements OnInit {
         idOrdineProva:null,
         indirizzoSede:this.currentUser.indirizzo,
         ordini:null,
-        telefono:Number(this.currentUser.telefono),
+        telefono:this.currentUser.telefono,
         username:this.currentUser.username,
         vat:this.currentUser.vat
       }
       this.distributoreService.updateDistributore(this.distributore).subscribe(
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
-          this.distributore=resp as Distributore;
-          console.log(this.distributore)
+          this.currentUser.password = this.distributore.password;
+          localStorage.removeItem('currentUser');
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
           document.getElementById("modificaPassword").click()
           window.alert("PASSWORD MODIFICATA")
+          window.location.reload();
         },
         (error)=>{
           this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
@@ -146,6 +153,8 @@ export class ProfiloAziendaComponent implements OnInit {
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
           console.log(resp)
           document.getElementById("eliminaAccount").click()
+          window.localStorage.removeItem('currentUser');
+          window.location.reload();
           this.router.navigateByUrl('');
         },
         (error)=>{
@@ -159,6 +168,8 @@ export class ProfiloAziendaComponent implements OnInit {
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
           console.log(resp)
           document.getElementById("eliminaAccount").click()
+          window.localStorage.removeItem('currentUser');
+          window.location.reload();
           this.router.navigateByUrl('');
         },
         (error)=>{
@@ -169,77 +180,101 @@ export class ProfiloAziendaComponent implements OnInit {
   }
 
 
+
   modificaAccount(form){
     if(this.currentUser.tipo=='Amministratore'){
       this.amministratore={
         id:this.currentUser.id,
-        email:this.currentUser.email,
-        password:utility.criptaPassword(form.password),
-        username:this.currentUser.username
+        email:form.email,
+        password:this.currentUser.password,
+        username:form.username
       }
       this.amministratoreService.updateAmministratore(this.amministratore).subscribe(
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
-          this.amministratore=resp as Amministratore;
-          console.log(this.amministratore)
-          document.getElementById("modificaPassword").click()
-          window.alert("PASSWORD MODIFICATA")
+          this.currentUser.email=this.amministratore.email;
+          this.currentUser.username=this.amministratore.username;
+          localStorage.removeItem('currentUser');
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+          document.getElementById("modificaAccount").click()
+          window.alert("ACCOUNT MODIFICATO")
+          window.location.reload();
         },
         (error)=>{
           this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
+          window.alert("DATI INSERITI NON CORRETTI O GIA' ESISTENTI RIPROVA");
         }
       )
     }
     if(this.currentUser.tipo=='Azienda'){
       this.azienda={
         id:this.currentUser.id,
-        descrizione:this.currentUser.descrizione,
-        email:this.currentUser.email,
-        indirizzo:this.currentUser.indirizzo,
+        descrizione:form.descrizione,
+        email:form.email,
+        indirizzo:form.indirizzo,
         logo:this.currentUser.logo,
-        nomeAzienda:this.currentUser.nome,
-        password:utility.criptaPassword(form.password),
+        nomeAzienda:form.nome,
+        password:this.currentUser.password,
         ordini:null,
         prodotti:null,
-        vat:this.currentUser.vat
+        vat:form.vat
       }
       this.aziendaService.updateAzienda(this.azienda).subscribe(
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
-          this.azienda=resp as Azienda;
-          console.log(this.distributore)
-          document.getElementById("modificaPassword").click()
-          window.alert("PASSWORD MODIFICATA")
+          this.currentUser.descrizione=this.azienda.descrizione;
+          this.currentUser.email=this.azienda.email;
+          this.currentUser.indirizzo=this.azienda.indirizzo;
+          this.currentUser.nome=this.azienda.nomeAzienda;
+          this.currentUser.vat=this.azienda.vat;
+          localStorage.removeItem('currentUser');
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+          document.getElementById("modificaAccount").click()
+          window.alert("ACCOUNT MODIFICATO");
+          window.location.reload();
         },
         (error)=>{
           this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
+          window.alert("DATI INSERITI NON CORRETTI O GIA' ESISTENTI RIPROVA");
         }
       )
     }
     if(this.currentUser.tipo=='Distributore'){
       this.distributore={
         id:this.currentUser.id,
-        cognome:this.currentUser.cognome,
-        nome:this.currentUser.nome,
-        email:this.currentUser.email,
-        password:utility.criptaPassword(form.password),
+        cognome:form.cognome,
+        nome:form.nome,
+        email:form.email,
+        password:this.currentUser.password,
         idOrdineProva:null,
-        indirizzoSede:this.currentUser.indirizzo,
+        indirizzoSede:form.indirizzo,
         ordini:null,
-        telefono:Number(this.currentUser.telefono),
-        username:this.currentUser.username,
-        vat:this.currentUser.vat
+        telefono:form.telefono,
+        username:form.username,
+        vat:form.vat
       }
+      console.log("ciaoooooo "+this.distributore)
+      console.log(form.cognome+form.nome+form.email+form.indirizzo+form.telefono+form.username+form.vat)
       this.distributoreService.updateDistributore(this.distributore).subscribe(
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
-          this.distributore=resp as Distributore;
           console.log(this.distributore)
-          document.getElementById("modificaPassword").click()
-          window.alert("PASSWORD MODIFICATA")
+          this.currentUser.nome=this.distributore.nome;
+          this.currentUser.cognome=this.distributore.cognome;
+          this.currentUser.email=this.distributore.email;
+          this.currentUser.indirizzo=this.distributore.indirizzoSede;
+          this.currentUser.telefono=this.distributore.telefono;
+          this.currentUser.username=this.distributore.username;
+          this.currentUser.vat=this.distributore.vat;
+          localStorage.removeItem('currentUser');
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+          document.getElementById("modificaAccount").click()
+          window.alert("ACCOUNT MODIFICATO")
+          window.location.reload()
         },
         (error)=>{
           this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
+          window.alert("DATI INSERITI NON CORRETTI O GIA' ESISTENTI RIPROVA");
         }
       )
     }

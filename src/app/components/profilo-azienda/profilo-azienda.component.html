@@ -1,29 +1,144 @@
-<div class="row fullheight">
-    <div class="col-lg-3 centered pd30 intro">
-        <img class="img-circle" src="assets/icons/Logo.png" alt="">
-        <br>
-        <br>
-        <p>x amministratore</p>
-        <button class="btn btn-secondary w100"><a [routerLink]="['/']">Indietro</a></button>
-        <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Modifica</a></button>
-        <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button>
+<div *ngIf="currentUser!=null && azienda==undefined">
+    <div class="row fullheight">
+        <div class="col-lg-3 centered pd30 intro">
+            <img class="img-circle" src="assets/icons/Logo.png" alt="">
+            <br>
+            <br>
+            <p>Pannello</p>
+            <button class="btn btn-secondary w100"><a [routerLink]="['/']">Indietro</a></button>
+            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
+            <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
+        </div>
+        <div class="col-lg-9 centered">
+            <h2 class="titolo centered">{{currentUser?.nome}} {{currentUser?.cognome}}
+            </h2><br>
+            <div class="container scroll">
+                <h5 class="m25 left"><b>Nome (o Brand)</b></h5>
+                <p class="paragrafo left">{{currentUser?.nome}}</p>
+                <h5 class="m25 left"><b>Telefono</b></h5>
+                <p class="paragrafo left">{{currentUser.telefono}}</p>
+                <h5 class="m25 left"><b>Indirizzo</b></h5>
+                <p class="paragrafo left">{{currentUser.indirizzo}}</p>
+                <h5 class="m25 left"><b>Descrizione</b></h5>
+                <p class="paragrafo left">{{currentUser.descrizione}}</p>
+            </div>
+        </div>
     </div>
-    <div class="col-lg-9 centered">
-        <h2 class="titolo centered">{{currentUser?.nome}}
-            <!--{{azienda.nomeAzienda}}-->
-        </h2><br>
-        <div class="container scroll">
-            <h5 class="m25 left"><b>Nome (o Brand)</b></h5>
-            <p class="paragrafo left">
-                <!--{{azienda.nomeAzienda}}-->{{currentUser?.nome}}</p>
-            <h5 class="m25 left"><b>Ragione Sociale</b></h5>
-            <p class="paragrafo left">Unilever</p>
-            <h5 class="m25 left"><b>Indirizzo</b></h5>
-            <p class="paragrafo left">{{currentUser.indirizzo}}</p>
-            <h5 class="m25 left"><b><!--{{azienda.descrizione}}-->Descrizione</b></h5>
-            <p class="paragrafo left">{{currentUser.descrizione}}</p>
-            <button class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', idAzienda]">Visualizza Prodotti</a></button>
-            <!-- <div>*ngIf="azienda != undefined && azienda.id != undefined"</div> -->
+</div>
+
+<!-- profilo Azienda -->
+
+<div *ngIf="azienda!=undefined">
+    <div class="row fullheight">
+        <div class="col-lg-3 centered pd30 intro">
+            <img class="img-circle" src="assets/icons/Logo.png" alt="">
+            <br>
+            <br>
+            <p>Pannello</p>
+            <button class="btn btn-secondary w100"><a [routerLink]="['/']">Indietro</a></button>
+            <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Modifica</a></button>
+            <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button>
+        </div>
+        <div class="col-lg-9 centered">
+            <h2 class="titolo centered">{{azienda.nomeAzienda}}
+                <!--{{azienda.nomeAzienda}}-->
+            </h2><br>
+            <div class="container scroll">
+                <h5 class="m25 left"><b>Nome (o Brand)</b></h5>
+                <p class="paragrafo left">
+                    <!--{{azienda.nomeAzienda}}-->{{azienda.nomeAzienda}}</p>
+                <h5 class="m25 left"><b>Ragione Sociale</b></h5>
+                <p class="paragrafo left">Unilever</p>
+                <h5 class="m25 left"><b>Indirizzo</b></h5>
+                <p class="paragrafo left">{{azienda.indirizzo}}</p>
+                <h5 class="m25 left"><b><!--{{azienda.descrizione}}-->Descrizione</b></h5>
+                <p class="paragrafo left">{{azienda.descrizione}}</p>
+                <button class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', idAzienda]">Visualizza Prodotti</a></button>
+                <!-- <div>*ngIf="azienda != undefined && azienda.id != undefined"</div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- MODAL MODIFICA PASSWORD -->
+<div class="modal fade" id="modificaPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-control" #modificaPassword="ngForm" (ngSubmit)="newPassword(modificaPassword.value)">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modifica Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <div class="modal-body">
+                                <div><b>Nuova Password</b></div>
+                                <input type="text" class="form-control" name="password" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="submit" class="btn btn-primary">INVIA NUOVA PASSWORD</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL MODIFICA ACCOUNT -->
+<div class="modal fade" id="modificaAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-control" #modificaPassword="ngForm" (ngSubmit)="newPassword(modificaPassword.value)">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modifica Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <div class="modal-body">
+                                <div><b>Nuova Nome</b></div>
+                                <input type="text" class="form-control" name="nome" /><br>
+                                <div><b>Nuova Nome</b></div>
+                                <input type="text" class="form-control" name="nome" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="submit" class="btn btn-primary">INVIA NUOVA PASSWORD</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL_CANCELLA ACCOUNT -->
+<div class="modal fade" id="eliminaAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ATTENZIONE !</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                VUOI ELIMINARE DEFINITAVAMENTE L'ACCOUNT ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" (click)="eliminaAccount(this.currentUser.id)" class="btn btn-primary" #Elimina>Cancella</button>
+            </div>
         </div>
     </div>
 </div>

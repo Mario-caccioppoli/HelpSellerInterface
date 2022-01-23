@@ -7,8 +7,10 @@
   </svg>
 </button>
 <div id="datiLoggato" *ngIf="myStorage.getItem('currentUser')!=null">
-    <div>{{currentUser.nome}}</div>
-    <div>{{currentUser.cognome}}</div>
+    <div style="display: inline-block;">
+        <div>{{currentUser.nome}}</div>
+        <div>{{currentUser.cognome}}</div>
+    </div>
     <button type="button" data-bs-toggle="modal" data-bs-target="#logout">LOGOUT</button>
 </div>
 

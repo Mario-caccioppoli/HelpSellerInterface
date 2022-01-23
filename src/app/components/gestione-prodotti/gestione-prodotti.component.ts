@@ -23,7 +23,7 @@ export class GestioneProdottiComponent implements OnInit {
   idProdottoDaModificare:number;
   idProdottoEliminare: number;
 
-  constructor(private prodottoService: ProdottoService,private aziendaService: AziendaService ,private log: LogService ) { }
+  constructor(private prodottoService: ProdottoService , private log: LogService ) { }
 
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   
@@ -33,6 +33,7 @@ export class GestioneProdottiComponent implements OnInit {
 
   }
   getProdottiByIdAzienda(){
+    if(this.currentUser!=undefined){
     this.prodottoService.getProdottoByIdAzienda(this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
@@ -51,6 +52,7 @@ export class GestioneProdottiComponent implements OnInit {
     //     this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
     //   }
     // )
+    }
   }
   aggiungiProdotto(form){
     this.prodotto={
@@ -131,6 +133,7 @@ export class GestioneProdottiComponent implements OnInit {
     }
     else{
     //non arriva this.idAzienda lo prendiamo dall'user session
+    if(this.currentUser.id!=undefined){
     this.prodottoService.findProdottiByIdInAzienda(Number(this.filtroCodice),this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
@@ -139,7 +142,8 @@ export class GestioneProdottiComponent implements OnInit {
       (error)=>{
         this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
       }
-    )
+      )
+      }
     }
   }
 
@@ -149,6 +153,7 @@ export class GestioneProdottiComponent implements OnInit {
     }
     else{
     //non arriva this.idAzienda lo prendiamo dall'user session
+    if(this.currentUser.id!=undefined){
     this.prodottoService.findProdottiByNomeInAzienda(this.filtroNome,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
@@ -157,7 +162,8 @@ export class GestioneProdottiComponent implements OnInit {
       (error)=>{
         this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
       }
-    )
+      )
+    }
     }
   }
 

@@ -21,7 +21,6 @@ export class ProfiloAziendaComponent implements OnInit {
   ngOnInit(): void {
       this.prendiIdDalRouter();
       this.getProfiloAziendaById();
-      console.log("dddd "+this.currentUser.nome)
     }
 
   prendiIdDalRouter() {

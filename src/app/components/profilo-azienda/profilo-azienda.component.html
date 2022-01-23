@@ -9,13 +9,13 @@
         <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button>
     </div>
     <div class="col-lg-9 centered">
-        <h2 class="titolo centered">{{currentUser.nome}}
+        <h2 class="titolo centered">{{currentUser?.nome}}
             <!--{{azienda.nomeAzienda}}-->
         </h2><br>
         <div class="container scroll">
             <h5 class="m25 left"><b>Nome (o Brand)</b></h5>
             <p class="paragrafo left">
-                <!--{{azienda.nomeAzienda}}-->{{currentUser.nome}}</p>
+                <!--{{azienda.nomeAzienda}}-->{{currentUser?.nome}}</p>
             <h5 class="m25 left"><b>Ragione Sociale</b></h5>
             <p class="paragrafo left">Unilever</p>
             <h5 class="m25 left"><b>Indirizzo</b></h5>

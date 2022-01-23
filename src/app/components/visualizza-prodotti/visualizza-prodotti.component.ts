@@ -44,6 +44,7 @@ export class VisualizzaProdottiComponent implements OnInit {
   }
 
   getProdottiByIdAzienda(){
+    if(this.idAzienda!=undefined){
     this.prodottoService.getProdottoByIdAzienda(this.idAzienda).subscribe(
       (resp) => {
         this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",[resp]);
@@ -53,6 +54,7 @@ export class VisualizzaProdottiComponent implements OnInit {
         this.log.Error(VisualizzaProdottiComponent.name,"chiamata a back-end",[error]);
       }
     )
+    }
   }
 
   ricercaConSidebar(form){
@@ -60,8 +62,7 @@ export class VisualizzaProdottiComponent implements OnInit {
       this.getProdottiByIdAzienda();
     }
     else{
-    console.log(this.idAzienda)
-    console.log(form.searchbar)
+    if(this.idAzienda!=undefined){
     this.prodottoService.findProdottiByNomeInAzienda(form.searchbar,this.idAzienda).subscribe(
       (resp)=>{
         this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",resp);
@@ -72,6 +73,7 @@ export class VisualizzaProdottiComponent implements OnInit {
         this.log.Error(VisualizzaProdottiComponent.name,"chiamata a back-end",[error]);
       }
     )
+    }
     }
   }
 

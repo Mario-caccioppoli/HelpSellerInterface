@@ -21,12 +21,12 @@ export class ScontoProdottoService {
     return this.http.get<ScontoProdotto>(`${this.apiServerUrl}/findId/${ScontoProdottoID}`);
   }
 
-  public deleteScontoProdotto(ScontoProdottoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${ScontoProdottoId}`);
+  public deleteScontoProdotto(ScontoProdottoId: number): Observable<Number> {
+    return this.http.delete<Number>(`${this.apiServerUrl}/deleteId/${ScontoProdottoId}`);
   }
 
-  public insertScontoProdotto(ScontoProdotto: ScontoProdotto): Observable<ScontoProdotto> {
-    return this.http.post<ScontoProdotto>(`${this.apiServerUrl}/insert`, ScontoProdotto);
+  public insertScontoProdotto(idProdotto: number, idSconto: number): Observable<Number> {
+    return this.http.post<Number>(`${this.apiServerUrl}/insert/${idProdotto}/${idSconto}`,idSconto);
   }
 
   public updateScontoProdotto(ScontoProdotto: ScontoProdotto): Observable<ScontoProdotto> {

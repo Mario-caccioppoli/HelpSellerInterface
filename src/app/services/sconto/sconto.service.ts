@@ -33,8 +33,8 @@ export class ScontoService {
     return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${ScontoId}`);
   }
 
-  public insertSconto(Sconto: Sconto): Observable<Sconto> {
-    return this.http.post<Sconto>(`${this.apiServerUrl}/insert`, Sconto);
+  public insertSconto(Sconto: Sconto): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Sconto);
   }
 
   public updateSconto(Sconto: Sconto): Observable<Sconto> {

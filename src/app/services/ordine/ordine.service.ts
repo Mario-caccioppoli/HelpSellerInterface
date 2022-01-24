@@ -44,7 +44,7 @@ export class OrdineService {
   }
   
   public effettuaOrdine(Prodotti: Prodotto[]): Observable<Ordine> {
-    return this.http.post<Ordine>(`${this.apiServerUrl}/success`, Prodotti);
+    return this.http.post<Ordine>(`${this.apiServerUrl}/insert`, Prodotti);
   }
 
 }

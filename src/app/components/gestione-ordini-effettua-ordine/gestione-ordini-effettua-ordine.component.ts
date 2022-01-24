@@ -19,15 +19,21 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
   ricercaProdottoByNome: any;
   ordine: Ordine;
   product: Prodotto;
+  myStorage = window.localStorage;
 
   ngOnInit(): void {
-    this.prendiIdAziendaDalRouter()
+   /* this.prendiIdAziendaDalRouter()
     if(this.idAzienda==null){
       this.getAllProdotti
     }
     else{
       this.getProdottiByIdAzienda()
-    }
+    }*/
+
+    this.getAllProdotto();
+
+
+
   }
 
   startCart() { //avvia il carrello e i checkbox sul click Effettua Ordine
@@ -43,9 +49,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 
     var max = <HTMLInputElement>document.getElementById("qtaprod");;
     max.setAttribute("max", '10000');
-
-    var field = <HTMLInputElement>document.querySelector('input[value="qtval"]');
-    field.value = '0' ;
+    max.setAttribute("value", '0');
   }
 
   exitCart() {  //annulla la procedura di acquisto
@@ -87,9 +91,8 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 
     var maxsamp = <HTMLInputElement>document.getElementById("qtaprod");
     maxsamp.setAttribute("max", '1');
+    maxsamp.setAttribute("value", '0');
 
-    var field = <HTMLInputElement>document.querySelector('input[value="qtval"]');
-    field.value = '0' ;
   }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +106,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
       this.idAzienda= +params.get('id'))
   }
 
-  getAllProdotti(){
+  getAllProdotto(){
     this.prodottoService.getAllProdotto().subscribe(
       (resp)=>{
         this.log.Debug(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[resp]);
@@ -153,7 +156,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
       (resp)=>{
         this.log.Debug(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[resp]);
 
-        this.aggiungiAlCarrello(this.prodotti);
+       // this.aggiungiAlCarrello(this.prodotti);
 
         this.prodotti = resp as Prodotto[];
       },
@@ -163,21 +166,43 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     )
   }
 
-  aggiungiAlCarrello(prodotti: Prodotto[]) {
+  
+
+
+
+// Inizio procedura Carrello
+
+  avviaCarrello(selezione) {
+
+    this.product = {
+      id: selezione.id,
+      nomeProdotto: null,
+      prezzo: null,
+      descrizione: null,
+      quantita: selezione.quantita,
+      immagine: null,
+      quantitaMinima: null,
+      peso: null,
+      volume: null,
+      idAzienda: null,
+      recensioni: null,
+      sconti: null
+    }
+
     let local_storage;
     let itemsInCart = []
     
-    if(localStorage.getItem('cart')  == (null || undefined)){
+    if(localStorage.getItem('carrello')  == (null || undefined)){
       local_storage =[];
-      console.log("LocalStorage vuoto",JSON.parse(localStorage.getItem('cart')));
-      itemsInCart.push(prodotti);
+      console.log("LocalStorage vuoto",JSON.parse(localStorage.getItem('carello')));
+      itemsInCart.push(this.prodotti);
 
       localStorage.setItem('cart', JSON.stringify(itemsInCart));
       console.log('Inserito: ', itemsInCart);
     }
     else
     {
-      local_storage = JSON.parse(localStorage.getItem('cart'));
+      local_storage = JSON.parse(localStorage.getItem('carrello'));
       console.log("LocalStorage non vuoto",JSON.parse(localStorage.getItem('cart')));
       for(var i in local_storage)
       {
@@ -191,15 +216,22 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
           break;  
         }
     }
-    if(this.product){
+    
+    
+    /*if(this.product){
       itemsInCart.push(this.product);
     }
     local_storage.forEach(function (prodotto){
       itemsInCart.push(prodotto);
     })
-    localStorage.setItem('cart', JSON.stringify(itemsInCart));
+    localStorage.setItem('cart', JSON.stringify(itemsInCart));*/
 
-    }
+    } 
   }
 
+
+
+
+
+  
 }

@@ -61,10 +61,10 @@ export class GestioneProdottiComponent implements OnInit {
       descrizione: form.descrizione,
       quantita: form.quantita,
       immagine: "immagine",
-      quantitaMinima:99,
+      quantitaMinima:100,
       peso: form.peso,
       volume: form.volume,
-      idAzienda: 1,
+      idAzienda: this.currentUser.id,
       }; //prendere id azienda
 
 
@@ -74,11 +74,13 @@ export class GestioneProdottiComponent implements OnInit {
         (resp)=>{
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
           this.prodotto = resp as Prodotto;
+          window.alert("prodotto inserito con successo")
           let model=document.getElementById("aggiungiProdotto").click();
           this.getProdottiByIdAzienda()
         },
         (error)=>{
           this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
+          window.alert("Campi vuoti o errati, riprova")
         }
       )
   }
@@ -93,18 +95,20 @@ export class GestioneProdottiComponent implements OnInit {
       quantitaMinima:null,
       peso: form.peso,
       volume: form.volume,
-      idAzienda: 1
+      idAzienda: this.currentUser.id
       };//prendere id azienda
 
       this.prodottoService.updateProdotto(this.prodotto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
           this.prodotto = resp as Prodotto;
+          window.alert("prodotto modificato con successo")
           let model=document.getElementById("modificaProdotto").click();
           this.getProdottiByIdAzienda()
         },
         (error)=>{
           this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
+          window.alert("Campi vuoti o errati, riprova")
         }
       )
   }

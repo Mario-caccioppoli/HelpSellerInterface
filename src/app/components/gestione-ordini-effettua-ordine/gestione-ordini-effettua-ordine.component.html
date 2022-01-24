@@ -10,11 +10,11 @@
             <div class="row eqi-container">
                 <div class="col-lg-3 product" *ngFor="let prodotto of prodotti">
                     <div class="form-check form-check-inline onorder hide">
-                        <input class="form-check-input" type="checkbox" id="{{prodotto.id}}" name="id" ngModel>
-                        <input type="number" id="qtaprod" class="input-text qty" min="0" max="qtmax" name="quantita" value=0 title="Quantità prodotto" inputmode="numeric" ngModel>
+                        <input class="form-check-input" type="checkbox" id="check-{{prodotto.id}}" name="id-{{prodotto.id}}" ngModel>
+                        <input type="number" id="qtaprod-{{prodotto.id}}" class="input-text qty" min="0" max="qtmax" name="quantita{{prodotto.id}}" value=0 title="Quantità prodotto" inputmode="numeric" ngModel>
                     </div>
                     <a href="">
-                    <img class="img-product" src="{{prodotto.immagine}}" alt="{{prodotto.descrizione}}" />
+                    <img class="img-product" src="" alt="{{prodotto.descrizione}}" />
                     <div class="downspec">
                     <p class="bold">{{prodotto.nomeProdotto}}</p>
                     <p class="bold">€ {{prodotto.prezzo}} cad.</p>

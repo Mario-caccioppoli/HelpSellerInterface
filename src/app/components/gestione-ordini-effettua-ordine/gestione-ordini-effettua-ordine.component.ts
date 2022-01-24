@@ -18,8 +18,12 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
   prodotti : Prodotto[];
   ricercaProdottoByNome: any;
   ordine: Ordine;
-  product: Prodotto;
+  product: Prodotto[];
   myStorage = window.localStorage;
+  ind: number;
+  prodotto: Prodotto;
+
+
 
   ngOnInit(): void {
    /* this.prendiIdAziendaDalRouter()
@@ -47,6 +51,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
       nascondi[k].style.display = 'none';
     }
 
+    
     var max = <HTMLInputElement>document.getElementById("qtaprod");;
     max.setAttribute("max", '10000');
     max.setAttribute("value", '0');
@@ -174,7 +179,15 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 
   avviaCarrello(selezione) {
 
-    this.product = {
+    var arraySelezionati = [];
+    let indiceCheck: number = 0;
+    this.product = this.prodotti;
+
+    localStorage.removeItem('carrello');
+
+    this.product.forEach(element => {
+    
+      this.product[indiceCheck] = {
       id: selezione.id,
       nomeProdotto: null,
       prezzo: null,
@@ -188,22 +201,94 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
       recensioni: null,
       sconti: null
     }
+    
+    indiceCheck +=1;
 
+    var prodId : any = 'a';
+
+    prodId = <HTMLInputElement>document.getElementById('check-' + indiceCheck);
+    var isChecked = prodId.checked;    
+
+    if (isChecked == true) {
+      alert('ok')
+      arraySelezionati.push(this.prodotti[indiceCheck-1]);
+      console.log(this.prodotto[indiceCheck-1]);
+    }
+    
+      
+    });
+
+    console.log(arraySelezionati);    
+
+    localStorage.setItem('carrello', JSON.stringify(arraySelezionati));
+
+  
+
+    
+
+    
+
+     
+
+      
+
+
+  //    console.log('Selezionato: ', selezionato);
+  //    console.log('Singolo: ', arraySelezionati[indice], indice);
+  //    indice +=1;
+
+  //    if (selezionato.id == true && selezionato.quantita > 0) {
+   //     arrayProdotti.push(this.prodotti[indice]);
+    //    indice +=1
+     // }
+      
+
+
+
+
+      
+
+
+    //console.log('selezionesingola: ', this.prodotti[indice]);
+    //indice +=1;
+
+
+
+
+/*
     let local_storage;
-    let itemsInCart = []
+    let itemsInCart = [];
+
+    localStorage.removeItem('carrello');
     
     if(localStorage.getItem('carrello')  == (null || undefined)){
       local_storage =[];
-      console.log("LocalStorage vuoto",JSON.parse(localStorage.getItem('carello')));
-      itemsInCart.push(this.prodotti);
+      console.log("Carrello vuoto",JSON.parse(localStorage.getItem('carrello')));
+    
+      var arrayAggiunta = [];
+      console.log('selezionesingola: ', this.product[indice]);
+      this.prodotti.forEach(element => {
+      
+        console.log('selezione: ', this.product[indice]);
+      
+      
+      });
+/*
+        if (aggiunta.id == true && aggiunta.quantita > 0) {
+          arrayAggiunta.push(aggiunta);
+          indice = indice+1;
+        }
+      
 
-      localStorage.setItem('cart', JSON.stringify(itemsInCart));
-      console.log('Inserito: ', itemsInCart);
+      itemsInCart = arrayAggiunta;
+
+      localStorage.setItem('carrello', JSON.stringify(itemsInCart));
+      console.log('Inserito: ', itemsInCart); 
     }
     else
     {
       local_storage = JSON.parse(localStorage.getItem('carrello'));
-      console.log("LocalStorage non vuoto",JSON.parse(localStorage.getItem('cart')));
+      console.log("Carrello pieno",JSON.parse(localStorage.getItem('cart')));
       for(var i in local_storage)
       {
         console.log(local_storage[i].prodotti.prodotto.id);
@@ -215,8 +300,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
           this.product=null;
           break;  
         }
-    }
-    
+    }*/
     
     /*if(this.product){
       itemsInCart.push(this.product);
@@ -224,9 +308,9 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     local_storage.forEach(function (prodotto){
       itemsInCart.push(prodotto);
     })
-    localStorage.setItem('cart', JSON.stringify(itemsInCart));*/
+    localStorage.setItem('cart', JSON.stringify(itemsInCart));
 
-    } 
+    } */
   }
 
 

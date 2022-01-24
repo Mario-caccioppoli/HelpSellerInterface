@@ -35,7 +35,6 @@
             <div class="modal-body">
                 <form class="form-control" #loginform="ngForm" (ngSubmit)="login(loginform.value)">
                     <p><b>E-mail</b></p>
-                    <input type="text" class="form-control" ngModel name="email" placeholder="email" />
                     <input type="text" class="form-control" ngModel name="email" placeholder="Inserisci la tua E-mail" />
                     <br>
                     <p><b style="margin-right: 10px;">Password</b><a href="#recover" data-bs-toggle="modal" data-bs-target="#recover"><em>(Dimenticata? Recuperala qui)</em></a></p>
@@ -48,15 +47,6 @@
                         <option value="Azienda">Azienda</option>
                         <option value="Distributore">Distributore</option>
                         </select>
-                    <br>
-                    <br>
-                    <label for="tipo"><b>Tipologia Account:  </b></label>
-                    <select id="tipo" name="tipo" ngModel>
-                        <option value="" disabled hidden selected></option>
-                        <option value="Amministratore">Amministratore</option>
-                        <option value="Azienda">Azienda</option>
-                        <option value="Distributore">Distributore</option>
-                    </select>
                     <p><a href="#recover" data-bs-toggle="modal" data-bs-target="#logout"><em>(Test Logout)</em></a></p>
                     <br>
                     <button type="submit" class="btn btn-primary btn-accesso" name="invio">Accedi</button>

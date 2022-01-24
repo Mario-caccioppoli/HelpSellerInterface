@@ -21,16 +21,16 @@ export class ProdottoService {
     return this.http.get<Prodotto>(`${this.apiServerUrl}/findId/${ProdottoID}`);
   }
 
-  public deleteProdotto(ProdottoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${ProdottoId}`);
+  public deleteProdotto(ProdottoId: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${ProdottoId}`);
   }
 
-  public insertProdotto(Prodotto: Prodotto): Observable<Prodotto> {
-    return this.http.post<Prodotto>(`${this.apiServerUrl}/insert`, Prodotto);
+  public insertProdotto(Prodotto: Prodotto): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Prodotto);
   }
 
-  public updateProdotto(Prodotto: Prodotto): Observable<Prodotto> {
-    return this.http.post<Prodotto>(`${this.apiServerUrl}/update`, Prodotto);
+  public updateProdotto(Prodotto: Prodotto): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, Prodotto);
   }
 
   public getProdottoByIdAzienda(idAzienda : number): Observable<Prodotto[]> {

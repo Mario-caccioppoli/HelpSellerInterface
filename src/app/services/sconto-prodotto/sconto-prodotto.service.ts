@@ -21,16 +21,16 @@ export class ScontoProdottoService {
     return this.http.get<ScontoProdotto>(`${this.apiServerUrl}/findId/${ScontoProdottoID}`);
   }
 
-  public deleteScontoProdotto(ScontoProdottoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${ScontoProdottoId}`);
+  public deleteScontoProdotto(ScontoProdottoId: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${ScontoProdottoId}`);
   }
 
-  public insertScontoProdotto(ScontoProdotto: ScontoProdotto): Observable<ScontoProdotto> {
-    return this.http.post<ScontoProdotto>(`${this.apiServerUrl}/insert`, ScontoProdotto);
+  public insertScontoProdotto(ProdottoId: number, ScontoId: number): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert/${ProdottoId}/${ScontoId}`, ScontoId);
   }
 
-  public updateScontoProdotto(ScontoProdotto: ScontoProdotto): Observable<ScontoProdotto> {
-    return this.http.post<ScontoProdotto>(`${this.apiServerUrl}/update`, ScontoProdotto);
+  public updateScontoProdotto(ScontoProdotto: ScontoProdotto): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, ScontoProdotto);
   }
   public findProdottiScontatiAzienda(nomeProdotto: string, idAzienda: number): Observable<ScontoProdotto[]>{
     return this.http.get<ScontoProdotto[]>(`${this.apiServerUrl}/findProdottiScontatiAzienda/${nomeProdotto}/${idAzienda}`);

@@ -29,16 +29,16 @@ export class ScontoService {
     return this.http.get<Sconto>(`${this.apiServerUrl}/findId/${ScontoID}`);
   }
 
-  public deleteSconto(ScontoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${ScontoId}`);
+  public deleteSconto(ScontoId: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${ScontoId}`);
   }
 
-  public insertSconto(Sconto: Sconto): Observable<Sconto> {
-    return this.http.post<Sconto>(`${this.apiServerUrl}/insert`, Sconto);
+  public insertSconto(Sconto: Sconto): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Sconto);
   }
 
-  public updateSconto(Sconto: Sconto): Observable<Sconto> {
-    return this.http.post<Sconto>(`${this.apiServerUrl}/update`, Sconto);
+  public updateSconto(Sconto: Sconto): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, Sconto);
   }
   public findScontiByNomeInAzienda(nome:string, idAzienda:number): Observable<Sconto[]>{
     return this.http.get<Sconto[]>(`${this.apiServerUrl}/findScontiByNomeInAzienda/${nome}/${idAzienda}`);

@@ -31,20 +31,16 @@ export class OrdineService {
     return this.http.get<OrdineProdotto>(`${this.apiServerUrl}/findId/${OrdineID}`);
   }
 
-  public deleteOrdine(OrdineId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${OrdineId}`);
+  public deleteOrdine(OrdineId: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${OrdineId}`);
   }
 
-  public insertOrdine(Ordine: Ordine): Observable<Ordine> {
-    return this.http.post<Ordine>(`${this.apiServerUrl}/insert`, Ordine);
+  public insertOrdine(Ordine: Ordine): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Ordine);
   }
 
-  public updateOrdine(Ordine: Ordine): Observable<Ordine> {
-    return this.http.post<Ordine>(`${this.apiServerUrl}/update`, Ordine);
+  public updateOrdine(Ordine: Ordine): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, Ordine);
   }
   
-  public effettuaOrdine(Prodotti: Prodotto[]): Observable<Ordine> {
-    return this.http.post<Ordine>(`${this.apiServerUrl}/success`, Prodotti);
-  }
-
 }

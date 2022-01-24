@@ -14,13 +14,21 @@
     </div>
 </div>
 
-<div id="datiLoggato" *ngIf="myStorage.getItem('currentUser')!=null">
-    <div style="display: inline-block;">
-        <div *ngIf="currentUser.tipo=='Amministratore'">{{currentUser.username}}</div>
-        <div *ngIf="currentUser.tipo!='Amministratore'">{{currentUser.nome}}</div>
-        <div>{{currentUser.cognome}}</div>
+<div *ngIf="myStorage.getItem('currentUser')!=null">
+    <div class="row">
+        <div class="col">
+            <p *ngIf="currentUser.tipo=='Amministratore'" class="lbw" data-bs-toggle="modal" data-bs-target="#logout">Ciao {{currentUser.username}} !</p>
+            <p *ngIf="currentUser.tipo!='Amministratore'" class="lbw" data-bs-toggle="modal" data-bs-target="#logout">Ciao {{currentUser.nome}} {{currentUser.cognome}} !</p>
+        </div>
+        <div class="col nc">
+            <button type="button" class="btn btn-primary account" data-bs-toggle="modal" data-bs-target="#login">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            </button>
+        </div>
     </div>
-    <button type="button" data-bs-toggle="modal" data-bs-target="#logout">LOGOUT</button>
 </div>
 
 <!-- Login -->
@@ -47,7 +55,8 @@
                         <option value="Azienda">Azienda</option>
                         <option value="Distributore">Distributore</option>
                         </select>
-                    <p><a href="#recover" data-bs-toggle="modal" data-bs-target="#logout"><em>(Test Logout)</em></a></p>
+                        <br>
+                        <br>
                     <br>
                     <button type="submit" class="btn btn-primary btn-accesso" name="invio">Accedi</button>
                 </form>

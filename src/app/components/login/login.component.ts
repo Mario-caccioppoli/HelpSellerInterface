@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit {
           this.myStorage.setItem('currentUser',JSON.stringify(this.utente));
           document.getElementById("login").click()
           this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
-          this.router.navigate(['/']);  
-          window.location.reload();       
+          window.location.reload()
+          this.router.navigate(['/']);         
         },
 
         (error) => {
@@ -71,8 +71,8 @@ export class LoginComponent implements OnInit {
     document.getElementById("logout").click()
     if(this.myStorage.getItem('currentUser')==null){
       this.currentUser=null;
-      this.router.navigate(['/']);
       window.location.reload();
+      this.router.navigate(['/']);
     }
     else{
     console.log(" sessione logout "+this.myStorage.getItem('currentUser') +" storage "+this.currentUser.nome)

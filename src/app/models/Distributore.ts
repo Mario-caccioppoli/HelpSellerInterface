@@ -8,7 +8,7 @@ export interface Distributore{
     nome: string;
     cognome: string;
     vat: string;
-    telefono: number;
+    telefono: string;
     indirizzoSede: string;
     idOrdineProva: number;
     ordini: Ordine[];

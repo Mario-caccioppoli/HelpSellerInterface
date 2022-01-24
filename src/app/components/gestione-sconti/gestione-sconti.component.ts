@@ -62,6 +62,7 @@ export class GestioneScontiComponent implements OnInit {
 
   getAllScontiByAzienda(){
     //non prende id.azienda find all prodotti scontati by id azienda
+    if(this.currentUser.id!=undefined){
     this.scontoService.findScontiByAzienda(this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
@@ -83,13 +84,15 @@ export class GestioneScontiComponent implements OnInit {
     //     this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
     //   }
     // )
+    }
   }
   getAllScontiByTipo(){
     console.log(this.filtroSelect)
     if(this.filtroSelect=='tutti'){
-      this.getAllScontiByAzienda()
+      this.getAllScontiByAzienda();
     }
     else{
+      if(this.currentUser.id!=undefined){
     this.scontoService.getAllScontoByTipoAndIdAzienda(this.filtroSelect,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
@@ -99,7 +102,9 @@ export class GestioneScontiComponent implements OnInit {
       (error)=>{
         this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
       }
-    )}
+      )
+      }
+    }
   }
   
   aggiungiSconto(form){
@@ -174,6 +179,7 @@ export class GestioneScontiComponent implements OnInit {
       this.getAllScontiByAzienda()
     }
     else{
+      if(this.currentUser!=undefined){
        this.scontoService.findScontiByNomeInAzienda(this.filtroNome,this.currentUser.id).subscribe(
          (resp)=>{
            this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
@@ -183,6 +189,7 @@ export class GestioneScontiComponent implements OnInit {
            this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
          }
        )
+      }
      }
    }
   

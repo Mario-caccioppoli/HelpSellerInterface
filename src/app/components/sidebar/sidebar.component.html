@@ -8,7 +8,7 @@
                         <a class="nav-link" [routerLink]="['/']">Home</a>
                     </li>
                     <!-- Azienda -->
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda' || currentUser.tipo=='Distributore'">
+                    <li class="nav-item">
                         <a class="nav-link" routerLink="/profiloAzienda">Profilo</a>
                     </li>
                     <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">

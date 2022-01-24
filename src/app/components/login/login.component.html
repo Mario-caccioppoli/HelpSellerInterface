@@ -14,20 +14,13 @@
     </div>
 </div>
 
-<div *ngIf="myStorage.getItem('currentUser')!=null">
-    <div class="row">
-        <div class="col">
-            <p class="lbw" data-bs-toggle="modal" data-bs-target="#logout">Ciao {{currentUser.nome}} {{currentUser.cognome}}! </p>
-        </div>
-        <div class="col nc">
-            <button type="button" class="btn btn-primary account" data-bs-toggle="modal" data-bs-target="#logout">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                </svg>
-            </button>
-        </div>
+<div id="datiLoggato" *ngIf="myStorage.getItem('currentUser')!=null">
+    <div style="display: inline-block;">
+        <div *ngIf="currentUser.tipo=='Amministratore'">{{currentUser.username}}</div>
+        <div *ngIf="currentUser.tipo!='Amministratore'">{{currentUser.nome}}</div>
+        <div>{{currentUser.cognome}}</div>
     </div>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#logout">LOGOUT</button>
 </div>
 
 <!-- Login -->
@@ -54,8 +47,7 @@
                         <option value="Azienda">Azienda</option>
                         <option value="Distributore">Distributore</option>
                         </select>
-                    <br>
-                    <br>
+                    <p><a href="#recover" data-bs-toggle="modal" data-bs-target="#logout"><em>(Test Logout)</em></a></p>
                     <br>
                     <button type="submit" class="btn btn-primary btn-accesso" name="invio">Accedi</button>
                 </form>
@@ -77,11 +69,11 @@
             </div>
             <div class="modal-body">
                 <!-- <form class="form-control" #recuperoform="ngForm" (ngSubmit)="recuperaPassword(recuperoform.value)"> -->
-                    <form class="form-control">
+                <form class="form-control">
                     <p><b>E-mail</b></p>
                     <input type="text" class="form-control" ngModel name="email" placeholder="E-mail di registrazione" />
                     <br>
-                    <button type="submit" class="btn btn-primary btn-accesso" name="invio">Recupera Password</button>
+                    <button type="submit" class="btn btn-primary btn-accesso" name="invio" data-bs-toggle="modal" data-bs-target="#loginRecupero">Recupera Password</button>
                 </form>
                 <hr>
                 <p>Non possiedi un account Distributore? <a target="_parent" [routerLink]="['/registrazione']">Registrati</a></p>
@@ -101,6 +93,41 @@
             </div>
             <div class="modal-body">
                 <button type="submit" class="btn btn-primary btn-accesso" name="invio" (click)="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- </ng-template> -->
+
+
+
+<!-- Login recupero password-->
+
+<div class="modal fade" id="loginRecupero" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="loginLabel">Area Riservata</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-control" #logRec="ngForm" (ngSubmit)="loginRecupero(logRec.value)">
+                    <p><b>E-mail</b></p>
+                    <input type="text" class="form-control" ngModel name="email" placeholder="email" />
+                    <br>
+                    <input type="text" class="form-control" ngModel name="password" placeholder="Password" />
+                    <br>
+                    <label for="tipo"><b>Tipologia Account:  </b></label>
+                    <select id="tipo" name="tipo" ngModel>
+                        <option value="" disabled hidden selected></option>
+                        <option value="Amministratore">Amministratore</option>
+                        <option value="Azienda">Azienda</option>
+                        <option value="Distributore">Distributore</option>
+                    </select>
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-accesso" name="invio">Accedi</button>
+                </form>
+                <hr>
             </div>
         </div>
     </div>

@@ -24,6 +24,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 
   //PER COSTRUIRE ORDINE
   ordine: Ordine;
+
   ordineProdottoList: OrdineProdotto[]=[];
   prodottiInOrdine: Prodotto[];
   number:number[]=[]
@@ -32,6 +33,14 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
   cercaNomeProdotto:string;  
   currentUser:Utente=JSON.parse(localStorage.getItem('currentUser'));
   prodotti : Prodotto[]; //getall prodotti
+
+  product: Prodotto[];
+  myStorage = window.localStorage;
+  ind: number;
+  prodotto: Prodotto;
+
+
+
 
   ngOnInit(): void {
    /* this.prendiIdAziendaDalRouter()
@@ -58,6 +67,13 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     for (var k=0; k < nascondi.length; k++) {
       nascondi[k].style.display = 'none';
     }
+
+
+
+    
+    var max = <HTMLInputElement>document.getElementById("qtaprod");;
+    max.setAttribute("max", '10000');
+    max.setAttribute("value", '0');
 
   }
 
@@ -127,6 +143,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 
   avviaCarrello(selezione) {
 
+
     //var container=document.getElementById("prodottiContainer"+' '+selezione.id);
     var check=document.getElementById("checkbox"+' '+selezione.id);
     var qtaprod=document.getElementById("qtaprod"+' '+selezione.quantita);
@@ -161,6 +178,129 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     //    }
     //}
     
+    var arraySelezionati = [];
+    let indiceCheck: number = 0;
+    this.product = this.prodotti;
+
+    localStorage.removeItem('carrello');
+
+    this.product.forEach(element => {
+    
+      this.product[indiceCheck] = {
+      id: selezione.id,
+      nomeProdotto: null,
+      prezzo: null,
+      descrizione: null,
+      quantita: selezione.quantita,
+      immagine: null,
+      quantitaMinima: null,
+      peso: null,
+      volume: null,
+      idAzienda: null,
+      recensioni: null,
+      sconti: null
+    }
+    
+    indiceCheck +=1;
+
+    var prodId : any = 'a';
+
+    prodId = <HTMLInputElement>document.getElementById('check-' + indiceCheck);
+    var isChecked = prodId.checked;    
+
+    if (isChecked == true) {
+      alert('ok')
+      arraySelezionati.push(this.prodotti[indiceCheck-1]);
+      console.log(this.prodotto[indiceCheck-1]);
+    }
+    
+      
+    });
+
+    console.log(arraySelezionati);    
+
+    localStorage.setItem('carrello', JSON.stringify(arraySelezionati));
+
+  
+
+    
+
+    
+
+     
+
+      
+
+
+  //    console.log('Selezionato: ', selezionato);
+  //    console.log('Singolo: ', arraySelezionati[indice], indice);
+  //    indice +=1;
+
+  //    if (selezionato.id == true && selezionato.quantita > 0) {
+   //     arrayProdotti.push(this.prodotti[indice]);
+    //    indice +=1
+     // }
+      
+
+
+
+
+      
+
+
+    //console.log('selezionesingola: ', this.prodotti[indice]);
+    //indice +=1;
+
+
+
+
+/*
+    let local_storage;
+    let itemsInCart = [];
+
+    localStorage.removeItem('carrello');
+    
+    if(localStorage.getItem('carrello')  == (null || undefined)){
+      local_storage =[];
+      console.log("Carrello vuoto",JSON.parse(localStorage.getItem('carrello')));
+    
+      var arrayAggiunta = [];
+      console.log('selezionesingola: ', this.product[indice]);
+      this.prodotti.forEach(element => {
+      
+        console.log('selezione: ', this.product[indice]);
+      
+      
+      });
+/*
+        if (aggiunta.id == true && aggiunta.quantita > 0) {
+          arrayAggiunta.push(aggiunta);
+          indice = indice+1;
+        }
+      
+
+      itemsInCart = arrayAggiunta;
+
+      localStorage.setItem('carrello', JSON.stringify(itemsInCart));
+      console.log('Inserito: ', itemsInCart); 
+    }
+    else
+    {
+      local_storage = JSON.parse(localStorage.getItem('carrello'));
+      console.log("Carrello pieno",JSON.parse(localStorage.getItem('cart')));
+      for(var i in local_storage)
+      {
+        console.log(local_storage[i].prodotti.prodotto.id);
+        if(this.product.id == local_storage[i].prodotti.prodotto.id)
+        {
+          local_storage[i].quantity += 1;
+          console.log("Quantita prodotto "+i+" : "+ local_storage[i].quantita);
+          console.log('Gia inserito, id ', i); 
+          this.product=null;
+          break;  
+        }
+    }*/
+
     
     /*if(this.product){
       itemsInCart.push(this.product);
@@ -168,9 +308,13 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     local_storage.forEach(function (prodotto){
       itemsInCart.push(prodotto);
     })
-    localStorage.setItem('cart', JSON.stringify(itemsInCart));*/
+    localStorage.setItem('cart', JSON.stringify(itemsInCart));
+
 
    // } 
+
+    } */
+
   }
 
   cercaChange(){

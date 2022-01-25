@@ -1,43 +1,42 @@
 <div id="step1" class="container row ngy">
     <div class="col-lg-12 centered fleft">
-        <h2 class="mb50">Prodotti Algida®</h2>
+        <h2 class="mb50">Tutti i prodotti</h2>
         <div class="col-lg-12 mb50">
-            <form class="d-flex" #form="ngForm" (ngSubmit)="ricercaConSidebar(form.value)">
-                <input class="form-control me-2" type="search" placeholder="Ricerca prodotto..." aria-label="Cerca" name="searchbar" ngModel>
-                <button class="btn btn-outline-success" type="submit">Cerca</button>
-            </form>
-            <form #avviaCarrelloForm="ngForm" (ngSubmit)="avviaCarrello(avviaCarrelloForm.value)">
+
+            <input class="form-control me-2" type="search" placeholder="Ricerca prodotto..." [(ngModel)]="cercaNomeProdotto" (ngModelChange)="cercaChange()" aria-label="Cerca" name="searchbar">
+
             <div class="row eqi-container">
-                <div class="col-lg-3 product" *ngFor="let prodotto of prodotti">
+                <div *ngFor="let prodotto of prodotti" class="col-lg-3 product" id="{{'prodottiContainer '+prodotto.id}}">
                     <div class="form-check form-check-inline onorder hide">
-                        <input class="form-check-input" type="checkbox" id="{{prodotto.id}}" name="id" ngModel>
-                        <input type="number" id="qtaprod" class="input-text qty" min="0" max="qtmax" name="quantita" value=0 title="Quantità prodotto" inputmode="numeric" ngModel>
+                        <input type="number" id="{{'qtaprod '+prodotto.id}}" (change)="selezionaProdotti($event,prodotto)" class="input-text qty" min="0" max="qtmax" name="quantita" value=0 title="Quantità prodotto" inputmode="numeric" ngModel>
                     </div>
-                    <a href="">
-                    <img class="img-product" src="{{prodotto.immagine}}" alt="{{prodotto.descrizione}}" />
-                    <div class="downspec">
-                    <p class="bold">{{prodotto.nomeProdotto}}</p>
-                    <p class="bold">€ {{prodotto.prezzo}} cad.</p>
-                    <p class="bold"><b>Quantità disponibile:</b> {{prodotto.quantita}} pz.</p>
-                    </div>
+                    <a routerLink="/effettuaOrdine-TEST">
+                        <img class="img-product" src="{{prodotto.immagine}}" alt="{{prodotto.descrizione}}" />
+                        <div class="downspec">
+                            <p class="bold">{{prodotto.nomeProdotto}}</p>
+                            <p class="bold">€ {{prodotto.prezzo}} cad.</p>
+                            <p class="bold"><b>Quantità disponibile:</b> {{prodotto.quantita}} pz.</p>
+                        </div>
                     </a>
-                </div><!-- col lg 3 -->
-            </div><!-- row -->       
+                </div>
+                <!-- col lg 3 -->
+            </div>
+            <!-- row -->
             <div class="row show">
                 <button type="button" class="btn btn-primary ordbutton" (click)="startCart()">Effettua un ordine</button>
                 <p style="margin:0"><b>oppure</b></p>
-                <button type="button "class="btn btn-primary ordbutton" (click)="startSample()">Richiedi un campione prova gratuito</button>
+                <button type="button " class="btn btn-primary ordbutton" (click)="startSample()">Richiedi un campione prova gratuito</button>
             </div>
             <div class="row">
                 <button type="button" class="btn btn-secondary prevnext hide" (click)="exitCart()">Annulla</button>
-                <button type="submit" class="btn btn-primary prevnext hide" (click)="showCart()">Prosegui</button>
+                <button type="button" class="btn btn-primary prevnext hide" (click)="eseguiOrdine()">Prosegui</button>
             </div>
-       </form>
-    </div> <!-- lg12 -->
-       
-       
-       
-     <!--   <nav aria-label="Navigazione" class="navigazione">
+        </div>
+        <!-- lg12 -->
+
+
+
+        <!--   <nav aria-label="Navigazione" class="navigazione">
             <ul class="pagination">
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
@@ -57,8 +56,10 @@
 
 
 
-    </div> <!-- col-lg-12-->
-</div><!-- id -->
+    </div>
+    <!-- col-lg-12-->
+</div>
+<!-- id -->
 <div id="step2" class="ngno">
     <app-gestord-efford-cart></app-gestord-efford-cart>
-</div> 
+</div>

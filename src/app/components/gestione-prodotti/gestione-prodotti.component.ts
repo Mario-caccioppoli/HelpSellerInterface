@@ -92,7 +92,7 @@ export class GestioneProdottiComponent implements OnInit {
       descrizione: form.descrizione,
       quantita: form.quantita,
       immagine: "immagine",
-      quantitaMinima:null,
+      quantitaMinima:100,
       peso: form.peso,
       volume: form.volume,
       idAzienda: this.currentUser.id

@@ -30,7 +30,7 @@ describe('AziendaService', () => {
 
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
-      expect(resp.id == 1);
+      expect(resp.id == 1).toBeTrue;
       expect(resp.descrizione.length).toBeGreaterThanOrEqual(0);
       expect(resp.email.length).toBeGreaterThan(0);
       expect(resp.indirizzo.length).toBeGreaterThan(0);
@@ -75,7 +75,7 @@ describe('AziendaService', () => {
   it('CUD', (done: DoneFn) => {
 
     service.insertAzienda(azienda).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       id = resp;
       azienda.id = id;
       done();
@@ -87,7 +87,7 @@ describe('AziendaService', () => {
   it('CUD', (done: DoneFn) => {
 
     service.updateAzienda(azienda).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
 
     });
@@ -96,7 +96,7 @@ describe('AziendaService', () => {
   it('CUD', (done: DoneFn) => {
 
     service.deleteAzienda(id).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
 

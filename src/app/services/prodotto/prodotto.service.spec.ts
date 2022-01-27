@@ -20,7 +20,7 @@ describe('ProdottoService', () => {
 
   it('getAllProdotto', (done: DoneFn) => {
     service.getAllProdotto().subscribe(resp => {
-      expect(resp.length > 0);
+      expect(resp.length).toBeGreaterThan(0);
       done();
     });
   });
@@ -82,7 +82,7 @@ describe('ProdottoService', () => {
 
   it('CUD', (done: DoneFn) => {
     service.insertProdotto(prodotto).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       id = resp;
       prodotto.id = id;
       done();
@@ -92,14 +92,14 @@ describe('ProdottoService', () => {
   prodotto.descrizione = "descrizione";
   it('CUD', (done: DoneFn) => {
     service.updateProdotto(prodotto).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
   
   it('CUD', (done: DoneFn) => {
     service.deleteProdotto(id).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });

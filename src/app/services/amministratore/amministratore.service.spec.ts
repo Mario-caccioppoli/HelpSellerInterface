@@ -49,12 +49,12 @@ describe('AmministratoreService', () => {
       id: 1
     }
     service.updateAmministratore(adminUpdate).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
 
-  it('updateAmministratore', (done: DoneFn) => {
+  it('resetAmministratore', (done: DoneFn) => {
     let adminOriginal: Amministratore;
     adminOriginal = {
       email: "aldo@libeo.it",
@@ -64,7 +64,7 @@ describe('AmministratoreService', () => {
     }
 
     service.updateAmministratore(adminOriginal).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     })
   });

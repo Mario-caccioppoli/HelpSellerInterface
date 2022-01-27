@@ -27,7 +27,7 @@ describe('RecensioneService', () => {
 
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
-      expect(resp.id == 1);
+      expect(resp.id == 1).toBeTrue;
       expect(resp.idDistributore).toBeGreaterThan(0);
       done();
     });
@@ -47,7 +47,7 @@ describe('RecensioneService', () => {
 
   it('CUD', (done: DoneFn) => { 
     service.insertRecensione(recensione).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       id = resp;
       recensione.id = id;
       done();
@@ -57,14 +57,14 @@ describe('RecensioneService', () => {
     recensione.testo = "modificato";
     it('CUD', (done: DoneFn) => { 
       service.updateRecensione(recensione).subscribe(resp => {
-        expect(resp > 0);
+        expect(resp).toBeGreaterThan(0);
         done();
       });
     });
 
     it('CUD', (done: DoneFn) => { 
       service.deleteRecensione(id).subscribe(resp => {
-        expect(resp > 0);
+        expect(resp).toBeGreaterThan(0);
         done();
       })
     });

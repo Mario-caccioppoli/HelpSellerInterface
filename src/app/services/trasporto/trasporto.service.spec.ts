@@ -27,7 +27,7 @@ describe('TrasportoService', () => {
 
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
-      expect(resp.id == 1);
+      expect(resp.id == 1).toBeTrue;
       expect(resp.indirizzoConsegna.length).toBeGreaterThan(0);
       done();
     });
@@ -61,7 +61,7 @@ describe('TrasportoService', () => {
 
   it('deleteTrasporto', (done: DoneFn) => {
     service.deleteTrasporto(trasporto.id).subscribe(resp => {
-      expect(resp == trasporto.id);
+      expect(resp == trasporto.id).toBeTrue;
       done();
     })
   })

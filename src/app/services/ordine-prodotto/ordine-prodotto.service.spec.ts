@@ -30,9 +30,9 @@ describe('OrdineProdottoService', () => {
 
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
-      expect(resp.idOrdine == 1);
-      expect(resp.prezzoUnitario > 0);
-      expect(resp.quantitaOrdine > 0);
+      expect(resp.idOrdine == 1).toBeTrue;
+      expect(resp.prezzoUnitario).toBeGreaterThan(0);
+      expect(resp.quantitaOrdine).toBeGreaterThan(0);
       done();
     });
   });
@@ -46,28 +46,28 @@ describe('OrdineProdottoService', () => {
 
   it('findReportAnnuale', (done: DoneFn) => {
     service.findReportAnnuale(2022).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
 
   it('findReportAnnualeAzienda', (done: DoneFn) => {
     service.findReportAnnualeAzienda(2022, 2).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
 
   it('findReportMensileGruppo', (done: DoneFn) => {
     service.findReportMensileGruppo(2022).subscribe(resp => {
-      expect(resp.length > 0);
+      expect(resp.length).toBeGreaterThan(0);
       done();
     });
   });
 
   it('findReportMensileAzienda', (done: DoneFn) => {
     service.findReportMensileAzienda(2022, 2).subscribe(resp => {
-      expect(resp.length > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
@@ -100,7 +100,7 @@ describe('OrdineProdottoService', () => {
   it('CUD', (done: DoneFn) => {
 
     service.insertOrdineProdotto(op).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done()
     });
   });
@@ -108,14 +108,14 @@ describe('OrdineProdottoService', () => {
   op.quantitaOrdine = 50;
   it('CUD', (done: DoneFn) => {
     service.updateOrdineProdotto(op).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
 
   it('CUD', (done: DoneFn) => {
     service.deleteOrdineProdotto(20, 2).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });

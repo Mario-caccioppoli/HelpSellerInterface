@@ -35,8 +35,8 @@ describe('DocumentoService', () => {
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
       expect(resp.autore.length).toBeGreaterThan(0);
-      expect(resp.id == 1);
-      expect(resp.idOrdine > 0);
+      expect(resp.id == 1).toBeTrue;
+      expect(resp.idOrdine).toBeGreaterThan(0);
       expect(resp.titolo.length).toBeGreaterThan(0);
       done();
     });
@@ -55,7 +55,7 @@ describe('DocumentoService', () => {
 
   it('CUD', (done: DoneFn) => {
     service.insertDocumento(documento).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       id = resp;
       documento.id = id;
       done();
@@ -65,14 +65,14 @@ describe('DocumentoService', () => {
     documento.autore = "new";
     it('CUD', (done: DoneFn) => {
       service.updateDocumento(documento).subscribe(resp => {
-        expect(resp > 0);
+        expect(resp).toBeGreaterThan(0);
         done();
       });
     });
 
     it('CUD', (done: DoneFn) => {
       service.deleteDocumento(id).subscribe(resp => {
-        expect(resp > 0);
+        expect(resp).toBeGreaterThan(0);
         done();
       });
     });

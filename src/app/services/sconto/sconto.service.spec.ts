@@ -48,7 +48,7 @@ describe('ScontoService', () => {
 
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
-      expect(resp.id == 1);
+      expect(resp.id == 1).toBeTrue;
       expect(resp.idAzienda).toBeGreaterThan(0);
       done();
     });
@@ -79,7 +79,7 @@ describe('ScontoService', () => {
 
   it('CUD', (done: DoneFn) => {
     service.insertSconto(sconto).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       id = resp;
       sconto.id = id;
       done();
@@ -89,14 +89,14 @@ describe('ScontoService', () => {
   sconto.nomeSconto = "nuovo";
   it('CUD', (done: DoneFn) => {
     service.updateSconto(sconto).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
   
   it('CUD', (done: DoneFn) => {
     service.deleteSconto(id).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     })
   });

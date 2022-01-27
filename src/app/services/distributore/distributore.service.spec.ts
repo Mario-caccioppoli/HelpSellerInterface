@@ -27,7 +27,7 @@ describe('DistributoreService', () => {
 
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
-      expect(resp.id == 1);
+      expect(resp.id == 1).toBeTrue;
       expect(resp.email.length).toBeGreaterThan(0);
       done();
     });
@@ -51,7 +51,7 @@ describe('DistributoreService', () => {
   let id = 0;
   it('CUD', (done: DoneFn) => {
     service.insertDistributore(distributore).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       id = resp;
       distributore.id = id;
       done();
@@ -61,14 +61,14 @@ describe('DistributoreService', () => {
   distributore.email = "nuovamail";
   it('CUD', (done: DoneFn) => {
     service.updateDistributore(distributore).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
 
   it('CUD', (done: DoneFn) => {
     service.deleteDistributore(id).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     })
   });

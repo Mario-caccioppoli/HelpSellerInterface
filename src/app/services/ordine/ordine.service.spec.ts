@@ -41,9 +41,9 @@ describe('OrdineService', () => {
   
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
-      expect(resp.idOrdine == 1);
-      expect(resp.prezzoUnitario > 0);
-      expect(resp.quantitaOrdine > 0);
+      expect(resp.idOrdine == 1).toBeTrue;
+      expect(resp.prezzoUnitario).toBeGreaterThan(0);
+      expect(resp.quantitaOrdine).toBeGreaterThan(0);
       done();
     })
   })
@@ -66,7 +66,7 @@ describe('OrdineService', () => {
   it('CUD', (done: DoneFn) => {
   
     service.insertOrdine(ordine).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       id = resp;
       ordine.id = id;
       done();
@@ -76,14 +76,14 @@ describe('OrdineService', () => {
   ordine.commento = "commento"
   it('CUD', (done: DoneFn) => {
     service.updateOrdine(ordine).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
       
   it('CUD', (done: DoneFn) => {
     service.deleteOrdine(id).subscribe(resp => {
-      expect(resp > 0);
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });

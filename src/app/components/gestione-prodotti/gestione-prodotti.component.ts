@@ -71,7 +71,8 @@ export class GestioneProdottiComponent implements OnInit {
       this.prodottoService.insertProdotto(this.prodotto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
-          this.prodotto = resp as Prodotto;
+          //this.prodotto = resp as Prodotto;
+          //TODO: aggiungere alert su controllo
           let model=document.getElementById("aggiungiProdotto").click();
           this.getProdottiByIdAzienda()
         },
@@ -97,7 +98,8 @@ export class GestioneProdottiComponent implements OnInit {
       this.prodottoService.updateProdotto(this.prodotto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
-          this.prodotto = resp as Prodotto;
+          //this.prodotto = resp as Prodotto;
+          //TODO: aggiungere allert su controllo
           let model=document.getElementById("modificaProdotto").click();
           this.getProdottiByIdAzienda()
         },

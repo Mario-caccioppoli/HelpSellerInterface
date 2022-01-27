@@ -116,7 +116,8 @@ export class GestioneScontiComponent implements OnInit {
         (resp)=>{
           this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
           let model=document.getElementById("aggiungiSconto").click();
-          this.sconto = resp as Sconto;
+          //this.sconto = resp as Sconto;
+          //TODO: aggiungere alert su controllo
           this.getAllScontiByAzienda()
         },
         (error)=>{
@@ -143,7 +144,8 @@ export class GestioneScontiComponent implements OnInit {
         (resp)=>{
           this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
           let model=document.getElementById("modificaSconto").click();
-          this.sconto = resp as Sconto;
+          //this.sconto = resp as Sconto;
+          //TODO: aggiungere alert su controllo
           this.getAllScontiByAzienda()
         },
         (error)=>{

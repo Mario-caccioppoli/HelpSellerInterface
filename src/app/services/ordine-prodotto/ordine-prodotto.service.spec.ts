@@ -51,7 +51,7 @@ describe('OrdineProdottoService', () => {
   });
 
   it('findReportAnnuale', (done: DoneFn) => {
-    service.findReportAnnuale(2022).subscribe(resp => {
+    service.findReportAnnuale().subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
     }, error => {
@@ -60,7 +60,7 @@ describe('OrdineProdottoService', () => {
   });
 
   it('findReportAnnualeAzienda', (done: DoneFn) => {
-    service.findReportAnnualeAzienda(2022, 2).subscribe(resp => {
+    service.findReportAnnualeAzienda(2).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
     }, error => {

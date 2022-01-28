@@ -19,7 +19,6 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
   constructor(private prodottoService : ProdottoService, private route: ActivatedRoute, private log: LogService,private ordineProdottoService:OrdineProdottoService, private ordineService:OrdineService) { }
   //FORSE NON SERVONO
   idAzienda: number;
-  product: Prodotto;
   ricercaProdottoByNome: any;
 
   //PER COSTRUIRE ORDINE

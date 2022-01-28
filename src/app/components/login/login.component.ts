@@ -95,10 +95,11 @@ export class LoginComponent implements OnInit {
   }
 
   loginRecupero(form){
-    console.log(form.email+" "+form.tipo)
-    const fromHTML = {email: form.email, password: form.password , tipo: form.tipo};
-      const toBackend = JSON.stringify(fromHTML);
-      this.us.loginUtente(toBackend).subscribe(
+    const tipo = form.tipo;
+    const email = form.email;
+    const password = form.password;
+
+      this.us.loginUtente(tipo, email, password).subscribe(
         (success) => {
           this.log.Debug(LoginComponent.name, "ok", [success]);
           this.utente={

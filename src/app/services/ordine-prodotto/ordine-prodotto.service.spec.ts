@@ -52,7 +52,7 @@ describe('OrdineProdottoService', () => {
 
   it('findReportAnnuale', (done: DoneFn) => {
     service.findReportAnnuale().subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
+      expect(resp.length).toBeGreaterThan(0);
       done();
     }, error => {
       done();
@@ -61,7 +61,7 @@ describe('OrdineProdottoService', () => {
 
   it('findReportAnnualeAzienda', (done: DoneFn) => {
     service.findReportAnnualeAzienda(2).subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
+      expect(resp.length).toBeGreaterThan(0);
       done();
     }, error => {
       done();

@@ -43,7 +43,7 @@ export class GraficoALineaAziendaComponent implements OnInit {
 
   getReportTotaleByAnnoIdAzienda(){
     this.datiAnnualiDB_IDAzienda=[];
-    this.ordineProdottoService.findReportAnnualeAzienda(2016,3).subscribe(
+    this.ordineProdottoService.findReportAnnualeAzienda(3).subscribe(
       (resp)=>{
         this.log.Debug(GraficoALineaAziendaComponent.name,"chiamata a back-end",[resp]);
         this.datiAnnualiDB_IDAzienda.push(resp);  
@@ -53,68 +53,5 @@ export class GraficoALineaAziendaComponent implements OnInit {
         this.datiAnnualiDB_IDAzienda.push(0)
       }
     )
-    this.ordineProdottoService.findReportAnnualeAzienda(2017,3).subscribe(
-      (resp)=>{
-        this.log.Debug(GraficoALineaAziendaComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
-      },
-      (error)=>{
-       // this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-        this.datiAnnualiDB_IDAzienda.push(0)
-      }
-    )
-    this.ordineProdottoService.findReportAnnualeAzienda(2018,3).subscribe(
-      (resp)=>{
-        this.log.Debug(GraficoALineaAziendaComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
-      },
-      (error)=>{
-        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-        this.datiAnnualiDB_IDAzienda.push(0)
-      }
-    )
-    this.ordineProdottoService.findReportAnnualeAzienda(2019,3).subscribe(
-      (resp)=>{
-        this.log.Debug(GraficoALineaAziendaComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
-      },
-      (error)=>{
-        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-        this.datiAnnualiDB_IDAzienda.push(0)
-      }
-    )
-    this.ordineProdottoService.findReportAnnualeAzienda(2020,3).subscribe(
-      (resp)=>{
-        this.log.Debug(GraficoALineaAziendaComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
-      },
-      (error)=>{
-        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-        this.datiAnnualiDB_IDAzienda.push(0)
-      }
-    )
-    this.ordineProdottoService.findReportAnnualeAzienda(2021,3).subscribe(
-      (resp)=>{
-        this.log.Debug(GraficoALineaAziendaComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
-      },
-      (error)=>{
-        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-        this.datiAnnualiDB_IDAzienda.push(0)
-      }
-    )
-    this.ordineProdottoService.findReportAnnualeAzienda(2022,3).subscribe(
-      (resp)=>{
-        this.log.Debug(GraficoALineaAziendaComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp)
-        
-      },
-      (error)=>{
-        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-        this.datiAnnualiDB_IDAzienda.push(0)
-      }
-    )
-    console.log(" AZIENDA "+this.datiAnnualiDB_IDAzienda)
-    this.datiAnnualiTotaliDB_IDAzienda=[{data:this.datiAnnualiDB_IDAzienda,label:"incassi"}]
   }
 }

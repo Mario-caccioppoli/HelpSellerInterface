@@ -46,4 +46,8 @@ export class ProdottoService {
   public findProdottiByNomeInAzienda(nomeProdotto: string, id: number): Observable<Prodotto[]>{
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}/${id}`);
   }
+
+  public findAllProdottiByNome(nomeProdotto: string): Observable<Prodotto[]>{
+    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}`);
+  }
 }

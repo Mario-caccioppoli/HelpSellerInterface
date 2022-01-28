@@ -33,24 +33,10 @@
                   </thead>
                   <tbody>
                     <tr *ngFor='let ordine of singleOrdine'>
-                      <th scope="row"># <p>{{ordine.idOrdine}}</p></th>
+                      <th scope="row"><p># {{ordine.id}}</p></th>
                       <td><p>{{ordine.dataOrdinazione}}</p></td>
                       <td><p>{{ordine.idDistributore}}</p></td>
-                      <td><p>manca il prezzo</p></td>
-                      <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">#<p></p></th>
-                      <td><p></p></td>
-                      <td><p></p></td>
-                      <td><p></p></td>
-                      <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">#<p></p></th>
-                      <td><p></p></td>
-                      <td><p></p></td>
-                      <td><p></p></td>
+                      <td><p>{{prezzoTotale}}</p></td>
                       <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
                     </tr>
                   </tbody>

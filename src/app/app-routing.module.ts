@@ -39,7 +39,7 @@ const routes: Routes = [
     component:ReportAmministratoreComponent
                                      },
   {
-    path:'selezionaProdottiScontare',
+    path:'selezionaProdottiScontare/:id',
     component:SelezionaProdottiScontareComponent},
   {
     path:'visualizzaAziende',

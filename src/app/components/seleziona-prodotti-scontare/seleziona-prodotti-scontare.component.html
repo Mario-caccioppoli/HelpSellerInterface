@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container scroll">
     <div class="searchbarContainer"><input type="text" class="searchbar" placeholder="cerca prodotto"><button><i class="fas fa-search"></i></button></div>
     <div class="row">
-        <div *ngFor="let item of [0,1,2,3,4,5,6]" class="col">
-            <div class="prodottiContainer" id="{{'prodottiContainer '+item}}">
-                <input type="checkbox" (change)="selezionaProdotti(item,$event)" id="{{'checkbox '+item}} "><br><br>
-                <img src=" " alt="FOTO PRODOTTO ">
-                <p>NOME PRODOTTO</p>
-                <p>DESCRIZIONE</p>
-                <p>PREZZO</p>
+        <div *ngFor="let prodotto of prodotti" class="col">
+            <div class="prodottiContainer" id="{{'prodottiContainer '+prodotto.id}}" style="border-radius: 3%;">
+                <input type="checkbox" (change)="selezionaProdotti(prodotto.id,$event)" id="{{'checkbox '+prodotto.id}} "><br><br>
+                <img src="assets/icons/Logo.png" alt="FOTO PRODOTTO " style="width: 40%;">
+                <p>{{prodotto.nomeProdotto}}</p>
+                <p>{{prodotto.prezzo}} €</p>
             </div>
         </div>
     </div>
+    <div style="text-align: center;"><button type="button" (click)="scontaSelezionati()" style="background-color: orange; border-radius: 15%;">SCONTA</button></div>
 </div>

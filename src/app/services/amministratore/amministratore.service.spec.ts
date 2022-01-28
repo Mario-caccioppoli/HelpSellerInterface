@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
+
 import { Amministratore } from 'src/app/models/Amministratore';
 import { AmministratoreService } from './amministratore.service';
 
@@ -10,7 +11,6 @@ describe('AmministratoreService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      
     });
     service = TestBed.inject(AmministratoreService);
   });
@@ -26,6 +26,8 @@ describe('AmministratoreService', () => {
         expect(r.id).toBeGreaterThan(0);
       });
       done();
+    }, error => {
+      done();
     });
   });
 
@@ -35,6 +37,8 @@ describe('AmministratoreService', () => {
       expect(resp.email.length).toBeGreaterThan(0);
       expect(resp.password.length).toBeGreaterThan(0);
       expect(resp.username.length).toBeGreaterThan(0);
+      done();
+    }, error => {
       done();
     });
   });
@@ -51,6 +55,8 @@ describe('AmministratoreService', () => {
     service.updateAmministratore(adminUpdate).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
+    }, error => {
+      done();
     });
   });
 
@@ -65,6 +71,8 @@ describe('AmministratoreService', () => {
 
     service.updateAmministratore(adminOriginal).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
+      done();
+    }, error => {
       done();
     })
   });

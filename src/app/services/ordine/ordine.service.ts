@@ -27,8 +27,8 @@ export class OrdineService {
     return this.http.get<Ordine[]>(`${this.apiServerUrl}/findOrdiniByAzienda/${idAzienda}`);
   }
 
-  public findById(OrdineID : number): Observable<OrdineProdotto> {
-    return this.http.get<OrdineProdotto>(`${this.apiServerUrl}/findId/${OrdineID}`);
+  public findById(OrdineID : number): Observable<Ordine> {
+    return this.http.get<Ordine>(`${this.apiServerUrl}/findId/${OrdineID}`);
   }
 
   public deleteOrdine(OrdineId: number): Observable<number> {

@@ -22,6 +22,8 @@ describe('DocumentoService', () => {
     service.getAllDocumento().subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
+    }, error => {
+      done();
     });
   });
 
@@ -29,50 +31,62 @@ describe('DocumentoService', () => {
     service.getDocumentiByIdOrder(1).subscribe(resp => {
       expect(resp.length).toBeGreaterThan(0);
       done();
+    }, error => {
+      done();
     });
   });
 
   it('findById', (done: DoneFn) => {
-    service.findById(1).subscribe(resp => {
+    service.findById(4).subscribe(resp => {
       expect(resp.autore.length).toBeGreaterThan(0);
       expect(resp.id == 1).toBeTrue;
       expect(resp.idOrdine).toBeGreaterThan(0);
       expect(resp.titolo.length).toBeGreaterThan(0);
       done();
-    });
-  });
-
-  let documento: Documento;
-  let date: Date = new Date("2022-01-01");  
-  documento = {
-    autore: "aut",
-    data: date,
-    idOrdine: 1,
-    titolo: "tit",
-    id: null
-  }
-  let id = 0;
-
-  it('CUD', (done: DoneFn) => {
-    service.insertDocumento(documento).subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
-      id = resp;
-      documento.id = id;
+    }, error => {
       done();
     });
   });
 
-    documento.autore = "new";
-    it('CUD', (done: DoneFn) => {
+  let documento: Documento;
+  let data: Date = new Date();
+  data.setFullYear(2020);
+  data.setMonth(12);
+  data.setDate(11); 
+  documento = {
+    autore: "aut",
+    data: data,
+    idOrdine: 1,
+    titolo: "tit",
+    id: null
+  }
+
+  it('insert', (done: DoneFn) => {
+    service.insertDocumento(documento).subscribe(resp => {
+      expect(resp).toBeGreaterThan(0);
+      documento.id = resp;
+      done();
+    }, error => {
+      done();
+    });
+  });
+
+
+    it('update', (done: DoneFn) => {
+      documento.autore = "new";
       service.updateDocumento(documento).subscribe(resp => {
         expect(resp).toBeGreaterThan(0);
+        done();
+      }, error => {
         done();
       });
     });
 
-    it('CUD', (done: DoneFn) => {
-      service.deleteDocumento(id).subscribe(resp => {
+    it('delete', (done: DoneFn) => {
+      service.deleteDocumento(documento.id).subscribe(resp => {
         expect(resp).toBeGreaterThan(0);
+        done();
+      }, error => {
         done();
       });
     });

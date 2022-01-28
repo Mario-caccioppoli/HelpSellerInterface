@@ -64,8 +64,10 @@ export class ReportAmministratoreComponent implements OnInit {
       //this.graficoABarra.updateGraph();
     }
   ngOnInit(): void {
-    this.getAllAzienda()
-    this.getReportTotaleByAnno()
+    if(this.currentUser != null) {
+      this.getAllAzienda()
+      this.getReportTotaleByAnno()
+    }
   }
   getAllAzienda(){
     this.aziendaService.getAllAzienda().subscribe(

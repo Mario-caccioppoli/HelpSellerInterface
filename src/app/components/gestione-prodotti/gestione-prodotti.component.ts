@@ -28,30 +28,33 @@ export class GestioneProdottiComponent implements OnInit {
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   
   ngOnInit(): void {
-
-    this.getProdottiByIdAzienda()
-
+    if(this.currentUser != null) {
+      this.getProdottiByIdAzienda()  
+    }
   }
   getProdottiByIdAzienda(){
-    this.prodottoService.getProdottoByIdAzienda(this.currentUser.id).subscribe(
-      (resp)=>{
-        this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
-        this.prodotti = resp as Prodotto[];
-      },
-      (error)=>{
-        this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-    // this.aziendaService.findAziendaByProdotto(this.prodotti.map(p=>p.id)).subscribe(
-    //   (resp)=>{
-    //     this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
-    //     this.azienda = resp as Azienda;
-    //   },
-    //   (error)=>{
-    //     this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
-    //   }
-    // )
-  }
+    if(this.currentUser.id != null) {
+      this.prodottoService.getProdottoByIdAzienda(this.currentUser.id).subscribe(
+        (resp)=>{
+          this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
+          this.prodotti = resp as Prodotto[];
+        },
+        (error)=>{
+          this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
+        }
+      )}
+      // this.aziendaService.findAziendaByProdotto(this.prodotti.map(p=>p.id)).subscribe(
+      //   (resp)=>{
+      //     this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
+      //     this.azienda = resp as Azienda;
+      //   },
+      //   (error)=>{
+      //     this.log.Error(GestioneProdottiComponent.name,"chiamata a back-end",[error]);
+      //   }
+      // )
+    
+    }
+
   aggiungiProdotto(form){
     this.prodotto={
       nomeProdotto: form.nome,

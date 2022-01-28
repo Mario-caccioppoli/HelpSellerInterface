@@ -22,12 +22,16 @@ describe('ScontoService', () => {
     service.getAllSconto().subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
+    }, error => {
+      done();
     });
   });
 
   it('findScontiByAzienda', (done: DoneFn) => {
     service.findScontiByAzienda(1).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
+      done();
+    }, error => {
       done();
     });
   });
@@ -36,6 +40,8 @@ describe('ScontoService', () => {
     service.getAllScontoByTipo("catalogo").subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
+    }, error => {
+      done();
     });
   });
 
@@ -43,13 +49,17 @@ describe('ScontoService', () => {
     service.getAllScontoByTipoAndIdAzienda("catalogo", 1).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
+    }, error => {
+      done();
     });
   });
 
   it('findById', (done: DoneFn) => {
-    service.findById(1).subscribe(resp => {
-      expect(resp.id == 1).toBeTrue;
+    service.findById(4).subscribe(resp => {
+      expect(resp.id == 4).toBeTrue;
       expect(resp.idAzienda).toBeGreaterThan(0);
+      done();
+    }, error => {
       done();
     });
   });
@@ -58,16 +68,21 @@ describe('ScontoService', () => {
     service.findScontiByNomeInAzienda("nome", 1).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
+    }, error => {
+      done();
     });
   });
 
   let sconto: Sconto;
-  let data: Date = new Date("2022-01-01");
+  let data: Date = new Date();
+  data.setFullYear(2020);
+  data.setMonth(12);
+  data.setDate(11);
   sconto = {
     dataFine: data,
     dataInizio: data,
     idAzienda: 1,
-    nomeSconto: "nome",
+    nomeSconto: "nomeNew",
     percentuale: 10,
     tipo: "catalogo",
     id: null,
@@ -75,30 +90,34 @@ describe('ScontoService', () => {
     quantita: null
   };
 
-  let id = 0;
 
-  it('CUD', (done: DoneFn) => {
+  it('insert', (done: DoneFn) => {
     service.insertSconto(sconto).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      id = resp;
-      sconto.id = id;
+      sconto.id = resp;
+      done();
+    }, error => {
       done();
     });
   });
   
-  sconto.nomeSconto = "nuovo";
-  it('CUD', (done: DoneFn) => {
+  it('update', (done: DoneFn) => {
+    sconto.nomeSconto = "nuovo";
     service.updateSconto(sconto).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
+    }, error => {
+      done();
     });
   });
   
-  it('CUD', (done: DoneFn) => {
-    service.deleteSconto(id).subscribe(resp => {
+  it('delete', (done: DoneFn) => {
+    service.deleteSconto(sconto.id).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
-    })
+    }, error => {
+      done();
+    });
   });
   
 

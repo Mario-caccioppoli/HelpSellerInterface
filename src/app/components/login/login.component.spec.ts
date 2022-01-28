@@ -1,8 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LogService } from 'src/app/services/log.service';
+import { FormsModule } from '@angular/forms';
 import { UtenteService } from 'src/app/services/utente/utente.service';
+
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {

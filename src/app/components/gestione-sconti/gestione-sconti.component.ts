@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Prodotto } from 'src/app/models/Prodotto';
 import { Sconto } from 'src/app/models/Sconto';
 import { ScontoProdotto } from 'src/app/models/ScontoProdotto';
@@ -25,9 +26,10 @@ export class GestioneScontiComponent implements OnInit {
   idAzienda:number;
   idScontoDaModificare:number;
   idScontoDaEliminare:number;
+  idScontoInserito:number;
 
   constructor(private scontoService: ScontoService,private scontoProdottoService: ScontoProdottoService
-    ,private prodottoService: ProdottoService, private log: LogService) {
+    ,private prodottoService: ProdottoService, private log: LogService, private route: Router) {
     
   }
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
@@ -63,6 +65,7 @@ export class GestioneScontiComponent implements OnInit {
 
   getAllScontiByAzienda(){
     //non prende id.azienda find all prodotti scontati by id azienda
+    if(this.currentUser.id!=undefined){
     this.scontoService.findScontiByAzienda(this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
@@ -84,13 +87,15 @@ export class GestioneScontiComponent implements OnInit {
     //     this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
     //   }
     // )
+    }
   }
   getAllScontiByTipo(){
     console.log(this.filtroSelect)
     if(this.filtroSelect=='tutti'){
-      this.getAllScontiByAzienda()
+      this.getAllScontiByAzienda();
     }
     else{
+      if(this.currentUser.id!=undefined){
     this.scontoService.getAllScontoByTipoAndIdAzienda(this.filtroSelect,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
@@ -100,7 +105,9 @@ export class GestioneScontiComponent implements OnInit {
       (error)=>{
         this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
       }
-    )}
+      )
+      }
+    }
   }
   
   aggiungiSconto(form){
@@ -110,19 +117,23 @@ export class GestioneScontiComponent implements OnInit {
       dataInizio: form.dataInizio,
       dataFine: form.dataFine,
       tipo: this.selectFromModel,
-      idAzienda: 3
+      idAzienda: this.currentUser.id
     }
 
       this.scontoService.insertSconto(newSconto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
           let model=document.getElementById("aggiungiSconto").click();
-          //this.sconto = resp as Sconto;
-          //TODO: aggiungere alert su controllo
-          this.getAllScontiByAzienda()
+
+          this.idScontoInserito = resp ;
+          console.log(this.idScontoInserito)
+          this.route.navigate(['/selezionaProdottiScontare',JSON.stringify(this.idScontoInserito)])
+          //this.getAllScontiByAzienda()
+
         },
         (error)=>{
           this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
+          window.alert("Campi vuoti o errati, riprova")
         }
       )
   }
@@ -138,7 +149,7 @@ export class GestioneScontiComponent implements OnInit {
       dataFine: form.dataFine,
       tipo: this.selectFromModel,
       quantita: form.quantita,
-      idAzienda: 3,
+      idAzienda: this.currentUser.id,
     };
     
       this.scontoService.updateSconto(this.sconto).subscribe(
@@ -151,20 +162,27 @@ export class GestioneScontiComponent implements OnInit {
         },
         (error)=>{
           this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
+          window.alert("Campi vuoti o errati, riprova")
         }
       )
   }
 
   cancellaSconto(id){
-    console.log(this.idScontoDaEliminare)
     this.scontoService.deleteSconto(id).subscribe(
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
-        // this.prodotto = resp as Prodotto;
-        // this.prodotti.splice(id,1)
-        // window.alert("SCONTO ELIMINATO")
+        window.alert("SCONTO ELIMINATO")
         let x=document.getElementById("trash").click()
         this.getAllScontiByAzienda();
+      },
+      (error)=>{
+        this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
+      }
+    )
+    this.scontoProdottoService.deleteScontoProdotto(id).subscribe(
+      (resp)=>{
+        this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
+        console.log(" CANCELLO sconto prodotto"+resp)
       },
       (error)=>{
         this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
@@ -177,6 +195,7 @@ export class GestioneScontiComponent implements OnInit {
       this.getAllScontiByAzienda()
     }
     else{
+      if(this.currentUser!=undefined){
        this.scontoService.findScontiByNomeInAzienda(this.filtroNome,this.currentUser.id).subscribe(
          (resp)=>{
            this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
@@ -186,6 +205,7 @@ export class GestioneScontiComponent implements OnInit {
            this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
          }
        )
+      }
      }
    }
   

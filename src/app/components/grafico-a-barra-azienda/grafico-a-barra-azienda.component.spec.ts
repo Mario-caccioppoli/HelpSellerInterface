@@ -1,6 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { OrdineProdottoService } from 'src/app/services/ordine-prodotto/ordine-prodotto.service';
 
 import { GraficoABarraAziendaComponent } from './grafico-a-barra-azienda.component';
 
@@ -10,9 +8,7 @@ describe('GraficoABarraAziendaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraficoABarraAziendaComponent ],
-      imports: [HttpClientModule],
-      providers: [OrdineProdottoService]
+      declarations: [ GraficoABarraAziendaComponent ]
     })
     .compileComponents();
   }));

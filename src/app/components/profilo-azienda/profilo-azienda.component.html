@@ -140,19 +140,19 @@
         </div>
     </div>
     <div class="col-lg-9 centered">
-        <h2 class="titolo centered">{{currentUser?.nome}}
+        <h2 class="titolo centered">{{currentUser.nome}}
             <!--{{azienda.nomeAzienda}}-->
         </h2><br>
         <div class="container scroll">
             <h5 class="m25 left"><b>Nome (o Brand)</b></h5>
             <p class="paragrafo left">
-                <!--{{azienda.nomeAzienda}}-->{{currentUser?.nome}}</p>
+                <!--{{azienda.nomeAzienda}}-->{{currentUser.nome}}</p>
             <h5 class="m25 left"><b>Ragione Sociale</b></h5>
             <p class="paragrafo left">Unilever</p>
             <h5 class="m25 left"><b>Indirizzo</b></h5>
-            <p class="paragrafo left">{{currentUser?.indirizzo}}</p>
+            <p class="paragrafo left">{{currentUser.indirizzo}}</p>
             <h5 class="m25 left"><b><!--{{azienda.descrizione}}-->Descrizione</b></h5>
-            <p class="paragrafo left">{{currentUser?.descrizione}}</p>
+            <p class="paragrafo left">{{currentUser.descrizione}}</p>
             <button class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', idAzienda]">Visualizza Prodotti</a></button>
             <!-- <div>*ngIf="azienda != undefined && azienda.id != undefined"</div> -->
         </div>

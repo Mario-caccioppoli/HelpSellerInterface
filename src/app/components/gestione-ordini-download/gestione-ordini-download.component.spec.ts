@@ -1,6 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DocumentoService } from 'src/app/services/documento/documento.service';
 
 import { GestioneOrdiniDownloadComponent } from './gestione-ordini-download.component';
 
@@ -10,9 +8,7 @@ describe('GestioneOrdiniDownloadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestioneOrdiniDownloadComponent ],
-      imports: [HttpClientModule],
-      providers: [DocumentoService]
+      declarations: [ GestioneOrdiniDownloadComponent ]
     })
     .compileComponents();
   }));

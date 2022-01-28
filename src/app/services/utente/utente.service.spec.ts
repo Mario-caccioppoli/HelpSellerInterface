@@ -31,8 +31,6 @@ describe('UtenteService', () => {
       expect(utente.tipo.includes(resp.tipo)).toBeTrue;
       expect(utente.email.includes(resp.email)).toBeTrue;
       done();
-    }, error => {
-      done();
     });
   });
 
@@ -49,8 +47,6 @@ describe('UtenteService', () => {
       expect(utente.tipo.includes(resp.tipo)).toBeTrue;
       expect(utente.email.includes(resp.email)).toBeTrue;
       done();
-    }, error => {
-      done();
     });
   });
 
@@ -66,8 +62,6 @@ describe('UtenteService', () => {
       expect(resp.email.includes(email)).toBeTrue;
       expect(utente.tipo.includes(resp.tipo)).toBeTrue;
       expect(utente.email.includes(resp.email)).toBeTrue;
-      done();
-    }, error => {
       done();
     });
   });

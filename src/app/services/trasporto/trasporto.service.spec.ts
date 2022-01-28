@@ -22,36 +22,22 @@ describe('TrasportoService', () => {
     service.getAllTrasporto().subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
-    }, error => {
-      done();
     });
   });
 
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
-      if(resp != (undefined || null)) {
-        expect(resp.id == 1).toBeTrue;
-        expect(resp.indirizzoConsegna.length).toBeGreaterThan(0);
-        done();
-      } else {
-        expect(resp == undefined).toBeTrue;
-        done();
-      }
-
-    }, 
-    error => {
+      expect(resp.id == 1).toBeTrue;
+      expect(resp.indirizzoConsegna.length).toBeGreaterThan(0);
       done();
     });
   });
 
   let trasporto: Trasporto;
-  let data: Date = new Date();
-  data.setFullYear(2020);
-  data.setMonth(12);
-  data.setDate(11);
+  let data: Date = new Date("2022-02-02");
   trasporto = {
     dataConsegna: data,
-    idOrdine: 2,
+    idOrdine: 1,
     indirizzoConsegna: "indirizzo",
     quantitaMinima: 5,
     id: null
@@ -62,9 +48,6 @@ describe('TrasportoService', () => {
       expect(resp).toBeGreaterThan(0);
       trasporto.id = resp;
       done();
-    },
-    error => {
-      done();
     });
   });
 
@@ -73,9 +56,6 @@ describe('TrasportoService', () => {
     service.updateTrasporto(trasporto).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
-    },
-    error => {
-      done();
     });
   });
 
@@ -83,9 +63,6 @@ describe('TrasportoService', () => {
     service.deleteTrasporto(trasporto.id).subscribe(resp => {
       expect(resp == trasporto.id).toBeTrue;
       done();
-    },
-    error => {
-      done();
-    });
-  });
+    })
+  })
 });

@@ -28,8 +28,6 @@ describe('ScontoProdottoService', () => {
     service.getAllScontoProdotto().subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
-    }, error => {
-      done();
     });
   });
 
@@ -38,16 +36,12 @@ describe('ScontoProdottoService', () => {
       expect(resp.prodotto.id).toBeGreaterThan(0);
       expect(resp.sconto.id).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
     });
   });
 
   it('findProdottiScontatiAzienda', (done: DoneFn) => {
     service.findProdottiScontatiAzienda("tacos", 3).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
-      done();
-    }, error => {
       done();
     });
   });
@@ -86,34 +80,27 @@ describe('ScontoProdottoService', () => {
     sconto: sconto
   }
 
-  it('insert', (done: DoneFn) => {
+  it('CUD', (done: DoneFn) => {
     service.insertScontoProdotto(prodotto.id, sconto.id).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
-    });
+    })
   });
 
 
-
-  it('update', (done: DoneFn) => {
-    sp.prodotto.id = 2
+  sp.prodotto.id = 2
+  it('CUD', (done: DoneFn) => {
     service.updateScontoProdotto(sp).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
-    });
+    })
   });
 
-  it('delete', (done: DoneFn) => {
+  it('CUD', (done: DoneFn) => {
     service.deleteScontoProdotto(sp.sconto.id).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
-    });
+    })
   });
 
 });

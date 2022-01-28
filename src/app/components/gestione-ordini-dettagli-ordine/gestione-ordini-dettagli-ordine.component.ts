@@ -31,11 +31,9 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
   constructor(private os: OrdineProdottoService, private ds: DistributoreService, private log: LogService) { }
 
   ngOnInit(): void {
-    if(this.ordineProdotto != undefined) {
-      this.getProdottiOrdine();
-      this.getInfoOrdine();
-      this.getNotaRiepilogo();
-    }
+   this.getProdottiOrdine();
+   this.getInfoOrdine();
+   this.getNotaRiepilogo();
   }
 
   getProdottiOrdine() {

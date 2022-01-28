@@ -1,7 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { DocumentoService } from 'src/app/services/documento/documento.service';
 
 import { GestioneOrdiniUploadComponent } from './gestione-ordini-upload.component';
 
@@ -11,9 +8,7 @@ describe('GestioneOrdiniUploadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestioneOrdiniUploadComponent ],
-      imports: [HttpClientModule, FormsModule],
-      providers: [DocumentoService]
+      declarations: [ GestioneOrdiniUploadComponent ]
     })
     .compileComponents();
   }));

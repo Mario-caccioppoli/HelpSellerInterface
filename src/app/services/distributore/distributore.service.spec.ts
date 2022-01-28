@@ -22,8 +22,6 @@ describe('DistributoreService', () => {
     service.getAllDistributore().subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
-    }, error => {
-      done();
     })
   });
 
@@ -31,8 +29,6 @@ describe('DistributoreService', () => {
     service.findById(1).subscribe(resp => {
       expect(resp.id == 1).toBeTrue;
       expect(resp.email.length).toBeGreaterThan(0);
-      done();
-    }, error => {
       done();
     });
   });
@@ -52,32 +48,27 @@ describe('DistributoreService', () => {
     id: null
   }
 
-  it('insert', (done: DoneFn) => {
+  let id = 0;
+  it('CUD', (done: DoneFn) => {
     service.insertDistributore(distributore).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      distributore.id = resp;
-      done();
-    }, error => {
+      id = resp;
+      distributore.id = id;
       done();
     });
   });
 
-
-  it('update', (done: DoneFn) => {
-    distributore.email = "nuovamail";
+  distributore.email = "nuovamail";
+  it('CUD', (done: DoneFn) => {
     service.updateDistributore(distributore).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
     });
   });
 
-  it('delete', (done: DoneFn) => {
-    service.deleteDistributore(distributore.id).subscribe(resp => {
+  it('CUD', (done: DoneFn) => {
+    service.deleteDistributore(id).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      done();
-    }, error => {
       done();
     })
   });

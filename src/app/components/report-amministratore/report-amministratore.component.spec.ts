@@ -1,6 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AziendaService } from 'src/app/services/azienda/azienda.service';
 
 import { ReportAmministratoreComponent } from './report-amministratore.component';
 
@@ -10,9 +8,7 @@ describe('ReportAmministratoreComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReportAmministratoreComponent ],
-      imports: [HttpClientModule],
-      providers: [AziendaService]
+      declarations: [ ReportAmministratoreComponent ]
     })
     .compileComponents();
   }));

@@ -25,8 +25,6 @@ describe('OrdineProdottoService', () => {
     service.getAllOrdineProdotto().subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
-    }, error => {
-      done();
     });
   });
 
@@ -36,16 +34,12 @@ describe('OrdineProdottoService', () => {
       expect(resp.prezzoUnitario).toBeGreaterThan(0);
       expect(resp.quantitaOrdine).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
     });
   });
 
   it('findDettagliOrdine', (done: DoneFn) => {
     service.findDettagliOrdine(1).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
-      done();
-    }, error => {
       done();
     });
   });
@@ -54,16 +48,12 @@ describe('OrdineProdottoService', () => {
     service.findReportAnnuale().subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
     });
   });
 
   it('findReportAnnualeAzienda', (done: DoneFn) => {
     service.findReportAnnualeAzienda(2).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      done();
-    }, error => {
       done();
     });
   });
@@ -72,16 +62,12 @@ describe('OrdineProdottoService', () => {
     service.findReportMensileGruppo(2022).subscribe(resp => {
       expect(resp.length).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
     });
   });
 
   it('findReportMensileAzienda', (done: DoneFn) => {
     service.findReportMensileAzienda(2022, 2).subscribe(resp => {
-      expect(resp.length).toBeGreaterThan(0);
-      done();
-    }, error => {
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });
@@ -111,31 +97,25 @@ describe('OrdineProdottoService', () => {
   };
 
 
-  it('insert', (done: DoneFn) => {
+  it('CUD', (done: DoneFn) => {
 
     service.insertOrdineProdotto(op).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done()
-    }, error => {
-      done();
     });
   });
 
   op.quantitaOrdine = 50;
-  it('update', (done: DoneFn) => {
+  it('CUD', (done: DoneFn) => {
     service.updateOrdineProdotto(op).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      done();
-    }, error =>{
       done();
     });
   });
 
-  it('delete', (done: DoneFn) => {
+  it('CUD', (done: DoneFn) => {
     service.deleteOrdineProdotto(20, 2).subscribe(resp => {
-      expect(resp).toBeGreaterThanOrEqual(0);
-      done();
-    }, error => {
+      expect(resp).toBeGreaterThan(0);
       done();
     });
   });

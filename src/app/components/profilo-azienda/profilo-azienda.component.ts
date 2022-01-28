@@ -27,11 +27,9 @@ export class ProfiloAziendaComponent implements OnInit {
 
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   ngOnInit(): void {
-      if(this.currentUser != null) {
-        this.prendiIdDalRouter();
-        this.getProfiloAziendaById();
-        console.log("dddd "+this.currentUser.nome)
-      }
+      this.prendiIdDalRouter();
+      this.getProfiloAziendaById();
+      console.log("dddd "+this.currentUser.nome)
     }
 
   prendiIdDalRouter() {

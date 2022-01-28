@@ -22,8 +22,6 @@ describe('ProdottoService', () => {
     service.getAllProdotto().subscribe(resp => {
       expect(resp.length).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
     });
   });
 
@@ -33,8 +31,6 @@ describe('ProdottoService', () => {
       expect(resp.idAzienda).toBeGreaterThan(0);
       expect(resp.prezzo).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
     });
   });
 
@@ -42,16 +38,12 @@ describe('ProdottoService', () => {
     service.getProdottoByIdAzienda(1).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
-    }, error => {
-      done();
     });
   });
 
   it('findProdottyBySconto', (done: DoneFn) =>{
     service.findProdottiBySconto(4).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
-      done();
-    }, error => {
       done();
     })
   });
@@ -67,8 +59,6 @@ describe('ProdottoService', () => {
     service.findProdottiByNomeInAzienda("cola", 1).subscribe(resp => {
       expect(resp.length).toBeGreaterThan(0);
       done();
-    }, error => {
-      done();
     });
   });
 
@@ -77,7 +67,7 @@ describe('ProdottoService', () => {
     descrizione: "desc",
     idAzienda: 1,
     immagine: "img",
-    nomeProdotto: "nomewewe",
+    nomeProdotto: "nome",
     peso: 2,
     prezzo: 3,
     quantita: 1000,
@@ -88,33 +78,28 @@ describe('ProdottoService', () => {
     sconti: null
   };
 
+  let id = 0;
 
-  it('insert', (done: DoneFn) => {
+  it('CUD', (done: DoneFn) => {
     service.insertProdotto(prodotto).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      prodotto.id = resp;
-      done();
-    }, error => {
+      id = resp;
+      prodotto.id = id;
       done();
     });
   });
 
-
-  it('update', (done: DoneFn) => {
-    prodotto.descrizione = "descrizione";
+  prodotto.descrizione = "descrizione";
+  it('CUD', (done: DoneFn) => {
     service.updateProdotto(prodotto).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      done();
-    }, error => {
       done();
     });
   });
   
-  it('delete', (done: DoneFn) => {
-    service.deleteProdotto(prodotto.id).subscribe(resp => {
+  it('CUD', (done: DoneFn) => {
+    service.deleteProdotto(id).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      done();
-    }, error => {
       done();
     });
   });

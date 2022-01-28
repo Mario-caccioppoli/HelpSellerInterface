@@ -34,9 +34,8 @@ export class GestioneScontiComponent implements OnInit {
   }
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   ngOnInit(): void {
-    if(this.currentUser != null) {
-      this.getAllScontiByAzienda()
-    }
+
+    this.getAllScontiByAzienda()
   }
 
   getAllSconti(){

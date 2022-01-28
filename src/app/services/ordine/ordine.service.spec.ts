@@ -1,8 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { Ordine } from 'src/app/models/Ordine';
-import { OrdineProdotto } from 'src/app/models/OrdineProdotto';
-import { Prodotto } from 'src/app/models/Prodotto';
 
 import { OrdineService } from './ordine.service';
 
@@ -24,16 +22,12 @@ describe('OrdineService', () => {
     service.getAllOrdine().subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
-    }, error => {
-      done();
     });
   });
 
   it('getAllOrdinebyDistributore', (done: DoneFn) => {
     service.getAllOrdinebyDistributore(1).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
-      done();
-    }, error => {
       done();
     });
   });
@@ -42,89 +36,54 @@ describe('OrdineService', () => {
     service.getAllOrdinebyAzienda(1).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
-    }, error => {
-      done();
     });
   });
   
   it('findById', (done: DoneFn) => {
-    service.findById(2).subscribe(resp => {
-      expect(resp.id == 2).toBeTrue;
-      done();
-    }, error => {
+    service.findById(1).subscribe(resp => {
+      expect(resp.idOrdine == 1).toBeTrue;
+      expect(resp.prezzoUnitario).toBeGreaterThan(0);
+      expect(resp.quantitaOrdine).toBeGreaterThan(0);
       done();
     })
   })
 
   let ordine: Ordine;
-  let date: Date = new Date();
-  date.setFullYear(2020);
-  date.setMonth(12);
-  date.setDate(11);
-    let ordineProdotti: OrdineProdotto[] = [];
-    let prodotto: Prodotto;
-
-    prodotto = {
-      id: 1,
-      descrizione: null,
-      idAzienda: null,
-      immagine: null,
-      nomeProdotto: null,
-      peso: null,
-      prezzo: null,
-      quantita: null,
-      quantitaMinima: null,
-      volume: null,
-      recensioni: null,
-      sconti: null
-    };
-
-
-
+    let date: Date = new Date("2022-01-01");
     ordine = {
       commento: "comm",
       dataConsegna: date,
       dataOrdinazione: date,
       documento: null,
       idDistributore: 1,
-      ordineProdotti: ordineProdotti,
+      ordineProdotti: null,
       prezzoTotale: 100,
       stato: "generato",
       id: null
     };
+    let id = 0;
 
-
-  it('insert', (done: DoneFn) => {
-    ordineProdotti.push({
-      idOrdine: null,
-      prezzoUnitario: 2,
-      prodotto: prodotto,
-      quantitaOrdine: 100
-    }); 
+  it('CUD', (done: DoneFn) => {
+  
     service.insertOrdine(ordine).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      ordine.id = resp;
-      done();
-    }, error => {
+      id = resp;
+      ordine.id = id;
       done();
     });
   });
 
   ordine.commento = "commento"
-  it('update', (done: DoneFn) => {
+  it('CUD', (done: DoneFn) => {
     service.updateOrdine(ordine).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      done();
-    }, error => {
       done();
     });
   });
       
-  it('delete', (done: DoneFn) => {
-    service.deleteOrdine(ordine.id).subscribe(resp => {
+  it('CUD', (done: DoneFn) => {
+    service.deleteOrdine(id).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      done();
-    }, error => {
       done();
     });
   });

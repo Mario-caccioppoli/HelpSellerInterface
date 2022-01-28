@@ -22,8 +22,6 @@ describe('RecensioneService', () => {
     service.getAllRecensione().subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
-    }, error => {
-      done();
     });
   });
 
@@ -31,8 +29,6 @@ describe('RecensioneService', () => {
     service.findById(1).subscribe(resp => {
       expect(resp.id == 1).toBeTrue;
       expect(resp.idDistributore).toBeGreaterThan(0);
-      done();
-    }, error => {
       done();
     });
   });
@@ -47,33 +43,29 @@ describe('RecensioneService', () => {
       testo: "ok",
       voto: 4
     };
+    let id = 0;
 
-  it('insert', (done: DoneFn) => { 
+  it('CUD', (done: DoneFn) => { 
     service.insertRecensione(recensione).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      recensione.id = resp;
-      done();
-    }, error => {
+      id = resp;
+      recensione.id = id;
       done();
     });
   });
     
-    it('update', (done: DoneFn) => {
-      recensione.testo = "modificato " + recensione.id;
+    recensione.testo = "modificato";
+    it('CUD', (done: DoneFn) => { 
       service.updateRecensione(recensione).subscribe(resp => {
         expect(resp).toBeGreaterThan(0);
-        done();
-      }, error => {
         done();
       });
     });
 
-    it('delete', (done: DoneFn) => { 
-      service.deleteRecensione(recensione.id).subscribe(resp => {
+    it('CUD', (done: DoneFn) => { 
+      service.deleteRecensione(id).subscribe(resp => {
         expect(resp).toBeGreaterThan(0);
         done();
-      }, error => {
-        done();
-      });
+      })
     });
 });

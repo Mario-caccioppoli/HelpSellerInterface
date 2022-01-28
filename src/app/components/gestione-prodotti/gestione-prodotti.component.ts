@@ -33,9 +33,9 @@ export class GestioneProdottiComponent implements OnInit {
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   
   ngOnInit(): void {
-    if(this.currentUser != null) {
-      this.getProdottiByIdAzienda()  
-    }
+
+    this.getProdottiByIdAzienda()
+
   }
   getProdottiByIdAzienda(){
     if(this.currentUser!=undefined){

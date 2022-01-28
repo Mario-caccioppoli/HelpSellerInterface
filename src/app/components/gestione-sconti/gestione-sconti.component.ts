@@ -123,10 +123,12 @@ export class GestioneScontiComponent implements OnInit {
         (resp)=>{
           this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
           let model=document.getElementById("aggiungiSconto").click();
+
           this.idScontoInserito = resp ;
           console.log(this.idScontoInserito)
           this.route.navigate(['/selezionaProdottiScontare',JSON.stringify(this.idScontoInserito)])
           //this.getAllScontiByAzienda()
+
         },
         (error)=>{
           this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
@@ -153,7 +155,8 @@ export class GestioneScontiComponent implements OnInit {
         (resp)=>{
           this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
           let model=document.getElementById("modificaSconto").click();
-          this.sconto = resp as Sconto;
+          //this.sconto = resp as Sconto;
+          //TODO: aggiungere alert su controllo
           this.getAllScontiByAzienda()
         },
         (error)=>{

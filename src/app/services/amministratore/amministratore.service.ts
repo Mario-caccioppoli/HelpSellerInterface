@@ -29,8 +29,8 @@ export class AmministratoreService {
   //   return this.http.post<Amministratore>(`${this.apiServerUrl}/insert`, amministratore);
   // }
 
-  public updateAmministratore(amministratore: Amministratore): Observable<Amministratore> {
-    return this.http.post<Amministratore>(`${this.apiServerUrl}/update`, amministratore);
+  public updateAmministratore(amministratore: Amministratore): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, amministratore);
   }
   
   

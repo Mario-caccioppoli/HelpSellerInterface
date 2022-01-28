@@ -4,6 +4,8 @@ import { Distributore } from 'src/app/models/Distributore';
 import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
 import { UtenteService } from 'src/app/services/utente/utente.service';
+import { DistributoreService } from 'src/app/services/distributore/distributore.service';
+import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { utility } from 'src/utility/utility';
 
 @Component({
@@ -13,7 +15,11 @@ import { utility } from 'src/utility/utility';
 })
 export class RegistrazioneComponent implements OnInit {
 
-  constructor(private us: UtenteService, private log: LogService) { }
+  constructor(
+    private us: UtenteService, 
+    private as: AziendaService, 
+    private ds: DistributoreService, 
+    private log: LogService) { }
 
   distributore: Distributore;
   utente: Utente;
@@ -59,7 +65,7 @@ export class RegistrazioneComponent implements OnInit {
     ordini: null
   }
 
-    this.us.insertUtenteDistributore(this.distributore).subscribe(
+    this.ds.insertDistributore(this.distributore).subscribe(
       (success) => {
         this.log.Debug(RegistrazioneComponent.name, "ok", [success]);
       },
@@ -98,7 +104,7 @@ public registrazioneAzienda(form) {
       ordini: null
     }
   
-      this.us.insertUtenteAzienda(this.azienda).subscribe(
+      this.as.insertAzienda(this.azienda).subscribe(
         (success) => {
           this.log.Debug(RegistrazioneComponent.name, "ok", [success]);
         },

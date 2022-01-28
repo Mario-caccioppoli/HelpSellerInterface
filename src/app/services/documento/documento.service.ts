@@ -25,15 +25,15 @@ export class DocumentoService {
     return this.http.get<Documento>(`${this.apiServerUrl}/findId/${DocumentoID}`);
   }
 
-  public deleteDocumento(DocumentoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${DocumentoId}`);
+  public deleteDocumento(DocumentoId: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${DocumentoId}`);
   }
 
-  public insertDocumento(Documento: Documento): Observable<Documento> {
-    return this.http.post<Documento>(`${this.apiServerUrl}/insert`, Documento);
+  public insertDocumento(Documento: Documento): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Documento);
   }
 
-  public updateDocumento(Documento: Documento): Observable<Documento> {
-    return this.http.post<Documento>(`${this.apiServerUrl}/update`, Documento);
+  public updateDocumento(Documento: Documento): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, Documento);
   }
 }

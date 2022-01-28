@@ -7,6 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GraficoALineaComponent implements OnInit {
 
+  @Input() 
+  barChartLabels : string[];
+
+  @Input() 
+  barChartData : any;
+  
+  
   constructor( ) { 
    
   }
@@ -18,13 +25,12 @@ export class GraficoALineaComponent implements OnInit {
   };
   
 
-  @Input() barChartLabels : string[];
 
   barChartType = 'line';
   public barChartLegend = true;
 
   
-  @Input() barChartData : any;
+  
 
 
   ngOnInit(): void {

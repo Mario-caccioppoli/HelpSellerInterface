@@ -5,6 +5,7 @@ import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
 import { UtenteService } from 'src/app/services/utente/utente.service';
 import { utility } from 'src/utility/utility';
+import { testRegex } from '../test-RegEx/regex';
 
 @Component({
   selector: 'app-registrazione',
@@ -21,6 +22,8 @@ export class RegistrazioneComponent implements OnInit {
   myStorage = window.localStorage;
   azienda: Azienda;
 
+  rX: testRegex = new testRegex();
+
   ngOnInit(): void {
     if(this.myStorage.getItem('currentUser')!=null){
       this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
@@ -34,6 +37,10 @@ export class RegistrazioneComponent implements OnInit {
 
   if ((form.username && form.email && form.password && form.vat && form.indirizzo && form.civico && form.cap && form.citta && form.nome && form.cognome && form.telefono)!='') {
   var checkvat = form.vat; var checktel = form.telefono;
+
+  if(this.rX.regexUsername(form.username)!= true) {
+    return alert("L'username deve avere lunghezza di almeno 8 caratteri");
+  }
 
     if (checkvat.length > 12) {
       return alert('VAT Number errato. Riprovare.');

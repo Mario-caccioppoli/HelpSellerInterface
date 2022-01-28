@@ -1,7 +1,7 @@
     .centered {
         text-align: center;
     }
-    
+
     .left {
         text-align: left;
     }
@@ -12,11 +12,11 @@
         margin: 25px;
         word-break: break-word;
     }
-    
+
     .m25 {
         margin: 25px;
     }
-    
+
     .w100 {
         width: 100%;
         margin-top: 25px;
@@ -29,18 +29,18 @@
         border: 3px solid gray;
         padding: 10px;
     }
-    
+
     .pd30 {
         padding: 30px;
     }
-    
+
     .intro {
         background-color: #ffc964;
         padding: 30px;
         margin: -25px 30px -25px -30px;
         clear: both;
     }
-    
+
     .fullheight {
         height: 100%;
     }
@@ -49,22 +49,4 @@
         height: 400px;
         overflow: scroll;
         overflow-x: hidden;
-    }
-    
-    button {
-        background-color: orange;
-    }
-    
-    button:hover {
-        background-color: blue;
-    }
-    
-    button a {
-        color: white;
-        text-decoration: none;
-    }
-    
-    button a:hover {
-        color: white;
-        text-decoration: none;
     }

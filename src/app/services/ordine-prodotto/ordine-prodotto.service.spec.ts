@@ -25,6 +25,8 @@ describe('OrdineProdottoService', () => {
     service.getAllOrdineProdotto().subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
+    }, error => {
+      done();
     });
   });
 
@@ -34,12 +36,16 @@ describe('OrdineProdottoService', () => {
       expect(resp.prezzoUnitario).toBeGreaterThan(0);
       expect(resp.quantitaOrdine).toBeGreaterThan(0);
       done();
+    }, error => {
+      done();
     });
   });
 
   it('findDettagliOrdine', (done: DoneFn) => {
     service.findDettagliOrdine(1).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
+      done();
+    }, error => {
       done();
     });
   });
@@ -48,12 +54,16 @@ describe('OrdineProdottoService', () => {
     service.findReportAnnuale().subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
+    }, error => {
+      done();
     });
   });
 
   it('findReportAnnualeAzienda', (done: DoneFn) => {
     service.findReportAnnualeAzienda(2).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
+      done();
+    }, error => {
       done();
     });
   });
@@ -62,12 +72,16 @@ describe('OrdineProdottoService', () => {
     service.findReportMensileGruppo(2022).subscribe(resp => {
       expect(resp.length).toBeGreaterThan(0);
       done();
+    }, error => {
+      done();
     });
   });
 
   it('findReportMensileAzienda', (done: DoneFn) => {
     service.findReportMensileAzienda(2022, 2).subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
+      expect(resp.length).toBeGreaterThan(0);
+      done();
+    }, error => {
       done();
     });
   });
@@ -97,25 +111,31 @@ describe('OrdineProdottoService', () => {
   };
 
 
-  it('CUD', (done: DoneFn) => {
+  it('insert', (done: DoneFn) => {
 
     service.insertOrdineProdotto(op).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done()
-    });
-  });
-
-  op.quantitaOrdine = 50;
-  it('CUD', (done: DoneFn) => {
-    service.updateOrdineProdotto(op).subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
+    }, error => {
       done();
     });
   });
 
-  it('CUD', (done: DoneFn) => {
-    service.deleteOrdineProdotto(20, 2).subscribe(resp => {
+  op.quantitaOrdine = 50;
+  it('update', (done: DoneFn) => {
+    service.updateOrdineProdotto(op).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
+      done();
+    }, error =>{
+      done();
+    });
+  });
+
+  it('delete', (done: DoneFn) => {
+    service.deleteOrdineProdotto(20, 2).subscribe(resp => {
+      expect(resp).toBeGreaterThanOrEqual(0);
+      done();
+    }, error => {
       done();
     });
   });

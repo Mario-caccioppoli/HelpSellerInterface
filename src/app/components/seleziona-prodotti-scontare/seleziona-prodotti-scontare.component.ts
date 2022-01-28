@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Prodotto } from 'src/app/models/Prodotto';
-import { Utente } from 'src/app/models/Utente';
-import { LogService } from 'src/app/services/log.service';
-import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
-import { ScontoProdottoService } from 'src/app/services/sconto-prodotto/sconto-prodotto.service';
 
 @Component({
   selector: 'app-seleziona-prodotti-scontare',
@@ -14,72 +9,35 @@ import { ScontoProdottoService } from 'src/app/services/sconto-prodotto/sconto-p
 export class SelezionaProdottiScontareComponent implements OnInit {
   coloreBordo: boolean=false;
   checked: boolean=false;
-  idProdottiSelezionati: number[]=[];
-  prodotti:Prodotto[]=[];
+  provaNumero: number[]=[];
+  filter: number[]=[];
   prodottiSelezionati: Prodotto[]=[];
 
-  idSconto:any;
-
-
-  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
-  constructor(private activatedRoute: ActivatedRoute, private prodottoService:ProdottoService,private scontoProdottoService:ScontoProdottoService,private log: LogService, private route: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.findProdottiByIDAzienda()
-    this.idSconto=JSON.parse(this.activatedRoute.snapshot.params['id']);
   }
-
-
-  findProdottiByIDAzienda(){
-    if(this.currentUser.id!=undefined){
-      this.prodottoService.getProdottoByIdAzienda(this.currentUser.id).subscribe(
-        (resp)=>{
-          this.log.Debug(SelezionaProdottiScontareComponent.name,"chiamata a back-end", [resp]);
-          this.prodotti=resp as Prodotto[];
-        },
-        (error)=>{
-          this.log.Error(SelezionaProdottiScontareComponent.name,"chiamata a back-end",error);
-        }
-      )
-    }
-  }
-
-
-  selezionaProdotti(id, event){
-    var bordo=document.getElementById("prodottiContainer"+' '+id);
-    const casellaCheck=document.getElementById("checkbox"+' '+id);
+  selezionaProdotti(item: any, event){
+    var bordo=document.getElementById("prodottiContainer"+' '+item);
+    const casellaCheck=document.getElementById("checkbox"+' '+item);
      if(event.target.checked){
        bordo.style.borderColor='orange';
-       console.log("inserisco "+id);
-       this.idProdottiSelezionati.push(id);
+       console.log("inserisco "+item);
+       this.provaNumero.push(item);
+       console.log(this.provaNumero)
      }
      else {
-            let x=this.idProdottiSelezionati.find(x=> x==id);
+            let x=this.provaNumero.find(x=> x==item);
+            console.log("tolgo oggetto trovato "+x);
             bordo.style.borderColor='black';
             if(x!==-1)
-            this.idProdottiSelezionati.splice(this.idProdottiSelezionati.indexOf(x),1);
+            this.provaNumero.splice(this.provaNumero.indexOf(x),1);
+            console.log(this.provaNumero)
+          // for(let i=0;i<this.provaNumero.length;i++){
+          //   if(this.provaNumero[i]===item){
+              
+          //   }
+          // }
       }
-  }
-
-  scontaSelezionati(){
-    if(this.currentUser.id!=undefined && this.idProdottiSelezionati.length>0){
-      for(let i=0;i<this.idProdottiSelezionati.length;i++){
-        console.log(this.idProdottiSelezionati[i]+"   "+this.idSconto)
-        this.scontoProdottoService.insertScontoProdotto(this.idProdottiSelezionati[i],this.idSconto).subscribe(
-          (resp)=>{
-            console.log("ENTRO")
-            this.log.Debug(SelezionaProdottiScontareComponent.name,"chiamata a back-end", [resp]);
-            window.alert("Sconti inseriti")
-            this.route.navigateByUrl('/gestioneSconti')
-            //this.idSconto=resp;
-            //console.log(this.prodotti.forEach(p=>p.nomeProdotto))
-          },
-          (error)=>{
-            this.log.Error(SelezionaProdottiScontareComponent.name,"chiamata a back-end",error);
-            window.alert("errore seleziona 1 o più prodotti per applicare lo sconto")
-          }
-        )
-      }
-    }
   }
 }

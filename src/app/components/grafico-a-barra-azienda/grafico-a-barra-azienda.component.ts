@@ -24,14 +24,73 @@ export class GraficoABarraAziendaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.PrendiAnnoByAzienda()
+    this.PrendiAnno()
   }
 
-  PrendiAnnoByAzienda(){
-    this.ordineProdottoService.findReportAnnualeAzienda(1).subscribe(
+  PrendiAnno(){
+    this.ordineProdottoService.findReportAnnualeAzienda(2016,1).subscribe(
       (resp)=>{
-        //this.barChartDataBarraAzienda.push(resp);
+        this.barChartDataBarraAzienda.push(resp);
         console.log(resp)
+        this.updateGraph();
+      },
+      (error)=>{
+        this.barChartDataBarraAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2017,1).subscribe(
+      (resp)=>{
+        this.barChartDataBarraAzienda.push(resp);
+        console.log(resp)
+        this.updateGraph();
+      },
+      (error)=>{
+        this.barChartDataBarraAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2018,1).subscribe(
+      (resp)=>{
+        this.barChartDataBarraAzienda.push(resp);
+        console.log(resp)
+        this.updateGraph();
+      },
+      (error)=>{
+        this.barChartDataBarraAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2019,1).subscribe(
+      (resp)=>{
+        this.barChartDataBarraAzienda.push(resp);
+        console.log(resp)
+        this.updateGraph();
+      },
+      (error)=>{
+        this.barChartDataBarraAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2020,1).subscribe(
+      (resp)=>{
+        this.barChartDataBarraAzienda.push(resp);
+        console.log(resp)
+        this.updateGraph();
+      },
+      (error)=>{
+        this.barChartDataBarraAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2021,1).subscribe(
+      (resp)=>{
+        this.barChartDataBarraAzienda.push(resp);
+        console.log(resp)
+        this.updateGraph();
+      },
+      (error)=>{
+        this.barChartDataBarraAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2022,1).subscribe(
+      (resp)=>{
+        this.barChartDataBarraAzienda.push(resp);
         this.updateGraph();
       },
       (error)=>{

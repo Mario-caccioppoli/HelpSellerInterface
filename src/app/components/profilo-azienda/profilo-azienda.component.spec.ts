@@ -2,7 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { LogService } from 'src/app/services/log.service';
 
 import { ProfiloAziendaComponent } from './profilo-azienda.component';
@@ -15,7 +14,7 @@ describe('ProfiloAziendaComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ProfiloAziendaComponent],
       imports : [HttpClientModule,RouterTestingModule],
-      providers : [LogService,AziendaService,RouterTestingModule]
+      providers : [LogService]
     })
     .compileComponents();
   }));

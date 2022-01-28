@@ -12,66 +12,64 @@ import { OrdineProdottoService } from '../services/ordine-prodotto/ordine-prodot
 })
 export class GraficoABarraComponent implements OnInit {
 
-  // @Input()
-  // barChartLabels : string[]=[];
+  @Input()
+  barChartLabels : string[]=[];
   
-  // @Input()
-  // barChartData : number[]=[]; 
-
-  @Input() 
-  barChartLabels : string[];
-
-  @Input() 
-  barChartData : any;
+  @Input()
+  barChartData : number[]=[]; 
 
   
-  // dataForGraphs:any[]=[];
-  // barChartType = 'bar';
-  // barChartLegend = true;
-  // barChartOptions: any; 
+  dataForGraphs:any[]=[];
+  barChartType = 'bar';
+  barChartLegend = true;
+  barChartOptions: any; 
 
 
-  constructor() { }
+  constructor(private ordineProdottoService: OrdineProdottoService) { }
 
   ngOnInit(): void {
 
+    
+    this.PrendiAnno(2022)
   }
 
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true
-    
-  };
-  
+  public PrendiAnno(val){
+    this.ordineProdottoService.findReportMensileGruppo(Number(val)).subscribe(
+      (resp)=>{
+        this.barChartData = resp;
+        this.updateGraph();
+      },
+      (error)=>{
+
+      }
+    )
+  }
 
 
-  barChartType = 'bar';
-  public barChartLegend = true;
+  updateGraph()
+  {
+    this.dataForGraphs=[{
+      label:"incassi",
+      data:this.barChartData,
+      options:{
+        scales:{
+          y:{
+            beginAtZero: true
+          }
+        }
+      },
+    }];
 
-  // updateGraph()
-  // {
-  //   this.dataForGraphs=[{
-  //     label:"incassi",
-  //     data:this.barChartData,
-  //     options:{
-  //       scales:{
-  //         y:{
-  //           beginAtZero: true
-  //         }
-  //       }
-  //     },
-  //   }];
-
-  //   this.barChartOptions={
-  //     scales:{
-  //       yAxes:[{
-  //         ticks:{
-  //           beginAtZero:true
-  //         }
-  //       }]
-  //     }
-  //   }
-  // }
+    this.barChartOptions={
+      scales:{
+        yAxes:[{
+          ticks:{
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  }
 
   public colors = [
     { backgroundColor:"orange" },

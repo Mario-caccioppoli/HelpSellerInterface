@@ -8,36 +8,36 @@
                         <a class="nav-link" [routerLink]="['/']">Home</a>
                     </li>
                     <!-- Azienda -->
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda' || currentUser.tipo=='Distributore'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Azienda' || currentUser?.tipo=='Distributore'">
                         <a class="nav-link" routerLink="/profiloAzienda">Profilo</a>
                     </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/gestioneSconti">Gestione Sconti</a>
                     </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/gestioneOrdini">Gestione Ordini</a>
                     </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/gestioneProdotti">Gestione Prodotti</a>
                     </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda' || currentUser.tipo=='Amministratore'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Azienda' || currentUser?.tipo=='Amministratore'">
                         <a class="nav-link" routerLink="/gestioneVendite">Gestione Vendite</a>
                     </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/gestioneRecensioni">Gestione Recensioni</a>
                     </li>
                     <!-- Distributore -->
                     <hr>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Distributore' || currentUser.tipo=='Amministratore'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Distributore' || currentUser?.tipo=='Amministratore'">
                         <a class="nav-link" routerLink="/visualizzaAziende">Aziende</a>
                     </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/visualizzaOrdini">Ordini</a>
                     </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Distributore'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Distributore'">
                         <a class="nav-link " routerLink="/effettuaOrdine-TEST">Effettua ordine TEST</a>
                     </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
+                    <li class="nav-item" *ngIf="currentUser?.tipo=='Azienda'">
                         <a class="nav-link" routerLink="/dettagliOrdine-TEST">Dettagli ordine TEST</a>
                     </li>
                     <li class="nav-item">

@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
       const email = form.email;
       const passwordHash = utility.criptaPassword(form.password);
 
-
       this.us.loginUtente(tipo, email, passwordHash).subscribe(
         (success) => {
           this.log.Debug(LoginComponent.name, "ok", [success]);
@@ -56,13 +55,11 @@ export class LoginComponent implements OnInit {
           this.myStorage.setItem('currentUser',JSON.stringify(this.utente));
           document.getElementById("login").click()
           this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
-          window.location.reload()
           this.router.navigate(['/']);         
         },
 
         (error) => {
           this.log.Error(LoginComponent.name, "errore", [error]);
-          window.alert("DATI NON CORRETTI, RIPROVA")
         }
       )
   }
@@ -72,8 +69,7 @@ export class LoginComponent implements OnInit {
     document.getElementById("logout").click()
     if(this.myStorage.getItem('currentUser')==null){
       this.currentUser=null;
-      window.location.reload();
-      this.router.navigate(['/']);
+      this.router.navigate(['/']); 
     }
     else{
     console.log(" sessione logout "+this.myStorage.getItem('currentUser') +" storage "+this.currentUser.nome)
@@ -94,40 +90,4 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  loginRecupero(form){
-    const tipo = form.tipo;
-    const email = form.email;
-    const password = form.password;
-
-      this.us.loginUtente(tipo, email, password).subscribe(
-        (success) => {
-          this.log.Debug(LoginComponent.name, "ok", [success]);
-          this.utente={
-            id: success.id,
-            username: success.username,
-            email: success.email,
-            password: success.password,
-            tipo: success.tipo,
-            vat: success.vat,
-            indirizzo: success.indirizzo,
-            descrizione: success.descrizione,
-            nome: success.nome,
-            cognome: success.cognome,
-            telefono: success.telefono,
-            logo: success.logo
-          }
-          console.log("arriva "+form.email+form.password+form.tipo)
-          this.myStorage.setItem('currentUser',JSON.stringify(this.utente));
-          document.getElementById("login").click()
-          this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
-          window.location.reload()
-        },
-
-        (error) => {
-          this.log.Error(LoginComponent.name, "errore", [error]);
-          window.alert("DATI NON CORRETTI, RIPROVA")
-        }
-      )
-  } 
 } 
-

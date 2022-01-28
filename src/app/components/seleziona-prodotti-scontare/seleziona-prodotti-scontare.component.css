@@ -27,8 +27,3 @@
         background-color: #fd0404;
         zoom: 3;
     } */
-    
-    .scroll {
-        overflow: scroll;
-        overflow-x: hidden;
-    }

@@ -1,5 +1,4 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { REPL_MODE_SLOPPY } from 'repl';
 import { observable } from 'rxjs';
 import { GraficoABarraComponent } from 'src/app/grafico-a-barra/grafico-a-barra.component';
 import { Azienda } from 'src/app/models/Azienda';
@@ -20,9 +19,7 @@ import { GraficoALineaAziendaComponent } from '../grafico-a-linea-azienda/grafic
 })
 export class ReportAmministratoreComponent implements OnInit {
   aziende: Azienda[];
-  anni : string[] = [];
-  euro: number[]=[];
-
+  anni : string[] = ["2016","2017","2018", "2019", "2020", "2021","2022"]; 
 
   @Input()
   mesi : string[] = ["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"];
@@ -35,13 +32,12 @@ export class ReportAmministratoreComponent implements OnInit {
   data=[100,200,300];
 
   //array per salvare dati
-  datiAnnualiDB:number[][]=[];
+  datiAnnualiDB=[];
   datiMensiliDB=[];
   datiAnnualiDB_IDAzienda=[]
   datiMensiliDB_IDAzienda=[]
   //variabiliHtml
   datiAnnualiTotaliDB:any[];
-  datiMensiliTotaliDB:any[];
   datiAnnualiTotaliDB_IDAzienda:any[];
   datiAnnualiTotaliByMeseDB:number[] = [];
 
@@ -68,8 +64,10 @@ export class ReportAmministratoreComponent implements OnInit {
       //this.graficoABarra.updateGraph();
     }
   ngOnInit(): void {
-    this.getAllAzienda()
-    this.getReportTotaleByAnno()
+    if(this.currentUser != null) {
+      this.getAllAzienda()
+      this.getReportTotaleByAnno()
+    }
   }
   getAllAzienda(){
     this.aziendaService.getAllAzienda().subscribe(
@@ -82,114 +80,189 @@ export class ReportAmministratoreComponent implements OnInit {
       }
     )
   }
-
-
-
-  findReportAnnuale(){
-    this.euro=[];
-    this.ordineProdottoService.findReportAnnuale().subscribe(
-      (resp)=>{
-        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        for(let i = 0; i<resp.length;i++){
-          this.datiAnnualiDB[i] = resp[i];
-        }
-
-          for(let i = 0; i<this.datiAnnualiDB.length;i++){
-            this.anni.push(this.datiAnnualiDB[i][0].toString());
-            this.euro.push(this.datiAnnualiDB[i][1]);
-          }
-          this.datiAnnualiTotaliDB=[{data:this.euro,label:"incassi"}]
-        
-      },
-      (error)=>{
-        this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-    
-  }
-
-
-  findReportAnnualeAzienda(){
-    this.euro=[];
-    this.ordineProdottoService.findReportAnnualeAzienda(Number(this.annoScelto)).subscribe(
-      (resp)=>{
-        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        
-      },
-      (error)=>{
-        this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-  }
-
-  findReportMensileGruppo(){
-    if(this.annoScelto!=undefined){
-    this.ordineProdottoService.findReportMensileGruppo(Number(this.annoScelto)).subscribe(
-      (resp)=>{
-        console.log("resp "+resp)
-        this.euro = resp as number[];
-        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        // for(let i = 0; i<resp.length;i++){
-        //   this.datiMensiliDB[i] = resp[i];
-        // }
-
-        //   for(let i = 0; i<this.datiMensiliDB.length;i++){
-        //     //this.anni.push(this.datiMensiliDB[i][0]);
-        //     this.euro.push(this.datiMensiliDB[i][1]);
-        //   }
-          console.log("eeee "+this.euro)
-          this.datiMensiliTotaliDB=[{data:this.euro,label:"incassi"}]
-        
-      },
-      (error)=>{
-        this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-    }
-  }
-  findReportMensileAzienda(){
-    this.ordineProdottoService.findReportMensileAzienda(2021,1).subscribe(
-      (resp)=>{
-        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        console.log("Mensile azienda "+resp)
-      },
-      (error)=>{
-        this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-  }
-
-
-
-
-
+  
   
   getReportTotaleByAnno(){
-    this.ordineProdottoService.findReportAnnuale().subscribe(
+    this.ordineProdottoService.findReportAnnuale(2016).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        //this.datiAnnualiDB.push(resp);  
+        this.datiAnnualiDB.push(resp);  
       },
       (error)=>{
-        this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnuale(2017).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        this.datiAnnualiDB.push(resp)
+      },
+      (error)=>{
+       // this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnuale(2018).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        this.datiAnnualiDB.push(resp)
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnuale(2019).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        this.datiAnnualiDB.push(resp)
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnuale(2020).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        this.datiAnnualiDB.push(resp)
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnuale(2021).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        this.datiAnnualiDB.push(resp)
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnuale(2022).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        this.datiAnnualiDB.push(resp)
         
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB.push(0)
       }
     )
     this.datiAnnualiTotaliDB=[{data:this.datiAnnualiDB,label:"incassi"}]
   }
 
 
-  getReportTotaleByAnnoIdAzienda(event){
-    
+  getReportTotaleByAnnoIdAzienda(){
     this.datiAnnualiDB_IDAzienda=[];
-    this.ordineProdottoService.findReportAnnualeAzienda(1).subscribe(
+    this.ordineProdottoService.findReportAnnualeAzienda(2016,this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-        
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        } 
       },
       (error)=>{
-        this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-        
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB_IDAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2017,this.currentUser.id).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
+      },
+      (error)=>{
+       // this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB_IDAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2018,this.currentUser.id).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB_IDAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2019,this.currentUser.id).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB_IDAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2020,this.currentUser.id).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB_IDAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2021,this.currentUser.id).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB_IDAzienda.push(0)
+      }
+    )
+    this.ordineProdottoService.findReportAnnualeAzienda(2022,this.currentUser.id).subscribe(
+      (resp)=>{
+        this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
+        if(resp==undefined){
+          this.datiAnnualiDB_IDAzienda.push(resp)
+        }
+        else{
+          this.datiAnnualiDB_IDAzienda.push(0);
+        }
+      },
+      (error)=>{
+        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
+        this.datiAnnualiDB_IDAzienda.push(0)
       }
     )
     console.log(" AZIENDA "+this.datiAnnualiDB_IDAzienda)
@@ -197,25 +270,32 @@ export class ReportAmministratoreComponent implements OnInit {
   }
 
 
-
-
-
-  scegliAnno(event){
+  findReportTotaleByAnno(event : any){
     this.annoScelto=event.target.value;
-    this.findReportMensileGruppo()
-    // this.ordineProdottoService.findReportMensileGruppo(Number(this.annoScelto)).subscribe(
-    //   (resp)=>{
-    //     this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
-
-    //   },
-    //   (error)=>{
-    //     this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-    //   }
-    // )
-    //this.graficoABarra;
-    //this.graficoABarra.PrendiAnno(this.annoScelto)
+    this.graficoABarra;
+    this.graficoABarra.PrendiAnno(this.annoScelto)
   }
 
 
 
+
+
+
+
+  // getReportAziendaByMesi(event : any){
+  //   this.aziendaScelta = event.target.value;
+  // }
+
+
+
+  // cambiaAzienda(event : any){
+    
+  //   console.log(this.aziendaScelta)
+
+  // }
+
+  // cambiaAnno(event : any){
+  //   this.annoScelto = event.target.value;
+    
+  // }
 }

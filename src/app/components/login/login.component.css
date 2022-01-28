@@ -40,3 +40,7 @@ p.login {
     width: 100%;
     max-width: 70px;
 }
+
+#datiLoggato {
+    float: right;
+}

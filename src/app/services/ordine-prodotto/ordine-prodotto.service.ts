@@ -31,8 +31,9 @@ export class OrdineProdottoService {
     return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${OrdineId}/${ProdottoId}`);
   }
 
-  public insertOrdineProdotto(OrdineProdotto: OrdineProdotto): Observable<number> {
-    return this.http.post<number>(`${this.apiServerUrl}/insert`, OrdineProdotto);
+
+  public insertOrdineProdotto(OrdineProdotto: OrdineProdotto): Observable<number[]> {
+    return this.http.post<number[]>(`${this.apiServerUrl}/insert`, OrdineProdotto);
   }
 
   public updateOrdineProdotto(OrdineProdotto: OrdineProdotto): Observable<number> {

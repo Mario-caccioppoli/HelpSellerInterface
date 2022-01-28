@@ -16,7 +16,7 @@
 
 
     <div style="text-align: center;">
-        <select class="custom-select" (change)="findReportTotaleByAnno($event)">
+        <select class="custom-select" (change)="scegliAnno($event)">
         <option value="" selected>Scegli anno</option>
         <option *ngFor="let item of anni">{{item}}</option>
     </select>
@@ -29,7 +29,7 @@
 
         <h3>Grafico Vendite Totale Annuo</h3>
         <div class="row align-items-center ">
-            <app-grafico-a-barra #graficoABarra [barChartLabels]="mesi" [barChartData]="datiAnnualiTotaliByMeseDB">
+            <app-grafico-a-barra #graficoABarra [barChartLabels]="mesi" [barChartData]="datiMensiliTotaliDB">
             </app-grafico-a-barra>
         </div>
         <p>N° Prodotti venduti: </p>
@@ -52,7 +52,7 @@
 
     <h2 style="text-align: center;"> Report Vendite Singola Azienda</h2>
     <div style=" text-align: center;">
-        <select class="custom-select" class="col" (change)="getReportTotaleByAnnoIdAzienda() ">
+        <select class="custom-select" class="col" (change)="getReportTotaleByAnnoIdAzienda($event)">
         <option value=" " selected>Scegli Azienda</option>
         <option *ngFor="let item of aziende ">{{item.nomeAzienda}}</option>
     </select>
@@ -64,7 +64,7 @@
     <div id="reportAzienda " *ngIf="aziendaScelta!=null && aziendaScelta!=''">
         <h3>Grafico Vendite Totale Annuo</h3>
         <div class="row align-items-center ">
-            <app-grafico-a-linea-azienda #graficoALineaAzienda [barChartLabelsLineaAzienda]="anni" [barChartDataLineaAzienda]="datiAnnualiTotaliDB_IDAzienda"></app-grafico-a-linea-azienda>
+            <!-- <app-grafico-a-linea-azienda #graficoALineaAzienda [barChartLabelsLineaAzienda]="anni" [barChartDataLineaAzienda]="datiAnnualiTotaliDB_IDAzienda"></app-grafico-a-linea-azienda> -->
         </div>
         <p>N° Prodotti venduti: </p>
         <p>Quantità totale di prodotti venduti: </p>
@@ -88,8 +88,8 @@
 
 <div class="aziendaReport " *ngIf="currentUser.tipo=='Azienda'">
     <h1>Report Totale Annuali</h1>
-    <app-grafico-a-linea-azienda #graficoALineaAzienda [barChartLabelsLineaAzienda]="anni" [barChartDataLineaAzienda]="datiAnnualiTotali"></app-grafico-a-linea-azienda>
+    <!-- <app-grafico-a-linea-azienda #graficoALineaAzienda [barChartLabelsLineaAzienda]="anni" [barChartDataLineaAzienda]="datiAnnualiTotali"></app-grafico-a-linea-azienda> -->
     <h1>Grafico vendite totale annuo</h1>
-    <app-grafico-a-barra-azienda #graficoABarraAzienda [barChartLabelsBarraAzienda]="mesi" [barChartDataBarraAzienda]="datiMensiliTotali"></app-grafico-a-barra-azienda>
+    <!-- <app-grafico-a-barra-azienda #graficoABarraAzienda [barChartLabelsBarraAzienda]="mesi" [barChartDataBarraAzienda]="datiMensiliTotali"></app-grafico-a-barra-azienda> -->
 
 </div>

@@ -40,18 +40,19 @@ export class OrdineProdottoService {
     return this.http.post<number>(`${this.apiServerUrl}/update`, OrdineProdotto);
   }
 
-  public findReportAnnuale(anno: number): Observable<number>{
-    return this.http.get<number>(`${this.apiServerUrl}/findReportAnnuale/${anno}`);
+  public findReportAnnuale(): Observable<number[][]>{
+    return this.http.get<number[][]>(`${this.apiServerUrl}/findReportAnnuale`);
   }
-  public findReportAnnualeAzienda(anno:number,idAzienda: number): Observable<number>{
-    return this.http.get<number>(`${this.apiServerUrl}/findReportAnnualeAzienda/${anno}/${idAzienda}`);
+  public findReportAnnualeAzienda(idAzienda: number): Observable<Number[]>{
+    return this.http.get<Number[]>(`${this.apiServerUrl}/findReportAnnualeAzienda/${idAzienda}`);
   }
+
 
   public findReportMensileGruppo(anno: number): Observable<number[]>{
     return this.http.get<number[]>(`${this.apiServerUrl}/findReportMensileGruppo/${anno}`)
   }
 
-  public findReportMensileAzienda(anno: number, idAzienda:number): Observable<number[]>{
-    return this.http.get<number[]>(`${this.apiServerUrl}/findReportMensileAzienda/${anno}/${idAzienda}`)
+  public findReportMensileAzienda(anno: number, idAzienda:number): Observable<Number[]>{
+    return this.http.get<Number[]>(`${this.apiServerUrl}/findReportMensileAzienda/${anno}/${idAzienda}`)
   }
 }

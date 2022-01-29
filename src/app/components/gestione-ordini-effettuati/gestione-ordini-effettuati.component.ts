@@ -14,13 +14,13 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 })
 export class GestioneOrdiniEffettuatiComponent implements OnInit {
 
-  singleOrdine: Ordine[];
+  singleOrdine: Ordine[] = [];
   distributore: Distributore;
   ordineProdotto: OrdineProdotto[];
   ordine: Ordine;
   myStorage = window.localStorage;
 
-  prezzoTotale: number = 0;
+  prezzoTotale: number;
 
   constructor(private os: OrdineService, private ops: OrdineProdottoService, private log: LogService) { }
 
@@ -34,23 +34,16 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
     }
   }
 
-  prezzoOrdine(ord) {
-    this.ops.findDettagliOrdine(ord).subscribe(
+  prezzoOrdine(ordineId) {
+    this.ops.findDettagliOrdine(ordineId).subscribe(
       (success) => {
         this.log.Debug(GestioneOrdiniEffettuatiComponent.name, "ok", [success]);
 
-        this.ordineProdotto = success as OrdineProdotto[];
-        
-        var quantitaSingola; var prezzoSingolo; var prezzoQuantita; var totalPrice = 0;
-        
-        for (var i=0; i<=this.ordineProdotto.length; i++) {
-          quantitaSingola = this.ordineProdotto[i].quantitaOrdine;
-          prezzoSingolo = this.ordineProdotto[i].prezzoUnitario;
-          prezzoQuantita = quantitaSingola * prezzoSingolo;
-          totalPrice += prezzoQuantita;
-        }
+        this.ordineProdotto.forEach( orderProduct => {
+          this.prezzoTotale += orderProduct.prezzoUnitario;
+        });
 
-        this.prezzoTotale = totalPrice;
+        this.ordineProdotto = success as OrdineProdotto[];        
 
       },
 
@@ -65,13 +58,12 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
         (success) => {
           this.log.Debug(GestioneOrdiniEffettuatiComponent.name, "ok", [success]);
 
-          for (var k=0; k<=this.ordineProdotto.length; k++) {
-            this.prezzoOrdine(this.ordine.id)
-          }
+          for (var i: number =0; i<=this.singleOrdine.length; i++) {
+            this.prezzoOrdine(this.singleOrdine[i].id)
+          }      
 
           this.singleOrdine = success as Ordine[];
         },
-
         (error) => {
           this.log.Error(GestioneOrdiniEffettuatiComponent.name, "errore", [error]);
         }

@@ -12,27 +12,46 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 })
 export class GestioneOrdiniRicevutiComponent implements OnInit {
 
-  allOrdine: Ordine[];
+  ordini: Ordine[];
   azienda: Azienda;
+  prezzoTotale : number = 0;
+
+  myStorage = window.localStorage;
 
   constructor(private prod: OrdineService, private log: LogService) {  }
 
   ngOnInit(): void {
-    this.listaOrdini();
+    this.myStorage.getItem('currentUser');
+ 
+    if((this.myStorage.getItem('currentUser') != undefined) && this.checktypeAZ())
+    {
+      this.azienda = JSON.parse(this.myStorage.getItem('currentUser')) as Azienda;
+      this.listaOrdini();
+    }
   }
 
   listaOrdini() {
-    if (this.azienda != undefined) {
       this.prod.getAllOrdinebyAzienda(this.azienda.id).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniRicevutiComponent.name, "ok", [success]);
-          this.allOrdine = success as Ordine[];
+          this.ordini = success as Ordine[];
         },
 
         (error) => {
           this.log.Error(GestioneOrdiniRicevutiComponent.name, "errore", [error]);
         }
       )
-    } //end func
   }
+
+  checktypeAZ() {
+    const account = this.myStorage.getItem('currentUser');
+    const obj = JSON.parse(account);
+    const tipo = obj.tipo;
+    if (tipo == "Azienda") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }

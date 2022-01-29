@@ -42,6 +42,46 @@ export class RegistrazioneComponent implements OnInit {
     return alert("L'username deve avere lunghezza di almeno 8 caratteri");
   }
 
+  if(this.rX.regexEmail(form.email)!= true) {
+    return alert("E-mail non valida, si prega di riprovare");
+  }
+
+  if(this.rX.regexPassword(form.password)!= true) {
+    return alert("La password deve avere una lunghezza minima di 8 caratteri ed includere lettere maiuscole, minuscole, numeri e almeno un simbolo");
+  }
+
+  if(this.rX.regexVAT(form.vat)!= true) {
+    return alert("VAT Number non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexCitta(form.citta)!= true) {
+    return alert("Città non valida, si prega di riprovare");
+  }
+
+  if(this.rX.regexVia(form.indirizzo)!= true) {
+    return alert("Indirizzo non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexCivico(form.civico)!= true) {
+    return alert("Numero civico non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexCAP(form.cap)!= true) {
+    return alert("CAP non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexNome(form.nome)!= true) {
+    return alert("Nome non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexNome(form.cognome)!= true) {
+    return alert("Cognome non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexTelefono(form.telefono)!= true) {
+    return alert("Il numero inserito non è valido, si prega di riprovare");
+  }
+
     if (checkvat.length > 12) {
       return alert('VAT Number errato. Riprovare.');
     }
@@ -84,7 +124,47 @@ export class RegistrazioneComponent implements OnInit {
 public registrazioneAzienda(form) {
 
   if ((form.email && form.password && form.societa && form.vat && form.indirizzo && form.descrizione && form.logo)!='') {
-    var checkvat = form.vat; 
+    var checkvat = form.vat;
+  
+    if(this.rX.regexEmail(form.email)!= true) {
+      return alert("E-mail non valida, si prega di riprovare");
+    }
+  
+    if(this.rX.regexPassword(form.password)!= true) {
+      return alert("La password deve avere una lunghezza minima di 8 caratteri ed includere lettere maiuscole, minuscole, numeri e almeno un simbolo");
+    }
+  
+    if(this.rX.regexVAT(form.vat)!= true) {
+      return alert("VAT Number non valido, si prega di riprovare");
+    }
+  
+    if(this.rX.regexCitta(form.citta)!= true) {
+      return alert("Città non valida, si prega di riprovare");
+    }
+  
+    if(this.rX.regexVia(form.indirizzo)!= true) {
+      return alert("Indirizzo non valido, si prega di riprovare");
+    }
+  
+    if(this.rX.regexCivico(form.civico)!= true) {
+      return alert("Numero civico non valido, si prega di riprovare");
+    }
+  
+    if(this.rX.regexCAP(form.cap)!= true) {
+      return alert("CAP non valido, si prega di riprovare");
+    }
+  
+    if(this.rX.regexNome(form.societa)!= true) {
+      return alert("Nome società non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexDescrizione(form.descrizione)!= true) {
+      return alert("Descrizione troppo lunga, non deve superare i 500 caratteri, si prega di riprovare");
+    }
+
+    if(this.rX.regexLogo(form.societa)!= true) {
+      return alert("Logo non valido, si prega di riprovare");
+    }
 
       if (checkvat.length > 12) {
         return alert('VAT Number errato. Riprovare.');

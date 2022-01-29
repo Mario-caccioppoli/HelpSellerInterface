@@ -14,7 +14,7 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 })
 export class GestioneOrdiniEffettuatiComponent implements OnInit {
 
-  singleOrdine: Ordine[] = [];
+  ordini: Ordine[];
   distributore: Distributore;
   ordineProdotto: OrdineProdotto[];
   ordine: Ordine;
@@ -31,20 +31,18 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
     {
       this.distributore = JSON.parse(this.myStorage.getItem('currentUser')) as Distributore;
       this.listaOrdini();
+      this.prezzoOrdine();
     }
   }
 
-  prezzoOrdine(ordineId) {
-    this.ops.findDettagliOrdine(ordineId).subscribe(
+  prezzoOrdine() {
+    this.ops.findDettagliOrdine(this.ordine.id).subscribe(
       (success) => {
         this.log.Debug(GestioneOrdiniEffettuatiComponent.name, "ok", [success]);
 
-        this.ordineProdotto.forEach( orderProduct => {
-          this.prezzoTotale += orderProduct.prezzoUnitario;
-        });
+        console.log(success);
 
         this.ordineProdotto = success as OrdineProdotto[];        
-
       },
 
       (error) => {
@@ -58,11 +56,7 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
         (success) => {
           this.log.Debug(GestioneOrdiniEffettuatiComponent.name, "ok", [success]);
 
-          for (var i: number =0; i<=this.singleOrdine.length; i++) {
-            this.prezzoOrdine(this.singleOrdine[i].id)
-          }      
-
-          this.singleOrdine = success as Ordine[];
+          this.ordini = success as Ordine[];
         },
         (error) => {
           this.log.Error(GestioneOrdiniEffettuatiComponent.name, "errore", [error]);

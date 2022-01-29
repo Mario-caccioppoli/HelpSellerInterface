@@ -27,6 +27,7 @@ export class GestioneProdottiComponent implements OnInit {
 
   filenames:any[]=[];
   img:any;
+  nomeImg: string;
 
   constructor(private prodottoService: ProdottoService , private log: LogService, private fileService: FileService ) { }
 
@@ -65,7 +66,7 @@ export class GestioneProdottiComponent implements OnInit {
       prezzo: form.prezzo,
       descrizione: form.descrizione,
       quantita: form.quantita,
-      immagine: "immagine",
+      immagine: this.nomeImg,
       quantitaMinima:100,
       peso: form.peso,
       volume: form.volume,
@@ -74,17 +75,15 @@ export class GestioneProdottiComponent implements OnInit {
 
 
       console.log(this.prodotto);
+      console.log("ID DEL CURRENT: " + this.currentUser.id);
+      console.log("ID NEL PRODOTTO: " + this.prodotto.idAzienda);
 
       this.prodottoService.insertProdotto(this.prodotto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
-
-          //this.prodotto = resp as Prodotto;
-          //TODO: aggiungere alert su controllo
-
           window.alert("prodotto inserito con successo")
-
           let model=document.getElementById("aggiungiProdotto").click();
+          this.nomeImg = "";
           this.getProdottiByIdAzienda()
         },
         (error)=>{
@@ -100,7 +99,7 @@ export class GestioneProdottiComponent implements OnInit {
       prezzo: form.prezzo,
       descrizione: form.descrizione,
       quantita: form.quantita,
-      immagine: "immagine",
+      immagine: this.nomeImg,
       quantitaMinima:100,
       peso: form.peso,
       volume: form.volume,
@@ -110,12 +109,7 @@ export class GestioneProdottiComponent implements OnInit {
       this.prodottoService.updateProdotto(this.prodotto).subscribe(
         (resp)=>{
           this.log.Debug(GestioneProdottiComponent.name,"chiamata a back-end",[resp]);
-
-          //this.prodotto = resp as Prodotto;
-          //TODO: aggiungere allert su controllo
-
           window.alert("prodotto modificato con successo")
-
           let model=document.getElementById("modificaProdotto").click();
           this.getProdottiByIdAzienda()
         },
@@ -188,6 +182,7 @@ export class GestioneProdottiComponent implements OnInit {
   uploadFotoProdotto(files: File[]): void{
     const formData=new FormData();
     for(const file of files){
+      this.nomeImg = file.name;
       formData.append('files', file, file.name);
     }
     this.fileService.upload(formData).subscribe(

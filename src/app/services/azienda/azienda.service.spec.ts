@@ -25,6 +25,8 @@ describe('AziendaService', () => {
         expect(r.id).toBeGreaterThan(0);
       });
       done();
+    }, error => {
+      done();
     });
   });
 
@@ -34,10 +36,11 @@ describe('AziendaService', () => {
       expect(resp.descrizione.length).toBeGreaterThanOrEqual(0);
       expect(resp.email.length).toBeGreaterThan(0);
       expect(resp.indirizzo.length).toBeGreaterThan(0);
-      expect(resp.logo.length).toBeGreaterThan(0);
       expect(resp.nomeAzienda.length).toBeGreaterThan(0);
       expect(resp.password.length).toBeGreaterThan(0);
       expect(resp.vat.length).toBeGreaterThan(0);
+      done();
+    }, error => {
       done();
     })
   });
@@ -47,12 +50,16 @@ describe('AziendaService', () => {
     service.findAziendeByName(nome).subscribe(resp => {
       expect(resp.length).toBeGreaterThan(0);
       done();
+    }, error => {
+      done();
     });
   });
 
   it('findAziendaByProdotto', (done: DoneFn) => {
     service.findAziendaByProdotto(7).subscribe(resp => {
       expect(resp.id).toBeGreaterThan(0);
+      done();
+    }, error => {
       done();
     });
   });
@@ -71,32 +78,36 @@ describe('AziendaService', () => {
     ordini: null
   }
 
-  let id = 0;
-  it('CUD', (done: DoneFn) => {
+  it('insert', (done: DoneFn) => {
 
     service.insertAzienda(azienda).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
-      id = resp;
-      azienda.id = id;
+      azienda.id = resp;
       done();
-
+    },
+    error => {
+      done();
     });
   });
 
-  azienda.nomeAzienda = "nomeUpdate";
-  it('CUD', (done: DoneFn) => {
 
+  it('update', (done: DoneFn) => {
+    azienda.nomeAzienda = "nomeUpdate";
     service.updateAzienda(azienda).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
       done();
 
+    }, error => {
+      done();
     });
   });
 
-  it('CUD', (done: DoneFn) => {
+  it('delete', (done: DoneFn) => {
 
-    service.deleteAzienda(id).subscribe(resp => {
+    service.deleteAzienda(azienda.id).subscribe(resp => {
       expect(resp).toBeGreaterThan(0);
+      done();
+    }, error => {
       done();
     });
 

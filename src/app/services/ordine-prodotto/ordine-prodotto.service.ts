@@ -27,32 +27,30 @@ export class OrdineProdottoService {
     return this.http.get<OrdineProdotto[]>(`${this.apiServerUrl}/findDettagliOrdine/${OrdineID}`);
   }
 
-  public deleteOrdineProdotto(OrdineId: number, ProdottoId: number): Observable<number> {
-    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${OrdineId}/${ProdottoId}`);
-  }
+  // public deleteOrdineProdotto(OrdineId: number, ProdottoId: number): Observable<number> {
+  //   return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${OrdineId}/${ProdottoId}`);
+  // }
 
+  // public insertOrdineProdotto(OrdineProdotto: OrdineProdotto): Observable<number[]> {
+  //   return this.http.post<number[]>(`${this.apiServerUrl}/insert`, OrdineProdotto);
+  // }
 
-  public insertOrdineProdotto(OrdineProdotto: OrdineProdotto): Observable<number[]> {
-    return this.http.post<number[]>(`${this.apiServerUrl}/insert`, OrdineProdotto);
-  }
-
-  public updateOrdineProdotto(OrdineProdotto: OrdineProdotto): Observable<number> {
-    return this.http.post<number>(`${this.apiServerUrl}/update`, OrdineProdotto);
-  }
+  // public updateOrdineProdotto(OrdineProdotto: OrdineProdotto): Observable<number> {
+  //   return this.http.post<number>(`${this.apiServerUrl}/update`, OrdineProdotto);
+  // }
 
   public findReportAnnuale(): Observable<number[][]>{
-    return this.http.get<number[][]>(`${this.apiServerUrl}/findReportAnnuale`);
+    return this.http.get<number[][]>(`${this.apiServerUrl}/findReportAnnuale/`);
   }
-  public findReportAnnualeAzienda(idAzienda: number): Observable<Number[]>{
-    return this.http.get<Number[]>(`${this.apiServerUrl}/findReportAnnualeAzienda/${idAzienda}`);
+  public findReportAnnualeAzienda(idAzienda: number): Observable<number[][]>{
+    return this.http.get<number[][]>(`${this.apiServerUrl}/findReportAnnualeAzienda/${idAzienda}`);
   }
-
 
   public findReportMensileGruppo(anno: number): Observable<number[]>{
     return this.http.get<number[]>(`${this.apiServerUrl}/findReportMensileGruppo/${anno}`)
   }
 
-  public findReportMensileAzienda(anno: number, idAzienda:number): Observable<Number[]>{
-    return this.http.get<Number[]>(`${this.apiServerUrl}/findReportMensileAzienda/${anno}/${idAzienda}`)
+  public findReportMensileAzienda(anno: number, idAzienda:number): Observable<number[]>{
+    return this.http.get<number[]>(`${this.apiServerUrl}/findReportMensileAzienda/${anno}/${idAzienda}`)
   }
 }

@@ -9,49 +9,40 @@ import { OrdineProdottoService } from 'src/app/services/ordine-prodotto/ordine-p
 })
 export class GraficoALineaAziendaComponent implements OnInit {
 
-  constructor( private ordineProdottoService:OrdineProdottoService ,private log: LogService) { }
+  @Input() 
+  barChartLabels : string[];
 
-  datiAnnualiDB_IDAzienda=[];
-  datiAnnualiTotaliDB_IDAzienda:any=[]
-
-  ngOnInit(): void {
-    this.getReportTotaleByAnnoIdAzienda()
+  @Input() 
+  barChartData : any;
+  
+  
+  constructor( ) { 
+   
   }
 
-  public barChartOptionsLineaAzienda = {
+  public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
     
   };
+  
 
-  @Input() barChartLabelsLineaAzienda : string[];
 
-  barChartTypeLineaAzienda = 'line';
-  public barChartLegendLineaAzienda = true;
+  barChartType = 'line';
+  public barChartLegend = true;
 
   
-  @Input() barChartDataLineaAzienda : any;
+  
 
+
+  ngOnInit(): void {
+    
+  }
+  
   public colors = [
     { backgroundColor:"orange" },
     { backgroundColor:"orange" },
     { backgroundColor:"orange" },
     { backgroundColor:"orange" }
   ];
-
-
-
-  getReportTotaleByAnnoIdAzienda(){
-    this.datiAnnualiDB_IDAzienda=[];
-    this.ordineProdottoService.findReportAnnualeAzienda(3).subscribe(
-      (resp)=>{
-        this.log.Debug(GraficoALineaAziendaComponent.name,"chiamata a back-end",[resp]);
-        this.datiAnnualiDB_IDAzienda.push(resp);  
-      },
-      (error)=>{
-        //this.log.Error(ReportAmministratoreComponent.name,"chiamata a back-end",[error]);
-        this.datiAnnualiDB_IDAzienda.push(0)
-      }
-    )
-  }
 }

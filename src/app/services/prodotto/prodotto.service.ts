@@ -36,9 +36,7 @@ export class ProdottoService {
   public getProdottoByIdAzienda(idAzienda : number): Observable<Prodotto[]> {
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByAzienda/${idAzienda}`);
   }
-  public findAllProdottiByNome(nome: string): Observable<Prodotto[]>{
-    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNome/${nome}`);
-  }
+
   public findProdottiBySconto(id : number): Observable<Prodotto[]>{
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiBySconto/${id}`);
   }
@@ -47,5 +45,9 @@ export class ProdottoService {
   }
   public findProdottiByNomeInAzienda(nomeProdotto: string, id: number): Observable<Prodotto[]>{
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}/${id}`);
+  }
+
+  public findAllProdottiByNome(nomeProdotto: string): Observable<Prodotto[]>{
+    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}`);
   }
 }

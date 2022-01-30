@@ -165,6 +165,9 @@ export class ReportAmministratoreComponent implements OnInit {
 
   findReportAnnualeAzienda(){
     this.euroAziendaLoggata=[];
+    this.anniAziendaLoggata=[];
+    this.euroAziendaLoggata=[];
+    this.datiAnnualiDB=[];
     this.ordineProdottoService.findReportAnnualeAzienda(this.currentUser.id).subscribe(
       (resp)=>{
         this.log.Debug(ReportAmministratoreComponent.name,"chiamata a back-end",[resp]);
@@ -188,6 +191,7 @@ export class ReportAmministratoreComponent implements OnInit {
 
   findReportMensileAzienda(){
     if(this.annoScelto!=undefined){
+      this.euroAziendaLoggata=[];
       this.ordineProdottoService.findReportMensileAzienda(2022,this.currentUser.id).subscribe(
         (resp)=>{
           console.log("resp "+resp)

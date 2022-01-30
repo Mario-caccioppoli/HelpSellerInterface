@@ -37,11 +37,13 @@ export class GraficoALineaComponent implements OnInit {
     
   }
   
-  public colors = [
-    { backgroundColor:"orange" },
-    { backgroundColor:"orange" },
-    { backgroundColor:"orange" },
-    { backgroundColor:"orange" }
+  public colors:Array<any> = [
+    { backgroundColor:"orange",
+    borderWidth:1,
+    pointBackgroundColor:'blue',
+    pointHoverRadius:10,
+    borderColor: 'black' },
+    
   ];
 
 }

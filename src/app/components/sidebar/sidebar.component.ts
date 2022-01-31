@@ -12,6 +12,9 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if(this.currentUser != null) {
+      
+    }
   }
 
 }

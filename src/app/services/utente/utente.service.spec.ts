@@ -25,11 +25,11 @@ describe('UtenteService', () => {
     let password: string = "password";
 
     service.loginUtente(tipo, email, password).subscribe(resp => {
-      utente = resp as Utente;
+      let u = resp as Utente;
       expect(resp.tipo.includes(tipo)).toBeTrue;
       expect(resp.email.includes(email)).toBeTrue;
-      expect(utente.tipo.includes(resp.tipo)).toBeTrue;
-      expect(utente.email.includes(resp.email)).toBeTrue;
+      expect(u.tipo.includes(resp.tipo)).toBeTrue;
+      expect(u.email.includes(resp.email)).toBeTrue;
       done();
     }, error => {
       done();

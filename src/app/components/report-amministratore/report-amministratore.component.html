@@ -1,3 +1,4 @@
+<div *ngIf="currentUser != null">
 <div class="amministratoreReport" *ngIf="currentUser.tipo=='Amministratore'">
     <h2 style="text-align: center;"> Report Vendite Gruppo Unilever</h2>
     <h3>Grafico vendite totale</h3>
@@ -92,4 +93,5 @@
     <h1>Grafico vendite totale annuo</h1>
     <!-- <app-grafico-a-barra-azienda #graficoABarraAzienda [barChartLabelsBarraAzienda]="mesi" [barChartDataBarraAzienda]="datiMensiliTotali"></app-grafico-a-barra-azienda> -->
 
+</div>
 </div>

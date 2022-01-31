@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LogService } from 'src/app/services/log.service';
@@ -13,7 +13,7 @@ describe('GestioneOrdiniEffettuaOrdineComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ GestioneOrdiniEffettuaOrdineComponent ],
-      imports: [HttpClient, ,RouterTestingModule],
+      imports: [HttpClientModule, RouterTestingModule],
       providers: [ProdottoService,LogService]
     })
     .compileComponents();

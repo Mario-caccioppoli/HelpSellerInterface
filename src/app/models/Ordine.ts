@@ -6,10 +6,10 @@ export interface Ordine{
     id: number;
     dataOrdinazione: Date;
     dataConsegna: Date;
-    commento: string;
+    commento?: string;
     stato: string;
     idDistributore: number;
-    documento: Documento;
-    prezzoTotale: number;
-    ordineProdotti:OrdineProdotto[];
+    documento?: Documento;
+    prezzoTotale?: number;
+    ordineProdotti?:OrdineProdotto[];
 }

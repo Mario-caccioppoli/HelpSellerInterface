@@ -68,14 +68,15 @@ export class ReportAmministratoreComponent implements OnInit {
       //this.graficoABarra.updateGraph();
     }
   ngOnInit(): void {
-    this.findReportAnnuale();
-    this.findReportAnnualeAzienda();
-    //this.findReportMensileGruppo();
-    this.findReportMensileAzienda();
+    if(this.currentUser != null) {
+      this.findReportAnnuale();
+      this.findReportAnnualeAzienda();
+      //this.findReportMensileGruppo();
+      this.findReportMensileAzienda();
+      this.getAllAzienda();
+      this.getReportTotaleByAnno();
+    }
 
-
-    this.getAllAzienda();
-    this.getReportTotaleByAnno();
   }
   getAllAzienda(){
     this.aziendaService.getAllAzienda().subscribe(

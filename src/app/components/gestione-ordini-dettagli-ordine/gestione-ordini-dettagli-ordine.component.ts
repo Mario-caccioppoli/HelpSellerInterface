@@ -32,27 +32,27 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.ordineProdotto != undefined) {
-      this.getProdottiOrdine();
+      //this.getProdottiOrdine();
       this.getInfoOrdine();
-      this.getNotaRiepilogo();
+      //this.getNotaRiepilogo();
     }
   }
 
-  getProdottiOrdine() {
-    if(this.ordineProdotto != undefined)
-    {
-      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
-        (success) => {
-          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-          this.ordineProdotto = success as OrdineProdotto;
-        },
+  // getProdottiOrdine() {
+  //   if(this.ordineProdotto != undefined)
+  //   {
+  //     this.os.findById(this.ordineProdotto.idOrdine).subscribe(
+  //       (success) => {
+  //         this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
+  //         this.ordineProdotto = success as OrdineProdotto;
+  //       },
 
-        (error) => {
-          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
-        }
-      )
-    }
-  }
+  //       (error) => {
+  //         this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
+  //       }
+  //     )
+  //   }
+  // }
 
   getInfoOrdine() {
     if(this.ordineProdotto != undefined)
@@ -71,21 +71,21 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     }
   }
 
-  getNotaRiepilogo() {
-    if(this.ordineProdotto != undefined)
-    {
-      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
-        (success) => {
-          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-          this.ordineProdotto = success as OrdineProdotto;
-        },
+  // getNotaRiepilogo() {
+  //   if(this.ordineProdotto != undefined)
+  //   {
+  //     this.os.findById(this.ordineProdotto.idOrdine).subscribe(
+  //       (success) => {
+  //         this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
+  //         this.ordineProdotto = success as OrdineProdotto;
+  //       },
 
-        (error) => {
-          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
-        }
-      )
-    }
-  }
+  //       (error) => {
+  //         this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
+  //       }
+  //     )
+  //   }
+  // }
 
   getAllOrdineQuantity() {
     if(this.ordine != undefined)

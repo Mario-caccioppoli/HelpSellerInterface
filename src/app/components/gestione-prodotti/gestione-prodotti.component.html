@@ -63,7 +63,7 @@
 <div class="modal fade" id="modificaProdotto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="form-control" #modelModificaProdotto="ngForm" (ngSubmit)="modificaProdotto(modelModificaProdotto.value)">
+            <form class="form-control" #modelModificaProdotto="ngForm" (ngSubmit)="modificaProdotto(modelModificaProdotto.value)" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modifica Prodotto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -74,7 +74,7 @@
                         <div class="modal-body">
                             <div class="modal-body">
                                 <p><b>Inserisci Immagine</b></p>
-                                <input type="file" class="form-control" name="file" />
+
                                 <br>
                                 <p><b>Nome Prodotto</b></p>
                                 <input type="text" ngModel name="nome" placeholder="inserisci nome prodotto"><br>
@@ -117,7 +117,7 @@
                         <div class="modal-body">
                             <div class="modal-body">
                                 <div><b>Inserisci Immagine</b></div>
-                                <input type="file" class="form-control" name="file" />
+                                <input type="file" class="file-input" (change)="uploadFotoProdotto($event.target.files)" name="files" />
                                 <br>
                                 <div><b>Nome Prodotto</b></div>
                                 <input type="text" ngModel name="nome" placeholder="inserisci nome prodotto"><br><br>

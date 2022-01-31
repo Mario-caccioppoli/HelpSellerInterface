@@ -21,24 +21,22 @@ export class ProdottoService {
     return this.http.get<Prodotto>(`${this.apiServerUrl}/findId/${ProdottoID}`);
   }
 
-  public deleteProdotto(ProdottoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${ProdottoId}`);
+  public deleteProdotto(ProdottoId: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${ProdottoId}`);
   }
 
-  public insertProdotto(Prodotto: Prodotto): Observable<Prodotto> {
-    return this.http.post<Prodotto>(`${this.apiServerUrl}/insert`, Prodotto);
+  public insertProdotto(Prodotto: Prodotto): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Prodotto);
   }
 
-  public updateProdotto(Prodotto: Prodotto): Observable<Prodotto> {
-    return this.http.post<Prodotto>(`${this.apiServerUrl}/update`, Prodotto);
+  public updateProdotto(Prodotto: Prodotto): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, Prodotto);
   }
 
   public getProdottoByIdAzienda(idAzienda : number): Observable<Prodotto[]> {
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByAzienda/${idAzienda}`);
   }
-  public findAllProdottiByNome(nome: string): Observable<Prodotto[]>{
-    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNome/${nome}`);
-  }
+
   public findProdottiBySconto(id : number): Observable<Prodotto[]>{
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiBySconto/${id}`);
   }
@@ -47,5 +45,9 @@ export class ProdottoService {
   }
   public findProdottiByNomeInAzienda(nomeProdotto: string, id: number): Observable<Prodotto[]>{
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}/${id}`);
+  }
+
+  public findAllProdottiByNome(nomeProdotto: string): Observable<Prodotto[]>{
+    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}`);
   }
 }

@@ -26,7 +26,8 @@ export class GestioneOrdiniUploadComponent implements OnInit {
         (success) => {
           this.log.Debug(GestioneOrdiniUploadComponent.name, "ok", [success]);
 
-          this.documento = success as Documento;
+          //this.documento = success as Documento;
+          //TODO: aggiungere alert su controllo
         },
 
         (error) => {

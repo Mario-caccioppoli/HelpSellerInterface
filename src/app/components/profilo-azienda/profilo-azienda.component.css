@@ -47,7 +47,7 @@
     
     .scroll {
         height: 400px;
-        overflow: scroll;
+        overflow: auto;
         overflow-x: hidden;
     }
     

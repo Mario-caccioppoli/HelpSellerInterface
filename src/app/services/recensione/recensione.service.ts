@@ -21,15 +21,15 @@ export class RecensioneService {
     return this.http.get<Recensione>(`${this.apiServerUrl}/findId/${RecensioneID}`);
   }
 
-  public deleteRecensione(RecensioneId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${RecensioneId}`);
+  public deleteRecensione(RecensioneId: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${RecensioneId}`);
   }
 
-  public insertRecensione(Recensione: Recensione): Observable<Recensione> {
-    return this.http.post<Recensione>(`${this.apiServerUrl}/insert`, Recensione);
+  public insertRecensione(Recensione: Recensione): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Recensione);
   }
 
-  public updateRecensione(Recensione: Recensione): Observable<Recensione> {
-    return this.http.post<Recensione>(`${this.apiServerUrl}/update`, Recensione);
+  public updateRecensione(Recensione: Recensione): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, Recensione);
   }
 }

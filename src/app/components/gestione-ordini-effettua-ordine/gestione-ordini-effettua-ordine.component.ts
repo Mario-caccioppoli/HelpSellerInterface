@@ -24,7 +24,6 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 
   //PER COSTRUIRE ORDINE
   ordine: Ordine;
-
   ordineProdottoList: OrdineProdotto[]=[];
   prodottiInOrdine: Prodotto[];
   number:number[]=[]
@@ -66,13 +65,6 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     for (var k=0; k < nascondi.length; k++) {
       nascondi[k].style.display = 'none';
     }
-
-
-
-    
-    var max = <HTMLInputElement>document.getElementById("qtaprod");;
-    max.setAttribute("max", '10000');
-    max.setAttribute("value", '0');
 
   }
 

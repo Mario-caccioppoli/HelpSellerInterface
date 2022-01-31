@@ -15,13 +15,13 @@ export class OrdineProdottoService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllOrdineProdotto(): Observable<OrdineProdotto[]> {
-    return this.http.get<OrdineProdotto[]>(`${this.apiServerUrl}/findAll`);
-  }
+  // public getAllOrdineProdotto(): Observable<OrdineProdotto[]> {
+  //   return this.http.get<OrdineProdotto[]>(`${this.apiServerUrl}/findAll`);
+  // }
 
-  public findById(OrdineProdottoID : number): Observable<OrdineProdotto> {
-    return this.http.get<OrdineProdotto>(`${this.apiServerUrl}/findId/${OrdineProdottoID}`);
-  }
+  // public findById(OrdineProdottoID : number): Observable<OrdineProdotto> {
+  //   return this.http.get<OrdineProdotto>(`${this.apiServerUrl}/findId/${OrdineProdottoID}`);
+  // }
 
   public findDettagliOrdine(OrdineID : number): Observable<OrdineProdotto[]> {
     return this.http.get<OrdineProdotto[]>(`${this.apiServerUrl}/findDettagliOrdine/${OrdineID}`);

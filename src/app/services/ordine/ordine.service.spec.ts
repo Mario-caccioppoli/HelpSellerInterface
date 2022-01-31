@@ -49,12 +49,13 @@ describe('OrdineService', () => {
   
   it('findById', (done: DoneFn) => {
     service.findById(2).subscribe(resp => {
-      expect(resp.id == 2).toBeTrue;
+      console.log(resp)
+      expect(resp.id).toBeGreaterThan(0);
       done();
     }, error => {
       done();
-    })
-  })
+    });
+  });
 
   let ordine: Ordine;
   let date: Date = new Date();
@@ -109,23 +110,5 @@ describe('OrdineService', () => {
       done();
     });
   });
-
-  ordine.commento = "commento"
-  it('update', (done: DoneFn) => {
-    service.updateOrdine(ordine).subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
-      done();
-    }, error => {
-      done();
-    });
-  });
-      
-  it('delete', (done: DoneFn) => {
-    service.deleteOrdine(ordine.id).subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
-      done();
-    }, error => {
-      done();
-    });
-  });
+  
 });

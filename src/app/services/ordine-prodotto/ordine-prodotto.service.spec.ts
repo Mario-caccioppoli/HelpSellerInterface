@@ -21,28 +21,8 @@ describe('OrdineProdottoService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getAllOrdineProdotto', (done: DoneFn) => {
-    service.getAllOrdineProdotto().subscribe(resp => {
-      expect(resp.length).toBeGreaterThanOrEqual(0);
-      done();
-    }, error => {
-      done();
-    });
-  });
-
-  it('findById', (done: DoneFn) => {
-    service.findById(1).subscribe(resp => {
-      expect(resp.idOrdine == 1).toBeTrue;
-      expect(resp.prezzoUnitario).toBeGreaterThan(0);
-      expect(resp.quantitaOrdine).toBeGreaterThan(0);
-      done();
-    }, error => {
-      done();
-    });
-  });
-
   it('findDettagliOrdine', (done: DoneFn) => {
-    service.findDettagliOrdine(1).subscribe(resp => {
+    service.findDettagliOrdine(2).subscribe(resp => {
       expect(resp.length).toBeGreaterThanOrEqual(0);
       done();
     }, error => {
@@ -80,60 +60,6 @@ describe('OrdineProdottoService', () => {
   it('findReportMensileAzienda', (done: DoneFn) => {
     service.findReportMensileAzienda(2022, 2).subscribe(resp => {
       expect(resp.length).toBeGreaterThan(0);
-      done();
-    }, error => {
-      done();
-    });
-  });
-
-  let op: OrdineProdotto;
-  let prodotto: Prodotto;
-  prodotto = {
-    descrizione: null,
-    idAzienda: null,
-    immagine: null,
-    nomeProdotto: null,
-    peso: null,
-    prezzo: null,
-    quantita: null,
-    quantitaMinima: null,
-    volume: null,
-    id: 2,
-    recensioni: null,
-    sconti: null
-  }
-
-  op = {
-    idOrdine: 20,
-    prezzoUnitario: 10,
-    prodotto: prodotto,
-    quantitaOrdine: 30
-  };
-
-
-  it('insert', (done: DoneFn) => {
-
-    service.insertOrdineProdotto(op).subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
-      done()
-    }, error => {
-      done();
-    });
-  });
-
-  op.quantitaOrdine = 50;
-  it('update', (done: DoneFn) => {
-    service.updateOrdineProdotto(op).subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
-      done();
-    }, error =>{
-      done();
-    });
-  });
-
-  it('delete', (done: DoneFn) => {
-    service.deleteOrdineProdotto(20, 2).subscribe(resp => {
-      expect(resp).toBeGreaterThanOrEqual(0);
       done();
     }, error => {
       done();

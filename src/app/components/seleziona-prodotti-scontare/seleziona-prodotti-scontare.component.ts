@@ -25,8 +25,11 @@ export class SelezionaProdottiScontareComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private prodottoService:ProdottoService,private scontoProdottoService:ScontoProdottoService,private log: LogService, private route: Router) { }
 
   ngOnInit(): void {
-    this.findProdottiByIDAzienda()
-    this.idSconto=JSON.parse(this.activatedRoute.snapshot.params['id']);
+    if(this.currentUser != null) {
+      this.findProdottiByIDAzienda();
+      this.idSconto=JSON.parse(this.activatedRoute.snapshot.params['id']);
+    }
+
   }
 
 

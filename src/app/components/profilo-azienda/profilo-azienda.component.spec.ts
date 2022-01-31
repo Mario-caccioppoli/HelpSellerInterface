@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AziendaService } from 'src/app/services/azienda/azienda.service';
@@ -14,7 +15,7 @@ describe('ProfiloAziendaComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProfiloAziendaComponent],
-      imports : [HttpClientModule,RouterTestingModule],
+      imports : [HttpClientModule,RouterTestingModule, FormsModule],
       providers : [LogService,AziendaService,RouterTestingModule]
     })
     .compileComponents();

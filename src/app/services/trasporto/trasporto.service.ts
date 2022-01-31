@@ -21,15 +21,11 @@ export class TrasportoService {
     return this.http.get<Trasporto>(`${this.apiServerUrl}/findId/${TrasportoID}`);
   }
 
-  public deleteTrasporto(TrasportoId: number): Observable<number> {
-    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${TrasportoId}`);
-  }
-
   public insertTrasporto(Trasporto: Trasporto): Observable<number> {
     return this.http.post<number>(`${this.apiServerUrl}/insert`, Trasporto);
   }
 
   public updateTrasporto(Trasporto: Trasporto): Observable<number> {
-    return this.http.put<number>(`${this.apiServerUrl}/update`, Trasporto);
+    return this.http.post<number>(`${this.apiServerUrl}/update`, Trasporto);
   }
 }

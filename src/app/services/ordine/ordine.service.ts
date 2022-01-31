@@ -27,20 +27,12 @@ export class OrdineService {
     return this.http.get<Ordine[]>(`${this.apiServerUrl}/findOrdiniByAzienda/${idAzienda}`);
   }
 
-  public findById(OrdineID : number): Observable<Ordine> {
+  public findById(OrdineID: number): Observable<Ordine> {
     return this.http.get<Ordine>(`${this.apiServerUrl}/findId/${OrdineID}`);
-  }
-
-  public deleteOrdine(OrdineId: number): Observable<number> {
-    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${OrdineId}`);
   }
 
   public insertOrdine(Ordine: Ordine): Observable<number> {
     return this.http.post<number>(`${this.apiServerUrl}/insert`, Ordine);
-  }
-
-  public updateOrdine(Ordine: Ordine): Observable<number> {
-    return this.http.post<number>(`${this.apiServerUrl}/update`, Ordine);
   }
   
 }

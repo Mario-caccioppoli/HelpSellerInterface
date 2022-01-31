@@ -19,17 +19,13 @@ describe('UtenteService', () => {
   });
 
   it('loginAdmin', (done: DoneFn) => {
-    let utente: Utente;
     let tipo: string = "Amministratore";
     let email: string = "aldo@libeo.it";
     let password: string = "password";
 
     service.loginUtente(tipo, email, password).subscribe(resp => {
-      let u = resp as Utente;
-      expect(resp.tipo.includes(tipo)).toBeTrue;
-      expect(resp.email.includes(email)).toBeTrue;
-      expect(u.tipo.includes(resp.tipo)).toBeTrue;
-      expect(u.email.includes(resp.email)).toBeTrue;
+      expect(resp.tipo.length).toBeGreaterThan(0);
+      expect(resp.email.length).toBeGreaterThan(0);
       done();
     }, error => {
       done();
@@ -37,17 +33,13 @@ describe('UtenteService', () => {
   });
 
   it('loginAzienda', (done: DoneFn) => {
-    let utente: Utente;
     let tipo: string = "Azienda";
     let email: string = "bevande@gmail.com";
     let password: string = "123";
 
     service.loginUtente(tipo, email, password).subscribe(resp => {
-      utente = resp as Utente;
-      expect(resp.tipo.includes(tipo)).toBeTrue;
-      expect(resp.email.includes(email)).toBeTrue;
-      expect(utente.tipo.includes(resp.tipo)).toBeTrue;
-      expect(utente.email.includes(resp.email)).toBeTrue;
+      expect(resp.tipo.length).toBeGreaterThan(0);
+      expect(resp.email.length).toBeGreaterThan(0);
       done();
     }, error => {
       done();
@@ -55,17 +47,13 @@ describe('UtenteService', () => {
   });
 
   it('loginDistributore', (done: DoneFn) => {
-    let utente: Utente;
     let tipo: string = "Distributore";
     let email: string = "mario@gmail.com";
     let password: string = "111";
 
     service.loginUtente(tipo, email, password).subscribe(resp => {
-      utente = resp as Utente;
-      expect(resp.tipo.includes(tipo)).toBeTrue;
-      expect(resp.email.includes(email)).toBeTrue;
-      expect(utente.tipo.includes(resp.tipo)).toBeTrue;
-      expect(utente.email.includes(resp.email)).toBeTrue;
+      expect(resp.tipo.length).toBeGreaterThan(0);
+      expect(resp.email.length).toBeGreaterThan(0);
       done();
     }, error => {
       done();

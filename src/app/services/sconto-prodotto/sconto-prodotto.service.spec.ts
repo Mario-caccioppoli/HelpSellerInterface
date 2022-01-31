@@ -24,33 +24,6 @@ describe('ScontoProdottoService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getAllScontoProdotto', (done: DoneFn) => {
-    service.getAllScontoProdotto().subscribe(resp => {
-      expect(resp.length).toBeGreaterThanOrEqual(0);
-      done();
-    }, error => {
-      done();
-    });
-  });
-
-  it('findById', (done: DoneFn) => {
-    service.findById(1).subscribe(resp => {
-      expect(resp.prodotto.id).toBeGreaterThan(0);
-      expect(resp.sconto.id).toBeGreaterThan(0);
-      done();
-    }, error => {
-      done();
-    });
-  });
-
-  it('findProdottiScontatiAzienda', (done: DoneFn) => {
-    service.findProdottiScontatiAzienda("tacos", 3).subscribe(resp => {
-      expect(resp.length).toBeGreaterThanOrEqual(0);
-      done();
-    }, error => {
-      done();
-    });
-  });
 
   let sp: ScontoProdotto;
   let prodotto: Prodotto;
@@ -95,17 +68,6 @@ describe('ScontoProdottoService', () => {
     });
   });
 
-
-
-  it('update', (done: DoneFn) => {
-    sp.prodotto.id = 2
-    service.updateScontoProdotto(sp).subscribe(resp => {
-      expect(resp).toBeGreaterThan(0);
-      done();
-    }, error => {
-      done();
-    });
-  });
 
   it('delete', (done: DoneFn) => {
     service.deleteScontoProdotto(sp.sconto.id).subscribe(resp => {

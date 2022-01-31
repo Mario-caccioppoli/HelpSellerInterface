@@ -4,7 +4,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Observable } from 'rxjs';
-import { Z_ERRNO } from 'zlib';
 import { OrdineProdottoService } from '../services/ordine-prodotto/ordine-prodotto.service';
 
 @Component({

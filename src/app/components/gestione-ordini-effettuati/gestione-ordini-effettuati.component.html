@@ -36,8 +36,8 @@
                       <th scope="row"><p># {{ordine.id}}</p></th>
                       <td><p>{{ordine.dataOrdinazione}}</p></td>
                       <td><p>{{ordine.idDistributore}}</p></td>
-                      <td><p>{{this.prezzoTotale}}</p></td>
-                      <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
+                      <td><p>{{ordine.prezzoTotale}}</p></td>
+                      <td><a [routerLink]="['/visualizzaProdotti', ordine.id]"><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></a></td>
                     </tr>
                   </tbody>
                 </table>

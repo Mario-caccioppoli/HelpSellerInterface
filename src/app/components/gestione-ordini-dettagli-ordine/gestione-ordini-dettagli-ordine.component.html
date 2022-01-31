@@ -5,79 +5,21 @@
         <div class="col-lg-12 mb50">
             <h5><b>Prodotti ordinati</b></h5>
             <div class="row eqi-container dispx4">
-                <div class="col-lg-auto product" *ngFor="let prod of ordineProdotto">
+                <div class="col-lg-auto product" *ngFor="let prod of ordineProdottoArr">
                     <img class="img-product" src="assets/img/gillette.jpg" />{{prod.prodotto.immagine}}
                     <div class="downspec">
-                    <p class="bold">{{prod.prodotto.nomeProdotto}}</p>
-                    <p class="bold">€ {{prod.prodotto.prezzo}}</p>
-                    <p><b>Quantità:</b> Pz. {{prod.prodotto.quantita}}</p>
+                        <p class="bold">{{prod.prodotto.nomeProdotto}}</p>
+                        <p class="bold">€ {{prod.prodotto.prezzo}}</p>
+                        <p><b>Quantità:</b> Pz. {{prod.prodotto.quantita}}</p>
                     </div>
-                </div>
-                <div class="col-lg-3 product">
-                    <img class="img-product" src="assets/img/dixan.jpg" />
-                    <div class="downspec">
-                    <p class="bold">Dixan® Detergente liquido 950ml</p>
-                    <p class="bold">€ 17</p>
-                    <p><b>Quantità:</b> 90</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 product">
-                    <img class="img-product" src="assets/img/proraso.jpg" />
-                    <div class="downspec">
-                    <p class="bold">Proraso® Schiuma Uomo 250ml</p>
-                    <p class="bold">€ 9</p>
-                    <p><b>Quantità:</b> 35</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 product">
-                    <img class="img-product" src="assets/img/dixan.jpg" />
-                    <div class="downspec">
-                    <p class="bold">Dixan® Detergente liquido 950ml</p>
-                    <p class="bold">€ 17</p>
-                    <p><b>Quantità:</b> 90</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row eqi-container">
-                <div class="col-lg-3 product">
-                    <img class="img-product" src="assets/img/dixan.jpg" />
-                    <div class="downspec">
-                    <p class="bold">Dixan® Detergente liquido 950ml</p>
-                    <p class="bold">€ 17</p>
-                    <p><b>Quantità:</b> 90</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 product">
-                    <img class="img-product" src="assets/img/proraso.jpg" />
-                    <div class="downspec">
-                    <p class="bold">Proraso® Schiuma Uomo 250ml</p>
-                    <p class="bold">€ 9</p>
-                    <p><b>Quantità:</b> 35</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 product">
-                    <img class="img-product" src="assets/img/dixan.jpg" />
-                    <div class="downspec">
-                    <p class="bold">Dixan® Detergente liquido 950ml</p>
-                    <p class="bold">€ 17</p>
-                    <p><b>Quantità:</b> 90</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 product">
-                    <img class="img-product" src="assets/img/gillette.jpg" />
-                    <div class="downspec">
-                    <p class="bold">Gillette® "Mak 3" 5pz.</p>
-                    <p class="bold">€ 12</p>
-                    <p><b>Quantità:</b> 60</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </div><!--lg3 -->
+            </div><!-- row -->
+        </div><!--lg12-->
           <hr>
         <div class="row mb50 mt20">
             <div class="col-lg-6">
                 <h4>Informazioni sull'ordine</h4>
-                <p><b>Acquirente:</b> {{distributore.nome}} {{distributore.cognome}} - {{distributore.vat}}</p>
+                <p><b>Acquirente:</b> {{this.distributore.nome}} {{this.distributore.cognome}} - {{this.distributore.vat}}</p>
                 <p><b>Data acquisto:</b> {{ordine.dataOrdinazione}}</p>
                 <p><b>Quantità totale (in Pz.):</b> {{this.quantitaTotale}}</p>
             </div>

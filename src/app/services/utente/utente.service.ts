@@ -16,25 +16,7 @@ export class UtenteService {
 
   constructor(private http: HttpClient) { }
 
-  public getAllUtente(): Observable<Utente[]> {
-    return this.http.get<Utente[]>(`${this.apiServerUrl}/all`);
-  }
-
-  public loginUtente(stringa: string): Observable<Utente> {
-    return this.http.post<Utente>(`${this.apiServerUrl}/login`, stringa);
-  }
-
-  public recuperoPassword(email: string): Observable<Number> {
-    return this.http.post<number>(`${this.apiServerUrl}/recuperoPassword/${email}`,email);
-  }
-
-  public findById(UtenteID : number): Observable<Utente> {
-    return this.http.get<Utente>(`${this.apiServerUrl}/findId/${UtenteID}`);
-  }
-
-  public deleteUtente(UtenteId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${UtenteId}`);
-  }
+  
 
   public insertUtenteDistributore(Distributore: Distributore): Observable<Utente> {
     return this.http.post<Utente>(`${this.apiServerUrlReg}/distributore/insert`, Distributore);
@@ -44,8 +26,12 @@ export class UtenteService {
     return this.http.post<Utente>(`${this.apiServerUrlReg}/azienda/insert`, Azienda);
   }
 
-  public updateUtente(Utente: Utente): Observable<Utente> {
-    return this.http.post<Utente>(`${this.apiServerUrl}/update`, Utente);
+  public loginUtente(tipo: string, email: string, password: string): Observable<Utente> {
+    return this.http.get<Utente>(`${this.apiServerUrl}/login/${tipo}/${email}/${password}`);
+  }
+
+  public recuperoPassword(email: string): Observable<Number> {
+    return this.http.post<number>(`${this.apiServerUrl}/recuperoPassword/${email}`,email);
   }
 
 }

@@ -8,7 +8,7 @@ import { Utente } from 'src/app/models/Utente';
 })
 export class SidebarComponent implements OnInit {
 
-  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
+  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"));
   constructor() { }
 
   ngOnInit(): void {

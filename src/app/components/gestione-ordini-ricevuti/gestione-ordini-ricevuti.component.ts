@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Azienda } from 'src/app/models/Azienda';
-import { Distributore } from 'src/app/models/Distributore';
 import { Ordine } from 'src/app/models/Ordine';
 import { LogService } from 'src/app/services/log.service';
 import { OrdineService } from 'src/app/services/ordine/ordine.service';
@@ -14,7 +13,6 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
 
   ordini: Ordine[];
   azienda: Azienda;
-  prezzoTotale : number = 0;
 
   myStorage = window.localStorage;
 

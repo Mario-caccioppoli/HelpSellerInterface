@@ -5,7 +5,7 @@ import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
 import { UtenteService } from 'src/app/services/utente/utente.service';
 import { utility } from 'src/utility/utility';
-import { testRegex } from '../test-RegEx/regex';
+import { testRegex } from '../TestRegex/regex';
 
 @Component({
   selector: 'app-registrazione',

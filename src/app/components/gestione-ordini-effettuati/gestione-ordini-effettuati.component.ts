@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Local } from 'protractor/built/driverProviders';
 import { Distributore } from 'src/app/models/Distributore';
 import { Ordine } from 'src/app/models/Ordine';
-import { OrdineProdotto } from 'src/app/models/OrdineProdotto';
 import { LogService } from 'src/app/services/log.service';
-import { OrdineProdottoService } from 'src/app/services/ordine-prodotto/ordine-prodotto.service';
 import { OrdineService } from 'src/app/services/ordine/ordine.service';
 
 @Component({
@@ -16,13 +13,10 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
 
   ordini: Ordine[];
   distributore: Distributore;
-  ordineProdotto: OrdineProdotto[];
-  ordine: Ordine;
+  idDistributore : number;
   myStorage = window.localStorage;
 
-  prezzoTotale: number;
-
-  constructor(private os: OrdineService, private ops: OrdineProdottoService, private log: LogService) { }
+  constructor(private os: OrdineService, private log: LogService) { }
 
   ngOnInit(): void {
     this.myStorage.getItem('currentUser');
@@ -31,25 +25,8 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
     {
       this.distributore = JSON.parse(this.myStorage.getItem('currentUser')) as Distributore;
       this.listaOrdini();
-      this.prezzoOrdine();
     }
   }
-
-  prezzoOrdine() {
-    this.ops.findDettagliOrdine(this.ordine.id).subscribe(
-      (success) => {
-        this.log.Debug(GestioneOrdiniEffettuatiComponent.name, "ok", [success]);
-
-        console.log(success);
-
-        this.ordineProdotto = success as OrdineProdotto[];        
-      },
-
-      (error) => {
-        this.log.Error(GestioneOrdiniEffettuatiComponent.name, "errore", [error]);
-      }
-    )
-}
 
   listaOrdini() {
       this.os.getAllOrdinebyDistributore(this.distributore.id).subscribe(

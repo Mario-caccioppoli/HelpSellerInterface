@@ -1,8 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Z_ERRNO } from 'zlib';
+import { Observable } from 'rxjs'
 import { OrdineProdottoService } from '../services/ordine-prodotto/ordine-prodotto.service';
 
 @Component({

@@ -32,26 +32,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor='let ordine of allOrdine'>
-                      <th scope="row"># <p>{{ordine.id}}</p></th>
+                    <tr *ngFor='let ordine of ordini'>
+                      <th scope="row"><p># {{ordine.id}}</p></th>
                       <td><p>{{ordine.dataOrdinazione}}</p></td>
                       <td><p>{{ordine.idDistributore}}</p></td>
-                      <td><p>manca il prezzo</p></td>
-                      <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">#<p></p></th>
-                      <td><p></p></td>
-                      <td><p></p></td>
-                      <td><p></p></td>
-                      <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">#<p></p></th>
-                      <td><p></p></td>
-                      <td><p></p></td>
-                      <td><p></p></td>
-                      <td><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></td>
+                      <td><p>{{ordine.prezzoTotale}}</p></td>
+                      <td><a [routerLink]="['/visualizzaProdotti', ordine.id]"><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></a></td>
                     </tr>
                   </tbody>
                 </table>

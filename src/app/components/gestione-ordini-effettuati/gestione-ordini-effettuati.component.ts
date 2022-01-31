@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Local } from 'protractor/built/driverProviders';
 import { Distributore } from 'src/app/models/Distributore';
 import { Ordine } from 'src/app/models/Ordine';
 import { LogService } from 'src/app/services/log.service';
@@ -12,30 +11,45 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 })
 export class GestioneOrdiniEffettuatiComponent implements OnInit {
 
-  singleOrdine: Ordine[];
+  ordini: Ordine[];
   distributore: Distributore;
+  idDistributore : number;
+  myStorage = window.localStorage;
 
-  constructor(private prod: OrdineService, private log: LogService) { }
+  constructor(private os: OrdineService, private log: LogService) { }
 
   ngOnInit(): void {
-    //this.distributore =  JSON.parse(localStorage.getItem("IDutente")) as Distributore;
-    if(this.distributore != undefined)
+    this.myStorage.getItem('currentUser');
+ 
+    if((this.myStorage.getItem('currentUser') != undefined) && this.checktypeD())
     {
+      this.distributore = JSON.parse(this.myStorage.getItem('currentUser')) as Distributore;
       this.listaOrdini();
     }
   }
 
   listaOrdini() {
-      this.prod.getAllOrdinebyDistributore(this.distributore.id).subscribe(
+      this.os.getAllOrdinebyDistributore(this.distributore.id).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniEffettuatiComponent.name, "ok", [success]);
-          this.singleOrdine = success as Ordine[];
-        },
 
+          this.ordini = success as Ordine[];
+        },
         (error) => {
           this.log.Error(GestioneOrdiniEffettuatiComponent.name, "errore", [error]);
         }
       )
-  } //end func
+  }
+
+  checktypeD() {
+    const account = this.myStorage.getItem('currentUser');
+    const obj = JSON.parse(account);
+    const tipo = obj.tipo;
+    if (tipo == "Distributore") {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

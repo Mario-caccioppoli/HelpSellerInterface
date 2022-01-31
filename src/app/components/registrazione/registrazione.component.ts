@@ -7,6 +7,7 @@ import { UtenteService } from 'src/app/services/utente/utente.service';
 import { DistributoreService } from 'src/app/services/distributore/distributore.service';
 import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { utility } from 'src/utility/utility';
+import { testRegex } from '../TestRegex/regex';
 
 @Component({
   selector: 'app-registrazione',
@@ -27,6 +28,8 @@ export class RegistrazioneComponent implements OnInit {
   myStorage = window.localStorage;
   azienda: Azienda;
 
+  rX: testRegex = new testRegex();
+
   ngOnInit(): void {
     if(this.myStorage.getItem('currentUser')!=null){
       this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
@@ -40,6 +43,50 @@ export class RegistrazioneComponent implements OnInit {
 
   if ((form.username && form.email && form.password && form.vat && form.indirizzo && form.civico && form.cap && form.citta && form.nome && form.cognome && form.telefono)!='') {
   var checkvat = form.vat; var checktel = form.telefono;
+
+  if(this.rX.regexUsername(form.username)!= true) {
+    return alert("L'username deve avere lunghezza di almeno 8 caratteri");
+  }
+
+  if(this.rX.regexEmail(form.email)!= true) {
+    return alert("E-mail non valida, si prega di riprovare");
+  }
+
+  if(this.rX.regexPassword(form.password)!= true) {
+    return alert("La password deve avere una lunghezza minima di 8 caratteri ed includere lettere maiuscole, minuscole, numeri e almeno un simbolo");
+  }
+
+  if(this.rX.regexVAT(form.vat)!= true) {
+    return alert("VAT Number non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexCitta(form.citta)!= true) {
+    return alert("Città non valida, si prega di riprovare");
+  }
+
+  if(this.rX.regexVia(form.indirizzo)!= true) {
+    return alert("Indirizzo non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexCivico(form.civico)!= true) {
+    return alert("Numero civico non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexCAP(form.cap)!= true) {
+    return alert("CAP non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexNome(form.nome)!= true) {
+    return alert("Nome non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexNome(form.cognome)!= true) {
+    return alert("Cognome non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexTelefono(form.telefono)!= true) {
+    return alert("Il numero inserito non è valido, si prega di riprovare");
+  }
 
     if (checkvat.length > 12) {
       return alert('VAT Number errato. Riprovare.');
@@ -83,7 +130,47 @@ export class RegistrazioneComponent implements OnInit {
 public registrazioneAzienda(form) {
 
   if ((form.email && form.password && form.societa && form.vat && form.indirizzo && form.descrizione && form.logo)!='') {
-    var checkvat = form.vat; 
+    var checkvat = form.vat;
+  
+    if(this.rX.regexEmail(form.email)!= true) {
+      return alert("E-mail non valida, si prega di riprovare");
+    }
+  
+    if(this.rX.regexPassword(form.password)!= true) {
+      return alert("La password deve avere una lunghezza minima di 8 caratteri ed includere lettere maiuscole, minuscole, numeri e almeno un simbolo");
+    }
+  
+    if(this.rX.regexVAT(form.vat)!= true) {
+      return alert("VAT Number non valido, si prega di riprovare");
+    }
+  
+    if(this.rX.regexCitta(form.citta)!= true) {
+      return alert("Città non valida, si prega di riprovare");
+    }
+  
+    if(this.rX.regexVia(form.indirizzo)!= true) {
+      return alert("Indirizzo non valido, si prega di riprovare");
+    }
+  
+    if(this.rX.regexCivico(form.civico)!= true) {
+      return alert("Numero civico non valido, si prega di riprovare");
+    }
+  
+    if(this.rX.regexCAP(form.cap)!= true) {
+      return alert("CAP non valido, si prega di riprovare");
+    }
+  
+    if(this.rX.regexNome(form.societa)!= true) {
+      return alert("Nome società non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexDescrizione(form.descrizione)!= true) {
+      return alert("Descrizione troppo lunga, non deve superare i 500 caratteri, si prega di riprovare");
+    }
+
+    if(this.rX.regexLogo(form.societa)!= true) {
+      return alert("Logo non valido, si prega di riprovare");
+    }
 
       if (checkvat.length > 12) {
         return alert('VAT Number errato. Riprovare.');

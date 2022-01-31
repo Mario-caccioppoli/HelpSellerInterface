@@ -1,8 +1,9 @@
 import { ThrowStmt } from '@angular/compiler';
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, Input, OnInit } from '@angular/core';
+import { ChartOptions, ChartType } from 'chart.js';
+import { Label } from 'ng2-charts';
 import { Observable } from 'rxjs';
-import { Z_ERRNO } from 'zlib';
 import { OrdineProdottoService } from '../services/ordine-prodotto/ordine-prodotto.service';
 
 @Component({
@@ -12,17 +13,33 @@ import { OrdineProdottoService } from '../services/ordine-prodotto/ordine-prodot
 })
 export class GraficoABarraComponent implements OnInit {
 
-  // @Input()
-  // barChartLabels : string[]=[];
+  @Input()
+  barChartLabels : string[]=[];
   
   // @Input()
   // barChartData : number[]=[]; 
 
-  @Input() 
-  barChartLabels : string[];
+  //@Input() 
+  //barChartLabels : string[];
 
   @Input() 
   barChartData : any;
+
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  public barChartOptions: ChartOptions = {
+    //scaleShowVerticalLines: false,
+    responsive: true,
+    scales: {
+      yAxes: [{
+         ticks: {
+            beginAtZero: true,
+            //stepSize: 50000 //<- set this
+         }
+      }]
+   },
+    
+  }
 
   
   // dataForGraphs:any[]=[];
@@ -37,20 +54,15 @@ export class GraficoABarraComponent implements OnInit {
 
   }
 
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true
-    
-  };
+
   
 
+  //public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
 
-  barChartType = 'bar';
-  public barChartLegend = true;
 
   // updateGraph()
   // {
-  //   this.dataForGraphs=[{
+  // public barChartData=[{
   //     label:"incassi",
   //     data:this.barChartData,
   //     options:{

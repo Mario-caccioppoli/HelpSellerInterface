@@ -33,6 +33,13 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
   currentUser:Utente=JSON.parse(localStorage.getItem('currentUser'));
   prodotti : Prodotto[]; //getall prodotti
 
+  myStorage = window.localStorage;
+  ind: number;
+  prodotto: Prodotto;
+
+
+
+
   ngOnInit(): void {
    /* this.prendiIdAziendaDalRouter()
     if(this.idAzienda==null){
@@ -124,54 +131,6 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 
 
 // Inizio procedura Carrello
-
-  avviaCarrello(selezione) {
-
-    //var container=document.getElementById("prodottiContainer"+' '+selezione.id);
-    var check=document.getElementById("checkbox"+' '+selezione.id);
-    var qtaprod=document.getElementById("qtaprod"+' '+selezione.quantita);
-    
-
-
-    // let local_storage;
-    // let itemsInCart = []
-    
-    // if(localStorage.getItem('carrello')  == (null || undefined)){
-    //   local_storage =[];
-    //   console.log("LocalStorage vuoto",JSON.parse(localStorage.getItem('carello')));
-    //   itemsInCart.push(this.prodotti);
-
-    //   localStorage.setItem('cart', JSON.stringify(itemsInCart));
-    //   console.log('Inserito: ', itemsInCart);
-    // }
-    // else
-    // {
-    //   local_storage = JSON.parse(localStorage.getItem('carrello'));
-    //   console.log("LocalStorage non vuoto",JSON.parse(localStorage.getItem('cart')));
-    //   for(var i in local_storage)
-    //   {
-    //     console.log(local_storage[i].prodotti.prodotto.id);
-    //     if(this.product.id == local_storage[i].prodotti.prodotto.id)
-    //     {
-    //       local_storage[i].quantity += 1;
-    //       console.log("Quantita prodotto "+i+" : "+ local_storage[i].quantita);
-    //       console.log('Gia inserito, id ', i); 
-    //       this.product=null;
-    //       break;  
-    //    }
-    //}
-    
-    
-    /*if(this.product){
-      itemsInCart.push(this.product);
-    }
-    local_storage.forEach(function (prodotto){
-      itemsInCart.push(prodotto);
-    })
-    localStorage.setItem('cart', JSON.stringify(itemsInCart));*/
-
-   // } 
-  }
 
   cercaChange(){
     this.prodottoService.findAllProdottiByNome(this.cercaNomeProdotto).subscribe(

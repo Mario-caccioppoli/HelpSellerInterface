@@ -23,5 +23,4 @@ export class UtenteService {
     return this.http.post<number>(`${this.apiServerUrl}/recuperoPassword/${email}`,email);
   }
 
-
 }

@@ -29,6 +29,8 @@ describe('UtenteService', () => {
       done();
     }, error => {
       done();
+    }, error => {
+      done();
     });
   });
 
@@ -43,6 +45,8 @@ describe('UtenteService', () => {
       done();
     }, error => {
       done();
+    }, error => {
+      done();
     });
   });
 
@@ -54,6 +58,8 @@ describe('UtenteService', () => {
     service.loginUtente(tipo, email, password).subscribe(resp => {
       expect(resp.tipo.length).toBeGreaterThan(0);
       expect(resp.email.length).toBeGreaterThan(0);
+      done();
+    }, error => {
       done();
     }, error => {
       done();

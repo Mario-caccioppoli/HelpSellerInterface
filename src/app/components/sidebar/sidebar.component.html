@@ -7,42 +7,63 @@
                     <li class="nav-item">
                         <a class="nav-link" [routerLink]="['/']">Home</a>
                     </li>
-                    <!-- Azienda -->
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/profiloAzienda">Profilo</a>
-                    </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
-                        <a class="nav-link" routerLink="/gestioneSconti">Gestione Sconti</a>
-                    </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
-                        <a class="nav-link" routerLink="/gestioneOrdini">Gestione Ordini</a>
-                    </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
-                        <a class="nav-link" routerLink="/gestioneProdotti">Gestione Prodotti</a>
-                    </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda' || currentUser.tipo=='Amministratore'">
-                        <a class="nav-link" routerLink="/gestioneVendite">Gestione Vendite</a>
-                    </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
-                        <a class="nav-link" routerLink="/gestioneRecensioni">Gestione Recensioni</a>
-                    </li>
-                    <!-- Distributore -->
-                    <hr>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Distributore' || currentUser.tipo=='Amministratore'">
-                        <a class="nav-link" routerLink="/visualizzaAziende">Aziende</a>
-                    </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
-                        <a class="nav-link" routerLink="/visualizzaOrdini">Ordini</a>
-                    </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Distributore'">
-                        <a class="nav-link " routerLink="/effettuaOrdine-TEST">Effettua ordine </a>
-                    </li>
-                    <li class="nav-item" *ngIf="currentUser.tipo=='Azienda'">
-                        <a class="nav-link" routerLink="/dettagliOrdine-TEST">Dettagli ordine </a>
-                    </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="(myStorage.getItem('currentUser')==null) || (currentUser.tipo=='Amministratore') ">
                         <a class="nav-link" routerLink="/registrazione">Registrazione</a>
                     </li>
+                    <!-- Menu Amministratore -->
+                    <div *ngIf="currentUser.tipo=='Amministratore'">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/profiloAzienda">Profilo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/registrazione">Registrazione</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/visualizzaAziende">Visualizza Aziende</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/gestioneProdotti">Gestione Prodotti</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/gestioneVendite">Gestione Vendite</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/gestioneRecensioni">Gestione Recensioni</a>
+                        </li>
+                    </div>
+                    <!-- Menu Azienda -->
+                    <div *ngIf="currentUser.tipo=='Azienda'">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/profiloAzienda">Profilo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/gestioneSconti">Gestione Sconti</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/gestioneOrdini">Storico Ordini Ricevuti</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/gestioneProdotti">Gestione Prodotti</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/gestioneVendite">Gestione Vendite</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/gestioneRecensioni">Gestione Recensioni</a>
+                        </li>
+                    </div>
+                    <!-- Menu Distributore -->
+                    <div *ngIf="currentUser.tipo=='Distributore'">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/profiloAzienda">Profilo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/visualizzaAziende">Visualizza Aziende</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/visualizzaOrdini">Storico Ordini Effettuati</a>
+                        </li>
+                    </div>
                 </ul>
                 <hr>
             </div>

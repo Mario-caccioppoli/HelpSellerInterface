@@ -32,26 +32,26 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.ordineProdotto != undefined) {
-      this.getProdottiOrdine();
+      this.getProdottibyOrdine();
       this.getInfoOrdine();
       this.getNotaRiepilogo();
     }
   }
 
-  getProdottiOrdine() {
-    if(this.ordineProdotto != undefined)
+  getProdottibyOrdine() {
+    if(this.ordine != undefined)
     {
-      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
+      this.os.findDettagliOrdine(this.ordine.id).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-          this.ordineProdotto = success as OrdineProdotto;
+          this.ordineProdottoArr = success as OrdineProdotto[];
         },
 
         (error) => {
           this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
         }
       )
-    }
+    } else {alert('non definito')};
   }
 
   getInfoOrdine() {

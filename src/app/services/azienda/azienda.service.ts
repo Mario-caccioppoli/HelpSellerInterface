@@ -21,16 +21,16 @@ export class AziendaService {
     return this.http.get<Azienda>(`${this.apiServerUrl}/findId/${AziendaID}`);
   }
 
-  public deleteAzienda(AziendaId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${AziendaId}`);
+  public deleteAzienda(AziendaId: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${AziendaId}`);
   }
 
-  public insertAzienda(Azienda: Azienda): Observable<Azienda> {
-    return this.http.post<Azienda>(`${this.apiServerUrl}/insert`, Azienda);
+  public insertAzienda(Azienda: Azienda): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Azienda);
   }
 
-  public updateAzienda(Azienda: Azienda): Observable<Azienda> {
-    return this.http.post<Azienda>(`${this.apiServerUrl}/update`, Azienda);
+  public updateAzienda(Azienda: Azienda): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, Azienda);
   }
   public findAziendeByName(nomeAzienda: string): Observable<Azienda[]>{
     return this.http.get<Azienda[]>(`${this.apiServerUrl}/findAziendaByNome/${nomeAzienda}`);

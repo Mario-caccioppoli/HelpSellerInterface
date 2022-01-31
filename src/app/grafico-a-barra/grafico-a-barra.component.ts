@@ -1,6 +1,8 @@
 import { ThrowStmt } from '@angular/compiler';
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, Input, OnInit } from '@angular/core';
+import { ChartOptions, ChartType } from 'chart.js';
+import { Label } from 'ng2-charts';
 import { Observable } from 'rxjs';
 import { Z_ERRNO } from 'zlib';
 import { OrdineProdottoService } from '../services/ordine-prodotto/ordine-prodotto.service';
@@ -15,61 +17,74 @@ export class GraficoABarraComponent implements OnInit {
   @Input()
   barChartLabels : string[]=[];
   
-  @Input()
-  barChartData : number[]=[]; 
+  // @Input()
+  // barChartData : number[]=[]; 
+
+  //@Input() 
+  //barChartLabels : string[];
+
+  @Input() 
+  barChartData : any;
+
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  public barChartOptions: ChartOptions = {
+    //scaleShowVerticalLines: false,
+    responsive: true,
+    scales: {
+      yAxes: [{
+         ticks: {
+            beginAtZero: true,
+            //stepSize: 50000 //<- set this
+         }
+      }]
+   },
+    
+  }
 
   
-  dataForGraphs:any[]=[];
-  barChartType = 'bar';
-  barChartLegend = true;
-  barChartOptions: any; 
+  // dataForGraphs:any[]=[];
+  // barChartType = 'bar';
+  // barChartLegend = true;
+  // barChartOptions: any; 
 
 
-  constructor(private ordineProdottoService: OrdineProdottoService) { }
+  constructor() { }
 
   ngOnInit(): void {
 
-    
-    this.PrendiAnno(2022)
-  }
-
-  public PrendiAnno(val){
-    this.ordineProdottoService.findReportMensileGruppo(Number(val)).subscribe(
-      (resp)=>{
-        this.barChartData = resp;
-        this.updateGraph();
-      },
-      (error)=>{
-
-      }
-    )
   }
 
 
-  updateGraph()
-  {
-    this.dataForGraphs=[{
-      label:"incassi",
-      data:this.barChartData,
-      options:{
-        scales:{
-          y:{
-            beginAtZero: true
-          }
-        }
-      },
-    }];
+  
 
-    this.barChartOptions={
-      scales:{
-        yAxes:[{
-          ticks:{
-            beginAtZero:true
-          }
-        }]
-      }
-    }
-  }
+  //public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+
+
+  // updateGraph()
+  // {
+  // public barChartData=[{
+  //     label:"incassi",
+  //     data:this.barChartData,
+  //     options:{
+  //       scales:{
+  //         y:{
+  //           beginAtZero: true
+  //         }
+  //       }
+  //     },
+  //   }];
+
+  //   this.barChartOptions={
+  //     scales:{
+  //       yAxes:[{
+  //         ticks:{
+  //           beginAtZero:true
+  //         }
+  //       }]
+  //     }
+  //   }
+  // }
 
   public colors = [
     { backgroundColor:"orange" },

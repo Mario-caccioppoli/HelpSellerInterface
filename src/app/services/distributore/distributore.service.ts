@@ -21,15 +21,15 @@ export class DistributoreService {
     return this.http.get<Distributore>(`${this.apiServerUrl}/findId/${DistributoreID}`);
   }
 
-  public deleteDistributore(DistributoreId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/deleteId/${DistributoreId}`);
+  public deleteDistributore(DistributoreId: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${DistributoreId}`);
   }
 
-  public insertDistributore(Distributore: Distributore): Observable<Distributore> {
-    return this.http.post<Distributore>(`${this.apiServerUrl}/insert`, Distributore);
+  public insertDistributore(Distributore: Distributore): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Distributore);
   }
 
-  public updateDistributore(Distributore: Distributore): Observable<Distributore> {
-    return this.http.post<Distributore>(`${this.apiServerUrl}/update`, Distributore);
+  public updateDistributore(Distributore: Distributore): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/update`, Distributore);
   }
 }

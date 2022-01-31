@@ -1,7 +1,7 @@
 <div id="gest-ord-dettagli-ordine" class="container row">
     <div class="col-lg-12 centered fleft">
         <h2>Riepilogo Ordine</h2>
-        <h4 class="mb50">Ordine n. {{ordineProdotto.idOrdine}}</h4>
+        <h4 class="mb50">Ordine n. {{ordineProdotto?.idOrdine}}</h4>
         <div class="col-lg-12 mb50">
             <h5><b>Prodotti ordinati</b></h5>
             <div class="row eqi-container dispx4">
@@ -77,9 +77,9 @@
         <div class="row mb50 mt20">
             <div class="col-lg-6">
                 <h4>Informazioni sull'ordine</h4>
-                <p><b>Acquirente:</b> {{distributore.nome}} {{distributore.cognome}} - {{distributore.vat}}</p>
-                <p><b>Data acquisto:</b> {{ordine.dataOrdinazione}}</p>
-                <p><b>Quantità totale (in Pz.):</b> {{this.quantitaTotale}}</p>
+                <p><b>Acquirente:</b> {{distributore?.nome}} {{distributore?.cognome}} - {{distributore?.vat}}</p>
+                <p><b>Data acquisto:</b> {{ordine?.dataOrdinazione}}</p>
+                <p><b>Quantità totale (in Pz.):</b> {{quantitaTotale}}</p>
             </div>
             <div class="col-lg-6">
                 <h4>Gestione Pratiche Trasporto</h4>
@@ -97,8 +97,8 @@
             </div>
             <div class="col-lg-6">
                 <h4>Riepilogo</h4>
-                <p>Totale articoli: {{this.quantitaTotale}}</p>
-                <p>TOTALE: € {{this.price}}</p>
+                <p>Totale articoli: {{quantitaTotale}}</p>
+                <p>TOTALE: € {{price}}</p>
             </div>
         </div> <!-- row -->
     </div> <!-- col-lg-12-->

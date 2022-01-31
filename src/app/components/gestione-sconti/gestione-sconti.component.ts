@@ -153,7 +153,6 @@ export class GestioneScontiComponent implements OnInit {
         (resp)=>{
           this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
           let model=document.getElementById("modificaSconto").click();
-          this.sconto = resp as Sconto;
           this.getAllScontiByAzienda()
         },
         (error)=>{

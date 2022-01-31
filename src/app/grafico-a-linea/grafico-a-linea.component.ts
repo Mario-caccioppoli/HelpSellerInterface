@@ -7,6 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GraficoALineaComponent implements OnInit {
 
+  @Input() 
+  barChartLabels : string[];
+
+  @Input() 
+  barChartData : any;
+  
+  
   constructor( ) { 
    
   }
@@ -18,24 +25,25 @@ export class GraficoALineaComponent implements OnInit {
   };
   
 
-  @Input() barChartLabels : string[];
 
   barChartType = 'line';
   public barChartLegend = true;
 
   
-  @Input() barChartData : any;
+  
 
 
   ngOnInit(): void {
     
   }
   
-  public colors = [
-    { backgroundColor:"orange" },
-    { backgroundColor:"orange" },
-    { backgroundColor:"orange" },
-    { backgroundColor:"orange" }
+  public colors:Array<any> = [
+    { backgroundColor:"orange",
+    borderWidth:1,
+    pointBackgroundColor:'blue',
+    pointHoverRadius:10,
+    borderColor: 'black' },
+    
   ];
 
 }

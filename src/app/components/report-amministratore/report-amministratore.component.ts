@@ -1,5 +1,4 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { observable } from 'rxjs';
 import { GraficoABarraComponent } from 'src/app/grafico-a-barra/grafico-a-barra.component';
 import { Azienda } from 'src/app/models/Azienda';
 import { Ordine } from 'src/app/models/Ordine';
@@ -77,13 +76,14 @@ export class ReportAmministratoreComponent implements OnInit {
       //this.graficoABarra.updateGraph();
     }
   ngOnInit(): void {
-    if(this.currentUser != (null || undefined) ) {
-      this.findReportAnnuale();
-      if(this.currentUser.tipo=='Azienda'){
-      this.findReportAnnualeAzienda();
-      this.findReportMensileAzienda();
-      }
+    this.findReportAnnuale();
+    if(this.currentUser.tipo=='Azienda'){
+    this.findReportAnnualeAzienda();
+    this.findReportMensileAzienda();
     }
+
+    this.getAllAzienda();
+    this.getReportTotaleByAnno();
   }
   getAllAzienda(){
     this.aziendaService.getAllAzienda().subscribe(
@@ -223,6 +223,9 @@ export class ReportAmministratoreComponent implements OnInit {
     )
     this.datiAnnualiTotaliDB=[{data:this.datiAnnualiDB,label:"incassi"}]
   }
+
+
+
 
 
   scegliAnno(event){

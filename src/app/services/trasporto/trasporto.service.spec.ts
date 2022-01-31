@@ -30,11 +30,11 @@ describe('TrasportoService', () => {
   it('findById', (done: DoneFn) => {
     service.findById(1).subscribe(resp => {
       if(resp != (undefined || null)) {
-        expect(resp.id == 1).toBeTrue;
+        expect(resp.id == 1).toBeTruthy;
         expect(resp.indirizzoConsegna.length).toBeGreaterThan(0);
         done();
       } else {
-        expect(resp == undefined).toBeTrue;
+        expect(resp == undefined).toBeTruthy;
         done();
       }
 
@@ -71,6 +71,7 @@ describe('TrasportoService', () => {
   trasporto.indirizzoConsegna = "nuovo";
   it('updateTrasporto', (done: DoneFn) => {
     service.updateTrasporto(trasporto).subscribe(resp => {
+      console.log("STAMPA UPDATE TRASPORTO " + resp);
       expect(resp).toBeGreaterThan(0);
       done();
     },
@@ -79,13 +80,4 @@ describe('TrasportoService', () => {
     });
   });
 
-  it('deleteTrasporto', (done: DoneFn) => {
-    service.deleteTrasporto(trasporto.id).subscribe(resp => {
-      expect(resp == trasporto.id).toBeTrue;
-      done();
-    },
-    error => {
-      done();
-    });
-  });
 });

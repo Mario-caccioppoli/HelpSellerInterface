@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { Azienda } from 'src/app/models/Azienda';
 
 @Component({
-  selector: 'app-gestione-ordini-dettagli-ordine',
+  selector: 'app-gestione-ordini-dettagli-oH krdine',
   templateUrl: './gestione-ordini-dettagli-ordine.component.html',
   styleUrls: ['./gestione-ordini-dettagli-ordine.component.css']
 })
@@ -34,7 +34,6 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     if(this.ordineProdotto != undefined) {
       this.getProdottibyOrdine();
       this.getInfoOrdine();
-      this.getNotaRiepilogo();
     }
   }
 
@@ -54,6 +53,7 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     } else {alert('non definito')};
   }
 
+
   getInfoOrdine() {
     if(this.ordineProdotto != undefined)
     {
@@ -71,21 +71,6 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     }
   }
 
-  getNotaRiepilogo() {
-    if(this.ordineProdotto != undefined)
-    {
-      this.os.findById(this.ordineProdotto.idOrdine).subscribe(
-        (success) => {
-          this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
-          this.ordineProdotto = success as OrdineProdotto;
-        },
-
-        (error) => {
-          this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
-        }
-      )
-    }
-  }
 
   getAllOrdineQuantity() {
     if(this.ordine != undefined)

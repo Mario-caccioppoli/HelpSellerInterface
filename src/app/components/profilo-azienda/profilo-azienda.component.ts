@@ -27,8 +27,11 @@ export class ProfiloAziendaComponent implements OnInit {
 
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   ngOnInit(): void {
+    if(this.currentUser != null) {
       this.prendiIdDalRouter();
       this.getProfiloAziendaById();
+    }
+      
     }
 
   prendiIdDalRouter() {
@@ -60,7 +63,7 @@ export class ProfiloAziendaComponent implements OnInit {
 
   newPassword(form){
     let password=form.password;
-    if(this.currentUser.tipo=='Amministratore'){
+    if(this.currentUser.tipo=='Amministratore' && this.currentUser != null){
       this.amministratore={
         id:this.currentUser.id,
         email:this.currentUser.email,
@@ -83,7 +86,7 @@ export class ProfiloAziendaComponent implements OnInit {
         }
       )
     }
-    if(this.currentUser.tipo=='Azienda'){
+    if(this.currentUser.tipo=='Azienda' && this.currentUser != null){
       this.azienda={
         id:this.currentUser.id,
         descrizione:this.currentUser.descrizione,
@@ -111,7 +114,7 @@ export class ProfiloAziendaComponent implements OnInit {
         }
       )
     }
-    if(this.currentUser.tipo=='Distributore'){
+    if(this.currentUser.tipo=='Distributore' && this.currentUser != null){
       this.distributore={
         id:this.currentUser.id,
         cognome:this.currentUser.cognome,
@@ -147,7 +150,7 @@ export class ProfiloAziendaComponent implements OnInit {
 
   eliminaAccount(id){
     console.log("Numero "+id)
-    if(this.currentUser.tipo=='Azienda'){
+    if(this.currentUser.tipo=='Azienda' && this.currentUser != null){
       this.aziendaService.deleteAzienda(id).subscribe(
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
@@ -162,7 +165,7 @@ export class ProfiloAziendaComponent implements OnInit {
         }
       )
     }
-    if(this.currentUser.tipo=='Distributore'){
+    if(this.currentUser.tipo=='Distributore' && this.currentUser != null){
       this.distributoreService.deleteDistributore(id).subscribe(
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
@@ -182,7 +185,7 @@ export class ProfiloAziendaComponent implements OnInit {
 
 
   modificaAccount(form){
-    if(this.currentUser.tipo=='Amministratore'){
+    if(this.currentUser.tipo=='Amministratore' && this.currentUser != null ){
       this.amministratore={
         id:this.currentUser.id,
         email:form.email,
@@ -206,7 +209,7 @@ export class ProfiloAziendaComponent implements OnInit {
         }
       )
     }
-    if(this.currentUser.tipo=='Azienda'){
+    if(this.currentUser.tipo=='Azienda' && this.currentUser != null){
       this.azienda={
         id:this.currentUser.id,
         descrizione:form.descrizione,
@@ -239,7 +242,7 @@ export class ProfiloAziendaComponent implements OnInit {
         }
       )
     }
-    if(this.currentUser.tipo=='Distributore'){
+    if(this.currentUser.tipo=='Distributore' && this.currentUser != null){
       this.distributore={
         id:this.currentUser.id,
         cognome:form.cognome,

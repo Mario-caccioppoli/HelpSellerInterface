@@ -24,6 +24,7 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
   ordineProdotto: OrdineProdotto;
   ordineProdottoArr: OrdineProdotto[];
   ordine: Ordine;
+  myStorage = window.localStorage;
 
   quantitaTotale: number = 0;
   price: number = 0;
@@ -31,14 +32,17 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
   constructor(private os: OrdineProdottoService, private ds: DistributoreService, private log: LogService) { }
 
   ngOnInit(): void {
-    if(this.ordineProdotto != undefined) {
+    this.myStorage.getItem('currentUser');
+ 
+    if((this.myStorage.getItem('currentUser') != undefined) && this.checktypeD())
+    {
+      this.distributore = JSON.parse(this.myStorage.getItem('currentUser')) as Distributore;
       this.getProdottibyOrdine();
-      this.getInfoOrdine();
     }
   }
 
   getProdottibyOrdine() {
-    if(this.ordine != undefined)
+    if(this.ordine.id != undefined)
     {
       this.os.findDettagliOrdine(this.ordine.id).subscribe(
         (success) => {
@@ -115,6 +119,17 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
           this.log.Error(GestioneOrdiniDettagliOrdineComponent.name, "errore", [error]);
         }
       )
+    }
+  }
+
+  checktypeD() {
+    const account = this.myStorage.getItem('currentUser');
+    const obj = JSON.parse(account);
+    const tipo = obj.tipo;
+    if (tipo == "Distributore") {
+      return true;
+    } else {
+      return false;
     }
   }
 

@@ -8,6 +8,7 @@ import { LogService } from 'src/app/services/log.service';
 import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 import { ScontoProdottoService } from 'src/app/services/sconto-prodotto/sconto-prodotto.service';
 import { ScontoService } from 'src/app/services/sconto/sconto.service';
+import { testRegex } from '../TestRegex/regex';
 
 @Component({
   selector: 'app-gestione-sconti',
@@ -27,6 +28,10 @@ export class GestioneScontiComponent implements OnInit {
   idScontoDaModificare:number;
   idScontoDaEliminare:number;
   idScontoInserito:number;
+
+  rX: testRegex = new testRegex();
+  dataInizio: Date;
+  dataFine: Date;
 
   constructor(private scontoService: ScontoService,private scontoProdottoService: ScontoProdottoService
     ,private prodottoService: ProdottoService, private log: LogService, private route: Router) {
@@ -112,6 +117,21 @@ export class GestioneScontiComponent implements OnInit {
   }
   
   aggiungiSconto(form){
+
+  /*  form.dataInizio = this.dataInizio.toLocaleDateString("it-IT");
+    form.dataFine = this.dataInizio.toLocaleDateString("it-IT");
+    
+    if(this.rX.regexData(form.dataInizio)!= true) {
+      return alert("Data non valida, si prega di riprovare");
+    }
+
+    if(this.rX.regexData(form.dataFine)!= true) {
+      return alert("Data non valida, si prega di riprovare");
+    }
+
+    form.dataInizio = this.dataInizio.toLocaleDateString("en-US");
+    form.dataFine = this.dataFine.toLocaleDateString("en-US"); */
+
     var newSconto = {
       nomeSconto:form.nome,
       percentuale: form.percentuale,

@@ -4,6 +4,7 @@ import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
 import { UtenteService } from 'src/app/services/utente/utente.service';
 import { utility } from 'src/utility/utility';
+import { testRegex } from '../TestRegex/regex';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   utente: Utente; 
   currentUser:Utente;
+  rX: testRegex;
   myStorage=window.localStorage;
 
 
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit {
             telefono: success.telefono,
             logo: success.logo
           }
+
           this.myStorage.setItem('currentUser',JSON.stringify(this.utente));
           document.getElementById("login").click()
           this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));

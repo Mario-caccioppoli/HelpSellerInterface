@@ -1,8 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Azienda } from 'src/app/models/Azienda';
 import { Distributore } from 'src/app/models/Distributore';
 import { Ordine } from 'src/app/models/Ordine';
+import { Prodotto } from 'src/app/models/Prodotto';
+import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { LogService } from 'src/app/services/log.service';
 import { OrdineService } from 'src/app/services/ordine/ordine.service';
+import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 
 @Component({
   selector: 'app-gestione-ordini-effettuati',
@@ -12,11 +16,17 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 export class GestioneOrdiniEffettuatiComponent implements OnInit {
 
   ordini: Ordine[];
+  aziende: Azienda[];
+  prodotti: Prodotto[];
   distributore: Distributore;
   idDistributore : number;
   myStorage = window.localStorage;
 
-  constructor(private os: OrdineService, private log: LogService) { }
+  cercaCodiceProdotto: string;
+  cercaDataOrdine: string;
+  cercaNomeAzienda: string;
+
+  constructor(private os: OrdineService, private ps: ProdottoService, private as: AziendaService, private log: LogService) { }
 
   ngOnInit(): void {
     this.myStorage.getItem('currentUser');
@@ -39,6 +49,42 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
           this.log.Error(GestioneOrdiniEffettuatiComponent.name, "errore", [error]);
         }
       )
+  }
+
+  cercaCodice(){
+    this.ps.findAllProdottiByNome(this.cercaCodiceProdotto).subscribe(
+      (resp)=>{
+        this.log.Debug(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[resp]);
+        this.prodotti=resp;
+      },
+      (error)=>{
+        this.log.Error(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[error]);
+      }
+    )
+  }
+
+/*  cercaData(){
+    this.os.findById(this.cercaDataOrdine).subscribe(
+      (resp)=>{
+        this.log.Debug(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[resp]);
+        this.ordini=resp;
+      },
+      (error)=>{
+        this.log.Error(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[error]);
+      }
+    )
+  } */
+
+  cercaAzienda(){
+    this.as.findAziendeByName(this.cercaNomeAzienda).subscribe(
+      (resp)=>{
+        this.log.Debug(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[resp]);
+        this.aziende=resp;
+      },
+      (error)=>{
+        this.log.Error(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[error]);
+      }
+    )
   }
 
   checktypeD() {

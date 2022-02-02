@@ -56,7 +56,7 @@ const routes: Routes = [
     component:GestioneOrdiniEffettuaOrdineComponent
   },
   {
-    path:'dettagliOrdine-TEST',
+    path:'dettagliOrdine/:id',
     component:GestioneOrdiniDettagliOrdineComponent
   },
   {

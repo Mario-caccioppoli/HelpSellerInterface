@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ProdottoService {
 
   private apiServerUrl = environment.apiBaseUrl + "/prodotto";
+  private apiServerUrlSuggest = environment.apiBaseUrl + "/sugg";
 
   constructor(private http: HttpClient) { }
 
@@ -49,5 +50,9 @@ export class ProdottoService {
 
   public findAllProdottiByNome(nomeProdotto: string): Observable<Prodotto[]>{
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}`);
+  }
+
+  public suggestProdotto(): Observable<Prodotto[]> {
+    return this.http.get<Prodotto[]>(`${this.apiServerUrlSuggest}/L2`);
   }
 }

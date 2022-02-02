@@ -40,9 +40,10 @@
 .product {
     border: 1px solid #d37e1e;
     position: relative;
-    min-height: 450px;
+    min-height: 350px;
     border-radius: 15px;
     box-shadow: 0 4px 8px 0 #d37e1e33, 0 6px 20px 0 #d37e1e30;
+    margin: 15px 0;
 }
 
 .product:hover,
@@ -82,9 +83,4 @@
 
 li.page-item {
     width: 60px;
-}
-
-.dispx4 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
 }

@@ -16,7 +16,7 @@ export class HomepageComponent implements OnInit {
   constructor(private ps: ProdottoService, private log: LogService) { }
 
   ngOnInit(): void {
-    this.getAllProdotto();
+    this.getSuggested();
   }
 
   cercaNomeProdotto:string;  
@@ -36,8 +36,8 @@ export class HomepageComponent implements OnInit {
     )
   }
 
-  getAllProdotto(){
-    this.ps.getAllProdotto().subscribe(
+  getSuggested(){
+    this.ps.suggestProdotto().subscribe(
       (resp)=>{
         this.log.Debug(HomepageComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];

@@ -6,7 +6,7 @@
         <div *ngFor="let azienda of aziende" class="col">
             <a [routerLink]="['/profiloAzienda' ,azienda.id] ">
                 <div class="aziendaContainer ">
-                    <img src="assets/icons/Logo.png " alt="FOTO AZIENDA ">
+                    <img [src]="azienda.logoBlob" alt="FOTO AZIENDA ">
                     <div>{{azienda.nomeAzienda}}</div>
                     <div>{{azienda.email}}</div>
                 </div>

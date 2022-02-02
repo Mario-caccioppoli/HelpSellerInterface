@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Prodotto } from 'src/app/models/Prodotto';
+import { FileService } from 'src/app/services/file/file.service';
 import { LogService } from 'src/app/services/log.service';
 import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 
@@ -13,7 +14,7 @@ export class VisualizzaProdottiComponent implements OnInit {
   idAzienda: number;
   prodotti : Prodotto[];
   ricercaProdottoByNome: any;
-  constructor(private prodottoService : ProdottoService,private route: ActivatedRoute,private log : LogService) { }
+  constructor(private prodottoService : ProdottoService,private route: ActivatedRoute,private log : LogService, private fileService:  FileService) { }
 
   ngOnInit(): void {
     this.prendiIdAziendaDalRouter()
@@ -36,6 +37,11 @@ export class VisualizzaProdottiComponent implements OnInit {
       (resp)=>{
         this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
+        this.prodotti.forEach(p=>{
+          if(p.immagineBlob!=(undefined && null)){
+            p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
+          }
+        })
       },
       (error)=>{
         this.log.Error(VisualizzaProdottiComponent.name,"chiamata a back-end",[error]);
@@ -48,6 +54,11 @@ export class VisualizzaProdottiComponent implements OnInit {
       (resp) => {
         this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
+        this.prodotti.forEach(p=>{
+          if(p.immagineBlob!=(undefined && null)){
+            p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
+          }
+        })
       },
       (error) => {
         this.log.Error(VisualizzaProdottiComponent.name,"chiamata a back-end",[error]);
@@ -74,5 +85,6 @@ export class VisualizzaProdottiComponent implements OnInit {
     )
     }
   }
+
 
 }

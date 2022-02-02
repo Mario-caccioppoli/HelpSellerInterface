@@ -9,7 +9,7 @@
             <div *ngFor="let prodotto of prodotti " class="col ">
                 <a href=" ">
                     <div class="prodottiContainer ">
-                        <img src="assets/prodotti/{{prodotto.immagine}}" alt="FOTO PRODOTTO ">
+                        <img [src]='prodotto.immagineBlob' alt="FOTO PRODOTTO ">
                         <div>{{prodotto.nomeProdotto}}</div>
                         <div>{{prodotto.descrizione}}</div>
                         <div>{{prodotto.prezzo}} €</div>

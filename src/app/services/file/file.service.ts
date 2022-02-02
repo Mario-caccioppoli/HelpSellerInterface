@@ -10,6 +10,7 @@ export class FileService {
 
   private apiServerUrl=environment.apiBaseUrl+"/file";
 
+
   constructor(private http: HttpClient) { }
 
   upload(formData: FormData): Observable<HttpEvent<String[]>>{
@@ -26,4 +27,8 @@ export class FileService {
       responseType: 'blob'
     })
   }
+
+  
+
+  
 }

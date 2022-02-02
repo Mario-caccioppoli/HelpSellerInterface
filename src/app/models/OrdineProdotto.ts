@@ -1,3 +1,4 @@
+import { Azienda } from "./Azienda";
 import { Prodotto } from "./Prodotto";
 
 export interface OrdineProdotto{

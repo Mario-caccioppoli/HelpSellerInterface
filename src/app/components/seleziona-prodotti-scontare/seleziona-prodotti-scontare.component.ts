@@ -39,6 +39,11 @@ export class SelezionaProdottiScontareComponent implements OnInit {
         (resp)=>{
           this.log.Debug(SelezionaProdottiScontareComponent.name,"chiamata a back-end", [resp]);
           this.prodotti=resp as Prodotto[];
+          this.prodotti.forEach(p=>{
+            if(p.immagineBlob!=(undefined && null)){
+              p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
+            }
+          })
         },
         (error)=>{
           this.log.Error(SelezionaProdottiScontareComponent.name,"chiamata a back-end",error);

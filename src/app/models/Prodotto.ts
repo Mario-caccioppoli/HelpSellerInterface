@@ -7,11 +7,12 @@ export interface Prodotto{
     prezzo: number;
     descrizione: string;
     quantita: number;
-    immagine: string;
+    immagine: any;
     quantitaMinima: number;
     peso: number;
     volume: number;
     idAzienda: number;
     recensioni?: Recensione[];
     sconti?: Sconto[];
+    immagineBlob?:any;
 }

@@ -26,6 +26,11 @@ export class VisualizzaAziendeComponent implements OnInit {
       (resp) => {
         this.log.Debug(VisualizzaAziendeComponent.name,"chiamata a back-end",[resp]);
         this.aziende = resp as Azienda[];
+        this.aziende.forEach(p=>{
+          if(p.logoBlob!=(undefined && null)){
+            p.logoBlob='data:image/jpeg;base64,'+p.logoBlob;
+          }
+        })
       },
       (error) => {
         this.log.Error(VisualizzaAziendeComponent.name,"chiamata a back-end",[error]);
@@ -42,7 +47,11 @@ export class VisualizzaAziendeComponent implements OnInit {
       (resp)=>{
         this.log.Debug(VisualizzaAziendeComponent.name,"chiamata a back-end",resp);
         this.aziende = resp as Azienda[];
-        console.log(resp)
+        this.aziende.forEach(p=>{
+          if(p.logoBlob!=(undefined && null)){
+            p.logoBlob='data:image/jpeg;base64,'+p.logoBlob;
+          }
+        })
       },
       (error)=>{
         this.log.Error(VisualizzaAziendeComponent.name,"chiamata a back-end",[error]);

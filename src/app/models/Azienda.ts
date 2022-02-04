@@ -12,4 +12,5 @@ export interface Azienda{
     logo: string;
     prodotti: Prodotto[];
     ordini: Ordine[];
+    logoBlob?:any;
 }

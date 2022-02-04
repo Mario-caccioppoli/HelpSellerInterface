@@ -121,6 +121,9 @@ export class GestioneScontiComponent implements OnInit {
   /*  form.dataInizio = this.dataInizio.toLocaleDateString("it-IT");
     form.dataFine = this.dataInizio.toLocaleDateString("it-IT");
     
+    form.dataInizio = this.dataInizio.toLocaleDateString("en-US");
+    form.dataFine = this.dataFine.toLocaleDateString("en-US"); */
+
     if(this.rX.regexData(form.dataInizio)!= true) {
       return alert("Data non valida, si prega di riprovare");
     }
@@ -129,8 +132,13 @@ export class GestioneScontiComponent implements OnInit {
       return alert("Data non valida, si prega di riprovare");
     }
 
-    form.dataInizio = this.dataInizio.toLocaleDateString("en-US");
-    form.dataFine = this.dataFine.toLocaleDateString("en-US"); */
+    if(this.rX.regexNome(form.nome)!= true) {
+      return alert("Nome non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexPercentuale(form.percentuale)!= true) {
+      return alert("Percentuale non valida, si prega di riprovare");
+    }
 
     var newSconto = {
       nomeSconto:form.nome,
@@ -160,6 +168,27 @@ export class GestioneScontiComponent implements OnInit {
 
   modificaSconto(form){
     console.log("id sconto "+this.idScontoDaModificare)
+
+    if(this.rX.regexData(form.dataInizio)!= true) {
+      return alert("Data non valida, si prega di riprovare");
+    }
+
+    if(this.rX.regexData(form.dataFine)!= true) {
+      return alert("Data non valida, si prega di riprovare");
+    }
+
+    if(this.rX.regexNome(form.nome)!= true) {
+      return alert("Nome non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexPercentuale(form.percentuale)!= true) {
+      return alert("Percentuale non valida, si prega di riprovare");
+    }
+
+    if(this.rX.regexQuantita(form.quantita)!= true) {
+      return alert("Quantità non valida, si prega di riprovare");
+    }
+
     this.sconto={
       id:this.idScontoDaModificare,
       nomeSconto:form.nome,

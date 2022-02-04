@@ -4,9 +4,15 @@
         <div *ngFor="let prodotto of prodotti" class="col">
             <div class="prodottiContainer" id="{{'prodottiContainer '+prodotto.id}}" style="border-radius: 3%;">
                 <input type="checkbox" (change)="selezionaProdotti(prodotto.id,$event)" id="{{'checkbox '+prodotto.id}} "><br><br>
-                <img src="assets/icons/Logo.png" alt="FOTO PRODOTTO " style="width: 40%;">
-                <p>{{prodotto.nomeProdotto}}</p>
-                <p>{{prodotto.prezzo}} €</p>
+                <img [src]="prodotto.immagineBlob" alt="FOTO PRODOTTO " style="width: 40%;">
+                <div class="mt-1">
+                    <h3>{{prodotto.nomeProdotto}}
+                    </h3>
+                </div>
+                <div class="mt-1">
+                    <h3>{{prodotto.prezzo}} €
+                    </h3>
+                </div>
             </div>
         </div>
     </div>

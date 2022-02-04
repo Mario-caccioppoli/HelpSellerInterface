@@ -27,11 +27,13 @@ export class ProfiloAziendaComponent implements OnInit {
 
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   ngOnInit(): void {
-    if(this.currentUser != null) {
+    //if(this.currentUser != null) {
       this.prendiIdDalRouter();
       this.getProfiloAziendaById();
-    }
-      
+      this.getProfiloAziendaByIdCurrentUser();
+      console.log(this.idAzienda)
+    //}
+
     }
 
   prendiIdDalRouter() {
@@ -51,7 +53,28 @@ export class ProfiloAziendaComponent implements OnInit {
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
           this.azienda=resp as Azienda;
-          console.log(this.azienda)
+            if(this.azienda.logoBlob!=(undefined && null)){
+              console.log("iddddd "+this.azienda.id)
+              this.azienda.logoBlob='data:image/jpeg;base64,'+this.azienda.logoBlob;
+            }
+        },
+        (error)=>{
+          this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
+        }
+      )
+    }
+  }
+
+  getProfiloAziendaByIdCurrentUser(){
+    if(this.currentUser!=undefined){
+      this.aziendaService.findById(this.currentUser.id).subscribe(
+        (resp)=>{
+          this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
+          this.azienda=resp as Azienda;
+            if(this.azienda.logoBlob!=(undefined && null)){
+              console.log("iddddd "+this.azienda.id)
+              this.azienda.logoBlob='data:image/jpeg;base64,'+this.azienda.logoBlob;
+            }
         },
         (error)=>{
           this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);

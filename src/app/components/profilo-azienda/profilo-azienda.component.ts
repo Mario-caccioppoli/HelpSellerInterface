@@ -30,13 +30,13 @@ export class ProfiloAziendaComponent implements OnInit {
 
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   ngOnInit(): void {
-    //if(this.currentUser != null) {
+    if(this.currentUser != null) {
       this.prendiIdDalRouter();
       this.getProfiloAziendaById();
-      this.getProfiloAziendaByIdCurrentUser();
-      console.log(this.idAzienda)
-    //}
-
+      console.log("lo prendo "+this.idAzienda)
+    }
+    if(this.currentUser.tipo==('Azienda'||'Distributore'))
+       this.getProfiloAziendaByIdCurrentUser();
     }
 
   prendiIdDalRouter() {
@@ -57,7 +57,6 @@ export class ProfiloAziendaComponent implements OnInit {
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
           this.azienda=resp as Azienda;
             if(this.azienda.logoBlob!=(undefined && null)){
-              console.log("iddddd "+this.azienda.id)
               this.azienda.logoBlob='data:image/jpeg;base64,'+this.azienda.logoBlob;
             }
         },
@@ -92,7 +91,7 @@ export class ProfiloAziendaComponent implements OnInit {
     /* Inizio Regex */
 
     if(this.rX.regexPassword(form.password)!= true) {
-      return alert("Percentuale non valida, si prega di riprovare");
+      return alert("Password debole, si prega di riprovare");
     }
 
     /* Fine Regex */
@@ -218,9 +217,9 @@ export class ProfiloAziendaComponent implements OnInit {
 
     /* Inizio Regex */
 
-    if(this.rX.regexPassword(form.password)!= true) {
-      return alert("Password non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexPassword(form.password)!= true) {
+    //   return alert("Password non valida, si prega di riprovare");
+    // }
 
     if(this.rX.regexEmail(form.email)!= true) {
       return alert("Email non valida, si prega di riprovare");
@@ -230,25 +229,25 @@ export class ProfiloAziendaComponent implements OnInit {
       return alert("Username non valido, si prega di riprovare");
     }
 
-    if(this.rX.regexLogo(form.logo)!= true) {
-      return alert("Logo non valido, si prega di riprovare");
-    }
+    // if(this.rX.regexLogo(form.logo)!= true) {
+    //   return alert("Logo non valido, si prega di riprovare");
+    // }
 
-    if(this.rX.regexDescrizione(form.descrizione)!= true) {
-      return alert("Descrizione non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexDescrizione(form.descrizione)!= true) {
+    //   return alert("Descrizione non valida, si prega di riprovare");
+    // }
 
-    if(this.rX.regexNome(form.nome)!= true) {
-      return alert("Percentuale non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexNome(form.nome)!= true) {
+    //   return alert("Percentuale non valida, si prega di riprovare");
+    // }
 
-    if(this.rX.regexVAT(form.vat)!= true) {
-      return alert("VAT Number non valido, si prega di riprovare");
-    }
+    // if(this.rX.regexVAT(form.vat)!= true) {
+    //   return alert("VAT Number non valido, si prega di riprovare");
+    // }
 
-    if(this.rX.regexNome(form.cognome)!= true) {
-      return alert("Cognome non valido, si prega di riprovare");
-    }    
+    // if(this.rX.regexNome(form.cognome)!= true) {
+    //   return alert("Cognome non valido, si prega di riprovare");
+    // }    
 
     /* Fine Regex */
 

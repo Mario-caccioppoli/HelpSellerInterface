@@ -78,9 +78,9 @@ export class VisualizzaProdottiComponent implements OnInit {
         this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",resp);
         this.prodotti = resp as Prodotto[];
         this.prodotti.forEach(p=>{
-          if(p.immagineBlob!=(undefined && null)){
+          //if(p.immagineBlob!=(undefined && null)){
             p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
-          }
+          //}
         })
       },
       (error)=>{

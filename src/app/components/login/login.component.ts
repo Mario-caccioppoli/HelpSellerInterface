@@ -4,6 +4,7 @@ import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
 import { UtenteService } from 'src/app/services/utente/utente.service';
 import { utility } from 'src/utility/utility';
+import { testRegex } from '../TestRegex/regex';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   utente: Utente; 
   currentUser:Utente;
+  rX: testRegex = new testRegex();
   myStorage=window.localStorage;
 
 
@@ -31,6 +33,15 @@ export class LoginComponent implements OnInit {
   }
 
   public login(form) {
+
+    if(this.rX.regexEmail(form.email)!= true) {
+      return alert("E-mail non valida, si prega di riprovare");
+    }
+  
+    if(this.rX.regexPassword(form.password)!= true) {
+      return alert("La password deve avere una lunghezza minima di 8 caratteri ed includere lettere maiuscole, minuscole, numeri e almeno un simbolo");
+    }    
+
       const tipo = form.tipo;
       const email = form.email;
       const passwordHash = utility.criptaPassword(form.password);
@@ -51,6 +62,7 @@ export class LoginComponent implements OnInit {
             telefono: success.telefono,
             logo: success.logo
           }
+
           this.myStorage.setItem('currentUser',JSON.stringify(this.utente));
           document.getElementById("login").click()
           this.currentUser=JSON.parse(this.myStorage.getItem('currentUser'));
@@ -79,6 +91,11 @@ export class LoginComponent implements OnInit {
   }
 
   recuperaPassword(form){
+
+    if(this.rX.regexEmail(form.email)!= true) {
+      return alert("E-mail non valida, si prega di riprovare");
+    }
+
     this.us.recuperoPassword(form.email).subscribe(
       (resp)=>{
         this.log.Debug(LoginComponent.name, "errore", [resp]);
@@ -93,6 +110,15 @@ export class LoginComponent implements OnInit {
   }
 
   loginRecupero(form){
+
+    if(this.rX.regexEmail(form.email)!= true) {
+      return alert("E-mail non valida, si prega di riprovare");
+    }
+  
+    if(this.rX.regexPassword(form.password)!= true) {
+      return alert("La password deve avere una lunghezza minima di 8 caratteri ed includere lettere maiuscole, minuscole, numeri e almeno un simbolo");
+    }
+
       console.log(form.email+" "+form.tipo)
       const tipo = form.tipo;
       const email = form.email;

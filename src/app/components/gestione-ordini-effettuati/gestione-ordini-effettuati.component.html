@@ -6,15 +6,15 @@
             <div class="row">
               <div class="col-lg-4 pd20">
               <label><p>Nome</p></label>
-              <input type="search" class="form-control" placeholder="Inserisci codice..." aria-label="Search">
+              <input [(ngModel)]="cercaCodiceProdotto" (ngModelChange)="cercaCodice()" type="search" class="form-control" placeholder="Inserisci codice..." name="searchbar" aria-label="Search">
               </div>
               <div class="col-lg-4 pd20">
               <label><p>Data</p></label>
-              <input type="search" class="form-control" placeholder="Inserisci data..." aria-label="Search">
+             <!-- <input [(ngModel)]="cercaDataOrdine" (ngModelChange)="cercaData()" type="search" class="form-control" placeholder="Inserisci data..." name="searchbar" aria-label="Search"> -->
               </div>
               <div class="col-lg-4 pd20">
               <label><p>Azienda</p></label>
-              <input type="search" class="form-control" placeholder="Inserisci azienda..." aria-label="Search">
+              <input [(ngModel)]="cercaNomeAzienda" (ngModelChange)="cercaAzienda()" type="search" class="form-control" placeholder="Inserisci azienda..." name="searchbar" aria-label="Search">
               </div>
             </div>
           </form>         
@@ -35,9 +35,9 @@
                     <tr *ngFor='let ordine of ordini'>
                       <th scope="row"><p># {{ordine.id}}</p></th>
                       <td><p>{{ordine.dataOrdinazione}}</p></td>
-                      <td><p>{{ordine.idDistributore}}</p></td>
+                      <td><p>{{ordine.azienda.nomeAzienda}}</p></td>
                       <td><p>{{ordine.prezzoTotale}}</p></td>
-                      <td><a [routerLink]="['/visualizzaProdotti', ordine.id]"><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></a></td>
+                      <td><a [routerLink]="['/dettagliOrdine', ordine.id]"><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></a></td>
                     </tr>
                   </tbody>
                 </table>

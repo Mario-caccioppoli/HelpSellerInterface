@@ -10,6 +10,7 @@ import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { DistributoreService } from 'src/app/services/distributore/distributore.service';
 import { LogService } from 'src/app/services/log.service';
 import { utility } from 'src/utility/utility';
+import { testRegex } from '../TestRegex/regex';
 
 @Component({
   selector: 'app-profilo-azienda',
@@ -22,6 +23,8 @@ export class ProfiloAziendaComponent implements OnInit {
 
   amministratore: Amministratore;
   distributore: Distributore;
+
+  rX: testRegex = new testRegex();
 
   constructor(private aziendaService: AziendaService,private amministratoreService: AmministratoreService, private distributoreService: DistributoreService,private route:ActivatedRoute, private router: Router,private log : LogService) { }
 
@@ -85,6 +88,15 @@ export class ProfiloAziendaComponent implements OnInit {
 
 
   newPassword(form){
+
+    /* Inizio Regex */
+
+    if(this.rX.regexPassword(form.password)!= true) {
+      return alert("Percentuale non valida, si prega di riprovare");
+    }
+
+    /* Fine Regex */
+
     let password=form.password;
     if(this.currentUser.tipo=='Amministratore' && this.currentUser != null){
       this.amministratore={
@@ -168,9 +180,6 @@ export class ProfiloAziendaComponent implements OnInit {
     }
   }
 
-
-
-
   eliminaAccount(id){
     console.log("Numero "+id)
     if(this.currentUser.tipo=='Azienda' && this.currentUser != null){
@@ -205,9 +214,44 @@ export class ProfiloAziendaComponent implements OnInit {
     }
   }
 
-
-
   modificaAccount(form){
+
+    /* Inizio Regex */
+
+    if(this.rX.regexPassword(form.password)!= true) {
+      return alert("Password non valida, si prega di riprovare");
+    }
+
+    if(this.rX.regexEmail(form.email)!= true) {
+      return alert("Email non valida, si prega di riprovare");
+    }
+
+    if(this.rX.regexUsername(form.username)!= true) {
+      return alert("Username non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexLogo(form.logo)!= true) {
+      return alert("Logo non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexDescrizione(form.descrizione)!= true) {
+      return alert("Descrizione non valida, si prega di riprovare");
+    }
+
+    if(this.rX.regexNome(form.nome)!= true) {
+      return alert("Percentuale non valida, si prega di riprovare");
+    }
+
+    if(this.rX.regexVAT(form.vat)!= true) {
+      return alert("VAT Number non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexNome(form.cognome)!= true) {
+      return alert("Cognome non valido, si prega di riprovare");
+    }    
+
+    /* Fine Regex */
+
     if(this.currentUser.tipo=='Amministratore' && this.currentUser != null ){
       this.amministratore={
         id:this.currentUser.id,

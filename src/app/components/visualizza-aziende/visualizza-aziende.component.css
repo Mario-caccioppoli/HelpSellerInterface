@@ -40,5 +40,6 @@ a {
 .scroll {
     overflow: scroll;
     overflow-x: hidden;
-    height: 500px;
+    height: 80vh;
+    overflow-y: auto;
 }

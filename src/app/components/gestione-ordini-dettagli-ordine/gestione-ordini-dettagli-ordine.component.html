@@ -1,16 +1,16 @@
 <div id="gest-ord-dettagli-ordine" class="container row">
     <div class="col-lg-12 centered fleft">
         <h2>Riepilogo Ordine</h2>
-        <h4 class="mb50">Ordine n. {{ordineProdotto?.idOrdine}}</h4>
+        <h4 class="mb50">Ordine n. {{this.idOrd}}</h4>
         <div class="col-lg-12 mb50">
             <h5><b>Prodotti ordinati</b></h5>
-            <div class="row eqi-container dispx4">
-                <div class="col-lg-auto product" *ngFor="let prod of ordineProdottoArr">
+            <div class="row eqi-container">
+                <div class="col-lg-3 product" *ngFor="let prod of ordineProdottoArr">
                     <img class="img-product" src="assets/img/gillette.jpg" />{{prod.prodotto.immagine}}
                     <div class="downspec">
                         <p class="bold">{{prod.prodotto.nomeProdotto}}</p>
-                        <p class="bold">€ {{prod.prodotto.prezzo}}</p>
-                        <p><b>Quantità:</b> Pz. {{prod.prodotto.quantita}}</p>
+                        <p class="bold">€ {{prod.prezzoUnitario}}</p>
+                        <p><b>Quantità:</b> Pz. {{prod.quantitaOrdine}}</p>
                     </div>
                 </div><!--lg3 -->
             </div><!-- row -->
@@ -19,9 +19,10 @@
         <div class="row mb50 mt20">
             <div class="col-lg-6">
                 <h4>Informazioni sull'ordine</h4>
-                <p><b>Acquirente:</b> {{distributore?.nome}} {{distributore?.cognome}} - {{distributore?.vat}}</p>
+                <p><b>Acquirente:</b> {{distributore?.nome}} {{distributore?.cognome}}</p>
+                <p><b>VAT Number:</b> {{distributore?.vat}}</p>
                 <p><b>Data acquisto:</b> {{ordine?.dataOrdinazione}}</p>
-                <p><b>Quantità totale (in Pz.):</b> {{quantitaTotale}}</p>
+                <p><b>Quantità totale (in Pz.):</b> {{quantitaOrdineProdotto}}</p>
             </div>
             <div class="col-lg-6">
                 <h4>Gestione Pratiche Trasporto</h4>
@@ -39,8 +40,8 @@
             </div>
             <div class="col-lg-6">
                 <h4>Riepilogo</h4>
-                <p>Totale articoli: {{quantitaTotale}}</p>
-                <p>TOTALE: € {{price}}</p>
+                <p><b>Totale articoli:</b> {{quantitaOrdineProdotto}}</p>
+                <p><b>TOTALE:</b> € {{prezzoOrdineProdotto}}</p>
             </div>
         </div> <!-- row -->
     </div> <!-- col-lg-12-->

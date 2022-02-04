@@ -88,6 +88,14 @@ export class RegistrazioneComponent implements OnInit {
     return alert("Il numero inserito non è valido, si prega di riprovare");
   }
 
+  if(this.rX.regexProvincia(form.provincia)!= true) {
+    return alert("Il numero inserito non è valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexPaese(form.paese)!= true) {
+    return alert("Il numero inserito non è valido, si prega di riprovare");
+  }
+
     if (checkvat.length > 12) {
       return alert('VAT Number errato. Riprovare.');
     }
@@ -104,7 +112,7 @@ export class RegistrazioneComponent implements OnInit {
     email: form.email,
     password: passwordHash,
     vat: form.vat,
-    indirizzoSede: form.indirizzofull = (form.indirizzo + " " + form.civico + ", " + form.cap + " " + form.citta),
+    indirizzoSede: form.indirizzofull = (form.indirizzo + " " + form.civico + ", " + form.cap + " " + form.citta + " " + "(" + form.provincia + "), " + form.paese),
     nome: form.nome,
     cognome: form.cognome,
     telefono: form.telefono,
@@ -172,6 +180,14 @@ public registrazioneAzienda(form) {
       return alert("Logo non valido, si prega di riprovare");
     }
 
+    if(this.rX.regexProvincia(form.provincia)!= true) {
+      return alert("Il numero inserito non è valido, si prega di riprovare");
+    }
+  
+    if(this.rX.regexPaese(form.paese)!= true) {
+      return alert("Il numero inserito non è valido, si prega di riprovare");
+    }
+
       if (checkvat.length > 12) {
         return alert('VAT Number errato. Riprovare.');
       }
@@ -184,7 +200,7 @@ public registrazioneAzienda(form) {
       password: passwordHash,
       nomeAzienda: form.societa,
       vat: form.vat,
-      indirizzo: form.indirizzofull = (form.indirizzo + " " + form.civico + ", " + form.cap + " " + form.citta),
+      indirizzo: form.indirizzofull = (form.indirizzo + " " + form.civico + ", " + form.cap + " " + form.citta + " " + "(" + form.provincia + "), " + form.paese),
       descrizione: form.descrizione,
       logo: form.logo,
       prodotti: null,

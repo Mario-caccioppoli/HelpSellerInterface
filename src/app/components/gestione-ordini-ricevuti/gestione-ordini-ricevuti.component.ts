@@ -18,12 +18,13 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
   ordini: Ordine[];
   prodotti: Prodotto[];
   distributori: Distributore[];
+  ordine: Ordine;
 
   azienda: Azienda;
 
   myStorage = window.localStorage;
 
-  cercaCodiceProdotto: string;
+  cercaCodiceOrdine: number;
   cercaDataOrdine: string;
   cercaNomeDistributore: string;
 
@@ -54,40 +55,68 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
   }
 
   cercaCodice(){
-    this.ps.findAllProdottiByNome(this.cercaCodiceProdotto).subscribe(
-      (resp)=>{
-        this.log.Debug(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[resp]);
-        this.prodotti=resp;
+    if (this.cercaCodiceOrdine == 0) {
+      this.listaOrdini();
+    } else {
+    this.os.findById(this.cercaCodiceOrdine).subscribe(
+      (success)=>{
+        this.log.Debug(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[success]);
+        var ordineCercato: Ordine; var ordineArray: Ordine[] = [];
+        ordineCercato = success as Ordine;
+        ordineArray.push(ordineCercato);
+        this.ordini = ordineArray as Ordine[];
       },
       (error)=>{
         this.log.Error(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[error]);
       }
     )
   }
+}
 
-/*  cercaData(){
-    this.os.findById(this.cercaDataOrdine).subscribe(
-      (resp)=>{
-        this.log.Debug(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[resp]);
-        this.ordini=resp;
+  cercaData(){
+    if (this.cercaDataOrdine == '') {
+      this.listaOrdini();
+    } else if (this.cercaDataOrdine.length != 4){ }
+    else if (this.cercaDataOrdine.length == 4) {
+    this.os.getAllOrdinebyAzienda(this.azienda.id).subscribe(
+      (success)=>{
+        this.log.Debug(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[success]);
+        var ordiniRisultati: Ordine[]; let ordineArray: Ordine[] = [];
+        ordiniRisultati = success as Ordine[];
+        var i: number = 0;
+        
+        for(i=0; i<=ordiniRisultati.length; i++) {
+          var datastringa: string = '';
+          datastringa = ordiniRisultati[i].dataOrdinazione.toString();
+          var anno = datastringa.slice(0,4);
+          if (anno == this.cercaDataOrdine) {
+            ordineArray.push(ordiniRisultati[i]);
+            this.ordini = ordineArray;
+          }
+        }
       },
       (error)=>{
         this.log.Error(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[error]);
       }
     )
-  } 
-
+  }
+}
+/*
   cercaDistributore(){
-    this.ds.findById(this.cercaNomeDistributore).subscribe(
-      (resp)=>{
-        this.log.Debug(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[resp]);
-        this.distributori=resp;
+    if (this.cercaNomeDistributore == '') {
+      this.listaOrdini();
+    } else {
+    this.ds.findDistributoreByName(this.cercaNomeDistributore).subscribe(
+      (success)=>{
+        this.log.Debug(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[success]);
+        this.distributori = success as Distributore[];
       },
       (error)=>{
         this.log.Error(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[error]);
       }
     )
-  }*/
+  }
+}*/
 
   checktypeAZ() {
     const account = this.myStorage.getItem('currentUser');

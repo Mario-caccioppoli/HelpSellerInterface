@@ -68,19 +68,19 @@ export class GestioneProdottiComponent implements OnInit {
     /* Inizio Regex */
 
     if(this.rX.regexNome(form.nome)!= true) {
-      return alert("Password non valida, si prega di riprovare");
+      return alert("Nome non valido, si prega di riprovare");
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.prezzo)!= true) {
-      return alert("Email non valida, si prega di riprovare");
+      return alert("Prezzo non valido, si prega di riprovare");
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.volume)!= true) {
-      return alert("Username non valido, si prega di riprovare");
+      return alert("Volume non valido, si prega di riprovare");
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.peso)!= true) {
-      return alert("Username non valido, si prega di riprovare");
+      return alert("Peso non valido, si prega di riprovare");
     }
 
     if(this.rX.regexDescrizione(form.descrizione)!= true) {
@@ -126,19 +126,19 @@ export class GestioneProdottiComponent implements OnInit {
     /* Inizio Regex */
 
     if(this.rX.regexNome(form.nome)!= true) {
-      return alert("Password non valida, si prega di riprovare");
+      return alert("Nome non valido, si prega di riprovare");
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.prezzo)!= true) {
-      return alert("Email non valida, si prega di riprovare");
+      return alert("Prezzo non valido, si prega di riprovare");
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.volume)!= true) {
-      return alert("Username non valido, si prega di riprovare");
+      return alert("Volume non valido, si prega di riprovare");
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.peso)!= true) {
-      return alert("Username non valido, si prega di riprovare");
+      return alert("Peso non valido, si prega di riprovare");
     }
 
     if(this.rX.regexDescrizione(form.descrizione)!= true) {

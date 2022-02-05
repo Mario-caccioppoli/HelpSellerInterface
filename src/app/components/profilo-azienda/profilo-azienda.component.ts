@@ -238,7 +238,7 @@ export class ProfiloAziendaComponent implements OnInit {
     // }
 
     // if(this.rX.regexNome(form.nome)!= true) {
-    //   return alert("Percentuale non valida, si prega di riprovare");
+    //   return alert("Nome non valido, si prega di riprovare");
     // }
 
     // if(this.rX.regexVAT(form.vat)!= true) {

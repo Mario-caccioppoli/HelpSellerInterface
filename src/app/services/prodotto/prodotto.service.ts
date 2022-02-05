@@ -52,7 +52,7 @@ export class ProdottoService {
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}`);
   }
 
-  public suggestProdotto(): Observable<Prodotto[]> {
-    return this.http.get<Prodotto[]>(`${this.apiServerUrlSuggest}/L2`);
+  public suggestProdotto(idDistributore: number): Observable<Prodotto[]> {
+    return this.http.post<Prodotto[]>(`${this.apiServerUrlSuggest}/l2`, idDistributore);
   }
 }

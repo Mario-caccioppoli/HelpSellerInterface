@@ -25,6 +25,10 @@ describe('HomepageComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    if(component.currentUser == null) {
+      expect(component.currentUser).toBeNull;
+    } else {
+      expect(component).toBeTruthy();  
+    }
   });
 });

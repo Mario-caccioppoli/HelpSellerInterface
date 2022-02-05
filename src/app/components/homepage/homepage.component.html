@@ -1,5 +1,5 @@
-<div id="home" *ngIf="currentUser.tipo!='Distributore'">
-    <div class="container row ">
+<div id="home" *ngIf="currentUser?.tipo!='Distributore'">
+    <div class="container row">
         <div class="col-lg-12 centered">
             <div class="intro mt70 mb50">
             <h2><b>Benvenuto su HelpSeller</b></h2>
@@ -30,7 +30,7 @@
     </div>
 </div><!-- id -->
 
-<div id="home" *ngIf="currentUser.tipo=='Distributore'">
+<div id="home-distributore" *ngIf="currentUser.tipo=='Distributore' && currentUser != null">
     <div class="container row ">
         <div class="col-lg-12 centered">
             <div class="intro mt70 mb50">

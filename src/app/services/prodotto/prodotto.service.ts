@@ -53,6 +53,6 @@ export class ProdottoService {
   }
 
   public suggestProdotto(): Observable<Prodotto[]> {
-    return this.http.get<Prodotto[]>(`${this.apiServerUrlSuggest}/L2`);
+    return this.http.get<Prodotto[]>(`${this.apiServerUrlSuggest}/l2`);
   }
 }

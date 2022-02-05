@@ -5,14 +5,20 @@
                 <input type="text" class="searchbar" id="searchbar" name="searchbar" ngModel placeholder="cerca prodotto "><button type="submit"><i class="fas fa-search "></i></button>
             </div>
         </form>
-        <div class="row ">
+        <div class="row">
             <div *ngFor="let prodotto of prodotti " class="col ">
                 <a href=" ">
-                    <div class="prodottiContainer ">
-                        <img src="assets/prodotti/{{prodotto.immagine}}" alt="FOTO PRODOTTO ">
-                        <div>{{prodotto.nomeProdotto}}</div>
-                        <div>{{prodotto.descrizione}}</div>
-                        <div>{{prodotto.prezzo}} €</div>
+                    <div class="prodottiContainer">
+                        <img [src]='prodotto.immagineBlob' alt="FOTO PRODOTTO ">
+                        <div>
+                            <h3>{{prodotto.nomeProdotto}}</h3>
+                        </div>
+                        <div>
+                            <h5>{{prodotto.descrizione}}</h5>
+                        </div>
+                        <div>
+                            <h4>{{prodotto.prezzo}} €</h4>
+                        </div>
                     </div>
                 </a>
             </div>

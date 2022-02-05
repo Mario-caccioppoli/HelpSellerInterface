@@ -1,11 +1,11 @@
-<div *ngIf="currentUser!=null && azienda==undefined">
+<div *ngIf="currentUser!=null && idAzienda==0 && currentUser.tipo!='Azienda' ">
     <div class="row fullheight">
         <div class="col-lg-3 centered pd30 intro">
             <img class="img-circle" src="assets/icons/Logo.png" alt="">
             <br>
             <br>
             <p>Pannello</p>
-            <button class="btn btn-secondary w100"><a [routerLink]="['/']">Indietro</a></button>
+            <button class="btn btn-secondary w100"><a [routerLink]="['/visualizzaAziende']">Indietro</a></button>
             <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
             <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
             <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
@@ -33,14 +33,14 @@
 
 <!-- profilo Azienda -->
 
-<div *ngIf="currentUser!=null && azienda!=undefined">
+<div *ngIf="currentUser!=null && currentUser.tipo=='Azienda' || idAzienda!=0  ">
     <div class="row fullheight">
         <div class="col-lg-3 centered pd30 intro">
-            <img class="img-circle" src="assets/icons/Logo.png" alt="">
+            <img class="img-circle" [src]="azienda.logoBlob" alt="">
             <br>
             <br>
             <p>Pannello</p>
-            <button class="btn btn-secondary w100"><a [routerLink]="['/']">Indietro</a></button>
+            <button class="btn btn-secondary w100"><a [routerLink]="['/visualizzaAziende']">Indietro</a></button>
 
             <!-- <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button> -->
         </div>
@@ -111,24 +111,24 @@
                         <div class="modal-body">
                             <div class="modal-body">
                                 <div *ngIf="currentUser != null">
-                                <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo nome</b></div>
-                                <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="nome" /><br>
-                                <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo cognome</b></div>
-                                <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="cognome" /><br>
-                                <div *ngIf="currentUser.tipo!='Azienda'"><b>Nuovo username</b></div>
-                                <input *ngIf="currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="username" /><br>
-                                <div *ngIf="currentUser.tipo=='Azienda'"><b>Nuovo Nome Azienda</b></div>
-                                <input *ngIf="currentUser.tipo=='Azienda'" type="text" class="form-control" ngModel name="nome" /><br>
-                                <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo indirizzo</b></div>
-                                <input *ngIf="currentUser.tipo!='Amministratore'" type="text" class="form-control" ngModel name="indirizzo" /><br>
-                                <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'"><b>Nuova descrizione</b></div>
-                                <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'" type="text" class="form-control" ngModel name="descrizione" /><br>
-                                <div><b>Nuova email</b></div>
-                                <input type="text" class="form-control" ngModel name="email" /><br>
-                                <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo vat number</b></div>
-                                <input *ngIf="currentUser.tipo!='Amministratore'" type="text" maxlength="12" class="form-control" ngModel name="vat" /><br>
-                                <div *ngIf="currentUser.tipo=='Distributore'"><b>Nuovo numero telefono</b></div>
-                                <input *ngIf="currentUser.tipo=='Distributore'" type="text" maxlength="10" class="form-control" ngModel name="telefono" /><br>
+                                    <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo nome</b></div>
+                                    <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="nome" /><br>
+                                    <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo cognome</b></div>
+                                    <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="cognome" /><br>
+                                    <div *ngIf="currentUser.tipo!='Azienda'"><b>Nuovo username</b></div>
+                                    <input *ngIf="currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="username" /><br>
+                                    <div *ngIf="currentUser.tipo=='Azienda'"><b>Nuovo Nome Azienda</b></div>
+                                    <input *ngIf="currentUser.tipo=='Azienda'" type="text" class="form-control" ngModel name="nome" /><br>
+                                    <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo indirizzo</b></div>
+                                    <input *ngIf="currentUser.tipo!='Amministratore'" type="text" class="form-control" ngModel name="indirizzo" /><br>
+                                    <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'"><b>Nuova descrizione</b></div>
+                                    <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'" type="text" class="form-control" ngModel name="descrizione" /><br>
+                                    <div><b>Nuova email</b></div>
+                                    <input type="text" class="form-control" ngModel name="email" /><br>
+                                    <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo vat number</b></div>
+                                    <input *ngIf="currentUser.tipo!='Amministratore'" type="text" maxlength="12" class="form-control" ngModel name="vat" /><br>
+                                    <div *ngIf="currentUser.tipo=='Distributore'"><b>Nuovo numero telefono</b></div>
+                                    <input *ngIf="currentUser.tipo=='Distributore'" type="text" maxlength="10" class="form-control" ngModel name="telefono" /><br>
                                 </div>
                             </div>
                         </div>

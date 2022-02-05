@@ -55,13 +55,11 @@
                         <option value="Azienda">Azienda</option>
                         <option value="Distributore">Distributore</option>
                         </select>
-                        <br>
-                        <br>
+                    <br>
+                    <br>
                     <br>
                     <button type="submit" class="btn btn-primary btn-accesso" name="invio">Accedi</button>
                 </form>
-                <hr>
-                <p>Non possiedi un account Distributore? <a [routerLink]="['/registrazione']">Registrati</a></p>
             </div>
         </div>
     </div>
@@ -78,14 +76,12 @@
             </div>
             <div class="modal-body">
                 <form class="form-control" #recuperoform="ngForm" (ngSubmit)="recuperaPassword(recuperoform.value)">
-                
+
                     <p><b>E-mail</b></p>
                     <input type="text" class="form-control" ngModel name="email" placeholder="E-mail di registrazione" />
                     <br>
                     <button type="submit" class="btn btn-primary btn-accesso" name="invio" data-bs-toggle="modal" data-bs-target="#loginRecupero">Recupera Password</button>
                 </form>
-                <hr>
-                <p>Non possiedi un account Distributore? <a target="_parent" [routerLink]="['/registrazione']">Registrati</a></p>
             </div>
         </div>
     </div>

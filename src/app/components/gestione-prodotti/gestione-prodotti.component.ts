@@ -7,6 +7,7 @@ import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { FileService } from 'src/app/services/file/file.service';
 import { LogService } from 'src/app/services/log.service';
 import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
+import { testRegex } from '../TestRegex/regex';
 
 @Component({
   selector: 'app-gestione-prodotti',
@@ -28,6 +29,8 @@ export class GestioneProdottiComponent implements OnInit {
   filenames:any[]=[];
   img:any;
   nomeImg: string;
+
+  rX: testRegex = new testRegex();
 
   constructor(private prodottoService: ProdottoService , private log: LogService, private fileService: FileService ) { }
 
@@ -61,6 +64,32 @@ export class GestioneProdottiComponent implements OnInit {
     }
   }
   aggiungiProdotto(form){
+
+    /* Inizio Regex */
+
+    if(this.rX.regexNome(form.nome)!= true) {
+      return alert("Nome non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexPrezzoVolumePeso(form.prezzo)!= true) {
+      return alert("Prezzo non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexPrezzoVolumePeso(form.volume)!= true) {
+      return alert("Volume non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexPrezzoVolumePeso(form.peso)!= true) {
+      return alert("Peso non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexDescrizione(form.descrizione)!= true) {
+      return alert("Descrizione non valida, si prega di riprovare");
+    }
+
+    /* Fine Regex */
+
+
     this.prodotto={
       nomeProdotto: form.nome,
       prezzo: form.prezzo,
@@ -93,6 +122,31 @@ export class GestioneProdottiComponent implements OnInit {
       )
   }
   modificaProdotto(form){
+
+    /* Inizio Regex */
+
+    if(this.rX.regexNome(form.nome)!= true) {
+      return alert("Nome non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexPrezzoVolumePeso(form.prezzo)!= true) {
+      return alert("Prezzo non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexPrezzoVolumePeso(form.volume)!= true) {
+      return alert("Volume non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexPrezzoVolumePeso(form.peso)!= true) {
+      return alert("Peso non valido, si prega di riprovare");
+    }
+
+    if(this.rX.regexDescrizione(form.descrizione)!= true) {
+      return alert("Descrizione non valida, si prega di riprovare");
+    }
+
+    /* Fine Regex */
+    
     this.prodotto={
       id:this.idProdottoDaModificare,
       nomeProdotto: form.nome,

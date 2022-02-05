@@ -10,6 +10,7 @@ import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { DistributoreService } from 'src/app/services/distributore/distributore.service';
 import { LogService } from 'src/app/services/log.service';
 import { utility } from 'src/utility/utility';
+import { testRegex } from '../TestRegex/regex';
 
 @Component({
   selector: 'app-profilo-azienda',
@@ -23,6 +24,8 @@ export class ProfiloAziendaComponent implements OnInit {
   amministratore: Amministratore;
   distributore: Distributore;
 
+  rX: testRegex = new testRegex();
+
   constructor(private aziendaService: AziendaService,private amministratoreService: AmministratoreService, private distributoreService: DistributoreService,private route:ActivatedRoute, private router: Router,private log : LogService) { }
 
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
@@ -30,8 +33,10 @@ export class ProfiloAziendaComponent implements OnInit {
     if(this.currentUser != null) {
       this.prendiIdDalRouter();
       this.getProfiloAziendaById();
+      console.log("lo prendo "+this.idAzienda)
     }
-      
+    if(this.currentUser.tipo==('Azienda'||'Distributore'))
+       this.getProfiloAziendaByIdCurrentUser();
     }
 
   prendiIdDalRouter() {
@@ -51,7 +56,27 @@ export class ProfiloAziendaComponent implements OnInit {
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
           this.azienda=resp as Azienda;
-          console.log(this.azienda)
+            if(this.azienda.logoBlob!=(undefined && null)){
+              this.azienda.logoBlob='data:image/jpeg;base64,'+this.azienda.logoBlob;
+            }
+        },
+        (error)=>{
+          this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
+        }
+      )
+    }
+  }
+
+  getProfiloAziendaByIdCurrentUser(){
+    if(this.currentUser!=undefined){
+      this.aziendaService.findById(this.currentUser.id).subscribe(
+        (resp)=>{
+          this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
+          this.azienda=resp as Azienda;
+            if(this.azienda.logoBlob!=(undefined && null)){
+              console.log("iddddd "+this.azienda.id)
+              this.azienda.logoBlob='data:image/jpeg;base64,'+this.azienda.logoBlob;
+            }
         },
         (error)=>{
           this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
@@ -62,6 +87,15 @@ export class ProfiloAziendaComponent implements OnInit {
 
 
   newPassword(form){
+
+    /* Inizio Regex */
+
+    if(this.rX.regexPassword(form.password)!= true) {
+      return alert("Password debole, si prega di riprovare");
+    }
+
+    /* Fine Regex */
+
     let password=form.password;
     if(this.currentUser.tipo=='Amministratore' && this.currentUser != null){
       this.amministratore={
@@ -145,9 +179,6 @@ export class ProfiloAziendaComponent implements OnInit {
     }
   }
 
-
-
-
   eliminaAccount(id){
     console.log("Numero "+id)
     if(this.currentUser.tipo=='Azienda' && this.currentUser != null){
@@ -182,9 +213,44 @@ export class ProfiloAziendaComponent implements OnInit {
     }
   }
 
-
-
   modificaAccount(form){
+
+    /* Inizio Regex */
+
+    // if(this.rX.regexPassword(form.password)!= true) {
+    //   return alert("Password non valida, si prega di riprovare");
+    // }
+
+    if(this.rX.regexEmail(form.email)!= true) {
+      return alert("Email non valida, si prega di riprovare");
+    }
+
+    if(this.rX.regexUsername(form.username)!= true) {
+      return alert("Username non valido, si prega di riprovare");
+    }
+
+    // if(this.rX.regexLogo(form.logo)!= true) {
+    //   return alert("Logo non valido, si prega di riprovare");
+    // }
+
+    // if(this.rX.regexDescrizione(form.descrizione)!= true) {
+    //   return alert("Descrizione non valida, si prega di riprovare");
+    // }
+
+    // if(this.rX.regexNome(form.nome)!= true) {
+    //   return alert("Nome non valido, si prega di riprovare");
+    // }
+
+    // if(this.rX.regexVAT(form.vat)!= true) {
+    //   return alert("VAT Number non valido, si prega di riprovare");
+    // }
+
+    // if(this.rX.regexNome(form.cognome)!= true) {
+    //   return alert("Cognome non valido, si prega di riprovare");
+    // }    
+
+    /* Fine Regex */
+
     if(this.currentUser.tipo=='Amministratore' && this.currentUser != null ){
       this.amministratore={
         id:this.currentUser.id,

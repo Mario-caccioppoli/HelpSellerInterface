@@ -5,12 +5,12 @@
           <form id="ricerca" class="form form-control inl">
             <div class="row">
               <div class="col-lg-4 pd20">
-              <label><p>Nome</p></label>
-              <input [(ngModel)]="cercaCodiceProdotto" (ngModelChange)="cercaCodice()" type="search" class="form-control" placeholder="Inserisci codice..." name="searchbar" aria-label="Search">
+              <label><p>Codice</p></label>
+              <input [(ngModel)]="cercaCodiceOrdine" (ngModelChange)="cercaCodice()" type="search" class="form-control" placeholder="Inserisci codice..." name="searchbar" aria-label="Search">
               </div>
               <div class="col-lg-4 pd20">
-              <label><p>Data</p></label>
-             <!-- <input [(ngModel)]="cercaDataOrdine" (ngModelChange)="cercaData()" type="search" class="form-control" placeholder="Inserisci data..." name="searchbar" aria-label="Search"> -->
+              <label><p>Anno</p></label>
+              <input [(ngModel)]="cercaDataOrdine" (ngModelChange)="cercaData()" type="search" class="form-control" placeholder="Inserisci anno..." name="searchbar" aria-label="Search" maxlength="4">
               </div>
               <div class="col-lg-4 pd20">
               <label><p>Azienda</p></label>
@@ -32,10 +32,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor='let ordine of ordini'>
+                    <tr *ngFor='let ordine of ordini; let i=index'>
                       <th scope="row"><p># {{ordine.id}}</p></th>
                       <td><p>{{ordine.dataOrdinazione}}</p></td>
-                      <td><p>{{ordine.azienda.nomeAzienda}}</p></td>
+                      <td><p>{{ordine.idDistributore}}</p></td>
                       <td><p>{{ordine.prezzoTotale}}</p></td>
                       <td><a [routerLink]="['/dettagliOrdine', ordine.id]"><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></a></td>
                     </tr>

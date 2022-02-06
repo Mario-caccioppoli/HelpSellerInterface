@@ -28,6 +28,7 @@ export class GestioneOrdiniUploadComponent implements OnInit {
 
           //this.documento = success as Documento;
           //TODO: aggiungere alert su controllo
+          alert("Documento inserito");
         },
 
         (error) => {

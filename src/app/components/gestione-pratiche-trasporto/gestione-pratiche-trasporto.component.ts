@@ -31,10 +31,9 @@ export class GestionePraticheTrasportoComponent implements OnInit {
   }
 
 
-
 aggiungiDivisione(form){
   var id = this.divisioni.length -1;
-  var div;
+  var div: Divisione;
   div.setID(id);
   div.setVia(form.via);
   div.setCivico(form.civico)
@@ -52,18 +51,15 @@ eliminaDivisione(indice : number){
 
 public inserimentoGpt(form) {
 
-  if ((form.indirizzo || form.civico || form.cap || form.citta || form.paese || form.provincia)==('' || undefined || 0)) {
+  if ((form.via || form.civico || form.cap || form.citta || form.paese || form.provincia)==('' || undefined || 0)) {
     return alert ("Si prega di inserire tutti i campi prima di procedere");
   }
-
-console.log(form.citta);
-console.log(form.indirizzo);
 
   if(this.rX.regexCitta(form.citta)!= true) {
     return alert("Città non valida, si prega di riprovare");
   }
 
-  if(this.rX.regexVia(form.indirizzo)!= true) {
+  if(this.rX.regexVia(form.via)!= true) {
     return alert("Indirizzo non valido, si prega di riprovare");
   }
 

@@ -1,4 +1,4 @@
-export interface Divisione {
+export class Divisione {
         ID : number;
         via : string;
         civico : string;
@@ -6,9 +6,7 @@ export interface Divisione {
         provincia : string;
         cap : string;
         quantita : number;
-}
 
-/*
         constructor(){}
         public setID(id:number){
             this.ID = id;
@@ -69,5 +67,3 @@ export interface Divisione {
         } 
         
 }
-
-*/

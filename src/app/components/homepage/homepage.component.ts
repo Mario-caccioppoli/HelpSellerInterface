@@ -37,10 +37,11 @@ export class HomepageComponent implements OnInit {
   }
 
   getSuggested(){
-    this.ps.suggestProdotto().subscribe(
+    this.ps.firstLayer().subscribe(
       (resp)=>{
         this.log.Debug(HomepageComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
+        console.log("prendi "+this.prodotti)
       },
       (error)=>{
         this.log.Error(HomepageComponent.name,"chiamata a back-end",[error]);

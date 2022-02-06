@@ -1,53 +1,75 @@
-<div id="home" *ngIf="myStorage.getItem('currentUser')==null">
-    <div class="container row ">
-        <div class="col-lg-12 centered">
-            <div class="intro mt70 mb50">
-            <h2><b>Benvenuto su HelpSeller</b></h2>
-            <p>Help Seller is a platform that helps Unilever group companies and distribution companies to collaborate for the sale of food products.</p>
-            <img src="../assets/img/UNILEVER-LOGOPNG1.png" class="img" />
-            </div>
-        </div> <!-- col-lg-12-->
-    </div>
-</div><!-- id -->
-
 <div id="home" *ngIf="currentUser.tipo!='Distributore'">
+<div id="home" *ngIf="currentUser==null || currentUser.tipo!='Distributore'">
     <div class="container row ">
         <div class="col-lg-12 centered">
             <div class="intro mt70 mb50">
-            <h2><b>Benvenuto su HelpSeller</b></h2>
-            <p>Help Seller is a platform that helps Unilever group companies and distribution companies to collaborate for the sale of food products.</p>
-            <img src="../assets/img/UNILEVER-LOGOPNG1.png" class="img" />
+                <h2><b>Benvenuto su HelpSeller</b></h2>
+                <p>Help Seller is a platform that helps Unilever group companies and distribution companies to collaborate for the sale of food products.</p>
+                <img src="../assets/img/UNILEVER-LOGOPNG1.png" class="img" />
             </div>
-        </div> <!-- col-lg-12-->
+            <div class="row mt20">
+                <div class="col-lg-4 pd25">
+                    <i class="fa fa-home fa-4x orange" aria-hidden="true"></i>
+                    <h4>Benefit</h4>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                        specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                        passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <div class="col-lg-4 pd25">
+                    <i class="fa fa-download fa-4x orange" aria-hidden="true"></i>
+                    <h4>Benefit</h4>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                        specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                        passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <div class="col-lg-4 pd25">
+                    <i class="fa fa-check fa-4x orange" aria-hidden="true"></i>
+                    <h4>Benefit</h4>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                        specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                        passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                </div>
+                <div class="center mt70">
+                    <a [routerLink]="['/visualizzaAziende']"><button class="btn btn-primary btn-cust" type="button">Visualizza le aziende disponibili ora</button></a>
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- col-lg-12-->
     </div>
-</div><!-- id -->
+</div>
+<!-- id -->
 
-<div id="home" *ngIf="currentUser.tipo=='Distributore'">
+<div id="home" *ngIf="currentUser.tipo=='Distributore' && currentUser!=undefined">
     <div class="container row ">
         <div class="col-lg-12 centered">
             <div class="intro mt70 mb50">
-            <h2><b>Benvenuto su HelpSeller</b></h2>
-            <h4><b>Prodotti consigliati di oggi da HelpSeller</b></h4>
-        </div>
-        <input class="form-control me-2" type="search" placeholder="Ricerca prodotto..." [(ngModel)]="cercaNomeProdotto" (ngModelChange)="cercaChange()" aria-label="Cerca" name="searchbar">
+                <h2><b>Benvenuto su HelpSeller</b></h2>
+                <h4><b>Prodotti consigliati di oggi da HelpSeller</b></h4>
+            </div>
+            <input class="form-control me-2" type="search" placeholder="Ricerca prodotto..." [(ngModel)]="cercaNomeProdotto" (ngModelChange)="cercaChange()" aria-label="Cerca" name="searchbar">
 
             <div class="row eqi-container">
                 <div *ngFor="let prodotto of prodotti" class="col-lg-3 product" id="{{'prodottiContainer '+prodotto.id}}">
                     <a routerLink="/effettuaOrdine-TEST">
-                    <img class="img-product" src="" alt="{{prodotto.descrizione}}" />
-                    <div class="downspec">
-                    <p class="bold">{{prodotto.nomeProdotto}}</p>
-                    <p class="bold">€ {{prodotto.prezzo}} cad.</p>
-                    <p class="bold"><b>Quantità disponibile:</b> {{prodotto.quantita}} pz.</p>
-                    </div>
+                        <img class="img-product" src="" alt="{{prodotto.descrizione}}" />
+                        <div class="downspec">
+                            <p class="bold">{{prodotto.nomeProdotto}}</p>
+                            <p class="bold">€ {{prodotto.prezzo}} cad.</p>
+                            <p class="bold"><b>Quantità disponibile:</b> {{prodotto.quantita}} pz.</p>
+                        </div>
                     </a>
                 </div>
                 <!-- col lg 3 -->
-                </div><!-- row -->
-                <div class="center mt70">
-                    <h3 class="mb50">Non hai trovato quel che cerchi?</h3>
-                    <a [routerLink]="['/visualizzaAziende']"><button class="btn btn-primary btn-cust" type="button">Esplora le aziende del gruppo Unilever</button></a>
-                </div>
-            </div><!-- row -->
-        </div> <!-- col-lg-12-->
-</div><!-- id -->
+            </div>
+            <!-- row -->
+            <div class="center mt70">
+                <h3 class="mb50">Non hai trovato quel che cerchi?</h3>
+                <a [routerLink]="['/visualizzaAziende']"><button class="btn btn-primary btn-cust" type="button">Esplora le aziende del gruppo Unilever</button></a>
+            </div>
+        </div>
+        <!-- row -->
+    </div>
+    <!-- col-lg-12-->
+</div>
+<!-- id -->

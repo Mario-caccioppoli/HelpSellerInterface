@@ -124,13 +124,13 @@ export class GestioneScontiComponent implements OnInit {
     form.dataInizio = this.dataInizio.toLocaleDateString("en-US");
     form.dataFine = this.dataFine.toLocaleDateString("en-US"); */
 
-    if(this.rX.regexData(form.dataInizio)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataInizio)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
-    if(this.rX.regexData(form.dataFine)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataFine)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
     if(this.rX.regexNome(form.nome)!= true) {
       return alert("Nome non valido, si prega di riprovare");

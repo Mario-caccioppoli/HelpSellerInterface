@@ -52,7 +52,10 @@ export class ProdottoService {
     return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}`);
   }
 
-  public suggestProdotto(): Observable<Prodotto[]> {
-    return this.http.get<Prodotto[]>(`${this.apiServerUrlSuggest}/l2`);
+  public firstLayer(): Observable<Prodotto[]> {
+    return this.http.get<Prodotto[]>(`${this.apiServerUrlSuggest}/l1`);
   }
+  public secondLayer(idUtente: number): Observable<Prodotto[]>{
+    return this.http.get<Prodotto[]>(`${this.apiServerUrlSuggest}/l2/${idUtente}`);
+  } 
 }

@@ -25,15 +25,26 @@ export class HomepageComponent implements OnInit {
   myStorage = window.localStorage;
 
   cercaChange(){
+    if(this.cercaNomeProdotto==''){
+      this.getSuggested();
+    }
+    else{
     this.ps.findAllProdottiByNome(this.cercaNomeProdotto).subscribe(
       (resp)=>{
         this.log.Debug(HomepageComponent.name,"chiamata a back-end",[resp]);
         this.prodotti=resp;
+        console.log(this.prodotti.forEach(p=>p.nomeProdotto))
+        this.prodotti.forEach(p=>{
+          if(p.immagineBlob!=(undefined && null)){
+            p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
+          }
+        })
       },
       (error)=>{
         this.log.Error(HomepageComponent.name,"chiamata a back-end",[error]);
       }
     )
+    }
   }
 
   getSuggested(){
@@ -41,7 +52,11 @@ export class HomepageComponent implements OnInit {
       (resp)=>{
         this.log.Debug(HomepageComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
-        console.log("prendi "+this.prodotti)
+        this.prodotti.forEach(p=>{
+          if(p.immagineBlob!=(undefined && null)){
+            p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
+          }
+        })
       },
       (error)=>{
         this.log.Error(HomepageComponent.name,"chiamata a back-end",[error]);

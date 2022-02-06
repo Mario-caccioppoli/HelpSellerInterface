@@ -16,6 +16,7 @@ import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 export class GestioneOrdiniEffettuatiComponent implements OnInit {
 
   ordini: Ordine[];
+  ordiniAll: Ordine[] = [];
   aziende: Azienda[];
   prodotti: Prodotto[];
   distributore: Distributore;
@@ -45,6 +46,7 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
           this.log.Debug(GestioneOrdiniEffettuatiComponent.name, "ok", [success]);
 
           this.ordini = success as Ordine[];
+          this.ordini.forEach(e => this.ordiniAll.push(Object.assign({},e)));
         },
         (error) => {
           this.log.Error(GestioneOrdiniEffettuatiComponent.name, "errore", [error]);
@@ -54,20 +56,17 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
 
   cercaCodice(){
     if (this.cercaCodiceOrdine == 0) {
-      this.listaOrdini();
+      this.ordiniAll.forEach(e => this.ordini.push(Object.assign({},e)));
     } else {
-    this.os.findById(this.cercaCodiceOrdine).subscribe(
-      (success)=>{
-        this.log.Debug(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[success]);
-        var ordineCercato: Ordine; var ordineArray: Ordine[] = [];
-        ordineCercato = success as Ordine;
-        ordineArray.push(ordineCercato);
-        this.ordini = ordineArray as Ordine[];
-      },
-      (error)=>{
-        this.log.Error(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[error]);
+
+      this.ordini.splice(0, this.ordini.length);
+    
+      for(let i = 0; i < this.ordiniAll.length; i++) {
+
+        if (this.ordiniAll[i].id == this.cercaCodiceOrdine) {
+          this.ordini.push(this.ordiniAll[i]);
+        }
       }
-    )
   }
 }
 
@@ -83,7 +82,7 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
         ordiniRisultati = success as Ordine[];
         var i: number = 0;
         
-        for(i=0; i<=ordiniRisultati.length; i++) {
+        for(i=0; i<ordiniRisultati.length; i++) {
           var datastringa: string = '';
           datastringa = ordiniRisultati[i].dataOrdinazione.toString();
           var anno = datastringa.slice(0,4);
@@ -101,18 +100,23 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
 }
 
   cercaAzienda(){
+    
     if (this.cercaNomeAzienda == '') {
-      this.listaOrdini();
+      this.ordiniAll.forEach(e => this.ordini.push(Object.assign({},e)));
     } else {
-    this.as.findAziendeByName(this.cercaNomeAzienda).subscribe(
-      (success)=>{
-        this.log.Debug(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[success]);
-        this.aziende = success as Azienda[];
-      },
-      (error)=>{
-        this.log.Error(GestioneOrdiniEffettuatiComponent.name,"chiamata a back-end",[error]);
+
+      this.ordini.splice(0, this.ordini.length);
+    
+      for(let i = 0; i < this.ordiniAll.length; i++) {
+
+        if(this.ordiniAll[i].azienda == null) {
+          continue;
+        }
+
+        if (this.ordiniAll[i].azienda.nomeAzienda.includes(this.cercaNomeAzienda)) {
+          this.ordini.push(this.ordiniAll[i]);
+        }
       }
-    )
   }
 }
 

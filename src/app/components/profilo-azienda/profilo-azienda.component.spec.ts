@@ -24,6 +24,18 @@ describe('ProfiloAziendaComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfiloAziendaComponent);
     component = fixture.componentInstance;
+    component.currentUser = {
+      email: "mario@gmail.com",
+      username: "marioooo",
+      id: 1,
+      password: null,
+      tipo: "Distributore",
+      nome: "mario",
+      cognome: "de gregorio",
+      vat: "125425",
+      telefono: "2525145",
+      indirizzo: "napoli"
+    }
     fixture.detectChanges();
   });
 

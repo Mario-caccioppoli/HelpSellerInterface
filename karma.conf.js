@@ -11,6 +11,7 @@ module.exports = function (config) {
       require('karma-firefox-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('karma-html-detailed-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -24,7 +25,11 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'htmlDetailed'],
+    htmlDetailed: {
+      dir: require('path').join(__dirname, './karma')
+    },
+
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

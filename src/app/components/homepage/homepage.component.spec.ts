@@ -21,10 +21,19 @@ describe('HomepageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomepageComponent);
     component = fixture.componentInstance;
+    component.currentUser = {
+      email: "aldo@libeo.it",
+      username: "aldo123",
+      id: 1,
+      password: null,
+      tipo: "Amministratore"
+    }
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+
+    expect(component).toBeTruthy();  
+    
   });
 });

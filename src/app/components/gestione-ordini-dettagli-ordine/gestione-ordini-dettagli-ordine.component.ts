@@ -59,7 +59,7 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
 
           for (var n in this.ordineProdottoArr) {
             qt = qt + this.ordineProdottoArr[n].quantitaOrdine;
-            price = price + this.ordineProdottoArr[n].prezzoUnitario;
+            price = price + this.ordineProdottoArr[n].prezzoUnitario * this.ordineProdottoArr[n].quantitaOrdine;
           }
 
           this.quantitaOrdineProdotto = qt;

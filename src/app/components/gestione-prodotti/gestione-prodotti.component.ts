@@ -129,9 +129,9 @@ export class GestioneProdottiComponent implements OnInit {
       return alert("Nome non valido, si prega di riprovare");
     }
 
-    if(this.rX.regexPrezzoVolumePeso(form.prezzo)!= true) {
-      return alert("Prezzo non valido, si prega di riprovare");
-    }
+    // if(this.rX.regexPrezzoVolumePeso(form.prezzo)!= true) {
+    //   return alert("Prezzo non valido, si prega di riprovare");
+    // }
 
     if(this.rX.regexPrezzoVolumePeso(form.volume)!= true) {
       return alert("Volume non valido, si prega di riprovare");

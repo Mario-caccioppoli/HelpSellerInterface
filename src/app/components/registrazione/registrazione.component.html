@@ -13,7 +13,7 @@
         <div class="container">
             <form class="form-control" #registrazioneDistributoreForm="ngForm" (ngSubmit)="registrazioneDistributore(registrazioneDistributoreForm.value)">
                 <div class="row">
-                    <div class="col">    
+                    <div class="col">
                         <h5><b>Nome</b></h5>
                         <input type="text" id="nome" ngModel name="nome" class="paragrafo mw340">
                     </div>
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="m25 left"><b>E-mail</b></h5>
-                        <input type="email" id="email"  ngModel name="email" class="paragrafo left mw340">
+                        <input type="email" id="email" ngModel name="email" class="paragrafo left mw340">
                     </div>
                     <div class="col">
                         <h5 class="m25 left"><b>Telefono</b></h5>
@@ -93,7 +93,7 @@
         <div class="container">
             <form class="form-control" #registrazioneAziendaForm="ngForm" (ngSubmit)="registrazioneAzienda(registrazioneAziendaForm.value)">
                 <div class="row">
-                    <div class="col">    
+                    <div class="col">
                         <h5><b>Nome Società (o Brand)</b></h5>
                         <input type="text" id="societa" ngModel name="societa" class="paragrafo mw340">
                     </div>
@@ -105,11 +105,11 @@
                 <div class="row">
                     <div class="col">
                         <h5 class="m25 left"><b>E-mail</b></h5>
-                        <input type="email" id="email"  ngModel name="email" class="paragrafo left mw340">
+                        <input type="email" id="email" ngModel name="email" class="paragrafo left mw340">
                     </div>
                     <div class="col">
                         <h5 class="m25 left"><b>Logo</b></h5>
-                        <input type="text" id="logo" ngModel name="logo" class="paragrafo left mw340">
+                        <input type="file" id="logo" (change)="uploadFotoAzienda($event.target.files)" name="logo" class="file-input left mw340" name="files">
                     </div>
                 </div>
                 <hr>
@@ -145,7 +145,7 @@
                 </div>
                 <hr>
                 <h5 class="m25 left"><b>Inserisci una Password per l'Azienda</b></h5>
-                <input type="text" id="password" ngModel name="password" class="paragrafo left">
+                <input type="password" id="password" ngModel name="password" class="paragrafo left">
                 <h5 class="m25 left"><b>Dettaglio dell'Azienda</b></h5>
                 <textarea id="descrizione" ngModel name="descrizione" class="paragrafo left" rows="10" cols="25"></textarea>
                 <br>

@@ -8,6 +8,8 @@ import { DistributoreService } from 'src/app/services/distributore/distributore.
 import { AziendaService } from 'src/app/services/azienda/azienda.service';
 import { utility } from 'src/utility/utility';
 import { testRegex } from '../TestRegex/regex';
+import { FileService } from 'src/app/services/file/file.service';
+import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-registrazione',
@@ -15,18 +17,21 @@ import { testRegex } from '../TestRegex/regex';
   styleUrls: ['./registrazione.component.css']
 })
 export class RegistrazioneComponent implements OnInit {
+  filenames: any;
 
   constructor(
     private us: UtenteService, 
     private as: AziendaService, 
     private ds: DistributoreService, 
-    private log: LogService) { }
+    private log: LogService,
+    private fileService: FileService) { }
 
   distributore: Distributore;
   utente: Utente;
   currentUser: Utente;
   myStorage = window.localStorage;
   azienda: Azienda;
+  nomeImg: string;
 
   rX: testRegex = new testRegex();
 
@@ -89,18 +94,18 @@ export class RegistrazioneComponent implements OnInit {
   }
 
   if(this.rX.regexProvincia(form.provincia)!= true) {
-    return alert("Il numero inserito non è valido, si prega di riprovare");
+    return alert("Provincia non è valida, si prega di riprovare");
   }
 
   if(this.rX.regexPaese(form.paese)!= true) {
-    return alert("Il numero inserito non è valido, si prega di riprovare");
+    return alert("Paese non è valido, si prega di riprovare");
   }
 
     if (checkvat.length > 12) {
       return alert('VAT Number errato. Riprovare.');
     }
 
-    if (checktel.length > 10) {
+    if (checktel.length > 14) {
       return alert('Numero di telefono errato. Riprovare.');
     }
 
@@ -123,6 +128,7 @@ export class RegistrazioneComponent implements OnInit {
     this.ds.insertDistributore(this.distributore).subscribe(
       (success) => {
         this.log.Debug(RegistrazioneComponent.name, "ok", [success]);
+        window.alert("Registrazione effettuata")
       },
 
       (error) => {
@@ -176,9 +182,9 @@ public registrazioneAzienda(form) {
       return alert("Descrizione troppo lunga, non deve superare i 500 caratteri, si prega di riprovare");
     }
 
-    if(this.rX.regexLogo(form.societa)!= true) {
-      return alert("Logo non valido, si prega di riprovare");
-    }
+    // if(this.rX.regexLogo(form.societa)!= true) {
+    //   return alert("Logo non valido, si prega di riprovare");
+    // }
 
     if(this.rX.regexProvincia(form.provincia)!= true) {
       return alert("Il numero inserito non è valido, si prega di riprovare");
@@ -202,7 +208,7 @@ public registrazioneAzienda(form) {
       vat: form.vat,
       indirizzo: form.indirizzofull = (form.indirizzo + " " + form.civico + ", " + form.cap + " " + form.citta + " " + "(" + form.provincia + "), " + form.paese),
       descrizione: form.descrizione,
-      logo: form.logo,
+      logo: this.nomeImg,
       prodotti: null,
       ordini: null
     }
@@ -210,6 +216,7 @@ public registrazioneAzienda(form) {
       this.as.insertAzienda(this.azienda).subscribe(
         (success) => {
           this.log.Debug(RegistrazioneComponent.name, "ok", [success]);
+          window.alert("registrazione effettuata");
         },
   
         (error) => {
@@ -229,6 +236,51 @@ public registrazioneAzienda(form) {
     } else {
       return false;
     }
+  }
+
+
+  uploadFotoAzienda(files: File[]): void{
+    const formData=new FormData();
+    for(const file of files){
+      this.nomeImg = file.name;
+      formData.append('files', file, file.name);
+    }
+    this.fileService.upload(formData).subscribe(
+      event =>{
+        console.log(event);
+        this.reportProgress(event);
+      },
+      (error: HttpErrorResponse)=>{ 
+        console.log(error);
+      }
+    )
+  }
+
+  private reportProgress(httpEvent: HttpEvent<String[] | Blob>):void {
+    switch(httpEvent.type){
+      case HttpEventType.UploadProgress:
+        this.updateStatus(httpEvent.loaded,httpEvent.total,'Uploading');
+        break;
+      case HttpEventType.DownloadProgress:
+        this.updateStatus(httpEvent.loaded,httpEvent.total,'Uploading');
+        break;
+      case HttpEventType.ResponseHeader:
+        console.log('Header return '+httpEvent);
+        break;
+      case HttpEventType.Response:
+        if(httpEvent.body instanceof Array){
+          for(const fileName of httpEvent.body){
+            //filenames is any variable to download file
+            this.filenames.unshift(fileName)
+          }
+        }else{
+          //download logic
+        }
+        break;
+    }
+  }
+  updateStatus(loaded: number, total: number, requestType: string) {
+    throw new Error('Method not implemented.');
   }
 
 }

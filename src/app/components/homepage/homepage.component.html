@@ -1,4 +1,3 @@
-<div id="home" *ngIf="currentUser.tipo!='Distributore'">
 <div id="home" *ngIf="currentUser==null || currentUser.tipo!='Distributore'">
     <div class="container row ">
         <div class="col-lg-12 centered">
@@ -50,13 +49,13 @@
             <input class="form-control me-2" type="search" placeholder="Ricerca prodotto..." [(ngModel)]="cercaNomeProdotto" (ngModelChange)="cercaChange()" aria-label="Cerca" name="searchbar">
 
             <div class="row eqi-container">
-                <div *ngFor="let prodotto of prodotti" class="col-lg-3 product" id="{{'prodottiContainer '+prodotto.id}}">
+                <div *ngFor="let prodotto of prodottiToDisplay" class="col-lg-3 product" id="{{'prodottiContainer '+prodotto.id}}">
                     <a routerLink="/effettuaOrdine-TEST">
-                        <img class="img-product" src="" alt="{{prodotto.descrizione}}" />
+                        <img class="img-product" [src]="prodotto.immagineBlob" alt="{{prodotto.descrizione}}" />
                         <div class="downspec">
-                            <p class="bold">{{prodotto.nomeProdotto}}</p>
-                            <p class="bold">€ {{prodotto.prezzo}} cad.</p>
-                            <p class="bold"><b>Quantità disponibile:</b> {{prodotto.quantita}} pz.</p>
+                            <div class="bold">{{prodotto.nomeProdotto}}</div>
+                            <div class="bold">€ {{prodotto.prezzo}} cad.</div>
+                            <div class="bold"><b>Quantità disponibile:</b> {{prodotto.quantita}} pz.</div>
                         </div>
                     </a>
                 </div>

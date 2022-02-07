@@ -49,7 +49,7 @@ export class ProdottoService {
   }
 
   public findAllProdottiByNome(nomeProdotto: string): Observable<Prodotto[]>{
-    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNomeInAzienda/${nomeProdotto}`);
+    return this.http.get<Prodotto[]>(`${this.apiServerUrl}/findProdottiByNome/${nomeProdotto}`);
   }
 
   public firstLayer(): Observable<Prodotto[]> {

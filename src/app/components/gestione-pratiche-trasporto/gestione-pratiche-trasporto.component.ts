@@ -1,5 +1,5 @@
 
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { Divisione } from 'src/app/divisione';
 import { Trasporto } from 'src/app/models/Trasporto';
 import { LogService } from 'src/app/services/log.service';
@@ -21,8 +21,13 @@ export class GestionePraticheTrasportoComponent implements OnInit {
 
   tipoSpedizione : string;
   numeroDivisioni : number;
-  divisioni : Divisione[];
+  divisioni : Divisione[] = [];
   divisione: Divisione;
+  dataConvert: Date;
+
+  @Input() idOrdine;
+  @Input() quantitaOp;
+  @Input() prezzoOp;
 
   ngOnInit(): void { }
 
@@ -32,26 +37,8 @@ export class GestionePraticheTrasportoComponent implements OnInit {
 
 
 aggiungiDivisione(form){
-  var id = this.divisioni.length -1;
-  var div: Divisione;
-  div.setID(id);
-  div.setVia(form.via);
-  div.setCivico(form.civico)
-  div.setCitta(form.citta)
-  div.setProvincia(form.provincia)
-  div.setCAP(form.cap)
-  div.setQuantita(form.quantita)
-  this.divisioni.push(div);
-}
 
-
-eliminaDivisione(indice : number){
-  this.divisioni.splice(indice,1);
-}
-
-public inserimentoGpt(form) {
-
-  if ((form.via || form.civico || form.cap || form.citta || form.paese || form.provincia)==('' || undefined || 0)) {
+  if ((form.via || form.civico || form.cap || form.citta || form.paese || form.provincia || form.data || form.quantita ) == ('' || undefined || 0)) {
     return alert ("Si prega di inserire tutti i campi prima di procedere");
   }
 
@@ -79,12 +66,79 @@ public inserimentoGpt(form) {
     return alert("Paese non valido, si prega di riprovare");
   }
 
+  if(this.rX.regexData(form.data)!= true) {
+    return alert("Data non valida, si prega di riprovare");
+  }
+
+  if(this.rX.regexQuantita(form.quantita)!= true) {
+    return alert("Quantità non valida, si prega di riprovare");
+  }
+
+  var div = {
+  ID: null,
+  via: form.via,
+  civico: form.civico,
+  citta: form.citta,
+  provincia: form.provincia,
+  cap: form.cap,
+  quantita: form.quantita,
+  paese: form.paese,
+  data: form.data
+  }
+  
+  this.divisioni.push(div);
+  console.log(this.divisioni);
+}
+
+
+eliminaDivisione(indice : number){
+  this.divisioni.splice(indice,1);
+}
+
+public inserimentoGpt(form) {
+
+  if ((form.via || form.civico || form.cap || form.citta || form.paese || form.provincia || form.data ) == ('' || undefined || 0)) {
+    return alert ("Si prega di inserire tutti i campi prima di procedere");
+  }
+
+  if(this.rX.regexCitta(form.citta)!= true) {
+    return alert("Città non valida, si prega di riprovare");
+  }
+
+  if(this.rX.regexVia(form.via)!= true) {
+    return alert("Indirizzo non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexCivico(form.civico)!= true) {
+    return alert("Numero civico non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexCAP(form.cap)!= true) {
+    return alert("CAP non valido, si prega di riprovare");
+  }
+
+  if(this.rX.regexProvincia(form.provincia)!= true) {
+    return alert("Provincia non valida, si prega di riprovare");
+  }
+
+  if(this.rX.regexPaese(form.paese)!= true) {
+    return alert("Paese non valido, si prega di riprovare");
+  }
+
+  this.dataConvert = new Date(form.data);
+  this.dataConvert.toISOString;
+  console.log("datanuovaaaaa" + this.dataConvert);
+
+  if(this.rX.regexData(form.data)!= true) {
+    return alert("Data non valida, si prega di riprovare");
+  }
+
   this.trasporto = {
     id: null,
-    indirizzoConsegna: form.indirizzo + " " + form.civico + ", " + form.cap + " " + form.citta + " " + "(" + form.provincia + "), " + form.paese,
-    quantitaMinima: null,
-    dataConsegna: form.dataConsegna,
-    idOrdine: null,
+    indirizzoConsegna: form.via + " " + form.civico + ", " + form.cap + " " + form.citta + " " + "(" + form.provincia + "), " + form.paese,
+    quantitaMinima: this.quantitaOp,
+    dataConsegna: form.data,
+    idOrdine: this.idOrdine,
   }
 
   this.ts.insertTrasporto(this.trasporto).subscribe(

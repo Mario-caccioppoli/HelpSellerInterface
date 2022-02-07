@@ -28,9 +28,9 @@
       <input type="text"class="form-control" name="cap" ngModel placeholder="Inserisci CAP"><br>
       <br>
       <b>Data</b><br>
-      <input type="text" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
+      <input type="date" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
       <br><br>
-      <button class="btn btn-primary" style="width: 100%;">Aggiungi trasporto e concludi ordine</button> 
+      <button class="btn btn-primary" style="width: 100%;">Concludi pratica trasporto</button> 
   </form>
   </div>
 
@@ -41,13 +41,15 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">N°divisioni ordine</th>
-            <th scope="col">Via</th>
+            <th scope="col">N° Divisioni</th>
+            <th scope="col">Indirizzo</th>
             <th scope="col">Civico</th>
             <th scope="col">Città</th>
             <th scope="col">Provincia</th>
             <th scope="col">CAP</th>
+            <th scope="col">Paese</th>
             <th scope="col">Quantità</th>
+            <th scope="col">Data Prevista</th>
             <th>Azione</th>
           </tr>
         </thead>
@@ -58,20 +60,24 @@
             <td>{{item.civico}}</td>
             <td>{{item.citta}}</td>
             <td>{{item.provincia}}</td>
+            <td>{{item.paese}}</td>
             <td>{{item.cap}}</td>
             <td>{{item.quantita}}</td>
+            <td>{{item.data}}</td>
             <td><button class="btn btn-primary" id="elimina" style="background-color: orange;" (click) ="eliminaDivisione(i)"> <i style="font-size: 15px;" class= "fas fa-trash-alt"  ></i></button></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="d-flex justify-content-center" style="margin-top: 30px">
-      <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Aggiungi divisione</button>
+      <button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Aggiungi divisione</button>
     </div>
+    <br><br>
+    <button type="button" class="btn btn-primary" width="100%">Concludi pratica trasporto</button>
   </div>
 
 <!-- modal -->
-<form class="form-group" #inserimentoGptForm="ngForm" (ngSubmit)="inserimentoGpt(inserimentoGptForm.value)">
+<form class="form-group" #aggiungiDivisioneForm="ngForm" (ngSubmit)="aggiungiDivisione(aggiungiDivisioneForm.value)">
 <div class="modal fade" id="staticBackdrop"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
@@ -106,7 +112,8 @@
                 <input type="text" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
               </div>
               <div class="modal-footer ">
-                <button type="button " class="btn btn-secondary " (click)= "aggiungiDivisione()">Aggiungi Divisione</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Torna indietro</button>
+                <button type="submit" class="btn btn-primary">Aggiungi Divisione</button>
               </div>
           </div>
       </div>

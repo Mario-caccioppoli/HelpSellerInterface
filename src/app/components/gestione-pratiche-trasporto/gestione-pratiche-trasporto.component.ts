@@ -23,7 +23,7 @@ export class GestionePraticheTrasportoComponent implements OnInit {
   numeroDivisioni : number;
   divisioni : Divisione[] = [];
   divisione: Divisione;
-  dataConvert: Date;
+  dataConvert: string;
 
   @Input() idOrdine;
   @Input() quantitaOp;
@@ -125,9 +125,9 @@ public inserimentoGpt(form) {
     return alert("Paese non valido, si prega di riprovare");
   }
 
-  this.dataConvert = new Date(form.data);
-  this.dataConvert.toISOString;
-  console.log("datanuovaaaaa" + this.dataConvert);
+  var inputData = new Date(form.data);
+  this.dataConvert = inputData.toISOString().slice(0, 10);
+  form.data = this.dataConvert;
 
   if(this.rX.regexData(form.data)!= true) {
     return alert("Data non valida, si prega di riprovare");

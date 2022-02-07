@@ -3,69 +3,82 @@
   <br/>
   <input type="radio"class="form-check-input" name="tipoSpedizione"  value = "Multipla" (click)="setValue('Multipla')"/> Multipla <br/>
   <br/>
+
+  <!-- Spedizione Unica -->
+
   <div *ngIf="tipoSpedizione=='Unica'">
     <h4 style="text-align: center;">Aggiungi Trasporto</h4>
-    <form class="form-group">
+    <form class="form-group" #inserimentoGptForm="ngForm" (ngSubmit)="inserimentoGpt(inserimentoGptForm.value)">
+      <b>Paese EU</b><br>
+      <input type="text" class="form-control"name="paese" ngModel placeholder="Inserisci Paese">
+      <br><br>
       <b>Via</b><br>
-      <input type="text"class="form-control" name="via" [(ngModel)]="via" placeholder="Inserisci via">
+      <input type="text"class="form-control" name="via" ngModel placeholder="Inserisci Via">
       <br><br>
       <b>Civico</b><br>
-      <input type="text"class="form-control" name="civico" [(ngModel)]="civico" placeholder="Inserisci via">
+      <input type="text"class="form-control" name="civico" ngModel placeholder="N.">
       <br><br>  
       <b>Città</b><br>
-      <input type="text" class="form-control"name="città" [(ngModel)]="citta" placeholder="Inserisci città">
+      <input type="text" class="form-control"name="citta" ngModel placeholder="Inserisci Città">
       <br><br>
       <b>Provincia</b><br>
-      <input type="text" class="form-control" name="provincia" [(ngModel)]="provincia" placeholder="Inserisci provincia">
+      <input type="text" class="form-control" name="provincia" ngModel placeholder="Inserisci Provincia">
       <br><br>
       <b>CAP</b><br>
-      <input type="text"class="form-control" name="cap"  [(ngModel)]="cap" placeholder="Inserisci CAP"><br>
-      <br> 
+      <input type="text"class="form-control" name="cap" ngModel placeholder="Inserisci CAP"><br>
+      <br>
+      <b>Data</b><br>
+      <input type="date" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
+      <br><br>
+      <button class="btn btn-primary" style="width: 100%;">Concludi pratica trasporto</button> 
   </form>
   </div>
 
+  <!-- Spedizione Multipla -->
+
   <div *ngIf="tipoSpedizione=='Multipla'">
-    <div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">N° Divisioni</th>
+            <th scope="col">Indirizzo</th>
+            <th scope="col">Civico</th>
+            <th scope="col">Città</th>
+            <th scope="col">Provincia</th>
+            <th scope="col">CAP</th>
+            <th scope="col">Paese</th>
+            <th scope="col">Quantità</th>
+            <th scope="col">Data Prevista</th>
+            <th>Azione</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of divisioni; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.via}}</td>
+            <td>{{item.civico}}</td>
+            <td>{{item.citta}}</td>
+            <td>{{item.provincia}}</td>
+            <td>{{item.paese}}</td>
+            <td>{{item.cap}}</td>
+            <td>{{item.quantita}}</td>
+            <td>{{item.data}}</td>
+            <td><button class="btn btn-primary" id="elimina" style="background-color: orange;" (click) ="eliminaDivisione(i)"> <i style="font-size: 15px;" class= "fas fa-trash-alt"  ></i></button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">N°divisioni ordine</th>
-        <th scope="col">Via</th>
-        <th scope="col">Civico</th>
-        <th scope="col">Città</th>
-        <th scope="col">Provincia</th>
-        <th scope="col">CAP</th>
-        <th scope="col">Quantità</th>
-        <th>Azione</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of divisioni; index as i">
-        <th scope="row">{{i+1}}</th>
-        <td>{{item.getVia()}}</td>
-        <td>{{item.getCivico()}}</td>
-        <td>{{item.getCitta()}}</td>
-        <td>{{item.getProvincia()}}</td>
-        <td>{{item.getCAP()}}</td>
-        <td>{{item.getQuantita()}}</td>
-         <td><button class="btn btn-primary" id="elimina" style="background-color: orange;" (click) ="eliminaDivisione(i)"> <i style="font-size: 15px;" class= "fas fa-trash-alt"  ></i></button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="d-flex justify-content-center">
-  <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Aggiungi divisione</button>
-</div>
-</div>
-<br>
-<br>
-<br>
-  <div class="float-end">
-    <button class="btn btn-primary" >Aggiungi trasporto e concludi ordine</button>
+    <div class="d-flex justify-content-center" style="margin-top: 30px">
+      <button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Aggiungi divisione</button>
+    </div>
+    <br><br>
+    <button type="button" class="btn btn-primary" width="100%">Concludi pratica trasporto</button>
   </div>
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+<!-- modal -->
+<form class="form-group" #aggiungiDivisioneForm="ngForm" (ngSubmit)="aggiungiDivisione(aggiungiDivisioneForm.value)">
+<div class="modal fade" id="staticBackdrop"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
@@ -74,29 +87,36 @@
           </div>
           <div class="modal-body">
               <div class="modal-body">
-                 
-                      <b>Via</b><br>
-                      <input type="text" class="form-control" [(ngModel)]="via" name="via" placeholder="Inserisci via">
-                      <br>
-                      <b>Civico</b><br>
-                      <input type="text" class="form-control" [(ngModel)]="civico"name="civico" placeholder="Inserisci via">
-                      <br>
-                      <b>Città</b><br>
-                      <input type="text" class="form-control" [(ngModel)]="citta" name="città" placeholder="Inserisci città">
-                      <br>
-                      <b>Provincia</b><br>
-                      <input type="text"  class="form-control" [(ngModel)]="provincia" name="provincia"  placeholder="Inserisci provincia">
-                      <br>
-                      <b>CAP</b><br>
-                      <input type="text" class="form-control" [(ngModel)]="cap" name="cap"  placeholder="Inserisci CAP"><br>  
-                      <b>Quantità</b> 
-                      <input type="number" name="cap"  class="form-control" [(ngModel)]="quantita" placeholder="Inserisci Quantità">
-                      <br>
+                <b>Paese EU</b><br>
+                <input type="text" class="form-control"name="paese" ngModel placeholder="Inserisci Paese">
+                <br>
+                <b>Via</b><br>
+                <input type="text"class="form-control" name="via" ngModel placeholder="Inserisci Via">
+                <br>
+                <b>Civico</b><br>
+                <input type="text"class="form-control" name="civico" ngModel placeholder="N.">
+                <br>
+                <b>Città</b><br>
+                <input type="text" class="form-control"name="citta" ngModel placeholder="Inserisci Città">
+                <br>
+                <b>Provincia</b><br>
+                <input type="text" class="form-control" name="provincia" ngModel placeholder="Inserisci Provincia">
+                <br>
+                <b>CAP</b><br>
+                <input type="text"class="form-control" name="cap" ngModel placeholder="Inserisci CAP"><br>
+                <br>
+                <b>Quantità</b><br>
+                <input type="text" class="form-control" name="quantita" ngModel placeholder="Inserisci Quantità" min=0 max="">
+                <br>
+                <b>Data</b><br>
+                <input type="text" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
               </div>
               <div class="modal-footer ">
-                  <button type="button " class="btn btn-secondary " (click)= "aggiungiDivisione()">Aggiungi Divisione</button>
-                  <button type="button " class="btn btn-primary " data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Torna indietro</button>
+                <button type="submit" class="btn btn-primary">Aggiungi Divisione</button>
               </div>
           </div>
       </div>
   </div>
+</div>
+</form>

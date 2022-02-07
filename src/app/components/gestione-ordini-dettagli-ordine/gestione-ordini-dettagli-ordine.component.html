@@ -17,18 +17,18 @@
         </div><!--lg12-->
           <hr>
         <div class="row mb50 mt20">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <h4>Informazioni sull'ordine</h4>
                 <p><b>Acquirente:</b> {{distributore?.nome}} {{distributore?.cognome}}</p>
                 <p><b>VAT Number:</b> {{distributore?.vat}}</p>
                 <p><b>Data acquisto:</b> {{ordine?.dataOrdinazione}}</p>
                 <p><b>Quantità totale (in Pz.):</b> {{quantitaOrdineProdotto}}</p>
+                <br><br>
+                <h4>Status: <em>{{ordine.stato}}</em></h4>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <h4>Gestione Pratiche Trasporto</h4>
-                <app-gestione-pratiche-trasporto></app-gestione-pratiche-trasporto>
-                <h4>Status</h4>
-                <p>In lavorazione...</p>
+                <app-gestione-pratiche-trasporto [idOrdine]="idOrd" [quantitaOp]="quantitaOrdineProdotto" [prezzoOp]="prezzoOrdineProdotto"></app-gestione-pratiche-trasporto>
             </div>
         </div>
         <hr>

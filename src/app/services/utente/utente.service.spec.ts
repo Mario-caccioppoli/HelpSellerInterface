@@ -35,7 +35,7 @@ describe('UtenteService', () => {
   it('loginAzienda', (done: DoneFn) => {
     let tipo: string = "Azienda";
     let email: string = "bevande@gmail.com";
-    let password: string = "123";
+    let password: string = "5f4dcc3b5aa765d61d8327deb882cf99";
 
     service.loginUtente(tipo, email, password).subscribe(resp => {
       expect(resp.tipo.length).toBeGreaterThan(0);
@@ -49,7 +49,7 @@ describe('UtenteService', () => {
   it('loginDistributore', (done: DoneFn) => {
     let tipo: string = "Distributore";
     let email: string = "mario@gmail.com";
-    let password: string = "111";
+    let password: string = "9d9d5892191682404f896cd31b8ff3f1";
 
     service.loginUtente(tipo, email, password).subscribe(resp => {
       expect(resp.tipo.length).toBeGreaterThan(0);

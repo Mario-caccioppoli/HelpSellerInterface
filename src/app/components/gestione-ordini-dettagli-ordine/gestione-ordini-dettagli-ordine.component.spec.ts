@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { DistributoreService } from 'src/app/services/distributore/distributore.service';
 import { LogService } from 'src/app/services/log.service';
 import { OrdineProdottoService } from 'src/app/services/ordine-prodotto/ordine-prodotto.service';
@@ -13,7 +14,7 @@ describe('GestioneOrdiniDettagliOrdineComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ GestioneOrdiniDettagliOrdineComponent ],
-      imports : [HttpClientModule],
+      imports : [HttpClientModule, RouterTestingModule],
       providers : [OrdineProdottoService,DistributoreService,LogService]
     })
     .compileComponents();

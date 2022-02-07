@@ -1,14 +1,14 @@
 export interface Utente{
     id: number;
-    username: string;
+    username?: string;
     email: string;
-    password: string;
+    password?: string;
     tipo: string;
-    vat: string;
-    indirizzo: string;
-    descrizione: string;
-    nome: string;
-    cognome: string;
-    telefono: string;
-    logo: string;
+    vat?: string;
+    indirizzo?: string;
+    descrizione?: string;
+    nome?: string;
+    cognome?: string;
+    telefono?: string;
+    logo?: string;
 }

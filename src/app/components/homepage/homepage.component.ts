@@ -11,12 +11,15 @@ import { ProdottoService } from 'src/app/services/prodotto/prodotto.service';
 })
 export class HomepageComponent implements OnInit {
 
+  
   currentUser: Utente = JSON.parse(localStorage.getItem("currentUser"));
 
   constructor(private ps: ProdottoService, private log: LogService) { }
 
   ngOnInit(): void {
-    this.getSuggested();
+    if(this.currentUser.tipo == 'Distributore') {
+      this.getSuggested(this.currentUser.id);
+    }    
   }
 
   cercaNomeProdotto:string;  
@@ -52,8 +55,8 @@ export class HomepageComponent implements OnInit {
     // }
   }
 
-  getSuggested(){
-    this.ps.firstLayer().subscribe(
+  getSuggested(id: number){
+    this.ps.secondLayer(id).subscribe(
       (resp)=>{
         this.log.Debug(HomepageComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
@@ -69,7 +72,5 @@ export class HomepageComponent implements OnInit {
       }
     )
   }  
-
-
 
 }

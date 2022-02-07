@@ -24,7 +24,7 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
   idDistributore : number;
   myStorage = window.localStorage;
 
-  cercaCodiceOrdine: number;
+  cercaCodiceOrdine: string;
   cercaDataOrdine: string;
   cercaNomeAzienda: string;
 
@@ -55,18 +55,19 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
   }
 
   cercaCodice(){
-    if (this.cercaCodiceOrdine == 0) {
-      this.ordiniAll.forEach(e => this.ordini.push(Object.assign({},e)));
-    } else {
-
+    if (this.cercaCodiceOrdine != '') {
       this.ordini.splice(0, this.ordini.length);
     
       for(let i = 0; i < this.ordiniAll.length; i++) {
-
-        if (this.ordiniAll[i].id == this.cercaCodiceOrdine) {
+        let id: string = ""+this.ordiniAll[i].id;
+        if (id == this.cercaCodiceOrdine) {
           this.ordini.push(this.ordiniAll[i]);
         }
       }
+      
+    } else {
+      this.ordini.splice(0, this.ordini.length);
+      this.ordiniAll.forEach(e => this.ordini.push(Object.assign({},e)));
   }
 }
 

@@ -3,7 +3,7 @@
         <div class="searchbarContainer"><input type="text" id="searchbar" name="searchbar" ngModel class="searchbar" placeholder="cerca azienda"><button type="submit"><i class="fas fa-search"></i></button></div>
     </form>
     <div class="row">
-        <div *ngFor="let azienda of aziende" class="col">
+        <div *ngFor="let azienda of aziendeToDisplay" class="col">
             <a [routerLink]="['/profiloAzienda' ,azienda.id] ">
                 <div class="aziendaContainer ">
                     <img [src]="azienda.logoBlob" alt="FOTO AZIENDA ">

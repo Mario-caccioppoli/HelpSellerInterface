@@ -21,30 +21,35 @@ export class HomepageComponent implements OnInit {
 
   cercaNomeProdotto:string;  
   prodotti : Prodotto[]; //getall prodotti
+  prodottiToDisplay: Prodotto[];
 
   myStorage = window.localStorage;
 
   cercaChange(){
-    if(this.cercaNomeProdotto==''){
-      this.getSuggested();
+    var filter=this.cercaNomeProdotto.toLocaleLowerCase();
+    if(filter!=undefined){
+      this.prodottiToDisplay=this.prodotti.filter(p=>p.nomeProdotto.toLocaleLowerCase().includes(filter));
     }
-    else{
-    this.ps.findAllProdottiByNome(this.cercaNomeProdotto).subscribe(
-      (resp)=>{
-        this.log.Debug(HomepageComponent.name,"chiamata a back-end",[resp]);
-        this.prodotti=resp;
-        console.log(this.prodotti.forEach(p=>p.nomeProdotto))
-        this.prodotti.forEach(p=>{
-          if(p.immagineBlob!=(undefined && null)){
-            p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
-          }
-        })
-      },
-      (error)=>{
-        this.log.Error(HomepageComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-    }
+    // if(this.cercaNomeProdotto==''){
+    //   this.getSuggested();
+    // }
+    // else{
+    // this.ps.findAllProdottiByNome(this.cercaNomeProdotto).subscribe(
+    //   (resp)=>{
+    //     this.log.Debug(HomepageComponent.name,"chiamata a back-end",[resp]);
+    //     this.prodotti=resp;
+    //     console.log(this.prodotti.forEach(p=>p.nomeProdotto))
+    //     this.prodotti.forEach(p=>{
+    //       if(p.immagineBlob!=(undefined && null)){
+    //         p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
+    //       }
+    //     })
+    //   },
+    //   (error)=>{
+    //     this.log.Error(HomepageComponent.name,"chiamata a back-end",[error]);
+    //   }
+    // )
+    // }
   }
 
   getSuggested(){
@@ -52,6 +57,7 @@ export class HomepageComponent implements OnInit {
       (resp)=>{
         this.log.Debug(HomepageComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
+        this.prodottiToDisplay=this.prodotti;
         this.prodotti.forEach(p=>{
           if(p.immagineBlob!=(undefined && null)){
             p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;

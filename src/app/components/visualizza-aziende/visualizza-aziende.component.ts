@@ -11,6 +11,7 @@ import { LogService } from 'src/app/services/log.service';
 })
 export class VisualizzaAziendeComponent implements OnInit {
   aziende: Azienda[];
+  aziendeToDisplay: Azienda[];
   prove: Azienda[];
   ricercaAziendaByNome: string;
   constructor(private aziendaService: AziendaService, private log: LogService) { }
@@ -26,6 +27,7 @@ export class VisualizzaAziendeComponent implements OnInit {
       (resp) => {
         this.log.Debug(VisualizzaAziendeComponent.name,"chiamata a back-end",[resp]);
         this.aziende = resp as Azienda[];
+        this.aziendeToDisplay=this.aziende;
         this.aziende.forEach(p=>{
           if(p.logoBlob!=(undefined && null)){
             p.logoBlob='data:image/jpeg;base64,'+p.logoBlob;
@@ -39,25 +41,29 @@ export class VisualizzaAziendeComponent implements OnInit {
 
   }
   ricercaConSidebar(form){
-    if(form.searchbar==''){
-      this.getAllAziende()
+    var filter=form.searchbar.toLocaleLowerCase();
+    if(filter!=undefined){
+      this.aziendeToDisplay=this.aziende.filter(p=>p.nomeAzienda.toLocaleLowerCase().includes(filter));
     }
-    else{
-    this.aziendaService.findAziendeByName(form.searchbar).subscribe(
-      (resp)=>{
-        this.log.Debug(VisualizzaAziendeComponent.name,"chiamata a back-end",resp);
-        this.aziende = resp as Azienda[];
-        this.aziende.forEach(p=>{
-          if(p.logoBlob!=(undefined && null)){
-            p.logoBlob='data:image/jpeg;base64,'+p.logoBlob;
-          }
-        })
-      },
-      (error)=>{
-        this.log.Error(VisualizzaAziendeComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-    }
+    // if(form.searchbar==''){
+    //   this.getAllAziende()
+    // }
+    // else{
+    // this.aziendaService.findAziendeByName(form.searchbar).subscribe(
+    //   (resp)=>{
+    //     this.log.Debug(VisualizzaAziendeComponent.name,"chiamata a back-end",resp);
+    //     this.aziende = resp as Azienda[];
+    //     // this.aziende.forEach(p=>{
+    //     //   if(p.logoBlob!=(undefined && null)){
+    //     //     p.logoBlob='data:image/jpeg;base64,'+p.logoBlob;
+    //     //   }
+    //     // })
+    //   },
+    //   (error)=>{
+    //     this.log.Error(VisualizzaAziendeComponent.name,"chiamata a back-end",[error]);
+    //   }
+    // )
+    // }
   }
 
 

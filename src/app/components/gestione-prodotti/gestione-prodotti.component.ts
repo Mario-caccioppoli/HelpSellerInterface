@@ -146,7 +146,6 @@ export class GestioneProdottiComponent implements OnInit {
     }
 
     /* Fine Regex */
-    
     this.prodotto={
       id:this.idProdottoDaModificare,
       nomeProdotto: form.nome,

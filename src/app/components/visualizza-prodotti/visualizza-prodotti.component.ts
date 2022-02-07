@@ -14,6 +14,7 @@ export class VisualizzaProdottiComponent implements OnInit {
   idAzienda: number;
   prodotti : Prodotto[];
   ricercaProdottoByNome: any;
+  prodottiToDisplay:Prodotto[];
   constructor(private prodottoService : ProdottoService,private route: ActivatedRoute,private log : LogService, private fileService:  FileService) { }
 
   ngOnInit(): void {
@@ -37,6 +38,7 @@ export class VisualizzaProdottiComponent implements OnInit {
       (resp)=>{
         this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
+        this.prodottiToDisplay=this.prodotti;
         this.prodotti.forEach(p=>{
           if(p.immagineBlob!=(undefined && null)){
             p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
@@ -54,6 +56,7 @@ export class VisualizzaProdottiComponent implements OnInit {
       (resp) => {
         this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
+        this.prodottiToDisplay=this.prodotti;
         this.prodotti.forEach(p=>{
           if(p.immagineBlob!=(undefined && null)){
             p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
@@ -67,27 +70,31 @@ export class VisualizzaProdottiComponent implements OnInit {
   }
 
   ricercaConSidebar(form){
-    if(form.searchbar==''){
-      this.getProdottiByIdAzienda();
+    var filter=form.searchbar.toLocaleLowerCase();
+    if(filter!=undefined){
+      this.prodottiToDisplay=this.prodotti.filter(p=>p.nomeProdotto.toLocaleLowerCase().includes(filter));
     }
-    else{
-    console.log(this.idAzienda)
-    console.log(form.searchbar)
-    this.prodottoService.findProdottiByNomeInAzienda(form.searchbar,this.idAzienda).subscribe(
-      (resp)=>{
-        this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",resp);
-        this.prodotti = resp as Prodotto[];
-        this.prodotti.forEach(p=>{
-          if(p.immagineBlob!=(undefined && null)){
-            p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
-          }
-        })
-      },
-      (error)=>{
-        this.log.Error(VisualizzaProdottiComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-    }
+    // if(form.searchbar==''){
+    //   this.getProdottiByIdAzienda();
+    // }
+    // else{
+    // console.log(this.idAzienda)
+    // console.log(form.searchbar)
+    // this.prodottoService.findProdottiByNomeInAzienda(form.searchbar,this.idAzienda).subscribe(
+    //   (resp)=>{
+    //     this.log.Debug(VisualizzaProdottiComponent.name,"chiamata a back-end",resp);
+    //     this.prodotti = resp as Prodotto[];
+    //     this.prodotti.forEach(p=>{
+    //       if(p.immagineBlob!=(undefined && null)){
+    //         p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
+    //       }
+    //     })
+    //   },
+    //   (error)=>{
+    //     this.log.Error(VisualizzaProdottiComponent.name,"chiamata a back-end",[error]);
+    //   }
+    // )
+    // }
   }
 
 

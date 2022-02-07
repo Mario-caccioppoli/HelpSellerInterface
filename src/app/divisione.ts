@@ -1,4 +1,4 @@
-export class Divisione {
+export interface Divisione {
         ID : number;
         via : string;
         civico : string;
@@ -6,7 +6,11 @@ export class Divisione {
         provincia : string;
         cap : string;
         quantita : number;
-        
+        paese: string;
+        data: string;
+}
+
+/*
         constructor(){}
         public setID(id:number){
             this.ID = id;
@@ -64,6 +68,8 @@ export class Divisione {
         
         public toStringIndirizzo() : string{
             return this.via + " " +this.civico + " " +this.citta +" " +this.provincia +" " +this.cap ;
-        }
+        } 
+        
 }
 
+*/

@@ -94,11 +94,11 @@ export class RegistrazioneComponent implements OnInit {
   }
 
   if(this.rX.regexProvincia(form.provincia)!= true) {
-    return alert("Provincia non è valida, si prega di riprovare");
+    return alert("La Provincia inserita non è valida, si prega di riprovare");
   }
 
   if(this.rX.regexPaese(form.paese)!= true) {
-    return alert("Paese non è valido, si prega di riprovare");
+    return alert("Il Paese inserito non è valido, si prega di riprovare");
   }
 
     if (checkvat.length > 12) {

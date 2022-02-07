@@ -124,15 +124,6 @@ export class GestioneScontiComponent implements OnInit {
     form.dataInizio = this.dataInizio.toLocaleDateString("en-US");
     form.dataFine = this.dataFine.toLocaleDateString("en-US"); */
 
-<<<<<<< HEAD
-    // if(this.rX.regexData(form.dataInizio)!= true) {
-    //   return alert("Data non valida, si prega di riprovare");
-    // }
-
-    // if(this.rX.regexData(form.dataFine)!= true) {
-    //   return alert("Data non valida, si prega di riprovare");
-    // }
-=======
     var inputDataInizio = new Date(form.dataInizio);
     this.dataInizio = inputDataInizio.toISOString().slice(0, 10);
     form.dataInizio = this.dataInizio;
@@ -148,7 +139,6 @@ export class GestioneScontiComponent implements OnInit {
     if(this.rX.regexData(form.dataFine)!= true) {
       return alert("Data non valida, si prega di riprovare");
     }
->>>>>>> antonio
 
     if(this.rX.regexNome(form.nome)!= true) {
       return alert("Nome non valido, si prega di riprovare");

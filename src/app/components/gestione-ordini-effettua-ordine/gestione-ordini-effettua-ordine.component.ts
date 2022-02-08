@@ -32,6 +32,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
   cercaNomeProdotto:string;  
   currentUser:Utente=JSON.parse(localStorage.getItem('currentUser'));
   prodotti : Prodotto[]; //getall prodotti
+  prodottiToDisplay: Prodotto[];
 
   myStorage = window.localStorage;
   ind: number;
@@ -126,6 +127,12 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
       (resp)=>{
         this.log.Debug(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];
+        this.prodottiToDisplay=this.prodotti;
+        this.prodotti.forEach(p=>{
+          if(p.immagineBlob!=(undefined && null)){
+            p.immagineBlob='data:image/jpeg;base64,'+p.immagineBlob;
+          }
+        })
       },
       (error)=>{
         this.log.Error(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[error]);
@@ -137,15 +144,19 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 // Inizio procedura Carrello
 
   cercaChange(){
-    this.prodottoService.findAllProdottiByNome(this.cercaNomeProdotto).subscribe(
-      (resp)=>{
-        this.log.Debug(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[resp]);
-        this.prodotti=resp;
-      },
-      (error)=>{
-        this.log.Error(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[error]);
-      }
-    )
+    var filter=this.cercaNomeProdotto.toLocaleLowerCase();
+    if(filter!=undefined){
+      this.prodottiToDisplay=this.prodotti.filter(p=>p.nomeProdotto.toLocaleLowerCase().includes(filter));
+    }
+    // this.prodottoService.findAllProdottiByNome(this.cercaNomeProdotto).subscribe(
+    //   (resp)=>{
+    //     this.log.Debug(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[resp]);
+    //     this.prodotti=resp;
+    //   },
+    //   (error)=>{
+    //     this.log.Error(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[error]);
+    //   }
+    // )
   }
 
   selezionaProdotti(event,prodotto:Prodotto){

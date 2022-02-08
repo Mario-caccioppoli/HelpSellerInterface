@@ -25,6 +25,10 @@ export class TrasportoService {
     return this.http.post<number>(`${this.apiServerUrl}/insert`, Trasporto);
   }
 
+  public insertTrasportoMultiplo(Trasporto: Trasporto[]): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insertTrasporti`, Trasporto);
+  }
+
   public updateTrasporto(Trasporto: Trasporto): Observable<number> {
     return this.http.post<number>(`${this.apiServerUrl}/update`, Trasporto);
   }

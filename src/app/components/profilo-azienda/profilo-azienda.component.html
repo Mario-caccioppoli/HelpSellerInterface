@@ -5,7 +5,7 @@
             <br>
             <br>
             <p>Pannello</p>
-            
+
             <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
             <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
             <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
@@ -40,7 +40,7 @@
             <br>
             <br>
             <p>Pannello</p>
-            
+
 
             <!-- <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button> -->
         </div>
@@ -58,7 +58,8 @@
                 <p class="paragrafo left">{{azienda.indirizzo}}</p>
                 <h5 class="m25 left"><b><!--{{azienda.descrizione}}-->Descrizione</b></h5>
                 <p class="paragrafo left">{{azienda.descrizione}}</p>
-                <button class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', idAzienda]">Visualizza Prodotti</a></button>
+                <button *ngIf="currentUser?.tipo=='Azienda' || currentUser?.tipo=='Amministratore'" class="btn btn-primary"><a [routerLink]="['/visualizzaProdotti', idAzienda]">Visualizza Prodotti</a></button>
+                <button *ngIf="currentUser?.tipo=='Distributore'" class="btn btn-primary"><a [routerLink]="['/effettuaOrdine', idAzienda]">Effettua un Ordine</a></button>
                 <!-- <div>*ngIf="azienda != undefined && azienda.id != undefined"</div> -->
             </div>
         </div>

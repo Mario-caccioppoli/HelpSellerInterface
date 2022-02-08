@@ -122,29 +122,29 @@ export class GestioneScontiComponent implements OnInit {
 
     var inputData = new Date(form.dataInizio);
     this.dataInizio = inputData.toLocaleDateString('en-GB');
-    form.data = this.dataInizio;
+    form.dataInizio = this.dataInizio;
 
-    // if(this.rX.regexData(form.dataInizio)!= true) {
-    //   return alert("Data non valida, si prega di riprovare");
-    // }
+    if(this.rX.regexData(form.dataInizio)!= true) {
+      return alert("Data non valida, si prega di riprovare");
+    }
 
     var convData = new Date(inputData);
     this.dataInizio = convData.toISOString().slice(0, 10);
-    form.data = this.dataInizio;
+    form.dataInizio = this.dataInizio;
 
     // Regex DataFine
 
     var inputData = new Date(form.dataFine);
     this.dataFine = inputData.toLocaleDateString('en-GB');
-    form.data = this.dataFine;
+    form.dataFine = this.dataFine;
 
-    // if(this.rX.regexData(form.dataFine)!= true) {
-    //   return alert("Data non valida, si prega di riprovare");
-    // }
+    if(this.rX.regexData(form.dataFine)!= true) {
+      return alert("Data non valida, si prega di riprovare");
+    }
 
     var convData = new Date(inputData);
     this.dataFine = convData.toISOString().slice(0, 10);
-    form.data = this.dataFine;
+    form.dataFine = this.dataFine;
 
     // End regex su Date
 
@@ -185,13 +185,31 @@ export class GestioneScontiComponent implements OnInit {
   modificaSconto(form){
     console.log("id sconto "+this.idScontoDaModificare)
 
-    // if(this.rX.regexData(form.dataInizio)!= true) {
-    //   return alert("Data non valida, si prega di riprovare");
-    // }
+    var inputData = new Date(form.dataInizio);
+    this.dataInizio = inputData.toLocaleDateString('en-GB');
+    form.dataInizio = this.dataInizio;
 
-    // if(this.rX.regexData(form.dataFine)!= true) {
-    //   return alert("Data non valida, si prega di riprovare");
-    // }
+    if(this.rX.regexData(form.dataInizio)!= true) {
+      return alert("Data non valida, si prega di riprovare");
+    }
+
+    var convData = new Date(inputData);
+    this.dataInizio = convData.toISOString().slice(0, 10);
+    form.dataInizio = this.dataInizio;
+
+    // Regex DataFine
+
+    var inputData = new Date(form.dataFine);
+    this.dataFine = inputData.toLocaleDateString('en-GB');
+    form.dataFine = this.dataFine;
+
+    if(this.rX.regexData(form.dataFine)!= true) {
+      return alert("Data non valida, si prega di riprovare");
+    }
+
+    var convData = new Date(inputData);
+    this.dataFine = convData.toISOString().slice(0, 10);
+    form.dataFine = this.dataFine;
 
     if(this.rX.regexNome(form.nome)!= true) {
       return alert("Nome non valido, si prega di riprovare");

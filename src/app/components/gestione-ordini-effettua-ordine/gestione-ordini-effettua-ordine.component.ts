@@ -48,11 +48,15 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     else{
       this.getProdottiByIdAzienda()
     }*/
+    this.prendiIdAziendaDalRouter();
+    this.getAllProdottiByAzienda();
 
-    this.getAllProdotto();
 
 
-
+  }
+  prendiIdAziendaDalRouter(){
+    this.route.paramMap.subscribe(params=>
+      this.idAzienda= +params.get('idAzienda'));
   }
 
   startCart() { //avvia il carrello e i checkbox sul click Effettua Ordine
@@ -117,8 +121,8 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
 //////////////////////////////////////                         //////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  getAllProdotto(){
-    this.prodottoService.getAllProdotto().subscribe(
+  getAllProdottiByAzienda(){
+    this.prodottoService.getProdottoByIdAzienda(this.idAzienda).subscribe(
       (resp)=>{
         this.log.Debug(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];

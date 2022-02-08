@@ -52,7 +52,7 @@ const routes: Routes = [
     component:GestioneOrdiniEffettuatiComponent
   },
   {
-    path:'effettuaOrdine-TEST',
+    path:'effettuaOrdine/:idAzienda',
     component:GestioneOrdiniEffettuaOrdineComponent
   },
   {

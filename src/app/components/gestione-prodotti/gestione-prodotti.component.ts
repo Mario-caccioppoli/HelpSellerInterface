@@ -67,12 +67,25 @@ export class GestioneProdottiComponent implements OnInit {
 
     /* Inizio Regex */
 
+    if(Number(form.quantita)<Number(form.quantitaMinima)){
+      return alert("Quantita minima più grande della quantità settata");
+    }
+
     if(this.rX.regexNome(form.nome)!= true) {
       return alert("Nome non valido, si prega di riprovare");
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.prezzo)!= true) {
       return alert("Prezzo non valido, si prega di riprovare");
+    }
+    if(this.rX.regexQuantita(form.quantita)!=true){
+      return alert("Quantita non valida, si prega di riprovare");
+    }
+    if(this.rX.regexQuantita(form.quantitaMinima)!=true){
+      if(Number(form.quantita)<Number(form.quantitaMinima)){
+        return alert("Quantita minima più grande della quantità settata");
+      }
+      return alert("Quantita minima non valida si prega di riprovare");
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.volume)!= true) {
@@ -125,6 +138,10 @@ export class GestioneProdottiComponent implements OnInit {
     console.log("form "+form);
     /* Inizio Regex */
 
+    if(Number(form.quantita)<Number(form.quantitaMinima)){
+      return alert("Quantita minima più grande della quantità settata");
+    }
+
     if(this.rX.regexNome(form.nome)!= true) {
       return alert("Nome non valido, si prega di riprovare");
     }
@@ -134,16 +151,19 @@ export class GestioneProdottiComponent implements OnInit {
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.volume)!= true) {
-      console.log("volume "+form.volume)
-      let vvv=form.volume;
-      console.log("stampa stringa "+typeof(form.volume));
       return alert("Volume non valido, si prega di riprovare");
     }
 
     if(this.rX.regexPrezzoVolumePeso(form.peso)!= true) {
       return alert("Peso non valido, si prega di riprovare");
     }
-
+    if(this.rX.regexQuantita(form.quantita)!=true){
+      return alert("Quantita non valida, si prega di riprovare");
+    }
+    if(this.rX.regexQuantita(form.quantitaMinima)!=true){
+      
+      return alert("Quantita minima non valida si prega di riprovare");
+    }
     if(this.rX.regexDescrizione(form.descrizione)!= true) {
       return alert("Descrizione non valida, si prega di riprovare");
     }

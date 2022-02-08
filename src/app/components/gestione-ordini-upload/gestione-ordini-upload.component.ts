@@ -20,22 +20,20 @@ export class GestioneOrdiniUploadComponent implements OnInit {
   }
 
   documentoUploadFunction(form) {
-    if(this.documento != undefined)
-    {
-      this.docs.insertDocumento(form.upload).subscribe(
+      this.docs.insertDocumento(this.documento).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniUploadComponent.name, "ok", [success]);
 
-          //this.documento = success as Documento;
-          //TODO: aggiungere alert su controllo
+          this.documento = success as Documento;
+          console.log(this.documento);
           alert("Documento inserito");
         },
 
         (error) => {
           this.log.Error(GestioneOrdiniUploadComponent.name, "errore", [error]);
+          alert("Upload Documento fallito, si prega di riprovare");
         }
       )
-    }
   }
 
 }

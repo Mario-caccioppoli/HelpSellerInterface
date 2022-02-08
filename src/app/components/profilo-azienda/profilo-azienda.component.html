@@ -6,9 +6,9 @@
             <br>
             <p>Pannello</p>
 
-            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
-            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
-            <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
+            <button class="btn btn-secondary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
+            <button class="btn btn-secondary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
+            <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-danger w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
         </div>
         <div class="col-lg-9 centered">
             <h2 class="titolo centered">{{currentUser?.nome}} {{currentUser?.cognome}}
@@ -41,9 +41,9 @@
             <br>
             <p>Pannello</p>
 
-            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
-            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
-            <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
+            <button class="btn btn-secondary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
+            <button class="btn btn-secondary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
+            <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-danger w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
 
             <!-- <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button> -->
         </div>
@@ -87,18 +87,18 @@
                         <div class="modal-body">
                             <div class="modal-body">
                                 <div><b>Vecchia Password</b></div>
-                                <input type="password" ngModel class="form-control" name="passwordVecchia" />
+                                <input type="password" ngModel class="form-control" name="passwordVecchia" /><br>
                                 <div><b>Nuova Password</b></div>
-                                <input type="password" ngModel class="form-control" name="passwordNuova" />
+                                <input type="password" ngModel class="form-control" name="passwordNuova" /><br>
                                 <div><b>Conferma nuova Password</b></div>
-                                <input type="password" ngModel class="form-control" name="passwordConferma" />
+                                <input type="password" ngModel class="form-control" name="passwordConferma" /><br>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <button type="submit" class="btn btn-primary">INVIA NUOVA PASSWORD</button>
+                    <button type="submit" class="btn btn-success">Invia nuova password</button>
                 </div>
             </form>
         </div>
@@ -127,9 +127,9 @@
                                     <div *ngIf="currentUser.tipo!='Azienda'"><b>Nuovo username</b></div>
                                     <input *ngIf="currentUser.tipo!='Azienda'" [value]="currentUser.username" type="text" class="form-control" ngModel name="username" /><br>
                                     <div *ngIf="currentUser.tipo=='Azienda'"><b>Nuovo Nome Azienda</b></div>
-                                    <input *ngIf="currentUser.tipo=='Azienda'" [value]="currentUser.nome" type="text" class="form-control" ngModel name="nome" /><br>
+                                    <input *ngIf="currentUser.tipo=='Azienda'" [value]="currentUser.nome" type="text" class="form-control" ngModel name="nome" />
                                     <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo indirizzo</b></div>
-                                    <input *ngIf="currentUser.tipo!='Amministratore'" [value]="currentUser.indirizzo" type="text" class="form-control" ngModel name="indirizzo" /><br>
+                                    <input *ngIf="currentUser.tipo!='Amministratore'" [value]="currentUser.indirizzo" type="text" class="form-control" ngModel name="indirizzo" />
                                     <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'"><b>Nuova descrizione</b></div>
                                     <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'" [value]="currentUser.descrizione" type="text" class="form-control" ngModel name="descrizione" /><br>
                                     <div><b>Nuova email</b></div>
@@ -145,7 +145,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <button type="submit" class="btn btn-primary">MODIFICA ACCOUNT</button>
+                    <button type="submit" class="btn btn-success">Modifica account</button>
                 </div>
             </form>
         </div>

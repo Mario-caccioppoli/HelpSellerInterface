@@ -1,14 +1,14 @@
 <div class="container scroll">
     <form #searchbar="ngForm" (ngSubmit)="ricercaConSidebar(searchbar.value)">
-        <div class="searchbarContainer"><input type="text" id="searchbar" name="searchbar" ngModel class="searchbar" placeholder="cerca azienda"><button type="submit"><i class="fas fa-search"></i></button></div>
+        <div class="searchbarContainer"><input class="form-control me-2" type="search" placeholder="Ricerca prodotto..." ngModel aria-label="Cerca" name="searchbar"></div>
     </form>
-    <div class="row">
-        <div *ngFor="let azienda of aziendeToDisplay" class="col">
+    <div class="row eqi-container">
+        <div *ngFor="let azienda of aziendeToDisplay" class="col-lg-3 product">
             <a [routerLink]="['/profiloAzienda' ,azienda.id] ">
-                <div class="aziendaContainer ">
+                <div class="downspec">
                     <img [src]="azienda.logoBlob" alt="FOTO AZIENDA ">
-                    <div class="mt-2">
-                        <h3>{{azienda.nomeAzienda}}</h3>
+                    <div class="mt-2 mb-2">
+                        <p style="text-align: center;">{{azienda.nomeAzienda}}</p>
                     </div>
                 </div>
             </a>

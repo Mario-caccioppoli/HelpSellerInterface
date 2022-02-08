@@ -21,13 +21,13 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
   ordine: Ordine;
 
   azienda: Azienda;
+  distributore: Distributore;
 
   myStorage = window.localStorage;
 
   cercaCodiceOrdine: number;
   cercaDataOrdine: string;
   cercaNomeDistributore: string;
-
 
   constructor(private os: OrdineService, private ps: ProdottoService, private ds: DistributoreService, private log: LogService) {  }
 
@@ -101,22 +101,27 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
     )
   }
 }
-/*
+
+
+//daniele you are a bitch
   cercaDistributore(){
     if (this.cercaNomeDistributore == '') {
       this.listaOrdini();
     } else {
-    this.ds.findDistributoreByName(this.cercaNomeDistributore).subscribe(
+    this.os.findById(this.ordine.idDistributore).subscribe(
       (success)=>{
         this.log.Debug(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[success]);
-        this.distributori = success as Distributore[];
+        var ordineCercato: Ordine; var ordineArray: Ordine[] = [];
+        ordineCercato = success as Ordine;
+        ordineArray.push(ordineCercato);
+        this.ordini = ordineArray as Ordine[];
       },
       (error)=>{
         this.log.Error(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[error]);
       }
     )
   }
-}*/
+}
 
   checktypeAZ() {
     const account = this.myStorage.getItem('currentUser');

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Documento } from 'src/app/models/Documento';
 import { DocumentoService } from 'src/app/services/documento/documento.service';
 import { LogService } from 'src/app/services/log.service';
@@ -14,26 +14,28 @@ export class GestioneOrdiniDownloadComponent implements OnInit {
   documentoArray: Documento[];
   ordineProdotto: OrdineProdotto;
 
+  @Input() idOrdine;
+
   constructor(private docs: DocumentoService, private log: LogService) { }
 
   ngOnInit(): void {
+    this.documentoDownloadFunction();
   }
 
   documentoDownloadFunction() {
-    if(this.documentoArray != undefined)
-    {
-      this.docs.getDocumentiByIdOrder(this.ordineProdotto.idOrdine).subscribe(
+      this.docs.getDocumentiByIdOrder(this.idOrdine).subscribe(
         (success) => {
           this.log.Debug(GestioneOrdiniDownloadComponent.name, "ok", [success]);
 
           this.documentoArray = success as Documento[];
+          console.log(this.documentoArray);
         },
 
         (error) => {
           this.log.Error(GestioneOrdiniDownloadComponent.name, "errore", [error]);
         }
       )
-    }
   }
+
 
 }

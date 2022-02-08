@@ -144,7 +144,7 @@ export class testRegex {
       }
 
       regexPercentuale(percentuale: string) {
-        const regEx = /^[0-9]+$/;
+        const regEx = /^[0-9]{1,2}$/;
 
         return regEx.test(percentuale);
       }

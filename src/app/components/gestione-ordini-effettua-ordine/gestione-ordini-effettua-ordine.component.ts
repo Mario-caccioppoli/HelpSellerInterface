@@ -180,6 +180,7 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     
     eseguiOrdine() {
       //to do add form comment
+      console.log("entro entro")
       var PrezzoTotale=0;
       var dataOggi=new Date();
       var dataConsegna=new Date();

@@ -10,6 +10,7 @@ export interface Ordine{
     commento?: string;
     stato: string;
     idDistributore: number;
+    nomeDistributore?: string;
     documento?: Documento;
     prezzoTotale?: number;
     ordineProdotti?:OrdineProdotto[];

@@ -137,7 +137,7 @@
                                     <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo vat number</b></div>
                                     <input *ngIf="currentUser.tipo!='Amministratore'" [value]="currentUser.vat" type="text" maxlength="12" class="form-control" ngModel name="vat" /><br>
                                     <div *ngIf="currentUser.tipo=='Distributore'"><b>Nuovo numero telefono</b></div>
-                                    <input *ngIf="currentUser.tipo=='Distributore'" [value]="currentUser.vat" type="text" maxlength="10" class="form-control" ngModel name="telefono" /><br>
+                                    <input *ngIf="currentUser.tipo=='Distributore'" [value]="currentUser.vat" type="text" maxlength="14" class="form-control" ngModel name="telefono" /><br>
                                 </div>
                             </div>
                         </div>

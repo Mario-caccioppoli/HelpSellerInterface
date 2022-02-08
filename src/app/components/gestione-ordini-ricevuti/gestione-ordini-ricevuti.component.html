@@ -2,46 +2,54 @@
     <div class="col-lg-12 centered fleft">
         <h2 class="mb50">Ordini Ricevuti</h2>
         <div class="col-lg-12 mb50">
-          <form id="ricerca" class="form form-control inl">
-            <div class="row">
-              <div class="col-lg-4 pd20">
-                <label><p>Codice</p></label>
-                <input [(ngModel)]="cercaCodiceOrdine" (ngModelChange)="cercaCodice()" type="search" class="form-control" placeholder="Inserisci codice..." name="searchbar" aria-label="Search">
+            <form id="ricerca" class="form form-control inl">
+                <div class="row">
+                    <div class="col-lg-4 pd20">
+                        <label><p>Codice</p></label>
+                        <input [(ngModel)]="cercaCodiceOrdine" (ngModelChange)="cercaCodice()" type="search" class="form-control" placeholder="Inserisci codice..." name="searchbar" aria-label="Search">
+                    </div>
+                    <div class="col-lg-4 pd20">
+                        <label><p>Anno</p></label>
+                        <input [(ngModel)]="cercaDataOrdine" (ngModelChange)="cercaData()" type="search" class="form-control" placeholder="Inserisci anno..." name="searchbar" aria-label="Search" maxlength="4">
+                    </div>
+                    <div class="col-lg-4 pd20">
+                        <label><p>Distributore</p></label>
+                        <input [(ngModel)]="cercaNomeDistributore" (ngModelChange)="cercaDistributore()" type="search" class="form-control" placeholder="Inserisci distributore..." name="searchbar" aria-label="Search">
+                    </div>
                 </div>
-                <div class="col-lg-4 pd20">
-                <label><p>Anno</p></label>
-                <input [(ngModel)]="cercaDataOrdine" (ngModelChange)="cercaData()" type="search" class="form-control" placeholder="Inserisci anno..." name="searchbar" aria-label="Search" maxlength="4">
-                </div>
-                <div class="col-lg-4 pd20">
-                <label><p>Distributore</p></label>
-                <input [(ngModel)]="cercaNomeDistributore" (ngModelChange)="cercaDistributore()" type="search" class="form-control" placeholder="Inserisci distributore..." name="searchbar" aria-label="Search">
-                </div>
-            </div>
-          </form>         
+            </form>
         </div>
-        <div class="table-responsive">          
+        <div class="table-responsive">
             <div class="table-responsive-lg">
-              <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Cod. Ordine</th>
-                      <th scope="col">Data Ordine</th>
-                      <th scope="col">Distributore</th>
-                      <th scope="col">Prezzo Totale (€)</th>
-                      <th scope="col">Azioni</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor='let ordine of ordini'>
-                      <th scope="row"><p># {{ordine.id}}</p></th>
-                      <td><p>{{ordine.dataOrdinazione}}</p></td>
-                      <td><p>{{ordine.idDistributore}}</p></td>
-                      <td><p>{{ordine.prezzoTotale}}</p></td>
-                      <td><a [routerLink]="['/visualizzaProdotti', ordine.id]"><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></a></td>
-                    </tr>
-                  </tbody>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cod. Ordine</th>
+                            <th scope="col">Data Ordine</th>
+                            <th scope="col">Distributore</th>
+                            <th scope="col">Prezzo Totale (€)</th>
+                            <th scope="col">Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let ordine of ordiniToDisplay'>
+                            <th scope="row">
+                                <p># {{ordine.id}}</p>
+                            </th>
+                            <td>
+                                <p>{{ordine.dataOrdinazione}}</p>
+                            </td>
+                            <td>
+                                <p>{{ordine.nomeDistributore}}</p>
+                            </td>
+                            <td>
+                                <p>{{ordine.prezzoTotale}}</p>
+                            </td>
+                            <td><a [routerLink]="['/dettagliOrdine', ordine.id]"><button class="btn btn-primary edit"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button></a></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
-          </div>
+        </div>
     </div>
 </div>

@@ -234,25 +234,41 @@ export class ProfiloAziendaComponent implements OnInit {
       return alert("Username non valido, si prega di riprovare");
     }
 
-    // if(this.rX.regexLogo(form.logo)!= true) {
-    //   return alert("Logo non valido, si prega di riprovare");
-    // }
+    if(this.currentUser.tipo=='Azienda'){
+    if(this.rX.regexLogo(form.logo)!= true) {
+      return alert("Logo non valido, si prega di riprovare");
+      }
+    }
 
-    // if(this.rX.regexDescrizione(form.descrizione)!= true) {
-    //   return alert("Descrizione non valida, si prega di riprovare");
-    // }
+    if(this.currentUser.tipo=='Azienda'){
+    if(this.rX.regexDescrizione(form.descrizione)!= true) {
+      return alert("Descrizione non valida, si prega di riprovare");
+      }
+    }
 
-    // if(this.rX.regexNome(form.nome)!= true) {
-    //   return alert("Nome non valido, si prega di riprovare");
-    // }
+    if(this.currentUser.tipo=='Azienda'){
+      if(this.rX.regexNome(form.nomeAzienda)!= true) {
+        return alert("Nome non valido, si prega di riprovare");
+      }
+    }
 
-    // if(this.rX.regexVAT(form.vat)!= true) {
-    //   return alert("VAT Number non valido, si prega di riprovare");
-    // }
+    if(this.currentUser.tipo=='Distributore'){
+    if(this.rX.regexNome(form.nome)!= true) {
+      return alert("Nome non valido, si prega di riprovare");
+      }
+    }
 
-    // if(this.rX.regexNome(form.cognome)!= true) {
-    //   return alert("Cognome non valido, si prega di riprovare");
-    // }    
+    if(this.currentUser.tipo=='Azienda' || this.currentUser.tipo=='Distributore'){
+    if(this.rX.regexVAT(form.vat)!= true) {
+      return alert("VAT Number non valido, si prega di riprovare");
+      }
+    }
+
+    if(this.currentUser.tipo=='Distributore'){
+    if(this.rX.regexNome(form.cognome)!= true) {
+      return alert("Cognome non valido, si prega di riprovare");
+      }    
+    }
 
     /* Fine Regex */
 

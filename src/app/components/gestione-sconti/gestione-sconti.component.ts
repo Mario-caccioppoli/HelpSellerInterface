@@ -21,6 +21,7 @@ export class GestioneScontiComponent implements OnInit {
   filtroNome:string;
   
   sconti:Sconto[];
+  scontiToDisplay: Sconto[];
   sconto:Sconto;
   prodotto: Prodotto;
   prodotti: Prodotto[];
@@ -76,6 +77,7 @@ export class GestioneScontiComponent implements OnInit {
       (resp)=>{
         this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
         this.sconti = resp as Sconto[];
+        this.scontiToDisplay=this.sconti;
         console.log(resp)
       },
       (error)=>{
@@ -119,6 +121,11 @@ export class GestioneScontiComponent implements OnInit {
   aggiungiSconto(form){
 
     // Regex DataInizio
+    let dataInizio=new Date(form.dataInizio);
+    let dataFine=new Date(form.dataFine);
+    if(dataInizio>dataFine){
+      return alert("data fine più grande della data ");
+    }
 
     var inputData = new Date(form.dataInizio);
     this.dataInizio = inputData.toLocaleDateString('en-GB');
@@ -155,6 +162,7 @@ export class GestioneScontiComponent implements OnInit {
     if(this.rX.regexPercentuale(form.percentuale)!= true) {
       return alert("Percentuale non valida, si prega di riprovare");
     }
+    
 
     var newSconto = {
       nomeSconto:form.nome,
@@ -183,7 +191,11 @@ export class GestioneScontiComponent implements OnInit {
 
 
   modificaSconto(form){
-    console.log("id sconto "+this.idScontoDaModificare)
+    let dataInizio=new Date(form.dataInizio);
+    let dataFine=new Date(form.dataFine);
+    if(dataInizio>dataFine){
+      return alert("data fine più grande della data ");
+    }
 
     var inputData = new Date(form.dataInizio);
     this.dataInizio = inputData.toLocaleDateString('en-GB');
@@ -219,8 +231,10 @@ export class GestioneScontiComponent implements OnInit {
       return alert("Percentuale non valida, si prega di riprovare");
     }
 
+    if(this.selectFromModel=='Quantita'){
     if(this.rX.regexQuantita(form.quantita)!= true) {
       return alert("Quantità non valida, si prega di riprovare");
+      }
     }
 
     this.sconto={
@@ -271,22 +285,26 @@ export class GestioneScontiComponent implements OnInit {
 
   }
    findByNomeSconto(){//prendere id azienda dalla login
-    if(this.filtroNome==''){
-      this.getAllScontiByAzienda()
+    var filter=this.filtroNome.toLocaleLowerCase();
+    if(filter!=undefined){
+      this.scontiToDisplay=this.sconti.filter(p=>p.nomeSconto.toLocaleLowerCase().includes(filter));
     }
-    else{
-      if(this.currentUser!=undefined){
-       this.scontoService.findScontiByNomeInAzienda(this.filtroNome,this.currentUser.id).subscribe(
-         (resp)=>{
-           this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
-           this.sconti = resp as Sconto[];
-         },
-         (error)=>{
-           this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
-         }
-       )
-      }
-     }
+    // if(this.filtroNome==''){
+    //   this.getAllScontiByAzienda()
+    // }
+    // else{
+    //   if(this.currentUser!=undefined){
+    //    this.scontoService.findScontiByNomeInAzienda(this.filtroNome,this.currentUser.id).subscribe(
+    //      (resp)=>{
+    //        this.log.Debug(GestioneScontiComponent.name,"chiamata a back-end",[resp]);
+    //        this.sconti = resp as Sconto[];
+    //      },
+    //      (error)=>{
+    //        this.log.Error(GestioneScontiComponent.name,"chiamata a back-end",[error]);
+    //      }
+    //    )
+    //   }
+    //  }
    }
   
 }

@@ -27,7 +27,7 @@
             <td class="table-light">Percentuale</td>
             <td class="table-light">Azioni</td>
         </tr>
-        <tr class="table-light lista" *ngFor="let sconto of sconti;let i=index">
+        <tr class="table-light lista" *ngFor="let sconto of scontiToDisplay;let i=index">
             <td class=" table-light">{{sconto.nomeSconto}}</td>
             <td class="table-light">{{sconto.tipo}}</td>
             <td class="table-light">{{sconto.quantita}}</td>

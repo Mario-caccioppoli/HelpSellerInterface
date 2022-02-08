@@ -3,6 +3,7 @@ import { Azienda } from 'src/app/models/Azienda';
 import { Distributore } from 'src/app/models/Distributore';
 import { Ordine } from 'src/app/models/Ordine';
 import { Prodotto } from 'src/app/models/Prodotto';
+import { Utente } from 'src/app/models/Utente';
 import { DistributoreService } from 'src/app/services/distributore/distributore.service';
 import { LogService } from 'src/app/services/log.service';
 import { OrdineService } from 'src/app/services/ordine/ordine.service';
@@ -19,9 +20,11 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
   prodotti: Prodotto[];
   distributori: Distributore[];
   ordine: Ordine;
+  ordiniToDisplay:Ordine[];
 
   azienda: Azienda;
   distributore: Distributore;
+  nomeDistributore:string[];
 
   myStorage = window.localStorage;
 
@@ -31,10 +34,10 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
 
   constructor(private os: OrdineService, private ps: ProdottoService, private ds: DistributoreService, private log: LogService) {  }
 
+  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"));
   ngOnInit(): void {
-    this.myStorage.getItem('currentUser');
  
-    if((this.myStorage.getItem('currentUser') != undefined) && this.checktypeAZ())
+    if((this.myStorage.getItem('currentUser') != undefined) && this.currentUser.tipo=='Azienda')
     {
       this.azienda = JSON.parse(this.myStorage.getItem('currentUser')) as Azienda;
       this.listaOrdini();
@@ -46,6 +49,8 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
         (success) => {
           this.log.Debug(GestioneOrdiniRicevutiComponent.name, "ok", [success]);
           this.ordini = success as Ordine[];
+          this.ordiniToDisplay=this.ordini;
+          //this.ordini.forEach(p=>this.nomeDistributore.push(p.nomeDistributore))
         },
 
         (error) => {
@@ -103,24 +108,27 @@ export class GestioneOrdiniRicevutiComponent implements OnInit {
 }
 
 
-//daniele you are a bitch
   cercaDistributore(){
-    if (this.cercaNomeDistributore == '') {
-      this.listaOrdini();
-    } else {
-    this.os.findById(this.ordine.idDistributore).subscribe(
-      (success)=>{
-        this.log.Debug(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[success]);
-        var ordineCercato: Ordine; var ordineArray: Ordine[] = [];
-        ordineCercato = success as Ordine;
-        ordineArray.push(ordineCercato);
-        this.ordini = ordineArray as Ordine[];
-      },
-      (error)=>{
-        this.log.Error(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[error]);
-      }
-    )
-  }
+    var filter=this.cercaNomeDistributore.toLocaleLowerCase();
+    if(filter!=undefined){
+      this.ordiniToDisplay=this.ordini.filter(p=>p.nomeDistributore.toLocaleLowerCase().includes(filter));
+    }
+  //   if (this.cercaNomeDistributore == '') {
+  //     this.listaOrdini();
+  //   } else {
+  //   this.os.findById(this.ordine.idDistributore).subscribe(
+  //     (success)=>{
+  //       this.log.Debug(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[success]);
+  //       var ordineCercato: Ordine; var ordineArray: Ordine[] = [];
+  //       ordineCercato = success as Ordine;
+  //       ordineArray.push(ordineCercato);
+  //       this.ordini = ordineArray as Ordine[];
+  //     },
+  //     (error)=>{
+  //       this.log.Error(GestioneOrdiniRicevutiComponent.name,"chiamata a back-end",[error]);
+  //     }
+  //   )
+  // }
 }
 
   checktypeAZ() {

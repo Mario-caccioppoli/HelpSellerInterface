@@ -6,6 +6,8 @@ import { Ordine } from 'src/app/models/Ordine';
 import { Distributore } from 'src/app/models/Distributore';
 import { ActivatedRoute } from '@angular/router';
 import { OrdineService } from 'src/app/services/ordine/ordine.service';
+import { Utente } from 'src/app/models/Utente';
+import { Azienda } from 'src/app/models/Azienda';
 
 @Component({
   selector: 'app-gestione-ordini-dettagli-oH krdine',
@@ -15,8 +17,8 @@ import { OrdineService } from 'src/app/services/ordine/ordine.service';
 export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
 
   distributore: Distributore;
+  azienda: Azienda;
   ordineProdottoArr: OrdineProdotto[];
-  myStorage = window.localStorage;
   ordine: Ordine;
 
   quantitaOrdineProdotto: number;
@@ -26,12 +28,42 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
 
   constructor(private ops: OrdineProdottoService, private os: OrdineService, private log: LogService, private route: ActivatedRoute) { }
 
+  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"));
   ngOnInit(): void {
-    this.myStorage.getItem('currentUser');
  
-    if((this.myStorage.getItem('currentUser') != undefined) && this.checktypeD())
+    if((this.currentUser != undefined) && this.currentUser.tipo == "Distributore")
     {
-      this.distributore = JSON.parse(this.myStorage.getItem('currentUser')) as Distributore;
+      this.distributore = {
+        cognome: this.currentUser.cognome,
+        id: this.currentUser.id,
+        email: this.currentUser.email,
+        idOrdineProva: null,
+        indirizzoSede: this.currentUser.indirizzo,
+        nome: this.currentUser.nome,
+        ordini: null,
+        password: this.currentUser.password,
+        telefono: this.currentUser.telefono,
+        username: this.currentUser.username,
+        vat: this.currentUser.vat 
+      }
+      this.prendiIdDalRouter()
+      this.getProdottibyOrdine();
+      this.getInfoOrdine();
+    }
+    if(this.currentUser!=undefined && this.currentUser.tipo=='Azienda'){
+      this.azienda={
+        id: this.currentUser.id,
+        email: this.currentUser.email,
+        ordini: null,
+        password: this.currentUser.password,
+        vat: this.currentUser.vat,
+        descrizione:this.currentUser.descrizione,
+        indirizzo:this.currentUser.indirizzo,
+        logo:this.currentUser.logo,
+        nomeAzienda:this.currentUser.nome,
+        prodotti:null,
+        logoBlob:this.currentUser.logo
+      }
       this.prendiIdDalRouter()
       this.getProdottibyOrdine();
       this.getInfoOrdine();
@@ -90,16 +122,6 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
     }
   }
 
-  checktypeD() {
-    const account = this.myStorage.getItem('currentUser');
-    const obj = JSON.parse(account);
-    const tipo = obj.tipo;
-    if (tipo == "Distributore") {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
 }
 

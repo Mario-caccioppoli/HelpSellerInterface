@@ -122,7 +122,7 @@ export class GestioneProdottiComponent implements OnInit {
       )
   }
   modificaProdotto(form){
-
+    console.log("form "+form);
     /* Inizio Regex */
 
     if(this.rX.regexNome(form.nome)!= true) {
@@ -134,6 +134,9 @@ export class GestioneProdottiComponent implements OnInit {
     // }
 
     if(this.rX.regexPrezzoVolumePeso(form.volume)!= true) {
+      console.log("volume "+form.volume)
+      let vvv=form.volume;
+      console.log("stampa stringa "+typeof(form.volume));
       return alert("Volume non valido, si prega di riprovare");
     }
 

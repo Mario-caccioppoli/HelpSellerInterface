@@ -118,27 +118,22 @@ export class GestioneScontiComponent implements OnInit {
   
   aggiungiSconto(form){
 
-    /*form.dataInizio = this.dataInizio.toLocaleDateString("it-IT");
-    form.dataFine = this.dataInizio.toLocaleDateString("it-IT");
-    
-    form.dataInizio = this.dataInizio.toLocaleDateString("en-US");
-    form.dataFine = this.dataFine.toLocaleDateString("en-US"); */
 
-    var inputDataInizio = new Date(form.dataInizio);
-    this.dataInizio = inputDataInizio.toISOString().slice(0, 10);
-    form.dataInizio = this.dataInizio;
+    // var inputDataInizio = new Date(form.dataInizio);
+    // this.dataInizio = inputDataInizio.toISOString().slice(0, 10);
+    // form.dataInizio = this.dataInizio;
 
-    if(this.rX.regexData(form.dataInizio)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataInizio)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
-    var inputDataFine = new Date(form.dataFine);
-    this.dataInizio = inputDataFine.toISOString().slice(0, 10);
-    form.dataFine = this.dataFine;
+    // var inputDataFine = new Date(form.dataFine);
+    // this.dataInizio = inputDataFine.toISOString().slice(0, 10);
+    // form.dataFine = this.dataFine;
 
-    if(this.rX.regexData(form.dataFine)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataFine)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
     if(this.rX.regexNome(form.nome)!= true) {
       return alert("Nome non valido, si prega di riprovare");
@@ -177,13 +172,13 @@ export class GestioneScontiComponent implements OnInit {
   modificaSconto(form){
     console.log("id sconto "+this.idScontoDaModificare)
 
-    if(this.rX.regexData(form.dataInizio)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataInizio)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
-    if(this.rX.regexData(form.dataFine)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataFine)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
     if(this.rX.regexNome(form.nome)!= true) {
       return alert("Nome non valido, si prega di riprovare");

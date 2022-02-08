@@ -43,27 +43,17 @@
           <tr>
             <th scope="col">N° Divisioni</th>
             <th scope="col">Indirizzo</th>
-            <th scope="col">Civico</th>
-            <th scope="col">Città</th>
-            <th scope="col">Provincia</th>
-            <th scope="col">CAP</th>
-            <th scope="col">Paese</th>
             <th scope="col">Quantità</th>
             <th scope="col">Data Prevista</th>
             <th>Azione</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of divisioni; index as i">
+          <tr *ngFor="let item of trasporti; index as i">
             <th scope="row">{{i+1}}</th>
-            <td>{{item.via}}</td>
-            <td>{{item.civico}}</td>
-            <td>{{item.citta}}</td>
-            <td>{{item.provincia}}</td>
-            <td>{{item.paese}}</td>
-            <td>{{item.cap}}</td>
-            <td>{{item.quantita}}</td>
-            <td>{{item.data}}</td>
+            <td>{{item.indirizzoConsegna}}</td>
+            <td>{{item.quantitaMinima}}</td>
+            <td>{{item.dataConsegna}}</td>
             <td><button class="btn btn-primary" id="elimina" style="background-color: orange;" (click) ="eliminaDivisione(i)"> <i style="font-size: 15px;" class= "fas fa-trash-alt"  ></i></button></td>
           </tr>
         </tbody>
@@ -73,7 +63,7 @@
       <button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Aggiungi divisione</button>
     </div>
     <br><br>
-    <button type="button" class="btn btn-primary" width="100%">Concludi pratica trasporto</button>
+    <button type="submit" class="btn btn-primary" (click)="concludiPratica()" width="100%">Concludi pratica trasporto</button>
   </div>
 
 <!-- modal -->
@@ -109,7 +99,7 @@
                 <input type="text" class="form-control" name="quantita" ngModel placeholder="Inserisci Quantità" min=0 max="">
                 <br>
                 <b>Data</b><br>
-                <input type="text" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
+                <input type="date" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
               </div>
               <div class="modal-footer ">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Torna indietro</button>

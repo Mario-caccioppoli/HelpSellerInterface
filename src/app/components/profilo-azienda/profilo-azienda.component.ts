@@ -90,18 +90,22 @@ export class ProfiloAziendaComponent implements OnInit {
 
     /* Inizio Regex */
 
-    if(this.rX.regexPassword(form.password)!= true) {
+    if(this.rX.regexPassword(form.passwordNuova)!= true) {
       return alert("Password debole, si prega di riprovare");
     }
 
     /* Fine Regex */
-
-    let password=form.password;
+    let passwordVecchia=form.passwordVecchia;
+    let passwordNuova=form.passwordNuova;
+    let passwordConferma=form.passwordConferma;
+    if(utility.criptaPassword(passwordVecchia)==this.currentUser.password && passwordNuova==passwordConferma){
+      console.log("cassa e muort ");
+    
     if(this.currentUser.tipo=='Amministratore' && this.currentUser != null){
       this.amministratore={
         id:this.currentUser.id,
         email:this.currentUser.email,
-        password:utility.criptaPassword(password),
+        password:utility.criptaPassword(passwordNuova),
         username:this.currentUser.username
       }
       this.amministratoreService.updateAmministratore(this.amministratore).subscribe(
@@ -128,7 +132,7 @@ export class ProfiloAziendaComponent implements OnInit {
         indirizzo:this.currentUser.indirizzo,
         logo:this.currentUser.logo,
         nomeAzienda:this.currentUser.nome,
-        password:utility.criptaPassword(password),
+        password:utility.criptaPassword(passwordNuova),
         ordini:null,
         prodotti:null,
         vat:this.currentUser.vat
@@ -154,7 +158,7 @@ export class ProfiloAziendaComponent implements OnInit {
         cognome:this.currentUser.cognome,
         nome:this.currentUser.nome,
         email:this.currentUser.email,
-        password:utility.criptaPassword(form.password),
+        password:utility.criptaPassword(passwordNuova),
         idOrdineProva:null,
         indirizzoSede:this.currentUser.indirizzo,
         ordini:null,
@@ -177,6 +181,7 @@ export class ProfiloAziendaComponent implements OnInit {
         }
       )
     }
+  }
   }
 
   eliminaAccount(id){
@@ -322,8 +327,6 @@ export class ProfiloAziendaComponent implements OnInit {
         username:form.username,
         vat:form.vat
       }
-      console.log("ciaoooooo "+this.distributore)
-      console.log(form.cognome+form.nome+form.email+form.indirizzo+form.telefono+form.username+form.vat)
       this.distributoreService.updateDistributore(this.distributore).subscribe(
         (resp)=>{
           this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);

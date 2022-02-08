@@ -41,6 +41,9 @@
             <br>
             <p>Pannello</p>
 
+            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
+            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
+            <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
 
             <!-- <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button> -->
         </div>
@@ -82,8 +85,12 @@
                     <div class="modal-body">
                         <div class="modal-body">
                             <div class="modal-body">
+                                <div><b>Vecchia Password</b></div>
+                                <input type="password" ngModel class="form-control" name="passwordVecchia" />
                                 <div><b>Nuova Password</b></div>
-                                <input type="text" ngModel class="form-control" name="password" />
+                                <input type="password" ngModel class="form-control" name="passwordNuova" />
+                                <div><b>Conferma nuova Password</b></div>
+                                <input type="password" ngModel class="form-control" name="passwordConferma" />
                             </div>
                         </div>
                     </div>

@@ -96,7 +96,7 @@ export class GestioneProdottiComponent implements OnInit {
       descrizione: form.descrizione,
       quantita: form.quantita,
       immagine: this.nomeImg,
-      quantitaMinima:100,
+      quantitaMinima:form.quantitaMinima,
       peso: form.peso,
       volume: form.volume,
       idAzienda: this.currentUser.id,
@@ -129,9 +129,9 @@ export class GestioneProdottiComponent implements OnInit {
       return alert("Nome non valido, si prega di riprovare");
     }
 
-    // if(this.rX.regexPrezzoVolumePeso(form.prezzo)!= true) {
-    //   return alert("Prezzo non valido, si prega di riprovare");
-    // }
+    if(this.rX.regexPrezzoVolumePeso(form.prezzo)!= true) {
+      return alert("Prezzo non valido, si prega di riprovare");
+    }
 
     if(this.rX.regexPrezzoVolumePeso(form.volume)!= true) {
       console.log("volume "+form.volume)
@@ -156,7 +156,7 @@ export class GestioneProdottiComponent implements OnInit {
       descrizione: form.descrizione,
       quantita: form.quantita,
       immagine: this.nomeImg,
-      quantitaMinima:100,
+      quantitaMinima:form.quantitaMinima,
       peso: form.peso,
       volume: form.volume,
       idAzienda: this.currentUser.id

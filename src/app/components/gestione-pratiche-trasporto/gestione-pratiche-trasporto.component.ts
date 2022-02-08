@@ -126,12 +126,16 @@ public inserimentoGpt(form) {
   }
 
   var inputData = new Date(form.data);
-  this.dataConvert = inputData.toISOString().slice(0, 10);
+  this.dataConvert = inputData.toLocaleDateString('en-GB');
   form.data = this.dataConvert;
-
+  
   if(this.rX.regexData(form.data)!= true) {
     return alert("Data non valida, si prega di riprovare");
-  }
+  }  
+
+  var convData = new Date(inputData);
+  this.dataConvert = convData.toISOString().slice(0, 10);
+  form.data = this.dataConvert;
 
   this.trasporto = {
     id: null,
@@ -144,6 +148,7 @@ public inserimentoGpt(form) {
   this.ts.insertTrasporto(this.trasporto).subscribe(
     (success) => {
       this.log.Debug(GestionePraticheTrasportoComponent.name, "ok", [success]);
+      alert("Gestione Pratica inserita con successo");
     },
 
     (error) => {

@@ -118,27 +118,35 @@ export class GestioneScontiComponent implements OnInit {
   
   aggiungiSconto(form){
 
-    /*form.dataInizio = this.dataInizio.toLocaleDateString("it-IT");
-    form.dataFine = this.dataInizio.toLocaleDateString("it-IT");
-    
-    form.dataInizio = this.dataInizio.toLocaleDateString("en-US");
-    form.dataFine = this.dataFine.toLocaleDateString("en-US"); */
+    // Regex DataInizio
 
-    var inputDataInizio = new Date(form.dataInizio);
-    this.dataInizio = inputDataInizio.toISOString().slice(0, 10);
-    form.dataInizio = this.dataInizio;
+    var inputData = new Date(form.dataInizio);
+    this.dataInizio = inputData.toLocaleDateString('en-GB');
+    form.data = this.dataInizio;
 
     if(this.rX.regexData(form.dataInizio)!= true) {
       return alert("Data non valida, si prega di riprovare");
     }
 
-    var inputDataFine = new Date(form.dataFine);
-    this.dataInizio = inputDataFine.toISOString().slice(0, 10);
-    form.dataFine = this.dataFine;
+    var convData = new Date(inputData);
+    this.dataInizio = convData.toISOString().slice(0, 10);
+    form.data = this.dataInizio;
+
+    // Regex DataFine
+
+    var inputData = new Date(form.dataFine);
+    this.dataFine = inputData.toLocaleDateString('en-GB');
+    form.data = this.dataFine;
 
     if(this.rX.regexData(form.dataFine)!= true) {
       return alert("Data non valida, si prega di riprovare");
     }
+
+    var convData = new Date(inputData);
+    this.dataFine = convData.toISOString().slice(0, 10);
+    form.data = this.dataFine;
+
+    // End regex su Date
 
     if(this.rX.regexNome(form.nome)!= true) {
       return alert("Nome non valido, si prega di riprovare");

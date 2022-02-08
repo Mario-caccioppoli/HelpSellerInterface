@@ -122,21 +122,21 @@
                                     <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo nome</b></div>
                                     <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" [value]="currentUser.nome" type="text" class="form-control" ngModel name="nome" /><br>
                                     <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo cognome</b></div>
-                                    <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" value="{{currentUser.cognome}}" type="text" class="form-control" ngModel name="cognome" /><br>
+                                    <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" [value]="currentUser.cognome" type="text" class="form-control" ngModel name="cognome" /><br>
                                     <div *ngIf="currentUser.tipo!='Azienda'"><b>Nuovo username</b></div>
-                                    <input *ngIf="currentUser.tipo!='Azienda'" value="{{currentUser.username}}" type="text" class="form-control" ngModel name="username" /><br>
+                                    <input *ngIf="currentUser.tipo!='Azienda'" [value]="currentUser.username" type="text" class="form-control" ngModel name="username" /><br>
                                     <div *ngIf="currentUser.tipo=='Azienda'"><b>Nuovo Nome Azienda</b></div>
-                                    <input *ngIf="currentUser.tipo=='Azienda'" value="{{currentUser.nome}}" type="text" class="form-control" ngModel name="nome" /><br>
+                                    <input *ngIf="currentUser.tipo=='Azienda'" [value]="currentUser.nome" type="text" class="form-control" ngModel name="nome" /><br>
                                     <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo indirizzo</b></div>
-                                    <input *ngIf="currentUser.tipo!='Amministratore'" value="{{currentUser.indirizzo}}" type="text" class="form-control" ngModel name="indirizzo" /><br>
+                                    <input *ngIf="currentUser.tipo!='Amministratore'" [value]="currentUser.indirizzo" type="text" class="form-control" ngModel name="indirizzo" /><br>
                                     <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'"><b>Nuova descrizione</b></div>
-                                    <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'" value="{{currentUser.descrizione}}" type="text" class="form-control" ngModel name="descrizione" /><br>
+                                    <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'" [value]="currentUser.descrizione" type="text" class="form-control" ngModel name="descrizione" /><br>
                                     <div><b>Nuova email</b></div>
-                                    <input type="text" value="{{currentUser.email}}" class="form-control" ngModel name="email" /><br>
+                                    <input type="text" [value]="currentUser.email" class="form-control" ngModel name="email" /><br>
                                     <div *ngIf="currentUser.tipo!='Amministratore'"><b>Nuovo vat number</b></div>
-                                    <input *ngIf="currentUser.tipo!='Amministratore'" value="{{currentUser.vat}}" type="text" maxlength="12" class="form-control" ngModel name="vat" /><br>
+                                    <input *ngIf="currentUser.tipo!='Amministratore'" [value]="currentUser.vat" type="text" maxlength="12" class="form-control" ngModel name="vat" /><br>
                                     <div *ngIf="currentUser.tipo=='Distributore'"><b>Nuovo numero telefono</b></div>
-                                    <input *ngIf="currentUser.tipo=='Distributore'" value="{{currentUser.vat}}" type="text" maxlength="10" class="form-control" ngModel name="telefono" /><br>
+                                    <input *ngIf="currentUser.tipo=='Distributore'" [value]="currentUser.vat" type="text" maxlength="10" class="form-control" ngModel name="telefono" /><br>
                                 </div>
                             </div>
                         </div>

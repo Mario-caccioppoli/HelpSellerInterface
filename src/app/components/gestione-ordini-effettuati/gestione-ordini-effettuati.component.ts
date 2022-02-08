@@ -101,23 +101,22 @@ export class GestioneOrdiniEffettuatiComponent implements OnInit {
 }
 
   cercaAzienda(){
-    
-    if (this.cercaNomeAzienda == '') {
-      this.ordiniAll.forEach(e => this.ordini.push(Object.assign({},e)));
-    } else {
-
+    if (this.cercaNomeAzienda != '') {
       this.ordini.splice(0, this.ordini.length);
-    
+      
       for(let i = 0; i < this.ordiniAll.length; i++) {
-
         if(this.ordiniAll[i].azienda == null) {
           continue;
         }
-
-        if (this.ordiniAll[i].azienda.nomeAzienda.includes(this.cercaNomeAzienda)) {
+        if(this.ordiniAll[i].azienda.nomeAzienda.includes(this.cercaNomeAzienda)) {
           this.ordini.push(this.ordiniAll[i]);
         }
       }
+
+    } else {
+      this.ordini.splice(0, this.ordini.length);
+      this.ordiniAll.forEach(e => this.ordini.push(Object.assign({},e)));
+      
   }
 }
 

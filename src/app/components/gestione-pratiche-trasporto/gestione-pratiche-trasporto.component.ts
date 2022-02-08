@@ -1,6 +1,5 @@
 
 import { Component, Input, OnInit} from '@angular/core';
-import { Divisione } from 'src/app/divisione';
 import { Trasporto } from 'src/app/models/Trasporto';
 import { LogService } from 'src/app/services/log.service';
 import { TrasportoService } from 'src/app/services/trasporto/trasporto.service';
@@ -18,11 +17,10 @@ export class GestionePraticheTrasportoComponent implements OnInit {
   rX: testRegex = new testRegex();
 
   trasporto: Trasporto;
+  trasporti: Trasporto[] = [];
 
   tipoSpedizione : string;
   numeroDivisioni : number;
-  divisioni : Divisione[] = [];
-  divisione: Divisione;
   dataConvert: string;
 
   @Input() idOrdine;
@@ -66,33 +64,54 @@ aggiungiDivisione(form){
     return alert("Paese non valido, si prega di riprovare");
   }
 
+  var inputData = new Date(form.data);
+  this.dataConvert = inputData.toLocaleDateString('en-GB');
+  form.data = this.dataConvert;
+  
   if(this.rX.regexData(form.data)!= true) {
     return alert("Data non valida, si prega di riprovare");
-  }
+  }  
+
+  var convData = new Date(inputData);
+  this.dataConvert = convData.toISOString().slice(0, 10);
+  form.data = this.dataConvert;
 
   if(this.rX.regexQuantita(form.quantita)!= true) {
     return alert("Quantità non valida, si prega di riprovare");
   }
 
-  var div = {
-  ID: null,
-  via: form.via,
-  civico: form.civico,
-  citta: form.citta,
-  provincia: form.provincia,
-  cap: form.cap,
-  quantita: form.quantita,
-  paese: form.paese,
-  data: form.data
+  this.trasporto = {
+    id: null,
+    indirizzoConsegna: form.via + " " + form.civico + ", " + form.cap + " " + form.citta + " " + "(" + form.provincia + "), " + form.paese,
+    quantitaMinima: form.quantita,
+    dataConsegna: form.data,
+    idOrdine: this.idOrdine,
   }
   
-  this.divisioni.push(div);
-  console.log(this.divisioni);
+  this.trasporti.push(this.trasporto);
+  
+}
+
+concludiPratica() {
+  if (this.trasporti.length <= 0) { 
+    return alert("Aggiungere almeno 1 Divisione prima di procedere"); 
+  } else {
+  this.ts.insertTrasportoMultiplo(this.trasporti).subscribe(
+    (success) => {
+      this.log.Debug(GestionePraticheTrasportoComponent.name, "ok", [success]);
+      alert("Gestione Pratica inserita con successo");
+    },
+
+    (error) => {
+      this.log.Error(GestionePraticheTrasportoComponent.name, "errore", [error]);
+      alert('Inserimento Pratica Trasporto fallita, si prega di riprovare.');
+    }
+  )}
 }
 
 
 eliminaDivisione(indice : number){
-  this.divisioni.splice(indice,1);
+  this.trasporti.splice(indice,1);
 }
 
 public inserimentoGpt(form) {

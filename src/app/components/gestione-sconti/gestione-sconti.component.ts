@@ -124,9 +124,9 @@ export class GestioneScontiComponent implements OnInit {
     this.dataInizio = inputData.toLocaleDateString('en-GB');
     form.data = this.dataInizio;
 
-    if(this.rX.regexData(form.dataInizio)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataInizio)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
     var convData = new Date(inputData);
     this.dataInizio = convData.toISOString().slice(0, 10);
@@ -138,9 +138,9 @@ export class GestioneScontiComponent implements OnInit {
     this.dataFine = inputData.toLocaleDateString('en-GB');
     form.data = this.dataFine;
 
-    if(this.rX.regexData(form.dataFine)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataFine)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
     var convData = new Date(inputData);
     this.dataFine = convData.toISOString().slice(0, 10);
@@ -185,13 +185,13 @@ export class GestioneScontiComponent implements OnInit {
   modificaSconto(form){
     console.log("id sconto "+this.idScontoDaModificare)
 
-    if(this.rX.regexData(form.dataInizio)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataInizio)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
-    if(this.rX.regexData(form.dataFine)!= true) {
-      return alert("Data non valida, si prega di riprovare");
-    }
+    // if(this.rX.regexData(form.dataFine)!= true) {
+    //   return alert("Data non valida, si prega di riprovare");
+    // }
 
     if(this.rX.regexNome(form.nome)!= true) {
       return alert("Nome non valido, si prega di riprovare");

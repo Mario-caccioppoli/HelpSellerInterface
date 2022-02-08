@@ -70,6 +70,7 @@ export class SelezionaProdottiScontareComponent implements OnInit {
   }
 
   scontaSelezionati(){
+    let boolean=true;
     if(this.currentUser.id!=undefined && this.idProdottiSelezionati.length>0){
       for(let i=0;i<this.idProdottiSelezionati.length;i++){
         console.log(this.idProdottiSelezionati[i]+"   "+this.idSconto)
@@ -77,8 +78,11 @@ export class SelezionaProdottiScontareComponent implements OnInit {
           (resp)=>{
             console.log("ENTRO")
             this.log.Debug(SelezionaProdottiScontareComponent.name,"chiamata a back-end", [resp]);
-            window.alert("Sconti inseriti")
-            this.route.navigateByUrl('/gestioneSconti')
+            if(boolean==true){
+            window.alert("Sconti inseriti");
+            boolean=false;
+            }
+            this.route.navigateByUrl('/gestioneSconti');
             //this.idSconto=resp;
             //console.log(this.prodotti.forEach(p=>p.nomeProdotto))
           },

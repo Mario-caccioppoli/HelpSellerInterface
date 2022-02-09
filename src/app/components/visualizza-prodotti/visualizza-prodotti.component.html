@@ -7,20 +7,18 @@
         </form>
         <div class="row">
             <div *ngFor="let prodotto of prodottiToDisplay " class="col ">
-                <a href=" ">
-                    <div class="prodottiContainer">
-                        <img [src]='prodotto.immagineBlob' alt="FOTO PRODOTTO ">
-                        <div>
-                            <h3>{{prodotto.nomeProdotto}}</h3>
-                        </div>
-                        <div>
-                            <h5>{{prodotto.descrizione}}</h5>
-                        </div>
-                        <div>
-                            <h4>{{prodotto.prezzo}} €</h4>
-                        </div>
+                <div class="prodottiContainer">
+                    <img [src]='prodotto.immagineBlob' alt="FOTO PRODOTTO ">
+                    <div>
+                        <h3>{{prodotto.nomeProdotto}}</h3>
                     </div>
-                </a>
+                    <div>
+                        <h5>{{prodotto.descrizione}}</h5>
+                    </div>
+                    <div>
+                        <h4>{{prodotto.prezzo}} €</h4>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

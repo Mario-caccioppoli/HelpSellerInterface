@@ -121,7 +121,7 @@
                             <div class="modal-body">
                                 <div *ngIf="currentUser != null">
                                     <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo nome</b></div>
-                                    <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" [value]="currentUser.nome" type="text" class="form-control" ngModel name="nome" /><br>
+                                    <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" type="text" class="form-control" ngModel name="nome" /><br>
                                     <div *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'"><b>Nuovo cognome</b></div>
                                     <input *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Azienda'" [value]="currentUser.cognome" type="text" class="form-control" ngModel name="cognome" /><br>
                                     <div *ngIf="currentUser.tipo!='Azienda'"><b>Nuovo username</b></div>

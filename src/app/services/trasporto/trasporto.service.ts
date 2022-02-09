@@ -32,4 +32,7 @@ export class TrasportoService {
   public updateTrasporto(Trasporto: Trasporto): Observable<number> {
     return this.http.post<number>(`${this.apiServerUrl}/update`, Trasporto);
   }
+  public findTrasportiInOrdine(idOrdine: number): Observable<Trasporto[]>{
+    return this.http.get<Trasporto[]>(`${this.apiServerUrl}/findTrasportiInOrdine/${idOrdine}`);
+  }
 }

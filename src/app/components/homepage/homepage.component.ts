@@ -56,7 +56,7 @@ export class HomepageComponent implements OnInit {
   }
 
   getSuggested(id: number){
-    this.ps.secondLayer(id).subscribe(
+    this.ps.firstLayer().subscribe(
       (resp)=>{
         this.log.Debug(HomepageComponent.name,"chiamata a back-end",[resp]);
         this.prodotti = resp as Prodotto[];

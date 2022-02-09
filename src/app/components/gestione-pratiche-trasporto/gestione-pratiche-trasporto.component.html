@@ -1,112 +1,124 @@
-  <h3>Spedizione</h3>
-  <input type="radio" class="form-check-input" name="tipoSpedizione"  value = "Unica" (click)="setValue('Unica')"/> Unica
-  <br/>
-  <input type="radio"class="form-check-input" name="tipoSpedizione"  value = "Multipla" (click)="setValue('Multipla')"/> Multipla <br/>
-  <br/>
+<div *ngIf=" currentUser.tipo!='Azienda' && trasporti.length==0 || trasporti==undefined ">
+    <h3>Spedizione</h3>
+    <input type="radio" class="form-check-input" name="tipoSpedizione" value="Unica" (click)="setValue('Unica')" /> Unica
+    <br/>
+    <input type="radio" class="form-check-input" name="tipoSpedizione" value="Multipla" (click)="setValue('Multipla')" /> Multipla <br/>
+    <br/>
+</div>
 
-  <!-- Spedizione Unica -->
 
-  <div *ngIf="tipoSpedizione=='Unica'">
+
+<div *ngIf="this.trasporti.length>0 || this.trasporti!=undefined ">
+
+    <div *ngFor="let trasporto of trasporti">
+
+        <p>
+            <strong>Data : </strong> {{trasporto.dataConsegna}} <strong>Indirizzo : </strong>{{trasporto.indirizzoConsegna}} <strong>Quantita : </strong> {{trasporto.quantitaMinima}}</p>
+    </div>
+</div>
+<!-- Spedizione Unica -->
+
+<div *ngIf="tipoSpedizione=='Unica'">
     <h4 style="text-align: center;">Aggiungi Trasporto</h4>
     <form class="form-group" #inserimentoGptForm="ngForm" (ngSubmit)="inserimentoGpt(inserimentoGptForm.value)">
-      <b>Paese EU</b><br>
-      <input type="text" class="form-control"name="paese" ngModel placeholder="Inserisci Paese">
-      <br><br>
-      <b>Via</b><br>
-      <input type="text"class="form-control" name="via" ngModel placeholder="Inserisci Via">
-      <br><br>
-      <b>Civico</b><br>
-      <input type="text"class="form-control" name="civico" ngModel placeholder="N.">
-      <br><br>  
-      <b>Città</b><br>
-      <input type="text" class="form-control"name="citta" ngModel placeholder="Inserisci Città">
-      <br><br>
-      <b>Provincia</b><br>
-      <input type="text" class="form-control" name="provincia" ngModel placeholder="Inserisci Provincia">
-      <br><br>
-      <b>CAP</b><br>
-      <input type="text"class="form-control" name="cap" ngModel placeholder="Inserisci CAP"><br>
-      <br>
-      <b>Data</b><br>
-      <input type="date" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
-      <br><br>
-      <button class="btn btn-primary" style="width: 100%;">Concludi pratica trasporto</button> 
-  </form>
-  </div>
+        <b>Paese EU</b><br>
+        <input type="text" class="form-control" name="paese" ngModel placeholder="Inserisci Paese">
+        <br><br>
+        <b>Via</b><br>
+        <input type="text" class="form-control" name="via" ngModel placeholder="Inserisci Via">
+        <br><br>
+        <b>Civico</b><br>
+        <input type="text" class="form-control" name="civico" ngModel placeholder="N.">
+        <br><br>
+        <b>Città</b><br>
+        <input type="text" class="form-control" name="citta" ngModel placeholder="Inserisci Città">
+        <br><br>
+        <b>Provincia</b><br>
+        <input type="text" class="form-control" name="provincia" ngModel placeholder="Inserisci Provincia">
+        <br><br>
+        <b>CAP</b><br>
+        <input type="text" class="form-control" name="cap" ngModel placeholder="Inserisci CAP"><br>
+        <br>
+        <b>Data</b><br>
+        <input type="date" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
+        <br><br>
+        <button class="btn btn-primary" style="width: 100%;">Concludi pratica trasporto</button>
+    </form>
+</div>
 
-  <!-- Spedizione Multipla -->
+<!-- Spedizione Multipla -->
 
-  <div *ngIf="tipoSpedizione=='Multipla'">
+<div *ngIf="tipoSpedizione=='Multipla'">
     <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">N° Divisioni</th>
-            <th scope="col">Indirizzo</th>
-            <th scope="col">Quantità</th>
-            <th scope="col">Data Prevista</th>
-            <th>Azione</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of trasporti; index as i">
-            <th scope="row">{{i+1}}</th>
-            <td>{{item.indirizzoConsegna}}</td>
-            <td>{{item.quantitaMinima}}</td>
-            <td>{{item.dataConsegna}}</td>
-            <td><button class="btn btn-primary" id="elimina" style="background-color: orange;" (click) ="eliminaDivisione(i)"> <i style="font-size: 15px;" class= "fas fa-trash-alt"  ></i></button></td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">N° Divisioni</th>
+                    <th scope="col">Indirizzo</th>
+                    <th scope="col">Quantità</th>
+                    <th scope="col">Data Prevista</th>
+                    <th>Azione</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of trasporti; index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.indirizzoConsegna}}</td>
+                    <td>{{item.quantitaMinima}}</td>
+                    <td>{{item.dataConsegna}}</td>
+                    <td><button class="btn btn-primary" id="elimina" style="background-color: orange;" (click)="eliminaDivisione(i)"> <i style="font-size: 15px;" class= "fas fa-trash-alt"  ></i></button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="d-flex justify-content-center" style="margin-top: 30px">
-      <button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Aggiungi divisione</button>
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Aggiungi divisione</button>
     </div>
     <br><br>
     <button type="submit" class="btn btn-primary" (click)="concludiPratica()" width="100%">Concludi pratica trasporto</button>
-  </div>
+</div>
 
 <!-- modal -->
 <form class="form-group" #aggiungiDivisioneForm="ngForm" (ngSubmit)="aggiungiDivisione(aggiungiDivisioneForm.value)">
-<div class="modal fade" id="staticBackdrop"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Aggiungi indirizzo</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <div class="modal-body">
-                <b>Paese EU</b><br>
-                <input type="text" class="form-control"name="paese" ngModel placeholder="Inserisci Paese">
-                <br>
-                <b>Via</b><br>
-                <input type="text"class="form-control" name="via" ngModel placeholder="Inserisci Via">
-                <br>
-                <b>Civico</b><br>
-                <input type="text"class="form-control" name="civico" ngModel placeholder="N.">
-                <br>
-                <b>Città</b><br>
-                <input type="text" class="form-control"name="citta" ngModel placeholder="Inserisci Città">
-                <br>
-                <b>Provincia</b><br>
-                <input type="text" class="form-control" name="provincia" ngModel placeholder="Inserisci Provincia">
-                <br>
-                <b>CAP</b><br>
-                <input type="text"class="form-control" name="cap" ngModel placeholder="Inserisci CAP"><br>
-                <br>
-                <b>Quantità</b><br>
-                <input type="text" class="form-control" name="quantita" ngModel placeholder="Inserisci Quantità" min=0 max="">
-                <br>
-                <b>Data</b><br>
-                <input type="date" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
-              </div>
-              <div class="modal-footer ">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Torna indietro</button>
-                <button type="submit" class="btn btn-primary">Aggiungi Divisione</button>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Aggiungi indirizzo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <b>Paese EU</b><br>
+                        <input type="text" class="form-control" name="paese" ngModel placeholder="Inserisci Paese">
+                        <br>
+                        <b>Via</b><br>
+                        <input type="text" class="form-control" name="via" ngModel placeholder="Inserisci Via">
+                        <br>
+                        <b>Civico</b><br>
+                        <input type="text" class="form-control" name="civico" ngModel placeholder="N.">
+                        <br>
+                        <b>Città</b><br>
+                        <input type="text" class="form-control" name="citta" ngModel placeholder="Inserisci Città">
+                        <br>
+                        <b>Provincia</b><br>
+                        <input type="text" class="form-control" name="provincia" ngModel placeholder="Inserisci Provincia">
+                        <br>
+                        <b>CAP</b><br>
+                        <input type="text" class="form-control" name="cap" ngModel placeholder="Inserisci CAP"><br>
+                        <br>
+                        <b>Quantità</b><br>
+                        <input type="text" class="form-control" name="quantita" ngModel placeholder="Inserisci Quantità" min=0 max="">
+                        <br>
+                        <b>Data</b><br>
+                        <input type="date" class="form-control" name="data" ngModel placeholder="Inserisci Data consegna">
+                    </div>
+                    <div class="modal-footer ">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Torna indietro</button>
+                        <button type="submit" class="btn btn-primary">Aggiungi Divisione</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>

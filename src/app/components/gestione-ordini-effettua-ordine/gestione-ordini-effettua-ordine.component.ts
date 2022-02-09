@@ -180,7 +180,6 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
     
     eseguiOrdine() {
       //to do add form comment
-      console.log("entro entro")
       var PrezzoTotale=0;
       var dataOggi=new Date();
       var dataConsegna=new Date();
@@ -200,14 +199,19 @@ export class GestioneOrdiniEffettuaOrdineComponent implements OnInit {
           prezzoTotale:PrezzoTotale,
           stato:"created",
         }
+        this.ordine.ordineProdotti.forEach(op =>{
+          op.prodotto.immagineBlob = null;
+        })
       }
       this.ordineService.insertOrdine(this.ordine).subscribe(
         (resp)=>{
           this.log.Debug(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[resp]);
-          window.alert("ORDINE EFFETTUATO")
+          window.alert("ORDINE EFFETTUATO");
+          window.location.reload();
         },
         (error)=>{
           this.log.Error(GestioneOrdiniEffettuaOrdineComponent.name,"chiamata a back-end",[error]);
+          alert("BOHHHHH")
         }
     ) 
 

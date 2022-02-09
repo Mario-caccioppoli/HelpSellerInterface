@@ -86,7 +86,11 @@ export class GestioneOrdiniDettagliOrdineComponent implements OnInit {
         (success) => {
           this.log.Debug(GestioneOrdiniDettagliOrdineComponent.name, "ok", [success]);
           this.ordineProdottoArr = success as OrdineProdotto[];
-
+          this.ordineProdottoArr.forEach(p=>{
+            if(p.prodotto.immagineBlob!=(undefined && null)){
+              p.prodotto.immagineBlob='data:image/jpeg;base64,'+p.prodotto.immagineBlob;
+            }
+          })
           var qt=0; var price=0;
 
           for (var n in this.ordineProdottoArr) {

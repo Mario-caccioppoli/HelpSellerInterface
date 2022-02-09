@@ -6,18 +6,21 @@
             <h5><b>Prodotti ordinati</b></h5>
             <div class="row eqi-container">
                 <div class="col-lg-3 product" *ngFor="let prod of ordineProdottoArr">
-                    <img class="img-product" src="assets/img/gillette.jpg" />{{prod.prodotto.immagine}}
-                    <div class="downspec">
-                        <p class="bold">{{prod.prodotto.nomeProdotto}}</p>
-                        <p class="bold">€ {{prod.prezzoUnitario}}</p>
+                    <img class="img-product" [src]="prod.prodotto.immagineBlob">
+                    <div class=" downspec ">
+                        <p class="bold ">{{prod.prodotto.nomeProdotto}}</p>
+                        <p class="bold ">€ {{prod.prezzoUnitario}}</p>
                         <p><b>Quantità:</b> Pz. {{prod.quantitaOrdine}}</p>
                     </div>
-                </div><!--lg3 -->
-            </div><!-- row -->
-        </div><!--lg12-->
-          <hr>
-        <div class="row mb50 mt20">
-            <div class="col-lg-4">
+                </div>
+                <!--lg3 -->
+            </div>
+            <!-- row -->
+        </div>
+        <!--lg12-->
+        <hr>
+        <div class="row mb50 mt20 ">
+            <div class="col-lg-4 ">
                 <h4>Informazioni sull'ordine</h4>
                 <p><b>Acquirente:</b> {{distributore?.nome}} {{distributore?.cognome}}</p>
                 <p><b>VAT Number:</b> {{distributore?.vat}}</p>
@@ -26,23 +29,26 @@
                 <br><br>
                 <h4>Status: <em>{{ordine.stato}}</em></h4>
             </div>
-            <div class="col-lg-8">
-                <h4>Gestione Pratiche Trasporto</h4>
-                <app-gestione-pratiche-trasporto [idOrdine]="idOrd" [quantitaOp]="quantitaOrdineProdotto" [prezzoOp]="prezzoOrdineProdotto"></app-gestione-pratiche-trasporto>
+            <div class="col-lg-8 ">
+                <h4>Gestione Trasporto</h4>
+                <app-gestione-pratiche-trasporto [idOrdine]="idOrd " [quantitaOp]="quantitaOrdineProdotto " [prezzoOp]="prezzoOrdineProdotto "></app-gestione-pratiche-trasporto>
             </div>
         </div>
         <hr>
-        <div class="row mb50">
-            <div class="col-lg-6">
+        <div class="row mb50 ">
+            <div class="col-lg-6 ">
                 <h4>Documenti allegati</h4>
-                  <app-gestione-ordini-download [idOrdine]="idOrd"></app-gestione-ordini-download>
-                  <app-gestione-ordini-upload></app-gestione-ordini-upload>
+                <app-gestione-ordini-download [idOrdine]="idOrd"></app-gestione-ordini-download>
+                <app-gestione-ordini-upload [idOrd]="idOrd"></app-gestione-ordini-upload>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 ">
                 <h4>Riepilogo</h4>
                 <p><b>Totale articoli:</b> {{quantitaOrdineProdotto}}</p>
                 <p><b>TOTALE:</b> € {{prezzoOrdineProdotto}}</p>
             </div>
-        </div> <!-- row -->
-    </div> <!-- col-lg-12-->
-</div><!-- id -->
+        </div>
+        <!-- row -->
+    </div>
+    <!-- col-lg-12-->
+</div>
+<!-- id -->

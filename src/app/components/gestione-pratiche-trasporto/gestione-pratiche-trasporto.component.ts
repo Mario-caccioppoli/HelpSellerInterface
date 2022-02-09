@@ -1,6 +1,7 @@
 
 import { Component, Input, OnInit} from '@angular/core';
 import { Trasporto } from 'src/app/models/Trasporto';
+import { Utente } from 'src/app/models/Utente';
 import { LogService } from 'src/app/services/log.service';
 import { TrasportoService } from 'src/app/services/trasporto/trasporto.service';
 import { testRegex } from '../TestRegex/regex';
@@ -12,6 +13,7 @@ import { testRegex } from '../TestRegex/regex';
 })
 export class GestionePraticheTrasportoComponent implements OnInit {
 
+  currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"));
   constructor(private ts: TrasportoService, private log: LogService) { }
 
   rX: testRegex = new testRegex();
@@ -27,7 +29,9 @@ export class GestionePraticheTrasportoComponent implements OnInit {
   @Input() quantitaOp;
   @Input() prezzoOp;
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.findTrasportiInOrdine();
+   }
 
   setValue(spedizione: string) {
   this.tipoSpedizione = spedizione;
@@ -168,11 +172,24 @@ public inserimentoGpt(form) {
     (success) => {
       this.log.Debug(GestionePraticheTrasportoComponent.name, "ok", [success]);
       alert("Gestione Pratica inserita con successo");
+      window.location.reload();
     },
 
     (error) => {
       this.log.Error(GestionePraticheTrasportoComponent.name, "errore", [error]);
       alert('Inserimento Pratica Trasporto fallita, si prega di riprovare.');
+    }
+  )
+}
+
+findTrasportiInOrdine(){
+  this.ts.findTrasportiInOrdine(this.idOrdine).subscribe(
+    (resp)=>{
+      this.log.Debug(GestionePraticheTrasportoComponent.name, "ok", [resp]);
+      this.trasporti=resp;
+    },
+    (error)=>{
+      this.log.Error(GestionePraticheTrasportoComponent.name, "errore", [error]);
     }
   )
 }

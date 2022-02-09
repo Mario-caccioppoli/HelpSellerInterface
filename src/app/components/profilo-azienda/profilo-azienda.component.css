@@ -39,6 +39,8 @@
         padding: 30px;
         margin: -25px 30px -25px -30px;
         clear: both;
+        min-height: 700px;
+        height: 100%;
     }
     
     .fullheight {
@@ -50,21 +52,8 @@
         overflow: auto;
         overflow-x: hidden;
     }
-    
-    button {
-        background-color: orange;
-    }
-    
-    button:hover {
-        background-color: blue;
-    }
-    
-    button a {
-        color: white;
-        text-decoration: none;
-    }
-    
-    button a:hover {
+
+    .btn-primary a {
         color: white;
         text-decoration: none;
     }

@@ -1,18 +1,30 @@
+<div id="report" class="container">
+    <div class="col-lg-12 centered fleft">
+        <h2 class="mb50 centered">Gestione Vendite</h2>
+        <hr>
+    </div>
+</div>
+
+
 <div class="amministratoreReport" *ngIf="currentUser.tipo=='Amministratore'">
-    <h2 style="text-align: center;"> Report Vendite Gruppo Unilever</h2>
+    <h3 style="text-align: center; color: #d37e1e;"> Report Vendite Gruppo Unilever</h3>
+    <hr>
     <h3>Grafico vendite totale</h3>
     <div class="row align-items-center">
+        <div class="margini">
         <app-grafico-a-linea [barChartLabels]="anni" [barChartData]="datiAnnualiTotaliDB"></app-grafico-a-linea>
+        </div>
     </div>
 
     <br>
+    <hr>
     <br>
 
 
 
     <div style="text-align: center;">
-        <select class="custom-select" (change)="scegliAnno($event)">
-        <option value="" selected>Scegli anno</option>
+        <select class="form-control custom-select" (change)="scegliAnno($event)">
+        <option value="" selected>Scegli Anno</option>
         <option *ngFor="let item of anni">{{item}}</option>
     </select>
     </div>
@@ -24,20 +36,23 @@
 
         <h3>Grafico Vendite Totale Annuo</h3>
         <div class="row align-items-center ">
+            <div class="margini">
             <app-grafico-a-barra [barChartLabels]="mesi" [barChartData]="datiMensiliTotaliDB">
             </app-grafico-a-barra>
+            </div>
         </div>
 
         <br>
         <br>
     </div>
 
+<hr>
 
-
-    <h2 style="text-align: center;"> Report Vendite Singola Azienda</h2>
+    <h3 style="text-align: center; color: #d37e1e"> Report Vendite Singola Azienda</h3>
+    <hr>
     <div style=" text-align: center;">
-        <select class="custom-select" class="col" (change)="findAzienda($event)">
-        <option value=" " selected>Scegli Azienda</option>
+        <select class="form-control custom-select" (change)="findAzienda($event)">
+        <option value="" selected>Scegli Azienda</option>
         <option *ngFor="let item of aziende">{{item.nomeAzienda}}</option>
     </select>
     </div>
@@ -48,7 +63,9 @@
     <div id="reportAzienda">
         <h3>Grafico Vendite Totale Annuo</h3>
         <div class="row align-items-center">
+            <div class="margini">
             <app-grafico-a-linea [barChartLabels]="anniAzienda" [barChartData]="datiAnnualiTotaliAziendafindByAdmin"></app-grafico-a-linea>
+            </div>
         </div>
 
         <br>
@@ -60,8 +77,12 @@
 
 
 <div class="aziendaReport" *ngIf="currentUser.tipo=='Azienda'">
-    <h1>Report Totale Annuali</h1>
+    <h4>Report Totale Annuali</h4>
+    <div class="margini">
     <app-grafico-a-linea [barChartLabels]="anni" [barChartData]="datiAnnualiTotali"></app-grafico-a-linea>
-    <h1>Grafico vendite totale annuo</h1>
+    </div>
+    <h4>Grafico vendite totale annuo</h4>
+    <div class="margini">
     <app-grafico-a-barra [barChartLabels]="mesi" [barChartData]="datiMensiliTotali"></app-grafico-a-barra>
+    </div>
 </div>

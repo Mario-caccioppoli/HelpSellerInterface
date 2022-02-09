@@ -182,9 +182,6 @@ public registrazioneAzienda(form) {
       return alert("Descrizione troppo lunga, non deve superare i 500 caratteri, si prega di riprovare");
     }
 
-    // if(this.rX.regexLogo(form.societa)!= true) {
-    //   return alert("Logo non valido, si prega di riprovare");
-    // }
 
     if(this.rX.regexProvincia(form.provincia)!= true) {
       return alert("Il numero inserito non è valido, si prega di riprovare");

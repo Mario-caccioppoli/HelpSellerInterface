@@ -99,7 +99,6 @@ export class ProfiloAziendaComponent implements OnInit {
     let passwordNuova=form.passwordNuova;
     let passwordConferma=form.passwordConferma;
     if(utility.criptaPassword(passwordVecchia)==this.currentUser.password && passwordNuova==passwordConferma){
-      console.log("cassa e muort ");
     
     if(this.currentUser.tipo=='Amministratore' && this.currentUser != null){
       this.amministratore={
@@ -222,22 +221,12 @@ export class ProfiloAziendaComponent implements OnInit {
 
     /* Inizio Regex */
 
-    // if(this.rX.regexPassword(form.password)!= true) {
-    //   return alert("Password non valida, si prega di riprovare");
-    // }
-
     if(this.rX.regexEmail(form.email)!= true) {
       return alert("Email non valida, si prega di riprovare");
     }
 
     if(this.rX.regexUsername(form.username)!= true) {
       return alert("Username non valido, si prega di riprovare");
-    }
-
-    if(this.currentUser.tipo=='Azienda'){
-    if(this.rX.regexLogo(form.logo)!= true) {
-      return alert("Logo non valido, si prega di riprovare");
-      }
     }
 
     if(this.currentUser.tipo=='Azienda'){

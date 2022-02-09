@@ -39,7 +39,7 @@
         padding: 30px;
         margin: -25px 30px -25px -30px;
         clear: both;
-        min-height: 650px;
+        min-height: 700px;
         height: 100%;
     }
     
@@ -51,4 +51,9 @@
         min-height: 500px;
         overflow: auto;
         overflow-x: hidden;
+    }
+
+    .btn-primary a {
+        color: white;
+        text-decoration: none;
     }

@@ -1,3 +1,27 @@
+<div id="gest-ord-effettuati" class="container row">
+    <div class="col-lg-12 centered fleft">
+        <h2 class="mb50">Gestione Sconti</h2>
+        <div class="col-lg-12 mb50 form form-control">
+            <div class="row">
+                <div class="col-lg-6 pd20">
+                <label><p class="ricerca">Nome</p></label>
+                <input [(ngModel)]="filtroNome" (ngModelChange)="findByNomeSconto()" type="search" class="form-control" placeholder="Ricerca sconto..." name="searchbar" aria-label="Search">
+                </div>
+                <div class="col-lg-6 pd20">
+                <label><p class="ricerca">Tipo Sconto</p></label>
+                <br>
+                <select class="form-control" name="filtro" id="filtroSelect" [(ngModel)]="filtroSelect" (change)="getAllScontiByTipo()">
+                    <option value="tutti">Tutti</option>
+                    <option value="catalogo">Catalogo</option>
+                    <option value="quantita">Quantità</option>
+                </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
 <table class="table table-borderless">
     <tr class="table-light">
         <td class="table-light">Nome</td>
@@ -14,28 +38,32 @@
         </td>
     </tr>
 </table>
+-->
 
-
-<br><br>
-
-<div class="scrolla">
-    <table class="table table-borderless">
-        <tr class="table-light">
-            <td class="table-light">Nome Sconto</td>
-            <td class="table-light">Tipo</td>
-            <td class="table-light">Quantità</td>
-            <td class="table-light">Percentuale</td>
-            <td class="table-light">Azioni</td>
-        </tr>
-        <tr class="table-light lista" *ngFor="let sconto of scontiToDisplay;let i=index">
-            <td class=" table-light">{{sconto.nomeSconto}}</td>
-            <td class="table-light">{{sconto.tipo}}</td>
-            <td class="table-light">{{sconto.quantita}}</td>
-            <td class="table-light">{{sconto.percentuale}}%</td>
-            <td class="table-light"><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaSconto" (click)="this.idScontoDaModificare=sconto.id"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
-                <button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#trash" (click)="this.idScontoDaEliminare=sconto.id"><i class="fas fa-trash-alt"></i></button></td>
-        </tr>
-    </table>
+<div class="table-responsive">          
+    <div class="table-responsive-lg">
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">Nome Sconto</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Quantità</th>
+                  <th scope="col">Percentuale</th>
+                  <th scope="col">Azioni</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sconto of scontiToDisplay;let i=index">
+                    <td scope="col">{{sconto.nomeSconto}}</td>
+                    <td scope="col">{{sconto.tipo}}</td>
+                    <td scope="col">{{sconto.quantita}}</td>
+                    <td scope="col">{{sconto.percentuale}}%</td>
+                    <td scope="col"><button type="button" class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#modificaSconto" (click)="this.idScontoDaModificare=sconto.id"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#trash" (click)="this.idScontoDaEliminare=sconto.id"><i class="fas fa-trash-alt fa-2x"></i></button></td>
+                </tr>
+              </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- MODAL_TRASH -->
@@ -43,11 +71,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ATTENZIONE !</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminazione Sconto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class=" modal-body ">
-                VUOI CANCELLARE LO SCONTO ?
+                Desideri eliminare lo sconto?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
@@ -59,10 +87,11 @@
 
 
 <br><br>
-
-<button type="button" class="btn btn-primary bottoneSconto" data-bs-toggle="modal" data-bs-target="#aggiungiSconto">
-    Aggiungi Sconto
-</button>
+<div class="centered">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aggiungiSconto">
+        Aggiungi Sconto
+    </button>
+</div>
 
 
 <!-- MODAL MODIFICA SCONTO -->
@@ -79,29 +108,28 @@
                     <div class="modal-body">
                         <div class="modal-body">
                             <p><b>Nome Sconto</b></p>
-                            <input type="text" name="nome" ngModel placeholder="inserisci nome sconto"><br>
-                            <p><b>tipo</b></p>
-                            <select name="tipo" [(ngModel)]="selectFromModel">
+                            <input class="form-control" type="text" name="nome" ngModel placeholder="inserisci nome sconto"><br>
+                            <p><b>Tipo</b></p>
+                            <select class="form-control" name="tipo" [(ngModel)]="selectFromModel">
                                 <option value="catalogo">Catalogo</option>
                                 <option value="quantita">Quantità</option>
                             </select>
-                            <br>
                             <!-- SCONTO QUANTITA -->
                             <p *ngIf="selectFromModel==='quantita'"><b>Quantità minima</b></p>
-                            <input type="number" name="quantita" ngModel *ngIf="selectFromModel=='quantita'" placeholder="inserisci quantità minima"><br>
+                            <input class="form-control" type="number" name="quantita" ngModel *ngIf="selectFromModel=='quantita'" placeholder="inserisci quantità minima"><br>
                             <!-- SCONTO CATALOGO -->
                             <p><b>Data Inizio</b></p>
-                            <input type="date" ngModel name="dataInizio"><br>
+                            <input class="form-control" type="date" ngModel name="dataInizio"><br>
                             <p><b>Data Fine</b></p>
-                            <input type="date" ngModel name="dataFine"><br>
+                            <input class="form-control" type="date" ngModel name="dataFine"><br>
                             <p><b>Percentuale</b></p>
-                            <input type="number" ngModel name="percentuale" placeholder="inserisci percentuale "><br><br>
+                            <input class="form-control" type="number" ngModel name="percentuale" placeholder="inserisci percentuale ">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <button type="submit" class="btn btn-primary" (click)="this.idScontoDaModificare">Modifica</button>
+                    <button type="submit" class="btn btn-success" (click)="this.idScontoDaModificare">Modifica</button>
                 </div>
             </form>
         </div>
@@ -127,29 +155,28 @@
                     <div class="modal-body">
                         <div class="modal-body">
                             <p><b>Nome Sconto</b></p>
-                            <input type="text" name="nome" ngModel placeholder="inserisci nome sconto"><br>
-                            <p><b>tipo</b></p>
-                            <select name="tipo" [(ngModel)]="selectFromModel ">
+                            <input type="text" class="form-control" name="nome" ngModel placeholder="Inserisci nome sconto"><br>
+                            <p><b>Tipo</b></p>
+                            <select class="form-control" name="tipo" [(ngModel)]="selectFromModel ">
                                 <option value="catalogo">Catalogo</option>
                                 <option value="quantita">Quantità</option>
                             </select>
-                            <br>
                             <!-- SCONTO QUANTITA -->
                             <p *ngIf="selectFromModel==='quantita'"><b>Quantità minima</b></p>
-                            <input type="number" name="quantita" ngModel *ngIf="selectFromModel=='quantita'" placeholder="inserisci quantità minima "><br>
+                            <input class="form-control" type="number" name="quantita" ngModel *ngIf="selectFromModel=='quantita'" placeholder="inserisci quantità minima "><br>
                             <!-- SCONTO CATALOGO -->
                             <p><b>Data Inizio</b></p>
-                            <input type="date" ngModel name="dataInizio"><br>
+                            <input class="form-control" type="date" ngModel name="dataInizio"><br>
                             <p><b>Data Fine</b></p>
-                            <input type="date" ngModel name="dataFine"><br>
+                            <input class="form-control" type="date" ngModel name="dataFine"><br>
                             <p><b>Percentuale</b></p>
-                            <input type="number" ngModel name="percentuale" placeholder="inserisci percentuale "><br><br>
+                            <input class="form-control" type="number" ngModel name="percentuale" placeholder="inserisci percentuale ">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <button type="submit" class="btn btn-primary">Aggiungi Sconto</button>
+                    <button type="submit" class="btn btn-success">Aggiungi Sconto</button>
                 </div>
             </form>
         </div>

@@ -1,0 +1,22 @@
+.fleft {
+    display: block;
+    float: left; 
+ }
+ 
+ .centered {
+     text-align: center;
+ }
+ 
+ .mb50 {
+     margin-bottom: 50px;
+ }
+
+ .custom-select {
+     width: 50%;
+     float: right;
+ }
+
+ .margini {
+     margin-top: 30px;
+     margin-bottom: 30px;
+ }

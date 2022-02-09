@@ -1,4 +1,23 @@
-<table class="table table-borderless">
+<div id="gest-prodotti" class="container row">
+    <div class="col-lg-12 centered fleft">
+        <h2 class="mb50">Gestione Prodotti</h2>
+        <div class="col-lg-12 mb50 form form-control">
+            <div class="row">
+                <div class="col-lg-6 pd20">
+                <label><p class="ricerca">Codice</p></label>
+                <input [(ngModel)]="filtroCodice" id="filtroCodice" (ngModelChange)="changeCodice()" type="search" class="form-control" placeholder="Ricerca codice..." name="searchbar" aria-label="Search">
+                </div>
+                <div class="col-lg-6 pd20">
+                <label><p class="ricerca">Nome</p></label>
+                <br>
+                <input type="text" class="form-control" id="filtroNome" [(ngModel)]="filtroNome" (ngModelChange)="changeNome()" placeholder="Ricerca nome..." name="searchbar" aria-label="Search">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <table class="table table-borderless">
     <tr class="table-light">
         <td class="table-light">Codice</td>
         <td class="table-light">Nome</td>
@@ -8,51 +27,54 @@
         <td class="table-light"><input type="text" id="filtroNome" [(ngModel)]="filtroNome" (ngModelChange)="changeNome()" placeholder="Inserisci Nome "></td>
     </tr>
 </table>
+-->
 
-<br><br>
-
-
-<div class="scrolla">
-    <table class="table table-borderless">
-        <tr class="table-light">
-            <td class="table-light">Codice</td>
-            <td class="table-light">Nome</td>
-            <td class="table-light">Prezzo</td>
-            <td class="table-light">Azioni</td>
-        </tr>
-        <tr class="table-light lista" *ngFor="let prodotto of prodotti">
-            <td class="table-light">{{prodotto.id}}</td>
-            <td class="table-light">{{prodotto.nomeProdotto}}</td>
-            <td class="table-light">{{prodotto.prezzo}} €</td>
-            <td class="table-light"><button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#modificaProdotto" (click)="this.idProdottoDaModificare=prodotto.id"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
-                <button type="button" class="btn btn-primary pulsanti" data-bs-toggle="modal" data-bs-target="#eliminaProdotto" (click)="this.idProdottoEliminare=prodotto.id"><i class="fas fa-trash-alt"></i></button>
-                <!-- <button type="button" class="btn btn-primary pulsanti"><i class="fas fa-sticky-note" ></i></button> -->
-            </td>
-        </tr>
-    </table>
+<div class="table-responsive">          
+    <div class="table-responsive-lg">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Codice</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Prezzo</th>
+                    <th scope="col">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prodotto of prodotti">
+                    <td scope="col">{{prodotto.id}}</td>
+                    <td scope="col">{{prodotto.nomeProdotto}}</td>
+                    <td scope="col">{{prodotto.prezzo}} €</td>
+                    <td scope="col"><button type="button" class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#modificaProdotto" (click)="this.idProdottoDaModificare=prodotto.id"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#eliminaProdotto" (click)="this.idProdottoEliminare=prodotto.id"><i class="fas fa-trash-alt fa-2x"></i></button>
+                        <!-- <button type="button" class="btn btn-primary pulsanti"><i class="fas fa-sticky-note" ></i></button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <br><br>
 
-
-<button type="button" class="btn btn-primary bottoneAggiungi" data-bs-toggle="modal" data-bs-target="#aggiungiProdotto">
-        Aggiungi Prodotto</button>
-
+<div class="centered">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aggiungiProdotto">Aggiungi Prodotto</button>
+</div>
 
 <!-- MODAL_CANCELLA PRODOTTO -->
 <div class="modal fade" id="eliminaProdotto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">ATTENZIONE !</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminazione prodotto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                VUOI CANCELLARE IL PRODOTTO ?
+                Desideri eliminare il prodotto?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                <button type="button" (click)="eliminaProdotto(this.idProdottoEliminare)" class="btn btn-primary" #Elimina>Cancella</button>
+                <button type="button" (click)="eliminaProdotto(this.idProdottoEliminare)" class="btn btn-primary" #Elimina>Elimina</button>
             </div>
         </div>
     </div>
@@ -74,20 +96,20 @@
                         <div class="modal-body">
                             <div class="modal-body">
                                 <p><b>Nome Prodotto</b></p>
-                                <input type="text" ngModel name="nome" placeholder="inserisci nome prodotto"><br>
+                                <input class="form-control" type="text" ngModel name="nome" placeholder="inserisci nome prodotto"><br>
                                 <p><b>Descrizione Prodotto</b></p>
-                                <textarea name="descrizione" ngModel id=" " cols="30" rows="5"></textarea>
+                                <textarea class="form-control" name="descrizione" ngModel id=" " cols="30" rows="5"></textarea>
                                 <br>
                                 <div><b>Quantità</b></div>
-                                <input type="number" name="quantita" ngModel placeholder="inserisci quantita "><br><br>
+                                <input class="form-control" type="number" name="quantita" ngModel placeholder="inserisci quantita "><br>
                                 <div><b>Quantità Minima</b></div>
-                                <input type="number" name="quantitaMinima" ngModel placeholder="inserisci quantita minima "><br><br>
+                                <input class="form-control" type="number" name="quantitaMinima" ngModel placeholder="inserisci quantita minima "><br>
                                 <p><b>Peso</b></p>
-                                <input type="number" name="peso" ngModel placeholder=" inserisci peso"><br>
+                                <input class="form-control" type="number" name="peso" ngModel placeholder=" inserisci peso"><br>
                                 <p><b>Volume</b></p>
-                                <input type="number" name="volume" ngModel placeholder="inserisci volume"><br>
+                                <input class="form-control" type="number" name="volume" ngModel placeholder="inserisci volume"><br>
                                 <p><b>Prezzo</b></p>
-                                <input type="number" name="prezzo" ngModel placeholder="inserisci prezzo"><br><br>
+                                <input class="form-control" type="number" name="prezzo" ngModel placeholder="inserisci prezzo">
                             </div>
                         </div>
                     </div>
@@ -115,24 +137,24 @@
                     <div class="modal-body">
                         <div class="modal-body">
                             <div class="modal-body">
-                                <div><b>Inserisci Immagine</b></div>
-                                <input type="file" class="file-input" (change)="uploadFotoProdotto($event.target.files)" name="files" />
-                                <br>
+                                <div><b>Inserisci Immagine</b></div><br>
+                                <input class="form-control" type="file" class="file-input" (change)="uploadFotoProdotto($event.target.files)" name="files" />
+                                <br><br>
                                 <div><b>Nome Prodotto</b></div>
-                                <input type="text" ngModel name="nome" placeholder="inserisci nome prodotto"><br><br>
+                                <input class="form-control" type="text" ngModel name="nome" placeholder="inserisci nome prodotto"><br>
                                 <div><b>Descrizione Prodotto</b></div>
-                                <textarea name="descrizione" ngModel id=" " cols="30 " rows="5 "></textarea>
+                                <textarea class="form-control" name="descrizione" ngModel id=" " cols="30 " rows="5 "></textarea>
                                 <br><br>
                                 <div><b>Quantità</b></div>
-                                <input type="number" name="quantita" ngModel placeholder="inserisci quantita "><br><br>
+                                <input class="form-control" type="number" name="quantita" ngModel placeholder="inserisci quantita "><br>
                                 <div><b>Quantità Minima</b></div>
-                                <input type="number" name="quantitaMinima" ngModel placeholder="inserisci quantita minima "><br><br>
+                                <input class="form-control" type="number" name="quantitaMinima" ngModel placeholder="inserisci quantita minima "><br>
                                 <div><b>Peso</b></div>
-                                <input type="number" name="peso" ngModel placeholder="inserisci peso "><br><br>
+                                <input class="form-control" type="number" name="peso" ngModel placeholder="inserisci peso "><br>
                                 <div><b>Volume</b></div>
-                                <input type="number" name="volume" ngModel placeholder="inserisci volume "><br><br>
+                                <input class="form-control" type="number" name="volume" ngModel placeholder="inserisci volume "><br>
                                 <div><b>Prezzo</b></div>
-                                <input type="number" name="prezzo" ngModel placeholder="inserisci prezzo "><br><br>
+                                <input class="form-control" type="number" name="prezzo" ngModel placeholder="inserisci prezzo ">
                             </div>
                         </div>
                     </div>
@@ -140,7 +162,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <button type="submit" class="btn btn-primary">Aggiungi Prodotto</button>
+                    <button type="submit" class="btn btn-success">Aggiungi Prodotto</button>
                 </div>
             </form>
         </div>

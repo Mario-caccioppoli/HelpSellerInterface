@@ -2,62 +2,52 @@ tr {
     text-align: center;
 }
 
-input {
-    border: solid 1px;
-}
-
-button {
-    /* margin-left: 15px; */
-    border: none;
-    background-color: orange;
-    color: black;
-    margin-left: 5px;
-}
-
-.pulsanti {
-    background-color: transparent;
-}
-
-.pulsanti i {
-    background-color: transparent;
-    color: orange;
-    font-size: 30px;
-}
-
-.lista {
-    border: 1px solid;
-}
-
 .btn-primary:focus {
     box-shadow: none;
-}
-
-.btn:focus {
-    box-shadow: none;
-    color: black;
-}
-
-.bottoneAggiungi {
-    position: relative;
-    left: 38%;
-}
-
-.scrolla {
-    height: 300px;
-    padding: 3px;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 .modal-body {
     padding-top: 5px;
 }
 
-.pulsanti:hover {
-    background-color: #0d6efd;
-}
+/* *********/
 
-.bottoneAggiungi:focus {
-    background-color: orange;
-    border-color: orange;
-}
+.fleft {
+    display: block;
+    float: left; 
+ }
+ 
+ .centered {
+     text-align: center;
+ }
+ 
+ .mb50 {
+     margin-bottom: 50px;
+ }
+ 
+ .pd20 {
+     padding: 0 20px;
+ }
+ 
+ .edit {
+     color: #d37e1e;
+     background-color: transparent;
+     box-shadow: none;
+     border: 0;
+ }
+ 
+ .edit:focus,
+ .edit:active,
+ .edit:hover {
+     box-shadow: none;
+ }
+ 
+ form.inl input {
+     margin: 15px 0;
+ }
+ 
+ .ricerca {
+     font-weight: bold;
+     font-size: 18px;
+     color: #d37e1e;
+ }

@@ -29,8 +29,8 @@ export class DocumentoService {
     return this.http.delete<number>(`${this.apiServerUrl}/deleteId/${DocumentoId}`);
   }
 
-  public insertDocumento(Documento: Documento): Observable<Documento> {
-    return this.http.post<Documento>(`${this.apiServerUrl}/insert`, Documento);
+  public insertDocumento(Documento: Documento): Observable<number> {
+    return this.http.post<number>(`${this.apiServerUrl}/insert`, Documento);
   }
 
   public updateDocumento(Documento: Documento): Observable<number> {

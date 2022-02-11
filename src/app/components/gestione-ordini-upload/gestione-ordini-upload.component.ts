@@ -29,21 +29,69 @@ export class GestioneOrdiniUploadComponent implements OnInit {
     
   }
 
-  documentoUploadFunction(form) {
-      this.docs.insertDocumento(this.documento).subscribe(
-        (success) => {
-          this.log.Debug(GestioneOrdiniUploadComponent.name, "ok", [success]);
+  
+  uploadDocumento(files: File[]): void{
+    const formData=new FormData();
+    for(const file of files){
+      this.nomeDocumento = file.name;
+      formData.append('files', file, file.name);
+    }
 
-          this.documento = success as Documento;
-          console.log(this.documento);
-          alert("Documento inserito");
-        },
+    this.fileService.upload(formData).subscribe(
+      event =>{
+        console.log(event);
+        this.reportProgress(event);
+        this.insertDocumento();
+      },
+      (error: HttpErrorResponse)=>{ 
 
-        (error) => {
-          this.log.Error(GestioneOrdiniUploadComponent.name, "errore", [error]);
-          alert("Upload Documento fallito, si prega di riprovare");
+        console.log(error);
+      }
+    )
+  }
+
+  insertDocumento() {
+    
+    this.documento = {
+      id: null,
+      autore: this.currentUser.email,
+      data: new Date(),
+      idOrdine: this.idOrd ,
+      titolo:this.nomeDocumento
+    }
+    this.docs.insertDocumento(this.documento).subscribe(
+      (resp)=>{
+        this.log.Debug(GestioneOrdiniUploadComponent.name, "ok", [resp]);
+        window.alert("documento caricato");
+      },
+      (error)=>{
+        this.log.Error(GestioneOrdiniUploadComponent.name, "errore", [error]);
+
+      }
+    )
+  }
+  private reportProgress(httpEvent: HttpEvent<String[] | Blob>):void {
+    switch(httpEvent.type){
+      case HttpEventType.UploadProgress:
+        this.updateStatus(httpEvent.loaded,httpEvent.total,'Uploading');
+        break;
+      case HttpEventType.DownloadProgress:
+        this.updateStatus(httpEvent.loaded,httpEvent.total,'Uploading');
+        break;
+      case HttpEventType.ResponseHeader:
+        console.log('Header return '+httpEvent);
+        break;
+      case HttpEventType.Response:
+        if(httpEvent.body instanceof Array){
+          for(const fileName of httpEvent.body){
+            //filenames is any variable to download file
+            this.filenames.unshift(fileName)
+          }
+        }else{
+          //download logic
         }
-      )
+        break;
+    }
   }
   updateStatus(loaded: number, total: number, requestType: string) {
     throw new Error('Method not implemented.');

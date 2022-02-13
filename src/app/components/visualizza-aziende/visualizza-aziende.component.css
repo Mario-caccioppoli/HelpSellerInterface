@@ -69,3 +69,8 @@ a {
     bottom: 0;
     padding: 0 10px;
 }
+
+.img-product {
+    max-width: 100%;
+    margin: 10px 5px;
+}

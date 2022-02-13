@@ -54,7 +54,7 @@ a {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
 }
 
 @media (min-width: 991px) {
@@ -72,5 +72,6 @@ a {
 
 .img-product {
     max-width: 100%;
-    margin: 10px 5px;
+    /* margin: 10px 5px; */
+    padding: 40px 25px;
 }

@@ -82,8 +82,11 @@ export class LoginComponent implements OnInit {
     document.getElementById("logout").click()
     if(this.myStorage.getItem('currentUser')==null){
       this.currentUser=null;
-      window.location.reload();
-      this.router.navigateByUrl('/');
+      this.router.navigate(['/']);
+
+    setTimeout(() => {
+      window.location.reload();},500)
+      
     }
     else{
     console.log(" sessione logout "+this.myStorage.getItem('currentUser') +" storage "+this.currentUser.nome)

@@ -20,6 +20,9 @@ import { testRegex } from '../TestRegex/regex';
 export class ProfiloAziendaComponent implements OnInit {
   idAzienda: number;
   azienda: Azienda;
+  aziende: Azienda[];
+  idDeleteAccountAzienda:number;
+  cercaAzienda:string;
 
   amministratore: Amministratore;
   distributore: Distributore;
@@ -30,6 +33,7 @@ export class ProfiloAziendaComponent implements OnInit {
 
   currentUser: Utente=JSON.parse(localStorage.getItem("currentUser"))
   ngOnInit(): void {
+    console.log(this.currentUser.logo)
     if(this.currentUser != null) {
       this.prendiIdDalRouter();
       this.getProfiloAziendaById();
@@ -87,7 +91,6 @@ export class ProfiloAziendaComponent implements OnInit {
 
 
   newPassword(form){
-
     /* Inizio Regex */
 
     if(this.rX.regexPassword(form.passwordNuova)!= true) {
@@ -129,7 +132,7 @@ export class ProfiloAziendaComponent implements OnInit {
         descrizione:this.currentUser.descrizione,
         email:this.currentUser.email,
         indirizzo:this.currentUser.indirizzo,
-        logo:this.currentUser.logo,
+        logo:this.azienda.logo,
         nomeAzienda:this.currentUser.nome,
         password:utility.criptaPassword(passwordNuova),
         ordini:null,
@@ -184,7 +187,6 @@ export class ProfiloAziendaComponent implements OnInit {
   }
 
   eliminaAccount(id){
-    console.log("Numero "+id)
     if(this.currentUser.tipo=='Azienda' && this.currentUser != null){
       this.aziendaService.deleteAzienda(id).subscribe(
         (resp)=>{
@@ -209,6 +211,21 @@ export class ProfiloAziendaComponent implements OnInit {
           window.localStorage.removeItem('currentUser');
           window.location.reload();
           this.router.navigateByUrl('');
+        },
+        (error)=>{
+          this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
+        }
+      )
+    }
+  }
+
+  eliminaAccountAzienda(id){
+    if(this.idDeleteAccountAzienda!=undefined){
+      this.aziendaService.deleteAzienda(id).subscribe(
+        (resp)=>{
+          this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
+          document.getElementById("eliminaAccountAzienda").click()
+          window.location.reload();
         },
         (error)=>{
           this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
@@ -356,5 +373,23 @@ export class ProfiloAziendaComponent implements OnInit {
       )
     }
 
+  }
+  selezionaAzienda(event){
+    this.cercaAzienda=event;
+    if(this.cercaAzienda==''){
+      this.aziende=[];
+      document.getElementById('divAziende').style.display="none";
+    }
+    else{
+    this.aziendaService.findAziendeByName(this.cercaAzienda).subscribe(
+      (resp)=>{
+        this.log.Debug(ProfiloAziendaComponent.name,"chiamata a back-end", [resp]);
+        this.aziende=resp as Azienda[];
+      },
+      (error)=>{
+        this.log.Error(ProfiloAziendaComponent.name,"chiamata a back-end",error);
+      }
+    )
+  }
   }
 }

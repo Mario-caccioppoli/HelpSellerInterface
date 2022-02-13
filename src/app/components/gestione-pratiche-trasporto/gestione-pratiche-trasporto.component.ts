@@ -93,6 +93,7 @@ aggiungiDivisione(form){
   }
   
   this.trasporti.push(this.trasporto);
+  document.getElementById("staticBackdrop").click();
   
 }
 
@@ -104,6 +105,7 @@ concludiPratica() {
     (success) => {
       this.log.Debug(GestionePraticheTrasportoComponent.name, "ok", [success]);
       alert("Gestione Pratica inserita con successo");
+      window.location.reload();
     },
 
     (error) => {

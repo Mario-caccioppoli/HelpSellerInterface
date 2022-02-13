@@ -10,6 +10,7 @@ import { utility } from 'src/utility/utility';
 import { testRegex } from '../TestRegex/regex';
 import { FileService } from 'src/app/services/file/file.service';
 import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrazione',
@@ -24,7 +25,8 @@ export class RegistrazioneComponent implements OnInit {
     private as: AziendaService, 
     private ds: DistributoreService, 
     private log: LogService,
-    private fileService: FileService) { }
+    private fileService: FileService,
+    private router: Router) { }
 
   distributore: Distributore;
   utente: Utente;
@@ -129,6 +131,8 @@ export class RegistrazioneComponent implements OnInit {
       (success) => {
         this.log.Debug(RegistrazioneComponent.name, "ok", [success]);
         window.alert("Registrazione effettuata")
+        this.router.navigate(["/"]);
+        
       },
 
       (error) => {
@@ -214,6 +218,7 @@ public registrazioneAzienda(form) {
         (success) => {
           this.log.Debug(RegistrazioneComponent.name, "ok", [success]);
           window.alert("registrazione effettuata");
+          this.router.navigate(["/"]);
         },
   
         (error) => {

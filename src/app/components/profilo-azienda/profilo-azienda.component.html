@@ -9,6 +9,7 @@
             <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
             <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
             <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-danger w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
+            <button *ngIf="currentUser.tipo=='Amministratore'" class="btn btn-danger w100" data-bs-toggle="modal" data-bs-target="#selezionaAzienda">Elimina Azienda</button>
         </div>
         <div class="col-lg-9 centered">
             <h2 class="titolo centered">{{currentUser?.nome}} {{currentUser?.cognome}}
@@ -24,8 +25,8 @@
                 <p class="paragrafo left" *ngIf="currentUser.tipo!='Azienda' && currentUser.tipo!='Amministratore'">{{currentUser.telefono}}</p>
                 <h5 class="m25 left" *ngIf="currentUser.tipo!='Amministratore'"><b>Indirizzo</b></h5>
                 <p class="paragrafo left" *ngIf="currentUser.tipo!='Amministratore'">{{currentUser.indirizzo}}</p>
-                <h5 class="m25 left" *ngIf="currentUser.tipo!='Amministratore'"><b>Descrizione</b></h5>
-                <p class="paragrafo left" *ngIf="currentUser.tipo!='Amministratore'">{{currentUser.descrizione}}</p>
+                <h5 class="m25 left" *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'"><b>Descrizione</b></h5>
+                <p class="paragrafo left" *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo!='Distributore'">{{currentUser.descrizione}}</p>
             </div>
         </div>
     </div>
@@ -39,11 +40,11 @@
             <img class="img-circle" [src]="azienda.logoBlob" alt="">
             <br>
             <br>
-            <p>Pannello</p>
+            <p *ngIf="currentUser.tipo=='Azienda'">Pannello</p>
 
-            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
-            <button class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
-            <button *ngIf="currentUser.tipo!='Amministratore'" class="btn btn-danger w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
+            <button *ngIf="currentUser.tipo=='Azienda'" class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaAccount">Modifica Account</button>
+            <button *ngIf="currentUser.tipo=='Azienda'" class="btn btn-primary w100" data-bs-toggle="modal" data-bs-target="#modificaPassword">Modifica Password</button>
+            <button *ngIf="currentUser.tipo!='Amministratore' && currentUser.tipo=='Azienda'" class="btn btn-danger w100" data-bs-toggle="modal" data-bs-target="#eliminaAccount">Elimina Account</button>
 
             <!-- <button *ngIf="azienda != undefined && azienda.id != undefined" class="btn btn-primary w100"><a [routerLink]="['/visualizzaProdotti', azienda.id]">Elimina</a></button> -->
         </div>
@@ -70,7 +71,33 @@
     </div>
 </div>
 
+<!-- MODAL SELEZIONA AZIENDA -->
 
+<div class="modal fade" id="selezionaAzienda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cerca Azienda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <input type="text" class="form-control" [ngModel]="cercaAzienda" (ngModelChange)="selezionaAzienda($event)" placeholder="inserisci nome azienda" /><br>
+                            <div id="divAziende" *ngFor="let azienda of aziende" style="border: solid 1px; padding: 15px;">
+                                <div>{{azienda.nomeAzienda}}
+                                    <button style="float: right;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eliminaAccountAzienda" (click)="idDeleteAccountAzienda=azienda.id">Elimina</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- MODAL MODIFICA PASSWORD -->
 <div class="modal fade" id="modificaPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -98,7 +125,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                    <button type="submit" class="btn btn-success">Invia nuova password</button>
+                    <button type="submit" class="btn btn-success">Conferma password</button>
                 </div>
             </form>
         </div>
@@ -167,6 +194,25 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
                 <button type="button" (click)="eliminaAccount(this.currentUser?.id)" class="btn btn-primary" #Elimina>Cancella</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL_CANCELLA ACCOUNT AZIENDA-->
+<div class="modal fade" id="eliminaAccountAzienda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ATTENZIONE !</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                VUOI ELIMINARE DEFINITAVAMENTE L'ACCOUNT ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" (click)="eliminaAccountAzienda(this.idDeleteAccountAzienda)" class="btn btn-primary" #Elimina>Cancella</button>
             </div>
         </div>
     </div>

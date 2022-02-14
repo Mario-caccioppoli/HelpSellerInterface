@@ -48,7 +48,7 @@
             </div>
             <input class="form-control me-2" type="search" placeholder="Ricerca prodotto..." [(ngModel)]="cercaNomeProdotto" (ngModelChange)="cercaChange()" aria-label="Cerca" name="searchbar"><br><br>
 
-            <div *ngIf="prodotti==null" class="spinner-border" style="justify-content: center; align-items: center;"></div>
+            <div *ngIf="prodotti==null" class="spinner-border text-warning" style="justify-content: center; align-items: center;"></div>
             <div class="row eqi-container">
                 <div *ngFor="let prodotto of prodotti" class="col-lg-3 product" id="{{'prodottiContainer '+prodotto.id}}">
                     <a routerLink="/effettuaOrdine-TEST">
